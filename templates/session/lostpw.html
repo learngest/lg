@@ -1,7 +1,7 @@
 {% load i18n %}
-{% extends "base.html" %}
+{% extends "base_page.html" %}
 
-{% block breadcrumb %}{% trans "login form" %}{% endblock breadcrumb %}
+{% block breadcrumb %}Login form{% endblock breadcrumb %}
 {% block content %}
 {% if msg %}
 <p class="errmsg">{{ msg }}</p>
