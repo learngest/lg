@@ -1,0 +1,23 @@
+{% load i18n %}
+{% extends "base.html" %}
+
+{% block baselink %}{% endblock baselink %}
+{% block javascript %}{% endblock javascript %}
+
+{% block menu %}
+<p><a href="/logout/">{% trans "Log out" %}</a></p>
+<p><a href="/learning/profile/">{% trans "My account" %}</a></p>
+<p><a href="/learning/tdb/">{% trans "Dashboard" %}</a></p>
+{% if admin %}
+<p><a href="/coaching/">{% trans "Administration" %}</a></p>
+{% endif %}
+{% endblock menu %}
+
+{% block breadcrumb %}{% trans "Innovative e-learning Master" %}{% endblock breadcrumb %}
+
+{% block session %}
+<p>{{ visiteur }}{% if vgroupe %} - {{ vgroupe }}{% endif %}</p>
+{% endblock session %}
+
+{% block content %}
+{% endblock content %}

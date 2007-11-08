@@ -1,0 +1,38 @@
+<!-- vim: set encoding=utf8: -->
+{% load i18n %}
+{% extends "in_session.html" %}
+
+{% block menu %}
+<p><a href="/logout/">{% trans "Log out" %}</a></p>
+<p><a href="/learning/profile/">{% trans "My account" %}</a></p>
+<p><a href="/learning/tdb/">{% trans "Dashboard" %}</a></p>
+<p><a href="/coaching/">{% trans "Administration" %}</a></p>
+{% endblock menu %}
+
+{% block breadcrumb %}
+<a href="/coaching/">{% trans "administration" %}</a>
+&gt; {% trans "log" %}
+{% endblock breadcrumb %}
+
+
+{% block content %}
+<h3>{% trans "Log : last 7 days" %}</h3>
+<table>
+<thead>
+<tr>
+<th style="width: 25%;">{% trans "Date" %}</th>
+<th style="width: 35%;">{% trans "Student" %}</th>
+<th>{% trans "Url" %}</th>
+</tr>
+</thead>
+<tbody>
+{% for log in logs %}
+<tr class="{% cycle odd,even %}">
+<td>{{ log.date }}</td>
+<td><a href="/coaching/detail/?id={{ log.utilisateur.id }}">{{ log.utilisateur.nom_prenom }}</a></td>
+<td>{{ log.path }}{% if log.qstring %}?{{ log.qstring }}{% endif %}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock content %}

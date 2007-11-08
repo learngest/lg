@@ -1,0 +1,71 @@
+<!-- vim: set encoding=utf8 fileencoding=utf8: -->
+{% load i18n %}
+{% extends "in_session.html" %}
+
+{% block javascript %}
+    <script type="text/javascript" src="/media/js/jquery-1.1.3.1.pack.js"></script>
+    <script type="text/javascript" src="/media/js/jquery.tablesorter.js"></script>
+{% endblock javascript %}
+
+{% block menu %}
+<p><a href="/logout/">{% trans "Log out" %}</a></p>
+<p><a href="/learning/profile/">{% trans "My account" %}</a></p>
+<p><a href="/learning/tdb/">{% trans "Dashboard" %}</a></p>
+<p><a href="/coaching/">{% trans "Administration" %}</a></p>
+{% endblock menu %}
+
+{% block breadcrumb %}
+<a href="/coaching/">{% trans "administration" %}</a>
+&gt; {% trans "deadlines" %}
+{% endblock breadcrumb %}
+
+{% block content %}
+<div id="rightcol">
+	<h2>{% trans "Filter" %}</h2>
+    {% for filtre in liste_filtres %}
+    <h3>{% trans "By " %}{{ filtre.title }}</h3>
+	<ul>
+        {% for item in filtre.valeurs %}
+        {% if item.selected %}<li class="selected">{{ item.libel }}{% else %}<li><a href="?{{ item.url }}">{{ item.libel }}</a>{% endif %}</li>
+		{% endfor %}
+	</ul>	
+    {% endfor %}
+</div>
+
+<h2>{% trans "Deadlines management" %}</h2>
+<p><a href="/coaching/echeance/add" class="button">{% trans "Add new deadlines" %}</a></p>
+{% if liste_echeances %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#lista").tablesorter({ widgets: ['zebra']});
+        var c = [[0,0]];
+        $("#lista").trigger("sorton",[c]);
+        return false;
+})
+</script>
+	<table id="lista">
+		<thead>
+			<tr>
+				<th>{% trans "Group" %}</th>
+				<th>{% trans "Student" %}</th>
+				<th>{% trans "Course" %}</th>
+				<th>{% trans "Module" %}</th>
+				<th>{% trans "Deadline" %}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for echeance in liste_echeances %}
+            <tr>
+				<td>{{ echeance.groupe.nom }}</td>
+				<td>{{ echeance.utilisateur.nom_prenom }}</td>
+				<td>{{ echeance.cours.slug }}</td>
+				<td>{{ echeance.module.slug }}</td>
+				<td><a href="/coaching/echeance/manage/?id={{ echeance.id }}">{{ echeance.echeance }}</a></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% else %}
+	<p>{% trans "No deadline here." %}</p>
+{% endif %}
+{% endblock content %}

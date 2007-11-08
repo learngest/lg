@@ -1,0 +1,30 @@
+<!-- vim: set encoding=utf8 -->
+{% load i18n %}
+{% extends "in_session.html" %}
+
+{% block breadcrumb %}
+<a href="/learning/tdb/">{% trans "dashboard" %}</a>
+&gt; {% trans "test grading" %}
+{% endblock breadcrumb %}
+
+
+{% block content %}
+<h2>{% trans "Grade" %}</h2>
+	{% for enonce in enonces %}
+	<div class="enonce">
+		<p>{{ enonce.libel }}</p>
+		{% for question in enonce.questions %}
+			<p>{{ question.libel }}</p>
+			<p class="score">{% trans "You answered" %} {{ question.reponse }} : {{ question.points }} point(s).</p>
+		{% endfor %}
+	</div>
+	{% endfor%}
+	<div class="infomsg">
+		<p>{% trans "Final score" %} {{ total }} / {{ max }}.</p>
+		{% if valide %}
+		<p>{% trans "Congratulations, you succeeded !" %}</p>
+		{% else %}
+        <p>{% trans "Your score is too low, please try again." %} <a href="/testing/{{ granule }}/">{% trans "Try again now" %}</a></p>
+		{% endif %}
+	</div>
+{% endblock content %}

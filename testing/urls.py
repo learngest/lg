@@ -1,0 +1,9 @@
+from django.conf.urls.defaults import *
+
+from lg.listes import *
+
+urlpatterns = patterns('',
+    (r'^$', 'lg.testing.views.test'),
+    (r'^noter/$', 'lg.testing.views.noter'),
+    (r'^(?P<slug>[a-z-]+)/$', 'lg.testing.views.test'),
+)

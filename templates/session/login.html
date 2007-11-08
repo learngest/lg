@@ -1,0 +1,22 @@
+{% load i18n %}
+{% extends "base.html" %}
+
+{% block breadcrumb %}{% trans "login form" %}{% endblock breadcrumb %}
+{% block content %}
+{% if msg %}
+<p class="errmsg">{{ msg }}</p>
+{% endif %}
+<form method="post">
+<fieldset style="width: 30%;">
+    <h2>{% trans "Access form" %}</h2>
+    <p><label for="id_{{ form.login.name }}">{{ form.login.label }}</label> {{ form.login }} {{ form.errors.login }}</p>
+    <p><label for="id_{{ form.password.name }}">{{ form.password.label }}</label> {{ form.password }} {{ form.errors.password }}</p>
+</fieldset>
+<p><label for="id_{{ form.remember.name }}">{{ form.remember.label }}</label> {{ form.remember }} {{ form.errors.remember }}</p>
+<input type="submit" value="Ok" />
+<p><a href="/lostpw/">{% trans "Help, I lost my password" %}</a></p>
+</form>
+<script type="text/javascript">
+document.getElementById('id_login').focus()
+</script>
+{% endblock content %}

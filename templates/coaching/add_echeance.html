@@ -1,0 +1,69 @@
+<!-- vim: set encoding=utf8 fileencoding=utf8: -->
+{% load i18n %}
+{% extends "in_session.html" %}
+
+{% block menu %}
+<p><a href="/logout/">{% trans "Log out" %}</a></p>
+<p><a href="/learning/profile/">{% trans "My account" %}</a></p>
+<p><a href="/learning/tdb/">{% trans "Dashboard" %}</a></p>
+<p><a href="/coaching/">{% trans "Administration" %}</a></p>
+{% endblock menu %}
+
+{% block breadcrumb %}
+<a href="/coaching/">{% trans "administration" %}</a>
+&gt; <a href="/coaching/echeance/?l">{% trans "deadlines" %}</a>
+&gt; {% trans "add" %}
+{% endblock breadcrumb %}
+
+{% block content %}
+<h2>{% trans "Add a deadline" %}</h2>
+{% if msg %}<p class="infomsg">{{ msg }}</p>{% endif %}
+<form method="post">
+<fieldset>
+<h2>{% trans "Group or Student" %}</h2>
+{% if cours %}
+<p><label for="groupe">{% trans "Group" %}</label> {{ groupe.nom }}</p>
+<p><label for="utilisateur">{% trans "Student" %}</label> {{ utilisateur.nom_prenom }}</p>
+</fieldset>
+<fieldset>
+<h2>{% trans "Course or Module" %}</h2>
+<p><label for="cours">{% trans "Course" %}</label> {{ cours.title }}</p>
+{% if msg %}
+<p><label for="module">{% trans "Module" %}</label> {{ module.slug }}</p>
+</fieldset>
+<fieldset>
+<h2>{% trans "Deadline" %}</h2>
+<p><label for="deadline">{% trans "Deadline" %}</label> {{ deadline }}</p>
+</fieldset>
+{% else %}
+<p><label for="id_{{ form.module.name }}">{{ form.module.label }}</label> {{ form.module }}</p>
+</fieldset>
+<fieldset>
+<h2>{% trans "Deadline" %}</h2>
+<p><label for="id_{{ form.deadline.name }}">{{ form.deadline.label }}</label> {{ form.deadline }} {{ form.errors.deadline}}</p>
+</fieldset>
+<input type="hidden" name="g" value="{{ groupe.id }}" />
+<input type="hidden" name="u" value="{{ utilisateur.id }}" />
+<input type="hidden" name="c" value="{{ cours.id }}" />
+<input type="submit" value="{% trans "Save" %}" name="save" />
+<input type="submit" value="{% trans "Save and add a new one" %}" />
+{% endif %}
+{% else %}
+{% if groupe %}
+<p><label for="groupe">{% trans "Group" %}</label> {{ groupe.nom }}</p>
+<p><label for="id_{{ form.utilisateur.name }}">{{ form.utilisateur.label }}</label> {{ form.utilisateur }}</p>
+</fieldset>
+<fieldset>
+<h2>{% trans "Course or Module" %}</h2>
+<p><label for="id_{{ form.cours.name }}">{{ form.cours.label }}</label> {{ form.cours }}</p>
+</fieldset>
+<input type="hidden" name="g" value="{{ groupe.id }}" />
+<input type="submit" value="{% trans "Continue" %}" />
+{% else %}
+<p><label for="id_{{ form.groupe.name }}">{{ form.groupe.label }}</label> {{ form.groupe }} {{ form.errors.groupe }}</p>
+</fieldset>
+<input type="submit" value="{% trans "Continue" %}" />
+{% endif %}
+{% endif %}
+</form>
+{% endblock content %}

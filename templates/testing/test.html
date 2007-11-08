@@ -1,0 +1,26 @@
+<!-- vim: set encoding=utf8 -->
+{% load i18n %}
+{% extends "in_session.html" %}
+
+{% block breadcrumb %}
+<a href="/learning/tdb/">{% trans "dashboard" %}</a>
+&gt; {% trans "test" %}
+{% endblock breadcrumb %}
+
+{% block content %}
+<h2>{{ titre }}</h2>
+{% if msg %}
+<p class="infomsg">{{ msg }}</p>
+{% endif %}
+<form action="/testing/noter/" method="post">
+	{% for enonce in enonces %}
+	<fieldset class="enonce">
+		<p>{{ enonce.libel }}</p>
+		{% for question in enonce.questions %}
+			<p>{{ question }}</p>
+		{% endfor %}
+	</fieldset>
+	{% endfor%}
+	<input type="submit" name="submit" value="{% trans "Grade the test" %}" />
+</form>
+{% endblock content %}

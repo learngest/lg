@@ -1,0 +1,49 @@
+<!-- vim: set encoding=utf8 fileencoding=utf8: -->
+{% load i18n %}
+{% extends "in_session.html" %}
+
+{% block menu %}
+<p><a href="/logout/">{% trans "Log out" %}</a></p>
+<p><a href="/learning/profile/">{% trans "My account" %}</a></p>
+<p><a href="/learning/tdb/">{% trans "Dashboard" %}</a></p>
+<p><a href="/coaching/">{% trans "Administration" %}</a></p>
+{% endblock menu %}
+
+{% block breadcrumb %}
+<a href="/coaching/">{% trans "administration" %}</a>
+&gt; <a href="/coaching/lista/?l">{% trans "students" %}</a>
+&gt; <a href="/coaching/detail/?id={{ u.id }}">{% trans "detail" %}</a>
+&gt; {% trans "profile" %}
+{% endblock breadcrumb %}
+
+{% block content %}
+<h2>{{ u.prenom_nom }}</h2>
+{% if msg %}<p class="infomsg">{{ msg }}</p>{% endif %}
+<form method="post">
+<fieldset>
+    <h2>{% trans "Credentials" %}</h2>
+    <p><label for="login">{% trans "Login" %}</label> {{ u.login }}</p>
+    <p><label for="id_{{ form.newpassword.name }}">{{ form.newpassword.label }}</label> {{ form.newpassword }}</p>
+    <p><label for="id_{{ form.newpassword2.name }}">{{ form.newpassword2.label }}</label> {{ form.newpassword2 }} {{ form.errors.newpassword2 }}</p>
+</fieldset>
+<fieldset>
+    <h2>{% trans "Group" %}</h2>
+    <p><label for="id_{{ form.groupe_id.name }}">{{ form.groupe_id.label }}</label> {{ form.groupe_id }} {{ form.errors.groupe_id }}</p>
+</fieldset>
+<fieldset>
+    <h2>{% trans "Identity" %}</h2>
+    <p><label for="id_{{ form.nom.name }}">{{ form.nom.label }}</label> {{ form.nom }} {{ form.errors.nom }}</p>
+    <p><label for="id_{{ form.prenom.name }}">{{ form.prenom.label }}</label> {{ form.prenom }} {{ form.errors.prenom }}</p>
+    <p><label for="id_{{ form.email.name }}">{{ form.email.label }}</label> {{ form.email }} {{ form.errors.email }}</p>
+</fieldset>
+<fieldset>
+    <h2>{% trans "Valid till" %}</h2>
+    <p><label for="id_{{ form.fermeture.name }}">{{ form.fermeture.label }}</label> {{ form.fermeture }} {{ form.errors.fermeture }}</p>
+</fieldset>
+<fieldset>
+    <h2>{% trans "Language" %}</h2>
+    <p><label for="id_{{ form.langue.name }}">{{ form.langue.label }}</label> {{ form.langue }} {{ form.errors.langue }}</p>
+</fieldset>
+<input type="submit" value="{% trans "Save" %}" />
+</form>
+{% endblock content %}

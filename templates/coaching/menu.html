@@ -1,0 +1,30 @@
+<!-- vim: set encoding=utf8 fileencoding=utf8: -->
+{% load i18n %}
+{% extends "in_session.html" %}
+
+{% block menu %}
+<p><a href="/logout/">{% trans "Log out" %}</a></p>
+<p><a href="/learning/profile/">{% trans "My account" %}</a></p>
+<p><a href="/learning/tdb/">{% trans "Dashboard" %}</a></p>
+{% endblock menu %}
+{% block breadcrumb %}{% trans "administration" %}{% endblock breadcrumb %}
+
+{% block content %}
+<h2>{% trans "Administrator's homepage" %}</h2>
+<ul>
+    {% if staff %}
+	<!--
+	<li><a href="/blah/">{% trans "Manage database" %}</a></li>
+	-->
+    <li><a href="/coaching/clients/">{% trans "View clients statistics" %}</a></li>
+    <li><a href="/coaching/logins/">{% trans "Create logins from file" %}</a></li>
+    {% endif %}
+    <li><a href="/coaching/lista/?l">{% trans "Manage your students" %}</a></li>
+    <li><a href="/coaching/echeance/?l">{% trans "See, add or delete courses or modules deadlines" %}</a></li>
+    <li><a href="/coaching/work/?l">{% trans "See, add or delete assignments" %}</a></li>
+	<!--
+    <li><a href="/coaching/work/recup/">{% trans "Download work uploaded by students" %}</a></li>
+	-->
+    <li><a href="/coaching/logs/">{% trans "View log file (all requests to dashboard, contents and tests) for last 7 days" %}</a></li>
+</ul>
+{% endblock content %}

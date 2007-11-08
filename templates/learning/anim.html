@@ -1,0 +1,23 @@
+<!-- vim: set encoding=utf8 fileencoding=utf8: -->
+{% load i18n %}
+{% extends "in_session.html" %}
+{% block baselink %}<base href="{{ baselink }}" />{% endblock baselink %}
+
+{% block breadcrumb %}
+<a href="/learning/tdb/">{% trans "dashboard" %}</a>
+&gt; {% trans "animation" %}
+{% endblock breadcrumb %}
+
+{% block content %}
+{% if msg %}
+<p class="infomsg">{{ msg }}</p>
+{% endif %}
+   <object
+    type="application/x-shockwave-flash"
+    data="/contents/startanim.swf?path={{ support }}"
+    width="800" height="600">
+      <param name="movie" value="/contents/startanim.swf?path={{ support }}" />
+      <param name="quality" value="high" />
+      <param name="bgcolor" value="#FFFFFF" />
+   </object>
+{% endblock content %}

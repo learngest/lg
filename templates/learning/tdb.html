@@ -1,0 +1,93 @@
+<!-- vim: set encoding=utf8: -->
+{% load i18n %}
+{% extends "in_session.html" %}
+
+{% block breadcrumb %}{% trans "dashboard" %}{% endblock breadcrumb %}
+
+{% block content %}
+<div class="panel">
+<h2>{% trans "Welcome to your dashboard" %}</h2>
+<p>
+{% trans "You are " %} {{ visiteur }}.
+({% trans "If you are not" %} {{ prenom }}, <a href="/login/">{% trans "please log in" %}</a>)
+</p>
+<p>{% trans "Click on the module name to get details about its contents, tests and your results." %}<br />
+{% trans "Click on the icons in the contents column to read the contents." %}<br />
+{% trans "Click on the current test link to go to the last test you tried or the first one if you did not try any yet." %}</p>
+</div>
+<h2>{% trans "Common Documentation" %}</h2>
+<p><a href="/learning/common/faq/">{% trans "Frequently Asked Questions" %}</a></p>
+<p><a href="/learning/common/glossaire/">{% trans "Glossary" %}</a></p>
+{% for cours in les_cours %}
+<h2>{{ cours.title }}</h2>
+<table>
+<thead>
+<tr>
+<th style="width: 35%;">{% trans "Module" %}</th>
+<th style="width: 15%;">{% trans "Deadline" %}</th>
+<th style="text-align: center;">{% trans "Progress" %}</th>
+<th style="text-align: center;">{% trans "Contents" %}</th>
+<th style="width: 24%;text-align: left;">{% if test %}{% trans "Current test" %}{% endif %}</th>
+</tr>
+</thead>
+<tbody>
+{% for module in cours.modules %}
+<tr class="{% cycle odd,even %}{% if not module.ouvert %} closed{% endif %}">
+{% if module.ouvert %}
+<td><a href="{{ module.url }}">{{ module.title }}</a></td>
+<td{% if module.retard %} class="retard"{% endif %}>{{ module.echeance }}</td>
+<td style="text-align: center;">{{ module.progress }}</td>
+<td style="text-align: center;">
+	{% for doc in module.docs %}
+	<a href="{{ doc.url }}"><img src="{{ doc.img }}" alt="{{ doc.type }}" /></a>
+    &nbsp;
+	{% endfor %}
+</td>
+<td><a href="/testing/{{ module.curtestid }}/">{{ module.curtest }}</a></td>
+{% else %}
+<td>{{ module.title }}</td>
+<td{% if module.retard %} class="retard"{% endif %}>{{ module.echeance }}</td>
+<td style="text-align: center;">{{ module.progress }}</td>
+<td></td>
+<td></td>
+{% endif %}
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% if cours.devoirs %}
+<table>
+<thead>
+<tr>
+<th style="width: 35%;">{% trans "Assignment" %}</th>
+<th style="width: 15%;">{% trans "Deadline" %}</th>
+<th>{% trans "Uploaded on" %}</th>
+<th style="width: 15%;">{% trans "Signature" %}</th>
+</tr>
+</thead>
+<tbody>
+{% for devoir in cours.devoirs %}
+<tr class="{% cycle odd,even %}{% if not devoir.open %} closed{% endif %}">
+{% if not devoir.rendu_le %}
+<td><a href="{{ devoir.url }}">{{ devoir.titre }}</a></td>
+<td{% if devoir.retard %} class="retard"{% endif %}>{{ devoir.echeance }}</td>
+<td></td>
+<td></td>
+{% else %}
+<td>{{ devoir.titre }}</td>
+<td{% if devoir.retard %} class="retard"{% endif %}>{{ devoir.echeance }}</td>
+{% if devoir.rendu_le %}
+<td>{{ devoir.rendu_le }}</td>
+<td>{{ devoir.signature }}</td>
+{% else %}
+<td></td>
+<td></td>
+{% endif %}
+{% endif %}
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+{% endfor %}
+{% endblock content %}

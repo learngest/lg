@@ -1,0 +1,30 @@
+<!-- vim: set encoding=utf8: -->
+{% load i18n %}
+{% extends "in_session.html" %}
+
+{% block breadcrumb %}
+<a href="/learning/tdb/">{% trans "dashboard" %}</a>
+&gt; {% trans "assignment" %}
+{% endblock breadcrumb %}
+
+{% block content %}
+<h2>{{ devoir.titre }}</h2>
+<form enctype="multipart/form-data" method="post">
+<fieldset>
+<h2>{% trans "Assignment" %}</h2>
+<p>{{ devoir.libel }}</p>
+{% if devoir.fichier %}
+<p>{% trans "Download additional document:" %} <a href="{{ devoir.url }}">{{ devoir.fichier }}</a></p>
+{% endif %}
+</fieldset>
+<fieldset>
+<h2>{% trans "Upload your work" %}</h2>
+{% if fichier %}
+<p>{% trans "Succesfully uploaded" %} {{ fichier }} {% trans ", signature is" %} {{ signature }}</p>
+{% else %}
+<p><label for="id_{{ form.fichier.name }}">{{ form.fichier.label }}</label> {{ form.fichier }} {{ form.errors.fichier }}</p>
+</fieldset>
+<input type="submit" value="{% trans "Save" %}" name="save" />
+{% endif %}
+</form>
+{% endblock content %}

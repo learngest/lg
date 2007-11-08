@@ -1,0 +1,61 @@
+<!-- vim: set encoding=utf8 fileencoding=utf8: -->
+{% load i18n %}
+{% extends "in_session.html" %}
+
+{% block javascript %}
+    <script type="text/javascript" src="/media/js/jquery-1.1.3.1.pack.js"></script>
+    <script type="text/javascript" src="/media/js/jquery.tablesorter.js"></script>
+{% endblock javascript %}
+
+{% block breadcrumb %}{% trans "coaching" %} &gt; {% trans "list" %}{% endblock breadcrumb %}
+
+{% block content %}
+<div id="rightcol">
+	<h2>{% trans "Filter" %}</h2>
+    {% for filtre in liste_filtres %}
+    <h3>{% trans "By " %}{{ filtre.title }}</h3>
+	<ul>
+        {% for item in filtre.valeurs %}
+        {% if item.selected %}<li class="selected">{{ item.libel }}{% else %}<li><a href="?{{ item.url }}">{{ item.libel }}</a>{% endif %}</li>
+		{% endfor %}
+	</ul>	
+    {% endfor %}
+</div>
+
+{% if liste_utilisateurs %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#liste").tablesorter({ widgets: ['zebra']});
+        var c = [[0,0],[1,0]];
+        $("#liste").trigger("sorton",[c]);
+        return false;
+})
+</script>
+	<table id="liste">
+		<thead>
+			<tr>
+				<th>{% trans "Group" %}</th>
+				<th>{% trans "Name" %}</th>
+				<th>{% trans "Login" %}</th>
+				<th style="text-align: center;">{% trans "Progress" %}</th>
+				<th style="text-align: center;">{% trans "Delays" %}</th>
+				<th style="text-align: center;">{% trans "Last Work" %}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for utilisateur in liste_utilisateurs %}
+			<tr>
+				<td>{{ utilisateur.groupe.nom }}</td>
+				<td>{{ utilisateur.nom_prenom }}</td>
+				<td><a href="/coaching/detail/?id={{ utilisateur.id }}">{{ utilisateur.login }}</a></td>
+				<td style="text-align: center;">{{ utilisateur.nb_valides }}/{{ utilisateur.nb_modules }}</td>
+                <td style="text-align: center;">{{ utilisateur.nb_retards }}</td>
+                <td style="text-align: center;">{% if utilisateur.lastw %}{{ utilisateur.lastw }}{% endif %}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% else %}
+	<p>{% trans "This group is empty" %}</p>
+{% endif %}
+{% endblock content %}

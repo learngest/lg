@@ -1,0 +1,42 @@
+<!-- vim: set encoding=utf8 fileencoding=utf8: -->
+{% load i18n %}
+{% extends "in_session.html" %}
+
+{% block menu %}
+<p><a href="/logout/">{% trans "Log out" %}</a></p>
+<p><a href="/learning/profile/">{% trans "My account" %}</a></p>
+<p><a href="/learning/tdb/">{% trans "Dashboard" %}</a></p>
+<p><a href="/coaching/">{% trans "Administration" %}</a></p>
+{% endblock menu %}
+
+{% block breadcrumb %}
+<a href="/coaching/">{% trans "administration" %}</a>
+&gt; {% trans "create logins" %}
+{% endblock breadcrumb %}
+
+{% block content %}
+{% if msg %}<p class="infomsg">{{ msg }}</p>{% endif %}
+{% if errmsg %}<p class="errmsg">{{ errmsg }}</p>{% endif %}
+<form enctype="multipart/form-data" method="post">
+    
+<fieldset>
+<h2>{% trans "File" %}</h2>
+<p><label for="id_{{ form.source.name }}">{{ form.source.label }}</label> {{ form.source }} {{ form.errors.source }}</p>
+</fieldset>
+
+<fieldset>
+<h2>{% trans "Group" %}</h2>
+<p><label for="id_{{ form.groupe.name }}">{{ form.groupe.label }}</label> {{ form.groupe }} {{ form.errors.groupe }}</p>
+</fieldset>
+
+<fieldset>
+<h2>{% trans "Settings" %}</h2>
+<p><label for="id_{{ form.langue.name }}">{{ form.langue.label }}</label> {{ form.langue }} {{ form.errors.langue }}</p>
+<p><label for="id_{{ form.fermeture.name }}">{{ form.fermeture.label }}</label> {{ form.fermeture }} {{ form.errors.fermeture }}</p>
+<p><label for="id_{{ form.envoi_mail.name }}">{{ form.envoi_mail.label }}</label> {{ form.envoi_mail }} {{ form.errors.envoi_mail }}</p>
+</fieldset>
+
+<input type="submit" value="{% trans "Save" %}" />
+
+</form>
+{% endblock content %}
