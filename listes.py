@@ -33,7 +33,7 @@ LISTE_TYPQ = (
 )
 
 LISTE_SECTIONS = (
-        ('home', 'Home'),
+        ('welcome', 'Home'),
         ('products', 'Products'),
         ('about', 'About'),
 )

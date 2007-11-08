@@ -5,9 +5,12 @@ from django.conf import settings
 from django.http import Http404
 from django.views.generic.list_detail import object_detail
 
-from pages.models import Page
+from site.models import Page
+from listes import LISTE_SECTIONS
 
-def page_detail(request, section, slug=None):
+def page_detail(request, section=None, slug=None):
+    if not section:
+        section = LISTE_SECTIONS[0][0]
     pages = Page.objects.filter(section=section)
     if not slug:
         try:

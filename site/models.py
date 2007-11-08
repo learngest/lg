@@ -31,7 +31,7 @@ class Page(models.Model):
         return self.slug
 
     def get_absolute_url(self):
-        return ('progs.pages.views.page_detail', (), {
+        return ('lg.site.views.page_detail', (), {
                 'section': self.section,
                 'slug': self.slug,
                 })
@@ -45,10 +45,10 @@ class Page(models.Model):
 
     def contenu(self):
         self.path = os.path.join(os.path.dirname(settings.PROJECT_PATH), \
-                                    'contents',self.section,'%s.html' % self.slug)
+                                    'contents/site',self.section,'%s.html' % self.slug)
         try:
             contenu = codecs.open(self.path,'r','utf-8').read()
-            contenu = contenu.replace('img src="','img src="/contents/%s/' % self.section)
+            contenu = contenu.replace('img src="','img src="/contents/site/%s/' % self.section)
             return contenu
         except IOError:
             if settings.DEBUG:
