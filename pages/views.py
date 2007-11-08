@@ -5,7 +5,7 @@ from django.conf import settings
 from django.http import Http404
 from django.views.generic.list_detail import object_detail
 
-from site.models import Page
+from lg.pages.models import Page
 from listes import LISTE_SECTIONS
 
 def page_detail(request, section=None, slug=None):

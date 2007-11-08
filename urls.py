@@ -14,6 +14,6 @@ urlpatterns = patterns('',
     (r'^coaching/', include ('lg.coaching.urls')),
     (r'^learning/', include ('lg.learning.urls')),
     (r'^testing/', include ('lg.testing.urls')),
-    (r'^$', 'lg.site.views.page_detail'),
-    (r'^(?P<section>[a-z0-9-]+)/(?P<slug>[a-z0-9-]*)', 'lg.site.views.page_detail'),
+    (r'^$', 'lg.pages.views.page_detail'),
+    (r'^(?P<section>[a-z0-9-]+)/(?P<slug>[a-z0-9-]*)', 'lg.pages.views.page_detail'),
 )
