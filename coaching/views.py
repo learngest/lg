@@ -647,7 +647,8 @@ def detail_utilisateur(request):
                 wd = WorkDone.objects.get(utilisateur=u, work=w)
                 w.rendu_le = wd.date
                 w.signature = wd.signature
-                w.url = ''.join(('/upload/',wd.get_fichier_url()))
+                #w.url = ''.join(('/upload/',wd.get_fichier_url()))
+                w.url = wd.get_fichier_url()
                 if w.echeance:
                     w.retard = w.echeance < w.rendu_le
             except WorkDone.DoesNotExist:
