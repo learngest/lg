@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+{% block contenu %}{% endblock %}
+
+<div id="bmenu">
+
+<h2>{{ object.get_section_display }}</h2>
+<ul>
+{% for p in pages_list %}
+<li><a href="{{ p.get_absolute_url }}">{{ p.titre|lower }}</a></li>
+{% endfor %}
+</ul>
+</div><!-- bmenu -->
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base_page.html" %}
+
+{% block contenu %}
+<h2 id="nomenu">{{ object.get_section_display }} &gt; {{ object.titre|lower }}</h2>
+
+{{ object.contenu }}
+{% endblock %}
