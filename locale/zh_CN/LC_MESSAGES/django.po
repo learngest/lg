@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-31 17:01+0100\n"
+"POT-Creation-Date: 2007-11-09 10:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Anh J. anhj@gcu.info\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,7 @@ msgstr ""
 #: coaching/forms.py:60 templates/coaching/add_echeance.html:25
 #: templates/coaching/add_echeance.html:53 templates/coaching/add_work.html:23
 #: templates/coaching/add_work.html:25 templates/coaching/add_work.html:67
-#: templates/coaching/fiche.html:30 templates/coaching/liste_admin.html:52
+#: templates/coaching/fiche.html:30 templates/coaching/liste_admin.html:61
 #: templates/coaching/liste_clients.html:49
 #: templates/coaching/liste_coach.html:37
 #: templates/coaching/liste_echeance.html:49
@@ -81,7 +81,7 @@ msgstr ""
 msgid "First name"
 msgstr ""
 
-#: coaching/forms.py:22 coaching/views.py:1079 learning/forms.py:33
+#: coaching/forms.py:22 coaching/views.py:1080 learning/forms.py:33
 #: templates/coaching/logins2.html:45 templates/coaching/logins3.html:45
 msgid "Email"
 msgstr ""
@@ -174,7 +174,7 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: coaching/views.py:70 coaching/views.py:282 coaching/views.py:756
+#: coaching/views.py:70 coaching/views.py:282 coaching/views.py:757
 #, fuzzy
 msgid "group"
 msgstr "77"
@@ -236,73 +236,73 @@ msgstr ""
 msgid "Deadline successfully restored."
 msgstr ""
 
-#: coaching/views.py:710 learning/views.py:35
+#: coaching/views.py:711 learning/views.py:35
 #, python-format
 msgid "%s changed successfully."
 msgstr ""
 
-#: coaching/views.py:757
+#: coaching/views.py:758
 msgid "language"
 msgstr ""
 
-#: coaching/views.py:802
+#: coaching/views.py:803
 #, fuzzy
 msgid "client"
 msgstr "目录 "
 
-#: coaching/views.py:867
+#: coaching/views.py:868
 msgid "Exists already."
 msgstr ""
 
-#: coaching/views.py:875
+#: coaching/views.py:876
 msgid "Saved."
 msgstr ""
 
-#: coaching/views.py:892
+#: coaching/views.py:893
 msgid "Mail sent."
 msgstr ""
 
-#: coaching/views.py:894
+#: coaching/views.py:895
 msgid "Mail error."
 msgstr ""
 
-#: coaching/views.py:1037
+#: coaching/views.py:1038
 msgid "The message has been sent."
 msgstr ""
 
-#: coaching/views.py:1079 templates/learning/profile.html:24
+#: coaching/views.py:1080 templates/learning/profile.html:24
 msgid "Last Name"
 msgstr ""
 
-#: coaching/views.py:1079 templates/learning/profile.html:25
+#: coaching/views.py:1080 templates/learning/profile.html:25
 msgid "First Name"
 msgstr ""
 
-#: coaching/views.py:1079 session/forms.py:10 session/forms.py:22
-#: templates/coaching/fiche.html:25 templates/coaching/liste_admin.html:54
+#: coaching/views.py:1080 session/forms.py:10 session/forms.py:22
+#: templates/coaching/fiche.html:25 templates/coaching/liste_admin.html:63
 #: templates/coaching/liste_coach.html:39 templates/coaching/logins3.html:46
 #: templates/learning/profile.html:14
 msgid "Login"
 msgstr ""
 
-#: coaching/views.py:1080 templates/coaching/liste_admin.html:57
+#: coaching/views.py:1081 templates/coaching/liste_admin.html:66
 #: templates/coaching/liste_coach.html:42
 msgid "Last Work"
 msgstr ""
 
-#: coaching/views.py:1081
+#: coaching/views.py:1082
 msgid "Modules"
 msgstr ""
 
-#: coaching/views.py:1081
+#: coaching/views.py:1082
 msgid "Validated"
 msgstr ""
 
-#: coaching/views.py:1082 templates/coaching/liste_admin.html:56
+#: coaching/views.py:1083 templates/coaching/liste_admin.html:65
 msgid "Validated Late"
 msgstr ""
 
-#: coaching/views.py:1082
+#: coaching/views.py:1083
 msgid "Currently Late"
 msgstr ""
 
@@ -536,7 +536,7 @@ msgstr ""
 msgid "Download all this student's works:"
 msgstr ""
 
-#: templates/coaching/detail.html:39 templates/coaching/liste_admin.html:55
+#: templates/coaching/detail.html:39 templates/coaching/liste_admin.html:64
 #: templates/coaching/liste_coach.html:40 templates/learning/tdb.html:28
 msgid "Progress"
 msgstr ""
@@ -642,16 +642,20 @@ msgstr ""
 msgid "Send a mail to this group"
 msgstr ""
 
-#: templates/coaching/liste_admin.html:39
+#: templates/coaching/liste_admin.html:40
+msgid "Download works from this group:"
+msgstr ""
+
+#: templates/coaching/liste_admin.html:47
 msgid "Save this table as a .csv file"
 msgstr ""
 
-#: templates/coaching/liste_admin.html:53
+#: templates/coaching/liste_admin.html:62
 #: templates/coaching/liste_coach.html:38
 msgid "Name"
 msgstr ""
 
-#: templates/coaching/liste_admin.html:74
+#: templates/coaching/liste_admin.html:83
 #: templates/coaching/liste_coach.html:59
 msgid "This group is empty"
 msgstr ""
@@ -970,10 +974,6 @@ msgstr ""
 
 #: templates/learning/tdb.html:30
 msgid "Current test"
-msgstr ""
-
-#: templates/session/login.html:4 templates/session/lostpw.html:4
-msgid "login form"
 msgstr ""
 
 #: templates/session/login.html:11

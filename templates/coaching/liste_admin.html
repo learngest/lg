@@ -34,10 +34,19 @@
 
 {% if liste_utilisateurs %}
 <h2>{% trans "Students management" %}</h2>
-{% if maildest %}
-<p class="nop"><a href="/coaching/sendmail/?gid={{ maildest }}">{% trans "Send a mail to this group" %}</a></p>
-<p class="nop"><a href="/coaching/csv/?gid={{ maildest }}">{% trans "Save this table as a .csv file" %}</a></p>
+{% if gid %}
+<p class="nop"><a href="/coaching/sendmail/?gid={{ gid.id }}">{% trans "Send a mail to this group" %}</a></p>
+{%if gid.workdone %}
+<p class="nop">{% trans "Download works from this group:" %}</p>
+<ul>
+{% for work in gid.workdone %}
+<li class="nop"><a href="/upload/workdone/{{ work }}">{{ work }}</a></li>
+{% endfor %}
+</ul>
 {% endif %}
+<p class="nop"><a href="/coaching/csv/?gid={{ gid.id }}">{% trans "Save this table as a .csv file" %}</a></p>
+{% endif %}
+
 <script type="text/javascript">
     $(document).ready(function() {
         $("#lista").tablesorter({ widgets: ['zebra']});

@@ -85,6 +85,18 @@ class Groupe(models.Model):
             self.is_open=True
         super(Groupe, self).save()
 
+    def workdone(self):
+        """ Renvoie la liste des fichiers de devoirs rendus
+        """
+        liste_work = []
+        import os.path
+        for c in self.cours.all():
+            zipname = 'g%d-%s.zip' % (self.id, c.slug)
+            zipfile = os.path.join(settings.MEDIA_ROOT,'workdone',zipname)
+            if os.path.exists(zipfile):
+                liste_work.append(zipname)
+        return liste_work
+
 class Utilisateur(models.Model):
     """
     Le modèle de base utilisateur (Utilisateur).

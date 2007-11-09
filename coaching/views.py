@@ -766,13 +766,13 @@ def liste_utilisateurs(request, **kwargs):
     request.session['v'] = v
     v.save()
     if 'groupe' in params and not 'langue' in params:
-        maildest = params['groupe']
+        gid = Groupe.objects.get(id=params['groupe'])
     else:
-        maildest = None
+        gid = None
     return render_to_response(template,
             {'visiteur': v.prenom_nom(),
              'client': v.groupe.client,
-             'maildest': maildest,
+             'gid': gid,
              'liste_utilisateurs': lu, 'liste_filtres': lf,})
 liste_utilisateurs = visitor_may_see_list(liste_utilisateurs)
 
