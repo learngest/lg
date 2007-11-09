@@ -57,7 +57,7 @@ class Enonce(models.Model):
     libel = models.TextField() 
 
     class Admin:
-        search_fields = ('libel')
+        search_fields = ['libel']
         list_display = ('id','libel')
     
     def __unicode__(self):
