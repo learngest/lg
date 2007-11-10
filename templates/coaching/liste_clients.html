@@ -47,9 +47,9 @@
 			<tr>
 				<th>{% trans "Client" %}</th>
 				<th>{% trans "Group" %}</th>
-				<th style="text-align: center;">{% trans "# Logins" %}</th>
 				<th style="text-align: center;">{% trans "# Courses" %}</th>
 				<th style="text-align: center;">{% trans "# Modules" %}</th>
+				<th style="text-align: center;">{% trans "# Logins" %}</th>
 				<th style="text-align: center;">{% trans "# Connected Yesterday" %}</th>
 			</tr>
 		</thead>
@@ -58,9 +58,9 @@
             <tr>
 				<td>{{ groupe.client }}</td>
 				<td><a href="/coaching/lista/?groupe={{ groupe.id }}">{{ groupe.nom }}</a></td>
-				<td style="text-align: center;">{{ groupe.nb_logins }}</td>
                 <td style="text-align: center;">{{ groupe.nb_cours }}</td>
                 <td style="text-align: center;">{{ groupe.nb_modules }}</td>
+				<td style="text-align: center;">{{ groupe.nb_logins }}</td>
 				<td style="text-align: center;">{{ groupe.hier }}</td>
 			</tr>
 			{% endfor %}
