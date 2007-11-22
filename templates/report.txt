@@ -1,0 +1,8 @@
+{% if liste_groupes %}
+Statistiques clients du {{ hier|date:"j b Y" }}
+==============================================================================================================
+Client                   Groupe                         Cours     Modules     Logins     ConnectÃ©s hier
+==============================================================================================================
+{% for groupe in liste_groupes %}{{ groupe.client|ljust:25 }}{{ groupe.nom|ljust:25 }}{{ groupe.nb_cours|rjust:10 }}{{ groupe.nb_modules|rjust:10 }}{{ groupe.nb_logins|rjust:12 }}{{ groupe.hier|rjust:14 }}
+{% endfor %}==============================================================================================================
+{% endif %}
