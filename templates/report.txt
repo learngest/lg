@@ -1,8 +1,8 @@
 {% if liste_groupes %}
 Statistiques clients du {{ hier|date:"j b Y" }}
 ================================================================================================================
-Client                          Groupe                         Cours     Modules     Logins     Connexions hier
+Client                        Groupe                               Cours     Modules   Logins   Connexions hier
 ================================================================================================================
-{% for groupe in liste_groupes %}{{ groupe.client|ljust:32 }}{{ groupe.nom|ljust:25 }}{{ groupe.nb_cours|rjust:10 }}{{ groupe.nb_modules|rjust:10 }}{{ groupe.nb_logins|rjust:12 }}{{ groupe.hier|rjust:14 }}
+{% for groupe in liste_groupes %}{{ groupe.client|ljust:30 }}{{ groupe.nom|ljust:33 }}{{ groupe.nb_cours|rjust:8 }}{{ groupe.nb_modules|rjust:10 }}{{ groupe.nb_logins|rjust:10 }}{{ groupe.hier|rjust:14 }}
 {% endfor %}================================================================================================================
 {% endif %}
