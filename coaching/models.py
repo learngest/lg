@@ -239,18 +239,18 @@ class Utilisateur(models.Model):
         Renvoie une liste d'objets cours.
         """
         if self.statut() == STAFF:
-            return Cours.objects.all()
+            return Cours.objects.select_related()
         liste = []
         if self.statut() in (ADMINISTRATEUR, COACH):
             for g in self.groupes_list():
-                for c in g.cours.all():
+                for c in g.cours.select_related():
                     try:
                         i = liste.index(c)
                     except ValueError:
                         liste.append(c)
         else:
             g = self.groupe
-            liste.extend(g.cours.all())
+            liste.extend(g.cours.select_related())
         return liste
 
     def modules_list(self):
