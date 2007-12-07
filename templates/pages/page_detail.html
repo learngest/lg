@@ -3,5 +3,5 @@
 {% block contenu %}
 <h2 id="nomenu">{{ object.get_section_display }} &gt; {{ object.titre }}</h2>
 
-{{ object.contenu }}
+{{ object.contenu|safe }}
 {% endblock %}

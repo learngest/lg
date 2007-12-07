@@ -15,7 +15,7 @@
 
 {% block content %}
 {% if msg %}
-<p class="infomsg">{{ msg }}</p>
+<p class="infomsg">{{ msg|safe }}</p>
 {% endif %}
-{{ support }}
+{{ support|safe }}
 {% endblock content %}

@@ -17,7 +17,7 @@
 {% block content %}
 <h2>{% trans "Send an email" %}</h2>
 {% if msg %}
-<p class="infomsg">{{ msg }}</p>
+<p class="infomsg">{{ msg|safe }}</p>
 {% endif %}
 <form enctype="multipart/form-data" method="post">
 <fieldset>

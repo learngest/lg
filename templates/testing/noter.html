@@ -12,9 +12,9 @@
 <h2>{% trans "Grade" %}</h2>
 	{% for enonce in enonces %}
 	<div class="enonce">
-		<p>{{ enonce.libel }}</p>
+		<p>{{ enonce.libel|safe }}</p>
 		{% for question in enonce.questions %}
-			<p>{{ question.libel }}</p>
+			<p>{{ question.libel|safe }}</p>
 			<p class="score">{% trans "You answered" %} {{ question.reponse }} : {{ question.points }} point(s).</p>
 		{% endfor %}
 	</div>

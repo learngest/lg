@@ -18,7 +18,7 @@
 
 {% block content %}
 <h2>{{ u.prenom_nom }}</h2>
-{% if msg %}<p class="infomsg">{{ msg }}</p>{% endif %}
+{% if msg %}<p class="infomsg">{{ msg|safe }}</p>{% endif %}
 <form method="post">
 <fieldset>
     <h2>{% trans "Credentials" %}</h2>

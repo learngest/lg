@@ -17,7 +17,7 @@
 
 {% block content %}
 <h2>{% trans "Add a deadline" %}</h2>
-{% if msg %}<p class="infomsg">{{ msg }}</p>{% endif %}
+{% if msg %}<p class="infomsg">{{ msg|safe }}</p>{% endif %}
 <form method="post">
 <fieldset>
 <h2>{% trans "Group or Student" %}</h2>

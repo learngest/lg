@@ -17,7 +17,7 @@
 
 {% block content %}
 <h2>{% trans "Change or delete an assignment" %}</h2>
-{% if msg %}<p class="infomsg">{{ msg }}</p>{% endif %}
+{% if msg %}<p class="infomsg">{{ msg|safe }}</p>{% endif %}
 <form method="post"{%if deleted %} class="deleted"{% endif %}>
 <fieldset>
 <h2>{% trans "Group" %}</h2>

@@ -15,8 +15,8 @@
 {% endblock breadcrumb %}
 
 {% block content %}
-{% if msg %}<p class="infomsg">{{ msg }}</p>{% endif %}
-{% if errmsg %}<p class="errmsg">{{ errmsg }}</p>{% endif %}
+{% if msg %}<p class="infomsg">{{ msg|safe }}</p>{% endif %}
+{% if errmsg %}<p class="errmsg">{{ errmsg|safe }}</p>{% endif %}
     
 <form>
 <fieldset>
