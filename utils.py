@@ -29,5 +29,5 @@ def send_mail(sender, recipients, subject, msg):
     return status
 
 if __name__ == "__main__":
-    retour = send_mail('info@learngest.com',['jcbagneris@gmail.com',],'Essai 2', 'Contenu é à')
+    retour = send_mail('info@learngest.com',['jcbagneris@gmail.com',],'Essai 2', u'Contenu é à')
     print retour

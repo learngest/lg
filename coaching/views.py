@@ -836,7 +836,8 @@ def create_logins(request):
     import unicodedata
     import random
     import sha
-    from mailer.sender import send_mail
+    #from mailer.sender import send_mail
+    from lg.utils import send_mail
     v = request.session['v']
     if request.method == 'POST':
         if 'fsource' in request.POST:
@@ -998,7 +999,8 @@ menu = visitor_is(ADMINISTRATEUR)(menu)
 def send_email(request):
     """View: sends an email to user or group.
     """
-    from mailer.sender import send_mail
+    #from mailer.sender import send_mail
+    from lg.utils import send_mail
     v = request.session['v']
     if 'id' in request.GET:
         # verif v est coach du groupe des id

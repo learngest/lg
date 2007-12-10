@@ -204,7 +204,8 @@ def has_visitor(view_func):
 def lost_password(request):
     import sha
     import random
-    from mailer.sender import send_mail
+    #from mailer.sender import send_mail
+    from lg.utils import send_mail
     if request.method == 'POST':
         f = LoginOnlyForm(request.POST)
         if f.is_valid():
