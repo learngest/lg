@@ -46,8 +46,8 @@ class Module(models.Model):
 class ModuleTitre(models.Model):
     """Titre d'un module dans la langue choisie"""
     module = models.ForeignKey(Module)
-    langue = models.CharField(maxlength=5, choices=listes.LISTE_LANGUES)
-    titre = models.CharField(maxlength=100)
+    langue = models.CharField(max_length=5, choices=listes.LISTE_LANGUES)
+    titre = models.CharField(max_length=100)
 
     class Admin:
         list_filter = ('langue',)
@@ -92,8 +92,8 @@ class Cours(models.Model):
 class CoursTitre(models.Model):
     """Titre d'un cours dans la langue choisie"""
     cours = models.ForeignKey(Cours)
-    langue = models.CharField(maxlength=5, choices=listes.LISTE_LANGUES)
-    titre = models.CharField(maxlength=100)
+    langue = models.CharField(max_length=5, choices=listes.LISTE_LANGUES)
+    titre = models.CharField(max_length=100)
 
     class Admin:
         list_filter = ('langue',)
@@ -138,10 +138,10 @@ class Contenu(models.Model):
     Un module peut appartenir à plusieurs cours.
     Les modules sont formés de Contenus dans différentes langues.
     """
-    ressource = models.CharField(maxlength=50)
-    langue = models.CharField(maxlength=5, choices=listes.LISTE_LANGUES)
-    type = models.CharField(maxlength=3, choices=listes.LISTE_TYPES, default='htm')
-    titre = models.CharField(maxlength=100)
+    ressource = models.CharField(max_length=50)
+    langue = models.CharField(max_length=5, choices=listes.LISTE_LANGUES)
+    type = models.CharField(max_length=3, choices=listes.LISTE_TYPES, default='htm')
+    titre = models.CharField(max_length=100)
     module = models.ForeignKey(Module)
 
     class Admin:

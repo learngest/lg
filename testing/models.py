@@ -37,8 +37,8 @@ class Granule(models.Model):
 class GranuleTitre(models.Model):
     """Titre d'une granule dans la langue choisie"""
     granule = models.ForeignKey(Granule)
-    langue = models.CharField(maxlength=5, choices=listes.LISTE_LANGUES)
-    titre = models.CharField(maxlength=100)
+    langue = models.CharField(max_length=5, choices=listes.LISTE_LANGUES)
+    titre = models.CharField(max_length=100)
 
     class Admin:
         list_display = ('granule','langue','titre')
@@ -73,8 +73,8 @@ class Question(models.Model):
     """
     enonce = models.ForeignKey(Enonce)
     granule = models.ForeignKey(Granule)
-    langue = models.CharField(maxlength=5, choices=listes.LISTE_LANGUES)
-    typq = models.CharField(maxlength=3, choices=listes.LISTE_TYPQ, default='exa')
+    langue = models.CharField(max_length=5, choices=listes.LISTE_LANGUES)
+    typq = models.CharField(max_length=3, choices=listes.LISTE_TYPQ, default='exa')
     libel = models.TextField() 
 
     def __unicode__(self):
@@ -87,7 +87,7 @@ class Reponse(models.Model):
     """
     question = models.ForeignKey(Question)
     points = models.IntegerField()
-    valeur = models.CharField(maxlength=80)
+    valeur = models.CharField(max_length=80)
 
     def __unicode__(self):
         return self.valeur
