@@ -814,7 +814,7 @@ def liste_clients(request):
             groupe.nb_logins = groupe.utilisateur_set.count()
             auj = datetime.date.today()
             hier = auj - datetime.timedelta(1)
-            groupe.hier = groupe.utilisateur_set.filter(lastw__range=(hier,auj)).count()
+            groupe.hier = groupe.utilisateur_set.filter(lastw__gte=hier,lastw__lt=auj).count()
             liste.append(groupe)
     v.lastw = datetime.datetime.now()
     request.session['v'] = v
