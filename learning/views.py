@@ -35,20 +35,20 @@ def profile(request):
             msg = _('%s changed successfully.') % v.login
             return render_to_response('learning/profile.html',
                 {'visiteur': v.prenom_nom(), 
-                 'admin': v.statut(),
+                 'admin': v.status,
                 'v': v, 
                 'form': f, 'msg': msg})
         else:
             return render_to_response('learning/profile.html',
                 {'visiteur': v.prenom_nom(), 
-                 'admin': v.statut(),
+                 'admin': v.status,
                  'client': v.groupe.client,
                 'v': v, 'form': f})
     else:
         f = UtilisateurForm(v.__dict__)
         return render_to_response('learning/profile.html',
                 {'visiteur': v.prenom_nom(), 
-                 'admin': v.statut(),
+                 'admin': v.status,
                  'client': v.groupe.client,
                 'v': v,
                 'form': f,
@@ -117,7 +117,7 @@ def devoir(request):
                             {'visiteur': u.prenom_nom(),
                              'client': u.groupe.client,
                              'vgroupe': u.groupe,
-                             'admin': u.statut(),
+                             'admin': u.status,
                              'devoir': w,
                              'fichier': fichier,
                              'signature': signature,
@@ -125,7 +125,7 @@ def devoir(request):
             return render_to_response('learning/devoir.html',
                         {'visiteur': u.prenom_nom(),
                          'client': u.groupe.client,
-                        'admin': u.statut(),
+                        'admin': u.status,
                         'form': f,
                         'devoir': w }) 
     else:
@@ -135,7 +135,7 @@ def devoir(request):
     return render_to_response('learning/devoir.html',
             {'visiteur': u.prenom_nom(),
              'client': u.groupe.client,
-            'admin': u.statut(),
+            'admin': u.status,
             'form': f,
             'devoir': w }) 
 devoir = visitor_may_see_work(devoir)
@@ -196,7 +196,7 @@ def module(request, slug=None):
             {'visiteur': u.prenom_nom(),
              'client': u.groupe.client,
              'vgroupe': u.groupe,
-             'admin': u.statut(),
+             'admin': u.status,
              'module': m }) 
 module = new_visitor_may_see_module(module)
 
@@ -206,48 +206,69 @@ def tdb(request):
     u = request.session['v']
     # récup des cours du visiteur
     les_cours = u.cours_list()
-    tout_ouvert = (u.groupe.is_open or u.statut() > 0)
+    tout_ouvert = (u.groupe.is_open or u.status > 0)
     module_prec_valide = True
+    cours_prec_valide = True
     for c in les_cours:
         c.title = c.titre(langue=u.langue)
         c.modules = []
         for m in [mc.module for mc in c.modulecours_set.all()]:
             m.ouvert = tout_ouvert or module_prec_valide
+            m.valide = u.module_is_valide(m)
+            m.gs = m.granule_set.all()
+            m.gsc = len(m.gs)
             m.title = m.titre(langue=u.langue)
-            m.url = "/learning/module/%s/?cid=%s" % (m.slug, c.id)
-            if u.echeance(c,m):
-                m.echeance = u.echeance(c,m).echeance
-                m.retard = m.echeance < datetime.datetime.now() and not u.module_is_valide(m)
+            m.ech = u.echeance(c,m)
+            if m.ech:
+                m.echeance = m.ech.echeance
+                m.retard = m.echeance < datetime.datetime.now() and not m.valide
             else:
                 m.echeance = ''
             if m.ouvert:
-                if m.granule_set.count() > 0:
-                    m.progress = "%d / %d" % (u.nb_granules_valides(m),m.granule_set.count())
+                m.url = "/learning/module/%s/?cid=%s" % (m.slug, c.id)
+                if m.gsc > 0:
+                    m.gv = u.valide_set.filter(granule__in=m.gs)
+                    m.progress = "%d / %d" % (len(m.gv),m.gsc)
                 m.docs = []
-                for typ in [l[0] for l in listes.LISTE_TYPES]:
-                    try:
-                        d = m.contenu_set.get(type=typ,langue=u.langue)
-                    except Contenu.DoesNotExist:
-                        try:
-                            d = m.contenu_set.get(type=typ,langue='fr')
-                        except Contenu.DoesNotExist:
-                            continue
+#                for typ in [l[0] for l in listes.LISTE_TYPES]:
+#                    try:
+#                        d = m.contenu_set.get(type=typ,langue=u.langue)
+#                    except Contenu.DoesNotExist and u.langue!='fr':
+#                        try:
+#                            d = m.contenu_set.get(type=typ,langue='fr')
+#                        except Contenu.DoesNotExist:
+#                            continue
+#                    d.img = "/media/img/%s.gif" % d.type
+#                    m.docs.append(d)
+                for d in m.contenu_set.filter(langue='fr').order_by('type'):
                     d.img = "/media/img/%s.gif" % d.type
                     m.docs.append(d)
 
-                if not u.groupe.is_demo:
-                    ct = u.current_test(m)
+#                if not u.groupe.is_demo:
+#                    ct = u.current_test(m)
+#                    if ct:
+#                        m.curtest = ct.titre(u.langue)
+#                        m.curtestid = ct.slug
+                if not u.groupe.is_demo and m.gsc > 0:
+                    if m.valide:
+                        ct = u.resultat_set.filter(granule__in=m.gs).latest('date').granule
+                    else:
+                        for g in m.gs:
+                            if not g in m.gv:
+                                ct= g
                     if ct:
                         m.curtest = ct.titre(u.langue)
                         m.curtestid = ct.slug
+
             c.modules.append(m)
-            # module est validé si :
-            # - le précédent est validé et celui-ci n'a pas de test
-            # - OU il a été validé
+            # module est considéré comme validé si :
+            # - le cours précédent est validé
             # ET
-            # - le cours précédent est validé s'il existe (voir ci-dessous, devoirs)
-            module_prec_valide = (module_prec_valide and m.granule_set.count()==0) \
-                                or u.module_is_valide(m)
+            # - le module précédent est validé 
+            # ET 
+            # celui-ci n'a pas de test OU il a été validé
+            module_prec_valide = cours_prec_valide and module_prec_valide and (m.gsc==0 or m.valide)
+
         c.devoirs = []
         for w in Work.objects.filter(groupe=u.groupe, cours= c):
             try:
@@ -259,6 +280,7 @@ def tdb(request):
                                 .latest('echeance').echeance
                 except Echeance.DoesNotExist:
                     w.echeance = None
+            w.open = cours_prec_valide
             # devoir rendu par cet utilisateur ?
             try:
                 wd = WorkDone.objects.get(utilisateur=u, work=w)
@@ -267,20 +289,25 @@ def tdb(request):
                 if w.echeance:
                     w.retard = w.echeance < w.rendu_le
             except WorkDone.DoesNotExist:
-                module_prec_valide = False
+                cours_prec_valide = False
                 w.rendu_le = False
                 w.url = '/learning/devoir/?id=%s' % w.id 
                 if w.echeance:
                     w.retard = w.echeance < datetime.datetime.now()
-            w.open = u.cours_is_open(c)
             c.devoirs.append(w)
+
+        # cours est considéré comme validé si
+        # - cours précédent validé
+        # ET
+        # - dernier module examiné validé
+        cours_prec_valide = cours_prec_valide and module_prec_valide
 
     return render_to_response('learning/tdb.html',
             {'visiteur': u.prenom_nom(),
              'client': u.groupe.client,
              'prenom': u.prenom,
              'vgroupe': u.groupe,
-             'admin': u.statut(),
+             'admin': u.status,
              'test': not u.groupe.is_demo,
              'les_cours': les_cours }) 
 tdb = has_visitor(tdb)
@@ -346,7 +373,7 @@ def help_support(request, slug=None):
                                 {'visiteur': v.prenom_nom(),
                                  'client': v.groupe.client,
                                  'vgroupe': v.groupe,
-                                 'admin': v.statut(),
+                                 'admin': v.status,
                                  'baselink': base,
                                  'msg': msg,
                                  'support': support})
@@ -419,7 +446,7 @@ def support(request, slug=None, **kwargs):
                                     {'visiteur': v.prenom_nom(),
                                      'client': v.groupe.client,
                                      'vgroupe': v.groupe,
-                                     'admin': v.statut(),
+                                     'admin': v.status,
                                      'baselink': base,
                                      'msg': msg,
                                      'support': support})
@@ -430,7 +457,7 @@ def support(request, slug=None, **kwargs):
                                     {'visiteur': v.prenom_nom(),
                                      'client': v.groupe.client,
                                      'vgroupe': v.groupe,
-                                     'admin': v.statut(),
+                                     'admin': v.status,
                                      'baselink': base,
                                      'msg': msg,
                                      'support': support})

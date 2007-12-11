@@ -504,7 +504,7 @@ def log_utilisateur(request):
     return render_to_response('coaching/log.html',
             {'visiteur': v.prenom_nom(),
              'client': v.groupe.client,
-             'admin': v.statut()>COACH,
+             'admin': v.status>COACH,
              'u' : u,
              'logs': logs }) 
 log_utilisateur = visitor_is_at_least(COACH)(log_utilisateur)
@@ -590,7 +590,7 @@ def detail_module(request):
     return render_to_response('coaching/detail_module.html',
             {'visiteur': v.prenom_nom(),
              'client': v.groupe.client,
-             'admin': v.statut()>COACH,
+             'admin': v.status>COACH,
              'vgroupe': v.groupe,
              'u': u,
              'module': m }) 
@@ -664,7 +664,7 @@ def detail_utilisateur(request):
     return render_to_response('coaching/detail.html',
             {'visiteur': v.prenom_nom(),
              'client': v.groupe.client,
-             'admin': v.statut()>COACH,
+             'admin': v.status>COACH,
              'u' : u,
              'les_cours': les_cours }) 
 detail_utilisateur = visitor_is_at_least(COACH)(detail_utilisateur)
@@ -993,7 +993,7 @@ def menu(request):
     return render_to_response('coaching/menu.html',
             {'visiteur': v.prenom_nom(), 
              'client': v.groupe.client,
-             'staff': v.statut()==STAFF })
+             'staff': v.status==STAFF })
 menu = visitor_is(ADMINISTRATEUR)(menu)
 
 def send_email(request):

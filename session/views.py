@@ -159,7 +159,7 @@ def visitor_is(level=ETUDIANT):
             if not 'v' in request.session:
                 return HttpResponseRedirect('/login/?next=%s' % quote(request.get_full_path()))
             u = request.session['v']
-            if u.statut() in (level, STAFF):
+            if u.status in (level, STAFF):
                 return view_func(request, *args, **kwargs)
             return HttpResponseRedirect('/home/')
         return _check_visitor
@@ -173,7 +173,7 @@ def visitor_is_at_least(level=ETUDIANT):
             if not 'v' in request.session:
                 return HttpResponseRedirect('/login/?next=%s' % quote(request.get_full_path()))
             u = request.session['v']
-            if u.statut() >= level:
+            if u.status >= level:
                 return view_func(request, *args, **kwargs)
             return HttpResponseRedirect('/home/')
         return _check_visitor
@@ -186,8 +186,7 @@ def visitor_may_see_list(view_func):
         if not 'v' in request.session:
             return HttpResponseRedirect('/login/?next=%s' % quote(request.get_full_path()))
         u = request.session['v']
-        #if request.session['v_statut'] in (kwargs['ltyp'], STAFF): 
-        if u.statut() in (kwargs['ltyp'], STAFF): 
+        if u.status in (kwargs['ltyp'], STAFF): 
             return view_func(request, *args, **kwargs)
         return HttpResponseRedirect('/home/')
     return _dec
@@ -275,9 +274,6 @@ def login(request):
                         # renseigner les variables de session
                         request.session['v'] = u
                         request.session['django_language'] = u.langue
-                        #request.session['v_id'] = u.id
-                        #request.session['v_statut'] = u.statut()
-                        #request.session['v_prenom_nom'] = u.prenom_nom()
                         # traiter cookie "remember me"
                         if f.cleaned_data['remember']:
                             cookie_data = encodestring('%s:%s' % (f.cleaned_data['login'], 
@@ -291,12 +287,10 @@ def login(request):
                         # retourner à la vue appelante
                         next = request.REQUEST.get('next','')
                         if next:
-                            #return HttpResponseRedirect(next)
                             response.status_code = 302
                             response['Location'] = iri_to_uri(next)
                             return response
                         else:
-                            #return HttpResponseRedirect('/home/')
                             response.status_code = 302
                             response['Location'] = '/home/'
                             return response
@@ -313,9 +307,6 @@ def login(request):
         try:
             del request.session['v']
             del request.session['django_language']
-            #del request.session['v_id']
-            #del request.session['v_statut']
-            #del request.session['v_prenom_nom']
         except KeyError:
             pass
         # recup login cookie s'il existe
@@ -337,9 +328,6 @@ def logout(request):
     try:
         del request.session['v']
         del request.session['django_language']
-        #del request.session['v_id']
-        #del request.session['v_statut']
-        #del request.session['v_prenom_nom']
     except KeyError:
         pass
     msg = _('You have been logged out. Thanks for visiting us today. <br><a href="/login/">New login</a>')
@@ -348,13 +336,11 @@ def logout(request):
 def home(request):
     """View: selects an entry view suitable for visitor's level."""
 
-    #if request.session['v_statut'] >= ADMINISTRATEUR:
     u = request.session['v']
-    if u.statut() >= ADMINISTRATEUR:
+    if u.status >= ADMINISTRATEUR:
         return HttpResponseRedirect('/coaching/')
     else:
-        #if request.session['v_statut'] == COACH:
-        if u.statut() == COACH:
+        if u.status == COACH:
             return HttpResponseRedirect('/coaching/liste/')
     return HttpResponseRedirect('/learning/tdb/')
 home = has_visitor(home) 

@@ -71,7 +71,7 @@ def test(request, slug=None, **kwargs):
     return render_to_response('testing/test.html',
                                 {'visiteur': v.prenom_nom(),
                                 'client': v.groupe.client,
-                                'admin': v.statut(),
+                                'admin': v.status,
                                 'titre': gt,
                                 'msg': msg,
                                 'enonces': enonces.values(),})
@@ -181,7 +181,7 @@ def noter(request):
                                  'granule': g.slug,
                                 'client': u.groupe.client,
                                 'vgroupe': u.groupe,
-                                'admin': u.statut(),
+                                'admin': u.status,
                                 'total': total,
                                 'max': max,
                                 'valide': valide,

@@ -216,6 +216,15 @@ class Utilisateur(models.Model):
     is_valid.short_description = 'Valide ?'
     is_valid.boolean = True
 
+    _status = None
+
+    def _get_status(self):
+        if self._status is None:
+            self._status = self.statut()
+        return self._status
+
+    status = property(_get_status)
+
     def statut(self):
         if self.is_staff:
             return STAFF
@@ -238,10 +247,10 @@ class Utilisateur(models.Model):
 
         Renvoie une liste d'objets cours.
         """
-        if self.statut() == STAFF:
+        if self.status == STAFF:
             return Cours.objects.select_related()
         liste = []
-        if self.statut() in (ADMINISTRATEUR, COACH):
+        if self.status in (ADMINISTRATEUR, COACH):
             for g in self.groupes_list():
                 for c in g.cours.select_related():
                     try:
@@ -265,7 +274,7 @@ class Utilisateur(models.Model):
 
         Renvoie une liste d'objets modules.
         """
-        if self.statut() == STAFF:
+        if self.status == STAFF:
             return Module.objects.all()
         liste = []
         for c in self.cours_list():
@@ -277,7 +286,7 @@ class Utilisateur(models.Model):
         
         Renvoie une liste d'objets granules.
         """
-        if self.statut() == STAFF:
+        if self.status == STAFF:
             return Granule.objects.all()
         liste = []
         for m in self.modules_list():
@@ -395,7 +404,7 @@ class Utilisateur(models.Model):
         """
         if not module in self.modules_list():
             return False
-        if self.groupe.is_open or self.statut() > ETUDIANT:
+        if self.groupe.is_open or self.status > ETUDIANT:
             return True
         if self.module_is_valide(self.module_precedent(module)):
             return True
@@ -517,13 +526,13 @@ class Utilisateur(models.Model):
 
     def groupes_list(self):
         """Renvoie une liste des groupes coachés ou administrés par cet utilisateur """
-        if not self.statut() >= COACH:
+        if not self.status >= COACH:
             return []
         if self.is_staff:
             return Groupe.objects.all()
-        if self.statut() == ADMINISTRATEUR:
+        if self.status == ADMINISTRATEUR:
             return self.groupes.all()
-        if self.statut() == COACH:
+        if self.status == COACH:
             return [gc.groupe for gc in self.coached.all()]
 
 class Coached(models.Model):
