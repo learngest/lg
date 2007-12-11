@@ -224,6 +224,9 @@ def tdb(request):
                 m.retard = m.echeance < datetime.datetime.now() and not m.valide
             else:
                 m.echeance = ''
+            if m.gsc > 0:
+                m.gv = u.valide_set.filter(granule__in=m.gs)
+                m.progress = "%d / %d" % (len(m.gv),m.gsc)
             if m.ouvert:
                 m.url = "/learning/module/%s/?cid=%s" % (m.slug, c.id)
                 if m.gsc > 0:
