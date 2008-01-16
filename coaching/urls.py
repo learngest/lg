@@ -17,11 +17,11 @@ urlpatterns = patterns('',
     (r'^logins/$', 'lg.coaching.views.create_logins'),
     (r'^ficha/(?P<utilisateur>\w+)/$', 'lg.coaching.views.profile_utilisateur_admin'),
     (r'^echeance/$', 'lg.coaching.views.liste_echeances'),
-    (r'^echeance/add/$', 'lg.coaching.views.add_echeance'),
-    (r'^echeance/manage/$', 'lg.coaching.views.maj_echeance'),
+    (r'^echeance/add/?$', 'lg.coaching.views.add_echeance'),
+    (r'^echeance/manage/?$', 'lg.coaching.views.maj_echeance'),
     (r'^work/$', 'lg.coaching.views.liste_works'),
-    (r'^work/add/$', 'lg.coaching.views.add_work'),
-    (r'^work/manage/$', 'lg.coaching.views.maj_work'),
+    (r'^work/add/?$', 'lg.coaching.views.add_work'),
+    (r'^work/manage/?$', 'lg.coaching.views.maj_work'),
 )
 
 log_dict = {
