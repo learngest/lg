@@ -888,7 +888,8 @@ def create_logins(request):
                                              }
                         send_mail(sender='info@learngest.com',
                                   recipients=[u.email],
-                                  subject='Your finance course login - Votre login pour le cours de finance',
+                                  #subject='Your finance course login - Votre login pour le cours de finance',
+                                  subject='E-learning - %s' % g.client.nom,
                                   msg = mailmsg,
                                   )
                         status = ' '.join((status,ugettext('Mail sent.')))
