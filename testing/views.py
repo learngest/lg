@@ -158,7 +158,6 @@ def noter(request):
     r.save()
     valide = score >= q.granule.score_min
     if valide:
-        #if settings.DEBUG: print "granule %s valide" % g
         Valide.objects.get_or_create(utilisateur=u, granule=g, defaults={'score': score})
         mvalide = True
         for gr in g.module.granule_set.all():
@@ -166,13 +165,12 @@ def noter(request):
                 mvalide = False
                 break
         if mvalide:
-            #if settings.DEBUG: print "module %s valide" % g.module
             Valide.objects.get_or_create(utilisateur=u, module=g.module, defaults={'score': score})
             #if settings.DEBUG: print "enregistrement Valide ok"
-            u.nb_valides = Valide.objects.filter(utilisateur=u, module__isnull=False).count()
-            #if settings.DEBUG: print "u.nb_valides %d" % u.nb_valides
     u.lastw = datetime.datetime.now()
-    u.nb_retards = u.nperfs()[3]
+    uperfs = u.nperfs()
+    u.nb_retards = uperfs[3]
+    u.nb_valides = uperfs[0]
     request.session['v'] = u
     u.save()
 

@@ -311,11 +311,16 @@ class Utilisateur(models.Model):
             return ('', 0)
 
     def valid_score(self, granule):
-        try:
-            q = Valide.objects.get(utilisateur=self, granule=granule)
-        except Valide.DoesNotExist:
+#        try:
+#            q = Valide.objects.get(utilisateur=self, granule=granule)
+#        except Valide.DoesNotExist:
+#            return ('', 0)
+#        return (q.date, q.score)
+        q = Valide.objects.filter(utilisateur=self, granule=granule).order_by('-score')
+        if q:
+            return (q[0].date, q[0].score)
+        else:
             return ('', 0)
-        return (q.date, q.score)
 
     def nb_granules_valides(self,module):
         return self.valide_set.filter(granule__in=module.granule_set.all()).count()
