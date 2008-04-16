@@ -226,12 +226,14 @@ def tdb(request):
                 m.echeance = ''
             if m.gsc > 0:
                 m.gv = u.valide_set.filter(granule__in=m.gs)
-                m.progress = "%d / %d" % (len(m.gv),m.gsc)
+                #m.progress = "%d / %d" % (len(m.gv),m.gsc)
+                m.progress = len(m.gv)
             if m.ouvert:
                 m.url = "/learning/module/%s/?cid=%s" % (m.slug, c.id)
                 if m.gsc > 0:
                     m.gv = u.valide_set.filter(granule__in=m.gs)
-                    m.progress = "%d / %d" % (len(m.gv),m.gsc)
+                    #m.progress = "%d / %d" % (len(m.gv),m.gsc)
+                    m.progress = len(m.gv)
                 m.docs = []
 #                for typ in [l[0] for l in listes.LISTE_TYPES]:
 #                    try:
@@ -270,7 +272,7 @@ def tdb(request):
             # - le module précédent est validé 
             # ET 
             # celui-ci n'a pas de test OU il a été validé
-            module_prec_valide = cours_prec_valide and module_prec_valide and (m.gsc==0 or m.valide)
+            module_prec_valide = cours_prec_valide and module_prec_valide and ((m.gsc==0) or m.valide)
 
         c.devoirs = []
         for w in Work.objects.filter(groupe=u.groupe, cours= c):

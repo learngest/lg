@@ -25,9 +25,9 @@
 <tr>
 <th style="width: 35%;">{% trans "Module" %}</th>
 <th style="width: 15%;">{% trans "Deadline" %}</th>
-<th style="text-align: center;">{% trans "Progress" %}</th>
 <th style="text-align: center;">{% trans "Contents" %}</th>
-<th style="width: 24%;text-align: left;">{% if test %}{% trans "Current test" %}{% endif %}</th>
+<th style="text-align: center;">{% if test %}{% trans "Tests" %}{% endif %}</th>
+<th style="text-align: center;">{% trans "Progress" %}</th>
 </tr>
 </thead>
 <tbody>
@@ -36,20 +36,21 @@
 {% if module.ouvert %}
 <td><a href="{{ module.url }}">{{ module.title }}</a></td>
 <td{% if module.retard %} class="retard"{% endif %}>{{ module.echeance }}</td>
-<td style="text-align: center;">{{ module.progress }}</td>
 <td style="text-align: center;">
 	{% for doc in module.docs %}
 	<a href="{{ doc.url }}"><img src="{{ doc.img }}" alt="{{ doc.type }}" /></a>
     &nbsp;
 	{% endfor %}
 </td>
-<td><a href="/testing/{{ module.curtestid }}/">{{ module.curtest }}</a></td>
+<!-- <td><a href="/testing/{{ module.curtestid }}/">{{ module.curtest }}</a></td> -->
+<td style="text-align: center;">{{ module.gsc }}</td>
+<td style="text-align: center;">{{ module.progress }}</td>
 {% else %}
 <td>{{ module.title }}</td>
 <td{% if module.retard %} class="retard"{% endif %}>{{ module.echeance }}</td>
+<td></td>
+<td></td>
 <td style="text-align: center;">{{ module.progress }}</td>
-<td></td>
-<td></td>
 {% endif %}
 </tr>
 {% endfor %}
