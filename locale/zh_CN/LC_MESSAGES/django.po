@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-09 10:06+0100\n"
+"POT-Creation-Date: 2008-05-05 15:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Anh J. anhj@gcu.info\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,7 +81,7 @@ msgstr ""
 msgid "First name"
 msgstr ""
 
-#: coaching/forms.py:22 coaching/views.py:1080 learning/forms.py:33
+#: coaching/forms.py:22 coaching/views.py:1113 learning/forms.py:33
 #: templates/coaching/logins2.html:45 templates/coaching/logins3.html:45
 msgid "Email"
 msgstr ""
@@ -127,14 +127,14 @@ msgstr ""
 #: templates/coaching/add_echeance.html:42 templates/coaching/add_work.html:35
 #: templates/coaching/add_work.html:37 templates/coaching/add_work.html:52
 #: templates/coaching/add_work.html:54 templates/coaching/detail.html:38
-#: templates/coaching/detail.html.py:57
+#: templates/coaching/detail.html.py:59
 #: templates/coaching/detail_module.html:31
 #: templates/coaching/liste_echeance.html:53
 #: templates/coaching/liste_work.html:50
 #: templates/coaching/maj_echeance.html:33
 #: templates/coaching/maj_echeance.html:35 templates/coaching/maj_work.html:33
 #: templates/coaching/maj_work.html:35 templates/learning/module.html:19
-#: templates/learning/tdb.html:27 templates/learning/tdb.html.py:63
+#: templates/learning/tdb.html:27 templates/learning/tdb.html.py:64
 msgid "Deadline"
 msgstr ""
 
@@ -174,7 +174,7 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: coaching/views.py:70 coaching/views.py:282 coaching/views.py:757
+#: coaching/views.py:70 coaching/views.py:282 coaching/views.py:787
 #, fuzzy
 msgid "group"
 msgstr "77"
@@ -236,73 +236,81 @@ msgstr ""
 msgid "Deadline successfully restored."
 msgstr ""
 
-#: coaching/views.py:711 learning/views.py:35
+#: coaching/views.py:653
+msgid "Late"
+msgstr ""
+
+#: coaching/views.py:659
+msgid "Completed late"
+msgstr ""
+
+#: coaching/views.py:741 learning/views.py:35
 #, python-format
 msgid "%s changed successfully."
 msgstr ""
 
-#: coaching/views.py:758
+#: coaching/views.py:788
 msgid "language"
 msgstr ""
 
-#: coaching/views.py:803
+#: coaching/views.py:833
 #, fuzzy
 msgid "client"
 msgstr "目录 "
 
-#: coaching/views.py:868
+#: coaching/views.py:899
 msgid "Exists already."
 msgstr ""
 
-#: coaching/views.py:876
+#: coaching/views.py:907
 msgid "Saved."
 msgstr ""
 
-#: coaching/views.py:893
+#: coaching/views.py:925
 msgid "Mail sent."
 msgstr ""
 
-#: coaching/views.py:895
+#: coaching/views.py:927
 msgid "Mail error."
 msgstr ""
 
-#: coaching/views.py:1038
+#: coaching/views.py:1071
 msgid "The message has been sent."
 msgstr ""
 
-#: coaching/views.py:1080 templates/learning/profile.html:24
+#: coaching/views.py:1113 templates/learning/profile.html:24
 msgid "Last Name"
 msgstr ""
 
-#: coaching/views.py:1080 templates/learning/profile.html:25
+#: coaching/views.py:1113 templates/learning/profile.html:25
 msgid "First Name"
 msgstr ""
 
-#: coaching/views.py:1080 session/forms.py:10 session/forms.py:22
+#: coaching/views.py:1113 session/forms.py:10 session/forms.py:22
 #: templates/coaching/fiche.html:25 templates/coaching/liste_admin.html:63
 #: templates/coaching/liste_coach.html:39 templates/coaching/logins3.html:46
 #: templates/learning/profile.html:14
 msgid "Login"
 msgstr ""
 
-#: coaching/views.py:1081 templates/coaching/liste_admin.html:66
+#: coaching/views.py:1114 templates/coaching/liste_admin.html:68
 #: templates/coaching/liste_coach.html:42
 msgid "Last Work"
 msgstr ""
 
-#: coaching/views.py:1082
+#: coaching/views.py:1115 templates/coaching/liste_admin.html:64
 msgid "Modules"
 msgstr ""
 
-#: coaching/views.py:1082
+#: coaching/views.py:1115
 msgid "Validated"
 msgstr ""
 
-#: coaching/views.py:1083 templates/coaching/liste_admin.html:65
+#: coaching/views.py:1116
 msgid "Validated Late"
 msgstr ""
 
-#: coaching/views.py:1083
+#: coaching/views.py:1116
 msgid "Currently Late"
 msgstr ""
 
@@ -310,7 +318,7 @@ msgstr ""
 msgid "File name"
 msgstr ""
 
-#: learning/views.py:317 learning/views.py:388 testing/views.py:59
+#: learning/views.py:349 learning/views.py:420 testing/views.py:59
 msgid "We are sorry, this content is not available in your preferred language."
 msgstr ""
 
@@ -332,21 +340,21 @@ msgid ""
 "form</a>."
 msgstr ""
 
-#: session/views.py:303
+#: session/views.py:298
 msgid "Sorry, expired account."
 msgstr ""
 
-#: session/views.py:305
+#: session/views.py:300
 msgid "Password error. Please try again."
 msgstr ""
 
-#: session/views.py:309
+#: session/views.py:304
 msgid ""
 "Your browser does not seem to accept cookies. Please change your settings "
 "and try again."
 msgstr ""
 
-#: session/views.py:344
+#: session/views.py:333
 msgid ""
 "You have been logged out. Thanks for visiting us today. <br><a href=\"/login/"
 "\">New login</a>"
@@ -498,9 +506,9 @@ msgid "Add an assignment"
 msgstr ""
 
 #: templates/coaching/add_work.html:33 templates/coaching/add_work.html:50
-#: templates/coaching/detail.html:56 templates/coaching/liste_work.html:52
+#: templates/coaching/detail.html:58 templates/coaching/liste_work.html:52
 #: templates/coaching/maj_work.html:31 templates/learning/devoir.html:14
-#: templates/learning/tdb.html:62
+#: templates/learning/tdb.html:63
 msgid "Assignment"
 msgstr ""
 
@@ -536,16 +544,19 @@ msgstr ""
 msgid "Download all this student's works:"
 msgstr ""
 
-#: templates/coaching/detail.html:39 templates/coaching/liste_admin.html:64
-#: templates/coaching/liste_coach.html:40 templates/learning/tdb.html:28
-msgid "Progress"
+#: templates/coaching/detail.html:39 templates/coaching/liste_admin.html:65
+msgid "Done"
 msgstr ""
 
-#: templates/coaching/detail.html:58 templates/learning/tdb.html:64
+#: templates/coaching/detail.html:40
+msgid "Problem ?"
+msgstr ""
+
+#: templates/coaching/detail.html:60 templates/learning/tdb.html:65
 msgid "Uploaded on"
 msgstr ""
 
-#: templates/coaching/detail.html:59 templates/learning/tdb.html:65
+#: templates/coaching/detail.html:61 templates/learning/tdb.html:66
 msgid "Signature"
 msgstr ""
 
@@ -562,7 +573,7 @@ msgid "Deadline was"
 msgstr ""
 
 #: templates/coaching/detail_module.html:35 templates/learning/module.html:23
-#: templates/learning/tdb.html:29
+#: templates/learning/tdb.html:28
 msgid "Contents"
 msgstr ""
 
@@ -579,6 +590,7 @@ msgid "Times viewed"
 msgstr ""
 
 #: templates/coaching/detail_module.html:57 templates/learning/module.html:46
+#: templates/learning/tdb.html:29
 msgid "Tests"
 msgstr ""
 
@@ -655,7 +667,15 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: templates/coaching/liste_admin.html:83
+#: templates/coaching/liste_admin.html:66
+msgid "Done Late"
+msgstr ""
+
+#: templates/coaching/liste_admin.html:67
+msgid "Cur. Late"
+msgstr ""
+
+#: templates/coaching/liste_admin.html:87
 #: templates/coaching/liste_coach.html:59
 msgid "This group is empty"
 msgstr ""
@@ -674,15 +694,15 @@ msgid "Client"
 msgstr "目录 "
 
 #: templates/coaching/liste_clients.html:50
-msgid "# Logins"
-msgstr ""
-
-#: templates/coaching/liste_clients.html:51
 msgid "# Courses"
 msgstr ""
 
-#: templates/coaching/liste_clients.html:52
+#: templates/coaching/liste_clients.html:51
 msgid "# Modules"
+msgstr ""
+
+#: templates/coaching/liste_clients.html:52
+msgid "# Logins"
 msgstr ""
 
 #: templates/coaching/liste_clients.html:53
@@ -700,6 +720,10 @@ msgstr ""
 #: templates/coaching/liste_coach.html:10
 msgid "list"
 msgstr "目录 "
+
+#: templates/coaching/liste_coach.html:40 templates/learning/tdb.html:30
+msgid "Progress"
+msgstr ""
 
 #: templates/coaching/liste_coach.html:41
 msgid "Delays"
@@ -970,10 +994,6 @@ msgstr ""
 
 #: templates/learning/tdb.html:20
 msgid "Glossary"
-msgstr ""
-
-#: templates/learning/tdb.html:30
-msgid "Current test"
 msgstr ""
 
 #: templates/session/login.html:11

@@ -486,6 +486,29 @@ def maj_echeance(request):
                              })
 maj_echeance = visitor_is(ADMINISTRATEUR)(maj_echeance) 
 
+def retards_utilisateur(request):
+    """View: log des visites d'un utilisateur
+    """
+    # récup visiteur
+    v = request.session['v']
+    try:
+        u = Utilisateur.objects.get(id=request.GET['id'])
+    except Utilisateur.DoesNotExist:
+        return HttpResponseRedirect('/home/')
+    if not u.groupe in v.groupes_list():
+        return HttpResponseRedirect('/home/')
+    logs = Log.objects.filter(utilisateur=u)[:50]
+    v.lastw = datetime.datetime.now()
+    request.session['v'] = v
+    v.save()
+    return render_to_response('coaching/retards.html',
+            {'visiteur': v.prenom_nom(),
+             'client': v.groupe.client,
+             'admin': v.status>COACH,
+             'u' : u,
+             'logs': logs }) 
+retards_utilisateur = visitor_is_at_least(COACH)(retards_utilisateur)
+
 def log_utilisateur(request):
     """View: log des visites d'un utilisateur
     """
@@ -626,10 +649,17 @@ def detail_utilisateur(request):
             if u.echeance(c,m):
                 m.echeance = u.echeance(c,m).echeance
                 m.retard = m.echeance < datetime.datetime.now() and not u.module_is_valide(m)
+                if m.retard:
+                    m.problem = _('Late')
             else:
                 m.echeance = ''
-            if m.granule_set.count() > 0:
-                m.progress = "%d / %d" % (u.nb_granules_valides(m),m.granule_set.count())
+            if u.module_is_valide(m):
+                m.progress = u.date_validation_module(m)
+                if m.echeance and m.echeance < m.progress:
+                    m.problem = _('Completed late')
+            else:
+                if m.granule_set.count() > 0:
+                    m.progress = "%d / %d" % (u.nb_granules_valides(m),m.granule_set.count())
             c.modules.append(m)
         c.devoirs = []
         for w in Work.objects.filter(groupe=u.groupe, cours= c):

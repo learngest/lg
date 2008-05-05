@@ -34,17 +34,19 @@
 <table>
 <thead>
 <tr>
-<th style="width: 35%;">{% trans "Module" %}</th>
-<th style="width: 15%;">{% trans "Deadline" %}</th>
-<th style="text-align: center;">{% trans "Progress" %}</th>
+<th style="width: 42%;">{% trans "Module" %}</th>
+<th style="text-align: center;width: 17%;">{% trans "Deadline" %}</th>
+<th style="text-align: center;width: 17%">{% trans "Done" %}</th>
+<th style="text-align: center;">{% trans "Problem ?" %}</th>
 </tr>
 </thead>
 <tbody>
 {% for module in cours.modules %}
 <tr class="{% cycle odd,even %}">
 <td><a href="{{ module.url }}">{{ module.title }}</a></td>
-<td{% if module.retard %} class="retard"{% endif %}>{{ module.echeance }}</td>
+<td style="text-align: center;"{% if module.retard %} class="retard"{% endif %}>{{ module.echeance }}</td>
 <td style="text-align: center;">{{ module.progress }}</td>
+<td style="text-align: center;" class="retard">{{ module.problem }}</td>
 </tr>
 {% endfor %}
 </tbody>
@@ -53,10 +55,10 @@
 <table>
 <thead>
 <tr>
-<th style="width: 35%;">{% trans "Assignment" %}</th>
-<th style="width: 15%;">{% trans "Deadline" %}</th>
-<th>{% trans "Uploaded on" %}</th>
-<th style="width: 15%;">{% trans "Signature" %}</th>
+<th style="width: 24%;">{% trans "Assignment" %}</th>
+<th style="width: 17%; text-align: center;">{% trans "Deadline" %}</th>
+<th style="width: 17%; text-align: center;">{% trans "Uploaded on" %}</th>
+<th style="text-align: center;">{% trans "Signature" %}</th>
 </tr>
 </thead>
 <tbody>
@@ -64,14 +66,14 @@
 <tr class="{% cycle odd,even %}{% if devoir.rendu_le %} closed{% endif %}">
 {% if not devoir.rendu_le %}
 <td>{{ devoir.titre }}</td>
-<td{% if devoir.retard %} class="retard"{% endif %}>{{ devoir.echeance }}</td>
+<td style="text-align:center;"{% if devoir.retard %} class="retard"{% endif %}>{{ devoir.echeance }}</td>
 <td></td>
 <td></td>
 {% else %}
 <td><a href="{{ devoir.url }}">{{ devoir.titre }}</a></td>
-<td{% if devoir.retard %} class="retard"{% endif %}>{{ devoir.echeance }}</td>
-<td>{{ devoir.rendu_le }}</td>
-<td>{{ devoir.signature }}</td>
+<td style="text-align:center;"{% if devoir.retard %} class="retard"{% endif %}>{{ devoir.echeance }}</td>
+<td style="text-align:center;">{{ devoir.rendu_le }}</td>
+<td style="text-align:center;">{{ devoir.signature }}</td>
 {% endif %}
 </tr>
 {% endfor %}
