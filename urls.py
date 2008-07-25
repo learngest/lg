@@ -1,7 +1,11 @@
 from django.conf.urls.defaults import *
+#from django.contrib import admin
+
+#admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^blah/', include('django.contrib.admin.urls')),
+    #(r'^blah/(.*)', admin.site.root),
 #    (r'^style/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/jcb/learngest/web/media/style'}),
 #    (r'^contents/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/jcb/learngest/web/contents'}),
 #    (r'^js/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/jcb/learngest/web/media/js'}),
