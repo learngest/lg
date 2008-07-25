@@ -328,7 +328,7 @@ class Utilisateur(models.Model):
     def module_is_valide(self, module):
         """Renvoie True si le module est validé.
         """
-        return self.valide_set.filter(module=module).count() > 0
+        return self.valide_set.filter(module=module).count()>0
 
     def date_validation_module(self, module):
         """Renvoie la date de validation du module
@@ -372,6 +372,9 @@ class Utilisateur(models.Model):
         """Renvoie True si tous les modules et dossiers du cours sont validés.
         """
         for module in [mc.module for mc in cours.modulecours_set.all()]:
+            # si module sans question, on ne teste pas
+            if module.granule_set.count()==0:
+                continue
             if not self.module_is_valide(module):
                 return False
         for devoir in Work.objects.filter(cours=cours, groupe=self.groupe):
@@ -411,16 +414,22 @@ class Utilisateur(models.Model):
             return False
         if self.groupe.is_open or self.status > ETUDIANT:
             return True
-        if self.module_is_valide(self.module_precedent(module)):
-            return True
         if not self.module_precedent(module):
             cp = self.cours_precedent(module)
             if cp:
                 if self.cours_is_valide(cp):
                     return True
-            # s'il n'y a pas de cours précédent, premier cours du premier module, donc ouvert
+                else:
+                    return False
+            # s'il n'y a pas de cours précédent, premier cours du premier module, 
+            # donc ouvert
             else:
                 return True
+        if self.module_is_valide(self.module_precedent(module)):
+            return True
+        # si le module précédent n'a pas de questions, celui-ci est ouvert
+        if self.module_precedent(module).granule_set.count()==0:
+            return True
         return False
 
     def current_test(self,module):
@@ -501,8 +510,9 @@ class Utilisateur(models.Model):
                 if self.module_is_valide(m):
                     valides += 1
                     if e:
-                        if e.echeance < self.date_validation_module(m):
-                            troptard += 1
+                        if self.date_validation_module(m):
+                            if e.echeance < self.date_validation_module(m):
+                                troptard += 1
                 else:
                     if e:
                         if e.echeance < datetime.datetime.now():

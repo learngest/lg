@@ -487,7 +487,7 @@ def maj_echeance(request):
 maj_echeance = visitor_is(ADMINISTRATEUR)(maj_echeance) 
 
 def retards_utilisateur(request):
-    """View: log des visites d'un utilisateur
+    """View: liste des retards d'un utilisateur
     """
     # récup visiteur
     v = request.session['v']
@@ -646,6 +646,9 @@ def detail_utilisateur(request):
         for m in [mc.module for mc in c.modulecours_set.all()]:
             m.title = m.titre(langue=v.langue)
             m.url = "/coaching/detail/module/?id=%s&mid=%s&cid=%s" % (u.id, m.id, c.id)
+            m.essais = 0
+            for t in m.granule_set.all():
+                m.essais += u.nb_essais(t)
             if u.echeance(c,m):
                 m.echeance = u.echeance(c,m).echeance
                 m.retard = m.echeance < datetime.datetime.now() and not u.module_is_valide(m)

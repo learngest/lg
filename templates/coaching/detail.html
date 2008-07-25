@@ -37,6 +37,7 @@
 <th style="width: 42%;">{% trans "Module" %}</th>
 <th style="text-align: center;width: 17%;">{% trans "Deadline" %}</th>
 <th style="text-align: center;width: 17%">{% trans "Done" %}</th>
+<th style="text-align: center;">{% trans "Tries" %}</th>
 <th style="text-align: center;">{% trans "Problem ?" %}</th>
 </tr>
 </thead>
@@ -46,6 +47,7 @@
 <td><a href="{{ module.url }}">{{ module.title }}</a></td>
 <td style="text-align: center;"{% if module.retard %} class="retard"{% endif %}>{{ module.echeance }}</td>
 <td style="text-align: center;">{{ module.progress }}</td>
+<td style="text-align: center;">{{ module.essais }}</td>
 <td style="text-align: center;" class="retard">{{ module.problem }}</td>
 </tr>
 {% endfor %}
