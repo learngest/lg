@@ -21,6 +21,19 @@ def output_exa(question):
 def output_num(question):
     return output_exa(question)
 
+def output_qrm(question):
+    import sys
+    if sys.version_info[1]==3:
+        reponses = '\n'.join(["<br /><input type=\"checkbox\" value=\"%s\" name=\"rep%d\" />&nbsp;%s" \
+                            % (r.id, question.id, r) \
+                            for r in question.reponse_set.all()])
+    else:
+        reponses = '\n'.join(["<br /><input type=\"checkbox\" value=\"%s\" name=\"rep%d\" />&nbsp;%s" \
+                            % (r.id, question.id, r.valeur) \
+                            for r in question.reponse_set.all()])
+    hidden = "<br /><input type=\"hidden\" value=\"0\" name=\"rep%d\" />" % question.id
+    return '\n'.join((question.libel,hidden,reponses))
+
 def output_qcm(question):
     import sys
     if sys.version_info[1]==3:
@@ -66,6 +79,8 @@ def test(request, slug=None, **kwargs):
         #enonces[q.enonce.id]['questions'].append(getattr(locals(), "output_%s" % q.typq)(q))
         if q.typq == 'qcm':
             enonces[q.enonce.id]['questions'].append(output_qcm(q))
+        elif q.typq == 'qrm':
+            enonces[q.enonce.id]['questions'].append(output_qrm(q))
         else:
             enonces[q.enonce.id]['questions'].append(output_exa(q))
     return render_to_response('testing/test.html',
@@ -107,6 +122,8 @@ def noter(request):
             qd['reponse'] = rep
         else:
             qd['reponse'] = _('nothing')
+        if q.typq == 'qrm':
+            pass
         if q.typq == 'qcm':
             for r in q.reponse_set.all():
                 if int(rep) == r.id:
