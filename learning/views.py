@@ -446,7 +446,7 @@ def support(request, slug=None, **kwargs):
             if settings.DEBUG:
                 support = "Unable to open file %s" % support_path
             else:
-                support = ''
+                support = "<!-- Unable to open file %s -->\n" % support_path
         return render_to_response('learning/support.html',
                                     {'visiteur': v.prenom_nom(),
                                      'client': v.groupe.client,

@@ -17,5 +17,6 @@
 {% if msg %}
 <p class="infomsg">{{ msg|safe }}</p>
 {% endif %}
+<p id="aide" class="nop">{% trans "Click on the sections (sub)titles to show or hide their contents. Click on the chapter's title to show or hide the outline." %} <a href="javascript: openClose('aide',0)">{% trans "Hide this" %}</a></p>
 {{ support|safe }}
 {% endblock content %}
