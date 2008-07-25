@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-05 15:09+0200\n"
+"POT-Creation-Date: 2008-07-09 14:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Anh J. anhj@gcu.info\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,7 +81,7 @@ msgstr "Nom"
 msgid "First name"
 msgstr "Prénom"
 
-#: coaching/forms.py:22 coaching/views.py:1113 learning/forms.py:33
+#: coaching/forms.py:22 coaching/views.py:1116 learning/forms.py:33
 #: templates/coaching/logins2.html:45 templates/coaching/logins3.html:45
 msgid "Email"
 msgstr ""
@@ -127,7 +127,7 @@ msgstr ""
 #: templates/coaching/add_echeance.html:42 templates/coaching/add_work.html:35
 #: templates/coaching/add_work.html:37 templates/coaching/add_work.html:52
 #: templates/coaching/add_work.html:54 templates/coaching/detail.html:38
-#: templates/coaching/detail.html.py:59
+#: templates/coaching/detail.html.py:61
 #: templates/coaching/detail_module.html:31
 #: templates/coaching/liste_echeance.html:53
 #: templates/coaching/liste_work.html:50
@@ -174,7 +174,7 @@ msgstr "Contenu"
 msgid "All"
 msgstr "Tout"
 
-#: coaching/views.py:70 coaching/views.py:282 coaching/views.py:787
+#: coaching/views.py:70 coaching/views.py:282 coaching/views.py:790
 msgid "group"
 msgstr "groupe"
 
@@ -243,80 +243,80 @@ msgstr "Echéance modifiée avec succès."
 msgid "Deadline successfully restored."
 msgstr "Echéance restaurée avec succès."
 
-#: coaching/views.py:653
+#: coaching/views.py:656
 msgid "Late"
 msgstr "Retard"
 
-#: coaching/views.py:659
+#: coaching/views.py:662
 msgid "Completed late"
 msgstr "Validé en retard"
 
-#: coaching/views.py:741 learning/views.py:35
+#: coaching/views.py:744 learning/views.py:35
 #, python-format
 msgid "%s changed successfully."
 msgstr "%s modifié avec succès."
 
-#: coaching/views.py:788
+#: coaching/views.py:791
 msgid "language"
 msgstr "langue"
 
-#: coaching/views.py:833
+#: coaching/views.py:836
 msgid "client"
 msgstr "client"
 
-#: coaching/views.py:899
+#: coaching/views.py:902
 msgid "Exists already."
 msgstr "Existe déjà."
 
-#: coaching/views.py:907
+#: coaching/views.py:910
 msgid "Saved."
 msgstr "Sauvé."
 
-#: coaching/views.py:925
+#: coaching/views.py:928
 msgid "Mail sent."
 msgstr "Mail envoyé."
 
-#: coaching/views.py:927
+#: coaching/views.py:930
 msgid "Mail error."
 msgstr "Erreur mail."
 
-#: coaching/views.py:1071
+#: coaching/views.py:1074
 msgid "The message has been sent."
 msgstr "Le message a été envoyé."
 
-#: coaching/views.py:1113 templates/learning/profile.html:24
+#: coaching/views.py:1116 templates/learning/profile.html:24
 msgid "Last Name"
 msgstr "Nom"
 
-#: coaching/views.py:1113 templates/learning/profile.html:25
+#: coaching/views.py:1116 templates/learning/profile.html:25
 msgid "First Name"
 msgstr "Prénom"
 
-#: coaching/views.py:1113 session/forms.py:10 session/forms.py:22
+#: coaching/views.py:1116 session/forms.py:10 session/forms.py:22
 #: templates/coaching/fiche.html:25 templates/coaching/liste_admin.html:63
 #: templates/coaching/liste_coach.html:39 templates/coaching/logins3.html:46
 #: templates/learning/profile.html:14
 msgid "Login"
 msgstr "Login"
 
-#: coaching/views.py:1114 templates/coaching/liste_admin.html:68
+#: coaching/views.py:1117 templates/coaching/liste_admin.html:68
 #: templates/coaching/liste_coach.html:42
 msgid "Last Work"
 msgstr "Dernier travail"
 
-#: coaching/views.py:1115 templates/coaching/liste_admin.html:64
+#: coaching/views.py:1118 templates/coaching/liste_admin.html:64
 msgid "Modules"
 msgstr ""
 
-#: coaching/views.py:1115
+#: coaching/views.py:1118
 msgid "Validated"
 msgstr "Validés"
 
-#: coaching/views.py:1116
+#: coaching/views.py:1119
 msgid "Validated Late"
 msgstr "Validés en retard"
 
-#: coaching/views.py:1116
+#: coaching/views.py:1119
 msgid "Currently Late"
 msgstr "Actuellement en retard"
 
@@ -517,7 +517,7 @@ msgid "Add an assignment"
 msgstr "Ajouter un travail à rendre"
 
 #: templates/coaching/add_work.html:33 templates/coaching/add_work.html:50
-#: templates/coaching/detail.html:58 templates/coaching/liste_work.html:52
+#: templates/coaching/detail.html:60 templates/coaching/liste_work.html:52
 #: templates/coaching/maj_work.html:31 templates/learning/devoir.html:14
 #: templates/learning/tdb.html:63
 msgid "Assignment"
@@ -559,15 +559,20 @@ msgstr "Télécharger tous les travaux de cet étudiant :"
 msgid "Done"
 msgstr "Validé"
 
-#: templates/coaching/detail.html:40
+#: templates/coaching/detail.html:40 templates/coaching/detail_module.html:62
+#: templates/learning/module.html:51
+msgid "Tries"
+msgstr "Essais"
+
+#: templates/coaching/detail.html:41
 msgid "Problem ?"
 msgstr "Problème ?"
 
-#: templates/coaching/detail.html:60 templates/learning/tdb.html:65
+#: templates/coaching/detail.html:62 templates/learning/tdb.html:65
 msgid "Uploaded on"
 msgstr "Rendu le"
 
-#: templates/coaching/detail.html:61 templates/learning/tdb.html:66
+#: templates/coaching/detail.html:63 templates/learning/tdb.html:66
 msgid "Signature"
 msgstr ""
 
@@ -608,10 +613,6 @@ msgstr ""
 #: templates/coaching/detail_module.html:61 templates/learning/module.html:50
 msgid "Test"
 msgstr ""
-
-#: templates/coaching/detail_module.html:62 templates/learning/module.html:51
-msgid "Tries"
-msgstr "Essais"
 
 #: templates/coaching/detail_module.html:63 templates/learning/module.html:52
 msgid "Last try"
@@ -961,6 +962,18 @@ msgstr ", signature :"
 #: templates/learning/support.html:13
 msgid "handout"
 msgstr "support"
+
+#: templates/learning/support.html:20
+msgid ""
+"Click on the sections (sub)titles to show or hide their contents. Click on "
+"the chapter's title to show or hide the outline."
+msgstr ""
+"Cliquer sur les titres des sections pour cacher ou montrer leur contenu. "
+"Cliquer sur le titre du chapitre pour cacher ou montrer le plan."
+
+#: templates/learning/support.html:20
+msgid "Hide this"
+msgstr "Cacher l'aide"
 
 #: templates/learning/tdb.html:9
 msgid "Welcome to your dashboard"
