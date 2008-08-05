@@ -26,9 +26,6 @@ class Client(models.Model):
     style = models.CharField(max_length=20, null=True, blank=True)
     contacts = models.TextField()
     
-    class Admin:
-        search_fields = ('nom')
-
     class Meta:
         ordering = ['nom']
 
@@ -59,20 +56,7 @@ class Groupe(models.Model):
     is_demo = models.BooleanField(default=False)
     is_open = models.BooleanField(default=False)
 
-    cours = models.ManyToManyField(Cours, blank=True, null=True, filter_interface=models.HORIZONTAL)
-
-    class Admin:
-        fields = (
-            (None, {'fields': ('nom',)}),
-            (None, {'fields': ('administrateur','client')}),
-            ('Cours', {'fields': ('cours',)}),
-            ('Permissions', {'fields': ('is_demo', 'is_open')}),
-        )
-        list_filter = ('client','is_demo','is_open')
-        list_display = ('client','nom','administrateur','is_demo','is_open')
-        list_display_links = ('nom',)
-        list_per_page = 30
-        search_fields = ('nom',)
+    cours = models.ManyToManyField(Cours, blank=True, null=True)
 
     class Meta:
         pass
@@ -122,7 +106,7 @@ class Utilisateur(models.Model):
     
     creation = models.DateTimeField(editable=False)
     modification = models.DateTimeField(editable=False, blank=True, null=True)
-    fermeture = models.DateTimeField(core=True, blank=True, null=True)
+    fermeture = models.DateTimeField(blank=True, null=True)
     
     lastw = models.DateTimeField(blank=True, null=True)
     nb_retards = models.IntegerField(blank=True, null=True)
@@ -132,23 +116,6 @@ class Utilisateur(models.Model):
     langue = models.CharField(max_length=5, choices=LISTE_LANGUES)
     
     groupe = models.ForeignKey(Groupe)
-
-    class Admin:
-        fields = (
-            (None, {'fields': ('login', 'is_staff')}),
-            ('Groupe', {'fields': ('groupe',)}),
-            ('Identité', {'fields': ('nom', 'prenom', 'email')}),
-            ('Validité', {'fields': ('fermeture',)}),
-            ('Langue',{'fields': ('langue',)}),
-        )
-        list_display = ('groupe','login', 'nom', 'prenom',
-                'fermeture','creation','modification',
-                'statut','is_valid','langue',)
-        list_display_links = ('login','nom')
-        list_filter = ('groupe','fermeture','langue')
-        list_per_page = 30
-        search_fields = ('login', 'nom','email')
-
 
     class Meta:
         unique_together = (("nom","prenom"),)
@@ -561,9 +528,6 @@ class Coached(models.Model):
     groupe = models.ForeignKey(Groupe)
     coach = models.ForeignKey(Utilisateur, related_name='coached')
 
-    class Admin:
-        pass
-
     class Meta:
         pass
 
@@ -593,9 +557,6 @@ class Work(models.Model):
 
     objects = NonTrashManager()
     trash = TrashManager()
-
-    class Admin:
-        pass
 
     class Meta:
         pass
