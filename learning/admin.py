@@ -2,7 +2,7 @@
 # vim:encoding=utf-8:
 
 from django.contrib import admin
-from learning.models import Module, ModuleAdmin, Cours, CoursTitre, ModuleCours, Contenu
+from learning.models import Module, ModuleTitre, Cours, CoursTitre, ModuleCours, Contenu
 
 class ModuleAdmin(admin.ModelAdmin):
     ordering = ['slug'] 
