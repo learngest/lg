@@ -2,7 +2,7 @@
 # vim:encoding=utf-8:
 
 from django.contrib import admin
-from testing.models import Granule
+from testing.models import Granule, GranuleTitre, Enonce
 
 class GranuleAdmin(admin.ModelAdmin):
     list_display = ('module','rang','slug','nbq','score_min')
