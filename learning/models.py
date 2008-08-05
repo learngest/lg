@@ -18,9 +18,6 @@ class Module(models.Model):
     """
     slug = models.SlugField(unique=True, db_index=True)
 
-    class Admin:
-        pass
-    
     class Meta:
         ordering = ['slug'] 
 
@@ -49,11 +46,6 @@ class ModuleTitre(models.Model):
     langue = models.CharField(max_length=5, choices=listes.LISTE_LANGUES)
     titre = models.CharField(max_length=100)
 
-    class Admin:
-        list_filter = ('langue',)
-        list_display = ('module','langue','titre')
-        list_per_page = 30
-    
     class Meta:
         ordering = ['module'] 
 
@@ -71,9 +63,6 @@ class Cours(models.Model):
     """
     slug = models.SlugField(unique=True, db_index=True)
     rang = models.IntegerField()
-
-    class Admin:
-        pass
 
     class Meta:
         verbose_name_plural = "cours"
@@ -95,11 +84,6 @@ class CoursTitre(models.Model):
     langue = models.CharField(max_length=5, choices=listes.LISTE_LANGUES)
     titre = models.CharField(max_length=100)
 
-    class Admin:
-        list_filter = ('langue',)
-        list_display = ('cours','langue','titre')
-        list_per_page = 30
-    
     class Meta:
         ordering = ['cours'] 
 
@@ -118,10 +102,6 @@ class ModuleCours(models.Model):
     cours = models.ForeignKey(Cours)
     module = models.ForeignKey(Module)
     rang = models.IntegerField()
-
-    class Admin:
-        list_filter = ('cours',)
-        list_display = ('cours','module','rang',)
 
     class Meta:
         ordering = ['cours','rang']
@@ -144,12 +124,6 @@ class Contenu(models.Model):
     titre = models.CharField(max_length=100)
     module = models.ForeignKey(Module)
 
-    class Admin:
-        list_filter = ('langue','type')
-        list_display = ('module','ressource','type','langue','titre')
-        list_per_page = 30
-        search_fields = ('titre',)
-    
     class Meta:
         ordering = ['module'] 
 
