@@ -18,9 +18,6 @@ class Granule(models.Model):
     score_min = models.IntegerField()
     rang = models.IntegerField()
 
-    class Admin:
-        list_display = ('module','rang','slug','nbq','score_min')
-
     class Meta:
         ordering = ['module','rang']
 
@@ -40,10 +37,6 @@ class GranuleTitre(models.Model):
     langue = models.CharField(max_length=5, choices=listes.LISTE_LANGUES)
     titre = models.CharField(max_length=100)
 
-    class Admin:
-        list_display = ('granule','langue','titre')
-        list_filter = ('langue',)
-    
     class Meta:
         #ordering = ['granule',] 
         pass
@@ -56,10 +49,6 @@ class Enonce(models.Model):
     """
     libel = models.TextField() 
 
-    class Admin:
-        search_fields = ['libel']
-        list_display = ('id','libel')
-    
     def __unicode__(self):
         return self.libel
 
