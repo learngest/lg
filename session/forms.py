@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 # vim: set encoding=utf-8 fileencoding=utf-8:
 
-from django import newforms as forms
+from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 class LoginForm(forms.Form):
