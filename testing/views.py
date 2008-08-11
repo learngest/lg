@@ -5,7 +5,7 @@ import os.path
 import datetime
 
 from django.shortcuts import render_to_response
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 
@@ -21,6 +21,20 @@ def output_exa(question):
 def output_num(question):
     return output_exa(question)
 
+def output_qrm(question):
+    import sys
+    if sys.version_info[1]==3:
+        reponses = '\n'.join(["<br /><input type=\"checkbox\" value=\"%s\" name=\"rep%d\" />&nbsp;%s" \
+                            % (r.id, question.id, r) \
+                            for r in question.reponse_set.all()])
+    else:
+        reponses = '\n'.join(["<br /><input type=\"checkbox\" value=\"%s\" name=\"rep%d\" />&nbsp;%s" \
+                            % (r.id, question.id, r.valeur) \
+                            for r in question.reponse_set.all()])
+    hidden = "<br /><input type=\"hidden\" value=\"0\" name=\"rep%d\" />" % question.id
+    return '\n'.join((question.libel,hidden,reponses))
+    #return '\n'.join((question.libel,reponses))
+
 def output_qcm(question):
     import sys
     if sys.version_info[1]==3:
@@ -33,6 +47,7 @@ def output_qcm(question):
                             for r in question.reponse_set.all()])
     hidden = "<br /><input type=\"hidden\" value=\"0\" name=\"rep%d\" />" % question.id
     return '\n'.join((question.libel,hidden,reponses))
+    #return '\n'.join((question.libel,reponses))
 
 def test(request, slug=None, **kwargs):
     """View: test on granule and module.
@@ -66,6 +81,8 @@ def test(request, slug=None, **kwargs):
         #enonces[q.enonce.id]['questions'].append(getattr(locals(), "output_%s" % q.typq)(q))
         if q.typq == 'qcm':
             enonces[q.enonce.id]['questions'].append(output_qcm(q))
+        elif q.typq == 'qrm':
+            enonces[q.enonce.id]['questions'].append(output_qrm(q))
         else:
             enonces[q.enonce.id]['questions'].append(output_exa(q))
     return render_to_response('testing/test.html',
@@ -90,7 +107,9 @@ def noter(request):
         HttpResponseRedirect('/home/')
     max,total = (0,0)
     enonces = {}
-    for quest,rep in request.POST.items():
+    #for quest,rep in request.POST.items():
+    #assert False, request.POST.lists()
+    for quest,rep in request.POST.lists():
         if not quest.startswith('rep'):
             continue
         try:
@@ -104,11 +123,29 @@ def noter(request):
         qd = {}
         qd['libel'] = q.libel.replace("<REPONSE>","...")
         if rep:
-            qd['reponse'] = rep
+            if q.typq != 'qrm':
+                rep = rep[0]
+                qd['reponse'] = rep
+            else:
+                qd['reponse'] = ''
         else:
             qd['reponse'] = _('nothing')
         if q.typq == 'qrm':
-            pass
+            for r in q.reponse_set.all():
+                for rr in rep:
+                    if int(rr) == r.id:
+                        total += r.points
+                        qd['points'] = qd.get('points',0) + r.points
+                        if qd['reponse']:
+                            qd['reponse'] = '; '.join((qd['reponse'],r.valeur))
+                        else:
+                            qd['reponse'] = r.valeur
+                if r.points > 0:
+                    max += r.points
+            # si pas de réponse
+            if not 'points' in qd:
+                qd['points'] = 0
+                qd['reponse'] = _('nothing')
         if q.typq == 'qcm':
             for r in q.reponse_set.all():
                 if int(rep) == r.id:
@@ -147,6 +184,8 @@ def noter(request):
             else:
                 qd['points'] = '0'
         enonces[q.enonce.id]['questions'].append(qd)
+    if total < 0:
+        total = 0
     try:
         score = float(total)/max*100
     except ZeroDivisionError:
