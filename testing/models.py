@@ -87,7 +87,7 @@ class Reponse(models.Model):
     """
     question = models.ForeignKey(Question)
     points = models.IntegerField()
-    valeur = models.CharField(max_length=80)
+    valeur = models.CharField(max_length=255)
 
     def __unicode__(self):
         return self.valeur
