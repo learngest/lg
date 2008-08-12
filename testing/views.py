@@ -122,15 +122,15 @@ def noter(request):
             enonces[q.enonce.id]['questions'] = []
         qd = {}
         qd['libel'] = q.libel.replace("<REPONSE>","...")
-        if rep:
-            if q.typq != 'qrm':
-                rep = rep[0]
+        if q.typq != 'qrm':
+            rep = rep[0]
+            if rep:
                 qd['reponse'] = rep
             else:
-                qd['reponse'] = ''
+                qd['reponse'] = _('nothing')
         else:
-            qd['reponse'] = _('nothing')
-        if q.typq == 'qrm':
+            # question qrm
+            qd['reponse'] = ''
             for r in q.reponse_set.all():
                 for rr in rep:
                     if int(rr) == r.id:
