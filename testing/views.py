@@ -123,7 +123,7 @@ def noter(request):
         qd = {}
         qd['libel'] = q.libel.replace("<REPONSE>","...")
         if q.typq != 'qrm':
-            rep = rep[0]
+            rep = rep[-1]
             if rep:
                 qd['reponse'] = rep
             else:
