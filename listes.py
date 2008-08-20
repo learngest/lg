@@ -28,6 +28,8 @@ LISTE_TYPES = (
 
 LISTE_TYPQ = (
         ('qcm', 'QCM'),
+        ('qrm', 'QRM'),
+        ('rnd', 'Question à valeurs aléatoires'),
         ('exa', 'Réponse exacte'),
         ('num', 'Réponse numérique, 5 chiffres significatifs'),
 )
