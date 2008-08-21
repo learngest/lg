@@ -14,6 +14,16 @@ from coaching.models import Utilisateur, Resultat, Valide
 from session.views import new_visitor_may_see_granule, has_visitor
 
 
+def output_rnd(question):
+    import random
+    phrase, dico = question.libel.split(" % ")
+    phrase = eval(phrase)
+    dico = eval(dico)
+    phrase = phrase % dico
+    rep = " <input type=\"text\" size=\"15\" name=\"rep%d\" /> " % question.id
+    hidden = "<input type=\"hidden\" value=\"%s\" name=\"dic%d\" />" % (dico,question.id)
+    return " ".join((phrase,rep,hidden))
+
 def output_exa(question):
     rep = " <input type=\"text\" size=\"15\" name=\"rep%d\" /> " % question.id
     return question.libel.replace("<REPONSE>",rep)
@@ -83,6 +93,8 @@ def test(request, slug=None, **kwargs):
             enonces[q.enonce.id]['questions'].append(output_qcm(q))
         elif q.typq == 'qrm':
             enonces[q.enonce.id]['questions'].append(output_qrm(q))
+        elif q.typq == 'rnd':
+            enonces[q.enonce.id]['questions'].append(output_rnd(q))
         else:
             enonces[q.enonce.id]['questions'].append(output_exa(q))
     return render_to_response('testing/test.html',
@@ -108,7 +120,7 @@ def noter(request):
     max,total = (0,0)
     enonces = {}
     #for quest,rep in request.POST.items():
-    #assert False, request.POST.lists()
+    #assert False, request.POST
     for quest,rep in request.POST.lists():
         if not quest.startswith('rep'):
             continue
@@ -158,6 +170,27 @@ def noter(request):
             if not 'points' in qd:
                 qd['points'] = 0
                 qd['reponse'] = _('nothing')
+        if q.typq == 'rnd':
+            r = q.reponse_set.all()[0]
+            max += r.points
+            phrase, dico = q.libel.split(" % ")
+            dico = ''.join(('dic',str(q.id)))
+            dico = eval(request.POST[dico])
+            qd['libel'] = eval(phrase) % dico
+            for k,v in dico.items():
+                locals()[k] = v
+            r.valeur = '%.2f' % eval(r.valeur)
+            if rep:
+                rep = clean(rep).replace(',','.').rstrip('0')
+                r.valeur = clean(r.valeur).replace(',','.').rstrip('0')
+                # on teste sur 5 chiffres significatifs + le point décimal
+                if rep[:6] == r.valeur[:6]:
+                    qd['points'] = r.points
+                    total += r.points
+                else:
+                    qd['points'] = '0'
+            else:
+                qd['points'] = '0'
         if q.typq == 'exa':
             r = q.reponse_set.all()[0]
             max += r.points
