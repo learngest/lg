@@ -88,7 +88,8 @@ def devoir(request):
                 except WorkDone.DoesNotExist:
                     wd = WorkDone(utilisateur=u, work=w, date=date, fichier=fichier, signature=signature)
                     wd.save()
-                    wd.save_fichier_file(fichier, content)
+                    #wd.save_fichier_file(fichier, content)
+                    wd.fichier.save(fichier, content)
                     # groupe-cours zipfile
                     zfichier = ''.join(('g%d' % u.groupe.id,'-', 
                                         w.cours.slug,

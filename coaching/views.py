@@ -103,7 +103,8 @@ def add_work(request):
                             libel = f3.cleaned_data['libel'],
                             fichier = f3.cleaned_data['fichier'].filename)
                     w.save()
-                    w.save_fichier_file(f3.cleaned_data['fichier'].filename,f3.cleaned_data['fichier'].content)
+                    #w.save_fichier_file(f3.cleaned_data['fichier'].filename,f3.cleaned_data['fichier'].content)
+                    w.fichier.save(f3.cleaned_data['fichier'].filename,f3.cleaned_data['fichier'].content)
                 else:
                     w = Work(groupe=g, cours=c, 
                             titre = f3.cleaned_data['titre'],
@@ -209,7 +210,8 @@ def maj_work(request):
                     w.libel = f.cleaned_data['libel']
                     w.fichier = f.cleaned_data['fichier'].filename
                     w.save()
-                    w.save_fichier_file(f.cleaned_data['fichier'].filename,f.cleaned_data['fichier'].content)
+                    #w.save_fichier_file(f.cleaned_data['fichier'].filename,f.cleaned_data['fichier'].content)
+                    w.fichier.save(f.cleaned_data['fichier'].filename,f.cleaned_data['fichier'].content)
                 else:
                     w.titre = f.cleaned_data['titre']
                     w.libel = f.cleaned_data['libel']
@@ -681,7 +683,8 @@ def detail_utilisateur(request):
                 w.rendu_le = wd.date
                 w.signature = wd.signature
                 #w.url = ''.join(('/upload/',wd.get_fichier_url()))
-                w.url = wd.get_fichier_url()
+                #w.url = wd.get_fichier_url()
+                w.url = wd.fichier.url
                 if w.echeance:
                     w.retard = w.echeance < w.rendu_le
             except WorkDone.DoesNotExist:
