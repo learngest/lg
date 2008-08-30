@@ -15,7 +15,7 @@ LISTE_STATUT = (
 LISTE_LANGUES = (
         ('fr', _('French')),
         ('en', _('English')),
-#        ('zh-cn', _('Simplified Chinese')),
+        ('zh-cn', _('Simplified Chinese')),
 )
 
 LISTE_TYPES = (

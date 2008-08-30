@@ -43,7 +43,7 @@ msgstr ""
 #: templates/coaching/maj_work.html:24 templates/learning/profile.html:19
 #: templates/learning/profile.html.py:20
 msgid "Group"
-msgstr "77"
+msgstr ""
 
 #: coaching/forms.py:15 coaching/forms.py:36
 #: templates/coaching/logins2.html:34 templates/coaching/logins3.html:34
@@ -175,9 +175,8 @@ msgid "All"
 msgstr ""
 
 #: coaching/views.py:70 coaching/views.py:282 coaching/views.py:790
-#, fuzzy
 msgid "group"
-msgstr "77"
+msgstr ""
 
 #: coaching/views.py:71 coaching/views.py:283
 msgid "course"
@@ -254,9 +253,8 @@ msgid "language"
 msgstr ""
 
 #: coaching/views.py:836
-#, fuzzy
 msgid "client"
-msgstr "目录 "
+msgstr ""
 
 #: coaching/views.py:902
 msgid "Exists already."
@@ -390,7 +388,7 @@ msgstr ""
 #: templates/coaching/maj_work.html:6 templates/coaching/menu.html:6
 #: templates/coaching/sendmail.html:6
 msgid "Log out"
-msgstr ""
+msgstr "断开"
 
 #: templates/in_session.html:9 templates/coaching/add_echeance.html:7
 #: templates/coaching/add_work.html:7 templates/coaching/detail.html:7
@@ -405,7 +403,7 @@ msgstr ""
 #: templates/coaching/maj_work.html:7 templates/coaching/menu.html:7
 #: templates/coaching/sendmail.html:7
 msgid "My account"
-msgstr ""
+msgstr "我的个人情况"
 
 #: templates/in_session.html:10 templates/coaching/add_echeance.html:8
 #: templates/coaching/add_work.html:8 templates/coaching/detail.html:8
@@ -420,7 +418,7 @@ msgstr ""
 #: templates/coaching/maj_work.html:8 templates/coaching/menu.html:8
 #: templates/coaching/sendmail.html:8
 msgid "Dashboard"
-msgstr ""
+msgstr "课程安排"
 
 #: templates/in_session.html:12 templates/coaching/add_echeance.html:9
 #: templates/coaching/add_work.html:9 templates/coaching/detail.html:9
@@ -433,9 +431,8 @@ msgstr ""
 #: templates/coaching/logins2.html:9 templates/coaching/logins3.html:9
 #: templates/coaching/logs.html:9 templates/coaching/maj_echeance.html:9
 #: templates/coaching/maj_work.html:9 templates/coaching/sendmail.html:9
-#, fuzzy
 msgid "Administration"
-msgstr "当局 "
+msgstr "管理"
 
 #: templates/in_session.html:16
 msgid "Innovative e-learning Master"
@@ -453,7 +450,7 @@ msgstr ""
 #: templates/coaching/maj_work.html:13 templates/coaching/menu.html:10
 #: templates/coaching/sendmail.html:13
 msgid "administration"
-msgstr "当局 "
+msgstr "管理"
 
 #: templates/coaching/add_echeance.html:14
 #: templates/coaching/liste_echeance.html:19
@@ -690,9 +687,8 @@ msgid "Client statistics"
 msgstr ""
 
 #: templates/coaching/liste_clients.html:48
-#, fuzzy
 msgid "Client"
-msgstr "目录 "
+msgstr ""
 
 #: templates/coaching/liste_clients.html:50
 msgid "# Courses"
@@ -720,7 +716,7 @@ msgstr ""
 
 #: templates/coaching/liste_coach.html:10
 msgid "list"
-msgstr "目录 "
+msgstr ""
 
 #: templates/coaching/liste_coach.html:40 templates/learning/tdb.html:30
 msgid "Progress"
@@ -860,9 +856,8 @@ msgid "Delete this assignment"
 msgstr ""
 
 #: templates/coaching/menu.html:13
-#, fuzzy
 msgid "Administrator's homepage"
-msgstr "当局 "
+msgstr ""
 
 #: templates/coaching/menu.html:17
 msgid "Manage database"
@@ -926,12 +921,11 @@ msgstr ""
 #: templates/learning/tdb.html:5 templates/testing/noter.html:6
 #: templates/testing/test.html:6
 msgid "dashboard"
-msgstr ""
+msgstr "课程安排"
 
 #: templates/learning/anim.html:8
-#, fuzzy
 msgid "animation"
-msgstr "当局 "
+msgstr ""
 
 #: templates/learning/devoir.html:17
 msgid "Download additional document:"
@@ -951,17 +945,17 @@ msgstr ""
 
 #: templates/learning/support.html:13
 msgid "handout"
-msgstr ""
+msgstr "支持"
 
 #: templates/learning/support.html:20
 msgid ""
 "Click on the sections (sub)titles to show or hide their contents. Click on "
 "the chapter's title to show or hide the outline."
-msgstr ""
+msgstr "点击每节标题以显示或隐藏内容. 点击每章标题以显示或隐藏大纲."
 
 #: templates/learning/support.html:20
 msgid "Hide this"
-msgstr ""
+msgstr "隐藏帮助"
 
 #: templates/learning/tdb.html:9
 msgid "Welcome to your dashboard"
@@ -1073,12 +1067,3 @@ msgstr ""
 msgid "nothing"
 msgstr ""
 
-#, fuzzy
-#~ msgid "Groupe"
-#~ msgstr "77"
-
-#~ msgid "By group"
-#~ msgstr "由77"
-
-#~ msgid "Group:"
-#~ msgstr "77 "
