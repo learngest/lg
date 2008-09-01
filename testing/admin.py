@@ -2,7 +2,7 @@
 # vim:encoding=utf-8:
 
 from django.contrib import admin
-from testing.models import Granule, GranuleTitre, Enonce, Question
+from testing.models import Granule, GranuleTitre, Enonce, Question, Reponse
 
 class GranuleAdmin(admin.ModelAdmin):
     list_display = ('module','rang','slug','nbq','score_min')
@@ -25,4 +25,8 @@ class QuestionAdmin(admin.ModelAdmin):
     list_display = ('id','libel')
     list_filter = ('langue','granule')
 admin.site.register(Question, QuestionAdmin)
+
+class ReponseAdmin(admin.ModelAdmin):
+    list_display = ('id','question','points','valeur')
+admin.site.register(Reponse, ReponseAdmin)
 
