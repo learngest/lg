@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 # vim:encoding=utf-8:
 
+import datetime
 from urllib import quote
 
 from django.conf import settings
@@ -11,7 +12,7 @@ from django.utils.encoding import iri_to_uri
 
 from lg.listes import *
 from session.forms import LoginForm, LoginOnlyForm
-from coaching.models import Utilisateur, Groupe, Work
+from coaching.models import Utilisateur, Groupe, Work, Log
 from learning.models import Cours, Module
 from testing.models import Granule
 
@@ -270,6 +271,11 @@ def login(request):
                 # tester mot de passe valide et utilisateur non périmé 
                 if u.is_pwd_correct(f.cleaned_data['password']):
                     if u.is_valid():
+                        # enregistrer l'heure de login
+                        Log.objects.create(utilisateur=u,
+                               date = datetime.datetime.now(),
+                               path = '/login/',
+                               qstring = '')
                         response = HttpResponse()
                         # renseigner les variables de session
                         request.session['v'] = u

@@ -112,6 +112,8 @@ class Utilisateur(models.Model):
     nb_retards = models.IntegerField(blank=True, null=True)
     nb_valides = models.IntegerField(blank=True, null=True)
     nb_modules = models.IntegerField(blank=True, null=True)
+    # le temps passé est un nombre de secondes
+    tempspasse = models.IntegerField(blank=True, null=True)
 
     langue = models.CharField(max_length=5, choices=LISTE_LANGUES)
     
