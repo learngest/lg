@@ -34,14 +34,18 @@
 <li class="nop"><a href="/upload/workdone/{{ work }}">{{ work }}</a></li>
 {% endfor %}
 </ul>
-{% else %}
-</h2>
 {% endif %}
 {% else %}
 </h2>
+{% endif %}
 <p class="nop"><a href="/coaching/csv/?gid={{ gid.id }}">{% trans "Save this table as a .csv file" %}</a></p>
-{% endif %}
 
+<div class="panel">
+<h2>{% trans "Information" %}</h2>
+<p>{% trans "Time spent by the students is estimated and should not be seen as accurate." %}<br />
+</p>
+</div>
+<p></p>
 <script type="text/javascript">
     $(document).ready(function() {
         $("#liste").tablesorter({ widgets: ['zebra']});
@@ -63,7 +67,7 @@
 				<th>{% trans "Name" %}</th>
 				<th>{% trans "Login" %}</th>
 				<th style="text-align: center;">{% trans "Progress" %}</th>
-				<th style="text-align: center;">{% trans "Delays" %}</th>
+				<th style="text-align: center;">{% trans "Done Late" %}</th>
 				<th style="text-align: center;">{% trans "Time Spent" %}</th>
 				<th style="text-align: center;">{% trans "Last Work" %}</th>
 			</tr>

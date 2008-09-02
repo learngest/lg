@@ -112,6 +112,7 @@ class Utilisateur(models.Model):
     nb_retards = models.IntegerField(blank=True, null=True)
     nb_valides = models.IntegerField(blank=True, null=True)
     nb_modules = models.IntegerField(blank=True, null=True)
+    nb_actuel = models.IntegerField(blank=True, null=True)
     # le temps passé est un nombre de secondes
     tempspasse = models.IntegerField(blank=True, null=True)
 
@@ -141,6 +142,7 @@ class Utilisateur(models.Model):
         if not self.id:
             self.creation = datetime.datetime.now()
             self.nb_retards = self.nperfs()[3]
+            self.nb_actuel = self.nperfs()[2]
             self.nb_valides = 0
             self.nb_modules = 0
             for c in self.cours_list():
@@ -492,24 +494,17 @@ class Utilisateur(models.Model):
         return (valides,total,retards,troptard)
 
     def perfs(self):
-        """Calcule des elts relatifs aux performances de l'étudiant :
-
-        - nb de modules total
-        - nb de modules validés
-        - nb de retards
+        """Calcule le nb de retards actuels de l'étudiant :
         """
-        total, valides, retards = (0,0,0)
+        retards = 0
         for c in self.cours_list():
             for m in [mc.module for mc in c.modulecours_set.all()]:
-                total += 1
-                if self.module_is_valide(m):
-                    valides += 1
-                else:
+                if not self.module_is_valide(m):
                     e = self.echeance(c, m)
                     if e:
                         if e.echeance < datetime.datetime.now():
                             retards += 1
-        return (valides,total,retards)
+        return retards
 
     def groupes_list(self):
         """Renvoie une liste des groupes coachés ou administrés par cet utilisateur """

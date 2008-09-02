@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-02 11:11+0200\n"
+"POT-Creation-Date: 2008-09-02 15:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Anh J. anhj@gcu.info\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,9 +36,9 @@ msgstr ""
 #: coaching/forms.py:60 templates/coaching/add_echeance.html:25
 #: templates/coaching/add_echeance.html:53 templates/coaching/add_work.html:23
 #: templates/coaching/add_work.html:25 templates/coaching/add_work.html:67
-#: templates/coaching/fiche.html:30 templates/coaching/liste_admin.html:71
+#: templates/coaching/fiche.html:30 templates/coaching/liste_admin.html:75
 #: templates/coaching/liste_clients.html:49
-#: templates/coaching/liste_coach.html:61
+#: templates/coaching/liste_coach.html:65
 #: templates/coaching/liste_echeance.html:49
 #: templates/coaching/liste_work.html:49 templates/coaching/logins.html:28
 #: templates/coaching/logins2.html:28 templates/coaching/logins2.html.py:29
@@ -289,18 +289,18 @@ msgid "First Name"
 msgstr ""
 
 #: coaching/views.py:1119 session/forms.py:10 session/forms.py:22
-#: templates/coaching/fiche.html:25 templates/coaching/liste_admin.html:74
-#: templates/coaching/liste_coach.html:64 templates/coaching/logins3.html:46
+#: templates/coaching/fiche.html:25 templates/coaching/liste_admin.html:78
+#: templates/coaching/liste_coach.html:68 templates/coaching/logins3.html:46
 #: templates/learning/profile.html:14
 msgid "Login"
 msgstr ""
 
-#: coaching/views.py:1120 templates/coaching/liste_admin.html:80
-#: templates/coaching/liste_coach.html:68
+#: coaching/views.py:1120 templates/coaching/liste_admin.html:84
+#: templates/coaching/liste_coach.html:72
 msgid "Last Work"
 msgstr ""
 
-#: coaching/views.py:1121 templates/coaching/liste_admin.html:75
+#: coaching/views.py:1121 templates/coaching/liste_admin.html:79
 msgid "Modules"
 msgstr ""
 
@@ -545,7 +545,7 @@ msgstr ""
 msgid "Download all this student's works:"
 msgstr ""
 
-#: templates/coaching/detail.html:39 templates/coaching/liste_admin.html:76
+#: templates/coaching/detail.html:39 templates/coaching/liste_admin.html:80
 msgid "Done"
 msgstr ""
 
@@ -663,31 +663,49 @@ msgstr ""
 msgid "Download works from this group:"
 msgstr ""
 
-#: templates/coaching/liste_admin.html:52
-#: templates/coaching/liste_coach.html:42
+#: templates/coaching/liste_admin.html:51
+#: templates/coaching/liste_coach.html:41
 msgid "Save this table as a .csv file"
 msgstr ""
 
-#: templates/coaching/liste_admin.html:73
-#: templates/coaching/liste_coach.html:63
-msgid "Name"
+#: templates/coaching/liste_admin.html:54
+#: templates/coaching/liste_coach.html:44
+msgid "Information"
+msgstr ""
+
+#: templates/coaching/liste_admin.html:55
+#: templates/coaching/liste_coach.html:45
+msgid ""
+"Time spent by the students is estimated and should not be seen as accurate."
+msgstr ""
+
+#: templates/coaching/liste_admin.html:56
+msgid ""
+"The number of currently late modules is calculated once per day on midnight "
+"(UTC+0200)."
 msgstr ""
 
 #: templates/coaching/liste_admin.html:77
+#: templates/coaching/liste_coach.html:67
+msgid "Name"
+msgstr ""
+
+#: templates/coaching/liste_admin.html:81
+#: templates/coaching/liste_coach.html:70
 msgid "Done Late"
 msgstr ""
 
-#: templates/coaching/liste_admin.html:78
+#: templates/coaching/liste_admin.html:82
 msgid "Cur. Late"
 msgstr ""
 
-#: templates/coaching/liste_admin.html:79
-#: templates/coaching/liste_coach.html:67
+#: templates/coaching/liste_admin.html:83
+#: templates/coaching/liste_coach.html:71
 msgid "Time Spent"
 msgstr ""
 
-#: templates/coaching/liste_admin.html:102
-#: templates/coaching/liste_coach.html:88
+#: templates/coaching/liste_admin.html:106
+#: templates/coaching/liste_coach.html:92
 msgid "This group is empty"
 msgstr ""
 
@@ -731,12 +749,8 @@ msgstr ""
 msgid "list"
 msgstr ""
 
-#: templates/coaching/liste_coach.html:65 templates/learning/tdb.html:30
+#: templates/coaching/liste_coach.html:69 templates/learning/tdb.html:30
 msgid "Progress"
-msgstr ""
-
-#: templates/coaching/liste_coach.html:66
-msgid "Delays"
 msgstr ""
 
 #: templates/coaching/liste_echeance.html:35
