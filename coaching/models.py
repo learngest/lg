@@ -178,6 +178,9 @@ class Utilisateur(models.Model):
         password = smart_str(raw_password)
         return hsh == sha.new(salt+password).hexdigest()
 
+    def time_elapsed(self):
+        return datetime.timedelta(seconds=self.tempspasse)
+
     def is_valid(self):
         if self.fermeture:
             return datetime.datetime.now() < self.fermeture

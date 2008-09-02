@@ -23,10 +23,33 @@
 </div>
 
 {% if liste_utilisateurs %}
+<h2>{% trans "Students management" %} 
+{% if gid %}
+ - {{ gid.nom }}</h2>
+<p class="nop"><a href="/coaching/sendmail/?gid={{ gid.id }}">{% trans "Send a mail to this group" %}</a></p>
+{%if gid.workdone %}
+<p class="nop">{% trans "Download works from this group:" %}</p>
+<ul>
+{% for work in gid.workdone %}
+<li class="nop"><a href="/upload/workdone/{{ work }}">{{ work }}</a></li>
+{% endfor %}
+</ul>
+{% else %}
+</h2>
+{% endif %}
+{% else %}
+</h2>
+<p class="nop"><a href="/coaching/csv/?gid={{ gid.id }}">{% trans "Save this table as a .csv file" %}</a></p>
+{% endif %}
+
 <script type="text/javascript">
     $(document).ready(function() {
         $("#liste").tablesorter({ widgets: ['zebra']});
-        var c = [[0,0],[1,0]];
+		{% if gid %}
+		var c = [[0,0]];
+		{% else %}
+		var c = [[0,0],[1,0]];
+		{% endif %}
         $("#liste").trigger("sorton",[c]);
         return false;
 })
@@ -34,22 +57,28 @@
 	<table id="liste">
 		<thead>
 			<tr>
+				{% if not gid %}
 				<th>{% trans "Group" %}</th>
+				{% endif %}
 				<th>{% trans "Name" %}</th>
 				<th>{% trans "Login" %}</th>
 				<th style="text-align: center;">{% trans "Progress" %}</th>
 				<th style="text-align: center;">{% trans "Delays" %}</th>
+				<th style="text-align: center;">{% trans "Time Spent" %}</th>
 				<th style="text-align: center;">{% trans "Last Work" %}</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for utilisateur in liste_utilisateurs %}
 			<tr>
+				{% if not gid %}
 				<td>{{ utilisateur.groupe.nom }}</td>
+				{% endif %}
 				<td>{{ utilisateur.nom_prenom }}</td>
 				<td><a href="/coaching/detail/?id={{ utilisateur.id }}">{{ utilisateur.login }}</a></td>
 				<td style="text-align: center;">{{ utilisateur.nb_valides }}/{{ utilisateur.nb_modules }}</td>
                 <td style="text-align: center;">{{ utilisateur.nb_retards }}</td>
+				<td style="text-align: center;">{{ utilisateur.time_elapsed }}</td>
                 <td style="text-align: center;">{% if utilisateur.lastw %}{{ utilisateur.lastw }}{% endif %}</td>
 			</tr>
 			{% endfor %}
