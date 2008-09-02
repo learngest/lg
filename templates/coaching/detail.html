@@ -23,12 +23,12 @@
 {% if admin %}
 <p><a href="/coaching/ficha/{{ u.login }}/">{% trans "Change this user's profile" %}</a></p>
 {% endif %}
-<!-- <p><a href="mailto:{{ u.email }}">{% trans "Send an email to this user" %}</a></p> -->
-<p><a href="/coaching/sendmail/?id={{ u.id }}">{% trans "Send an email to this user" %}</a></p>
 <p><a href="/coaching/log/?id={{ u.id }}">{% trans "See this user's log" %}</a></p>
 {% if u.zfichier %}
 <p>{% trans "Download all this student's works:" %} <a href="/upload/workdone/{{ u.zfichier }}">{{ u.zfichier }}</a></p>
 {% endif %}
+<p><a href="/coaching/sendmail/?id={{ u.id }}">{% trans "Send an email to this user" %}</a></p>
+<p>{% trans "Time spent online by this student (estimation) :" %} {{ u.time_elapsed }}</p>
 {% for cours in les_cours %}
 <h3>{{ cours.title }}</h3>
 <table>

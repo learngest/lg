@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-02 15:40+0200\n"
+"POT-Creation-Date: 2008-09-02 15:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Anh J. anhj@gcu.info\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -547,17 +547,21 @@ msgstr "détail"
 msgid "Change this user's profile"
 msgstr "Modifier les informations de cet étudiant"
 
-#: templates/coaching/detail.html:26 templates/coaching/detail.html.py:27
-msgid "Send an email to this user"
-msgstr "Envoyer un mail à cet étudiant"
-
-#: templates/coaching/detail.html:28
+#: templates/coaching/detail.html:26
 msgid "See this user's log"
 msgstr "Voir le log des consultations de cet étudiant"
 
-#: templates/coaching/detail.html:30
+#: templates/coaching/detail.html:28
 msgid "Download all this student's works:"
 msgstr "Télécharger tous les travaux de cet étudiant :"
+
+#: templates/coaching/detail.html:30
+msgid "Send an email to this user"
+msgstr "Envoyer un mail à cet étudiant"
+
+#: templates/coaching/detail.html:31
+msgid "Time spent online by this student (estimation) :"
+msgstr "Temps passé sur la plateforme par cet étudiant (estimation) :"
 
 #: templates/coaching/detail.html:39 templates/coaching/liste_admin.html:80
 msgid "Done"
@@ -692,15 +696,16 @@ msgstr ""
 msgid ""
 "Time spent by the students is estimated and should not be seen as accurate."
 msgstr ""
-"Le temps passé par les étudiants est estimé et ne doit pas être considéré comme précis."
+"Le temps passé par les étudiants est estimé et ne doit pas être considéré "
+"comme précis."
 
 #: templates/coaching/liste_admin.html:56
 msgid ""
 "The number of currently late modules is calculated once per day on midnight "
 "(UTC+0200)."
 msgstr ""
-"Le nombre de modules actuellement en retard est calculé une fois par 24h à minuit "
-"heure de Paris (UTC+0200)"
+"Le nombre de modules actuellement en retard est calculé une fois par 24h à "
+"minuit heure de Paris (UTC+0200)"
 
 #: templates/coaching/liste_admin.html:77
 #: templates/coaching/liste_coach.html:67
