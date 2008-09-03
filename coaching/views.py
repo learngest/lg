@@ -1115,15 +1115,29 @@ def liste_csv(request):
             return HttpResponseRedirect('/coaching/')
         response = HttpResponse(mimetype='text/csv')
         response['Content-Disposition'] = 'attachment; filename=groupe%s.csv' % request.GET['gid']
-        writer = csv.writer(response)
-        writer.writerow([ugettext('Last Name'),ugettext('First Name'),ugettext('Login'),ugettext('Email'),
+        writer = csv.writer(response,delimiter=';')
+        writer.writerow([s.encode("iso-8859-1") for s in [ugettext('Last Name'),
+                        ugettext('First Name'),
+                        ugettext('Login'),
+                        ugettext('Email'),
                         ugettext('Last Work'),
-                        ugettext('Modules'),ugettext('Validated'),
-                        ugettext('Validated Late'),ugettext('Currently Late'),])
+                        ugettext('Time Spent'),
+                        ugettext('Modules'),
+                        ugettext('Validated'),
+                        ugettext('Validated Late'),
+                        ugettext('Currently Late'),]])
         for u in g.utilisateur_set.all():
-            writer.writerow([u.nom, u.prenom, u.login, u.email,
-                        u.lastw, u.nb_modules, u.nb_valides, u.nb_retards, u.nperfs()[2]])
-
+            ligne = [s.encode("iso-8859-1") for s in [u.nom, 
+                        u.prenom, 
+                        u.login, 
+                        u.email]]
+            ligne.extend(( u.lastw, 
+                        u.time_elapsed(), 
+                        u.nb_modules, 
+                        u.nb_valides, 
+                        u.nb_retards, 
+                        u.nb_actuel))
+            writer.writerow(ligne)
         return response
 
 liste_csv = visitor_is_at_least(ADMINISTRATEUR)(liste_csv)

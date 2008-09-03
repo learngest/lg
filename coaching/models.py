@@ -181,7 +181,10 @@ class Utilisateur(models.Model):
         return hsh == sha.new(salt+password).hexdigest()
 
     def time_elapsed(self):
-        return datetime.timedelta(seconds=self.tempspasse)
+        if self.tempspasse:
+            return smart_str(datetime.timedelta(seconds=self.tempspasse))
+        else:
+            return ''
 
     def is_valid(self):
         if self.fermeture:
