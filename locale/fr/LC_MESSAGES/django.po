@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-02 15:58+0200\n"
+"POT-Creation-Date: 2008-09-03 15:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Anh J. anhj@gcu.info\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,7 +85,7 @@ msgstr "Nom"
 msgid "First name"
 msgstr "Prénom"
 
-#: coaching/forms.py:22 coaching/views.py:1119 learning/forms.py:33
+#: coaching/forms.py:22 coaching/views.py:1122 learning/forms.py:33
 #: templates/coaching/logins2.html:45 templates/coaching/logins3.html:45
 msgid "Email"
 msgstr ""
@@ -292,35 +292,40 @@ msgstr "Le message a été envoyé."
 msgid "Last Name"
 msgstr "Nom"
 
-#: coaching/views.py:1119 templates/learning/profile.html:25
+#: coaching/views.py:1120 templates/learning/profile.html:25
 msgid "First Name"
 msgstr "Prénom"
 
-#: coaching/views.py:1119 session/forms.py:10 session/forms.py:22
+#: coaching/views.py:1121 session/forms.py:10 session/forms.py:22
 #: templates/coaching/fiche.html:25 templates/coaching/liste_admin.html:78
 #: templates/coaching/liste_coach.html:68 templates/coaching/logins3.html:46
 #: templates/learning/profile.html:14
 msgid "Login"
 msgstr "Login"
 
-#: coaching/views.py:1120 templates/coaching/liste_admin.html:84
+#: coaching/views.py:1123 templates/coaching/liste_admin.html:84
 #: templates/coaching/liste_coach.html:72
 msgid "Last Work"
 msgstr "Dernier travail"
 
-#: coaching/views.py:1121 templates/coaching/liste_admin.html:79
+#: coaching/views.py:1124 templates/coaching/liste_admin.html:83
+#: templates/coaching/liste_coach.html:71
+msgid "Time Spent"
+msgstr "Temps passé"
+
+#: coaching/views.py:1125 templates/coaching/liste_admin.html:79
 msgid "Modules"
 msgstr ""
 
-#: coaching/views.py:1121
+#: coaching/views.py:1126
 msgid "Validated"
 msgstr "Validés"
 
-#: coaching/views.py:1122
+#: coaching/views.py:1127
 msgid "Validated Late"
 msgstr "Validés en retard"
 
-#: coaching/views.py:1122
+#: coaching/views.py:1128
 msgid "Currently Late"
 msgstr "Actuellement en retard"
 
@@ -702,10 +707,10 @@ msgstr ""
 #: templates/coaching/liste_admin.html:56
 msgid ""
 "The number of currently late modules is calculated once per day on midnight "
-"(UTC+0200)."
+"(Europe/Paris time)."
 msgstr ""
 "Le nombre de modules actuellement en retard est calculé une fois par 24h à "
-"minuit heure de Paris (UTC+0200)"
+"minuit heure de Paris."
 
 #: templates/coaching/liste_admin.html:77
 #: templates/coaching/liste_coach.html:67
@@ -720,11 +725,6 @@ msgstr "Validés<br />en retard"
 #: templates/coaching/liste_admin.html:82
 msgid "Cur. Late"
 msgstr "Actuellement<br />en retard"
-
-#: templates/coaching/liste_admin.html:83
-#: templates/coaching/liste_coach.html:71
-msgid "Time Spent"
-msgstr "Temps passé"
 
 #: templates/coaching/liste_admin.html:106
 #: templates/coaching/liste_coach.html:92
