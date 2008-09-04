@@ -179,11 +179,12 @@ def noter(request):
             qd['libel'] = eval(phrase) % dico
             for k,v in dico.items():
                 locals()[k] = v
-            r.valeur = '%.2f' % eval(r.valeur)
+            r.valeur = '%.2f' % round(eval(r.valeur),2)
             if rep:
                 rep = clean(rep).replace(',','.').rstrip('0')
                 r.valeur = clean(r.valeur).replace(',','.').rstrip('0')
                 # on teste sur 5 chiffres significatifs + le point décimal
+                assert False, (rep[:6],r.valeur[:6])
                 if rep[:6] == r.valeur[:6]:
                     qd['points'] = r.points
                     total += r.points
