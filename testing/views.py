@@ -184,7 +184,6 @@ def noter(request):
                 rep = clean(rep).replace(',','.').rstrip('0')
                 r.valeur = clean(r.valeur).replace(',','.').rstrip('0')
                 # on teste sur 5 chiffres significatifs + le point décimal
-                assert False, (rep[:6],r.valeur[:6])
                 if rep[:6] == r.valeur[:6]:
                     qd['points'] = r.points
                     total += r.points
