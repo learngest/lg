@@ -64,7 +64,7 @@ def devoir(request):
         w = Work.objects.get(id=request.GET['id'])
     except Work.DoesNotExist:
         HttpResponseRedirect('/home/')
-    w.url = w.get_fichier_url()
+    w.url = w.fichier.url
     if w.fichier:
         w.fichier = os.path.basename(w.fichier)
     if request.method == 'POST':
