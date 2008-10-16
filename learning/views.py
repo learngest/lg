@@ -65,8 +65,8 @@ def devoir(request):
     except Work.DoesNotExist:
         HttpResponseRedirect('/home/')
     w.url = w.fichier.url
-    if w.fichier:
-        w.fichier = os.path.basename(w.fichier)
+    if w.fichier.path:
+        w.fname = os.path.basename(w.fichier.path)
     if request.method == 'POST':
         # devoir rendu, sauvegarder
         f = WorkForm4(request.POST, request.FILES)

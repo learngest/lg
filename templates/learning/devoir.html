@@ -13,8 +13,8 @@
 <fieldset>
 <h2>{% trans "Assignment" %}</h2>
 <p>{{ devoir.libel }}</p>
-{% if devoir.fichier %}
-<p>{% trans "Download additional document:" %} <a href="{{ devoir.url }}">{{ devoir.fichier }}</a></p>
+{% if devoir.fname %}
+<p>{% trans "Download additional document:" %} <a href="{{ devoir.url }}">{{ devoir.fname }}</a></p>
 {% endif %}
 </fieldset>
 <fieldset>
