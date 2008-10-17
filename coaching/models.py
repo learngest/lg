@@ -427,7 +427,7 @@ class Utilisateur(models.Model):
         return None
 
     def echeance(self, cours, module):
-        qu = self.echeance_set.all()
+        qu = self.echeance_set.filter(utilisateur__isnull=False)
         qg = self.groupe.echeance_set.filter(utilisateur__isnull=True)
         try:
             e = qu.get(module=module)

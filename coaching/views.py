@@ -967,7 +967,8 @@ def create_logins(request):
                 nom_source = settings.MEDIA_ROOT + 'logins/source-g%s-%s.txt'\
                         % (g.id, time.strftime('%Y%m%d%H%M%S',time.localtime()))
                 fsource = open(nom_source, 'w')
-                for line in StringIO.StringIO(f.cleaned_data['source'].content):
+                #for line in StringIO.StringIO(f.cleaned_data['source'].content):
+                for line in StringIO.StringIO(request.FILES['source'].read()):
                     if line.startswith('Nom\t'):
                         start_now = True
                         continue
