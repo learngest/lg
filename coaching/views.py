@@ -85,7 +85,7 @@ def add_work(request):
     v = request.session['v']
     if request.method == 'POST':
         if 'c' in request.POST:
-            # dernière étape, recup des valeurs et sauvegarde de l'échéance
+            # dernière étape, recup des valeurs et sauvegarde du devoir à rendre
             g = Groupe.objects.get(id=request.POST['g'])
             c = Cours.objects.get(id=request.POST['c'])
             try:
@@ -101,10 +101,11 @@ def add_work(request):
                     w = Work(groupe=g, cours=c, 
                             titre = f3.cleaned_data['titre'],
                             libel = f3.cleaned_data['libel'],
-                            fichier = f3.cleaned_data['fichier'].filename)
-                    w.save()
-                    #w.save_fichier_file(f3.cleaned_data['fichier'].filename,f3.cleaned_data['fichier'].content)
-                    w.fichier.save(f3.cleaned_data['fichier'].filename,f3.cleaned_data['fichier'].content)
+                            fichier = f3.cleaned_data['fichier'].name)
+                    #w.save()
+                    w.fichier.save(f3.cleaned_data['fichier'].name,
+                                    request.FILES['fichier'], 
+                                    save=True)
                 else:
                     w = Work(groupe=g, cours=c, 
                             titre = f3.cleaned_data['titre'],
@@ -208,10 +209,11 @@ def maj_work(request):
                 if f.cleaned_data['fichier']:
                     w.titre = f.cleaned_data['titre']
                     w.libel = f.cleaned_data['libel']
-                    w.fichier = f.cleaned_data['fichier'].filename
-                    w.save()
-                    #w.save_fichier_file(f.cleaned_data['fichier'].filename,f.cleaned_data['fichier'].content)
-                    w.fichier.save(f.cleaned_data['fichier'].filename,f.cleaned_data['fichier'].content)
+                    w.fichier = f.cleaned_data['fichier'].name
+                    #w.save()
+                    w.fichier.save(f.cleaned_data['fichier'].name,
+                                    request.FILES['fichier'], 
+                                    save=True)
                 else:
                     w.titre = f.cleaned_data['titre']
                     w.libel = f.cleaned_data['libel']
@@ -967,7 +969,6 @@ def create_logins(request):
                 nom_source = settings.MEDIA_ROOT + 'logins/source-g%s-%s.txt'\
                         % (g.id, time.strftime('%Y%m%d%H%M%S',time.localtime()))
                 fsource = open(nom_source, 'w')
-                #for line in StringIO.StringIO(f.cleaned_data['source'].content):
                 for line in StringIO.StringIO(request.FILES['source'].read()):
                     if line.startswith('Nom\t'):
                         start_now = True

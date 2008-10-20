@@ -77,19 +77,17 @@ def devoir(request):
                 fichier = ''.join(('g%d-' % u.groupe.id,
                                     u.login,'-',
                                     datetime.datetime.now().strftime('%Y%m%d-%H%M%S'),
-                                    os.path.splitext(f.cleaned_data['fichier'].filename)[1]))
+                                    os.path.splitext(f.cleaned_data['fichier'].name)[1]))
                 fichier = fichier.encode('iso-8859-1')
-                content = f.cleaned_data['fichier'].content
-                signature = sha.new(content).hexdigest()
+                content = request.FILES['fichier']
+                signature = sha.new(content.read()).hexdigest()
                 date = datetime.datetime.now()
                 # try: si le devoir existe, pas de sauvegarde.
                 try:
                     wd = WorkDone.objects.get(utilisateur=u, work=w)
                 except WorkDone.DoesNotExist:
                     wd = WorkDone(utilisateur=u, work=w, date=date, fichier=fichier, signature=signature)
-                    wd.save()
-                    #wd.save_fichier_file(fichier, content)
-                    wd.fichier.save(fichier, content)
+                    wd.fichier.save(fichier, content, save=True)
                     # groupe-cours zipfile
                     zfichier = ''.join(('g%d' % u.groupe.id,'-', 
                                         w.cours.slug,

@@ -72,17 +72,15 @@ class WorkForm3(forms.Form):
             fichier_ok = False
             # le test devrait se faire sur le content-type
             for suffix in ('.doc','.pdf','.xls','.zip'):
-                if self.cleaned_data['fichier'].filename.endswith(suffix):
+                if self.cleaned_data['fichier'].name.endswith(suffix):
                     fichier_ok = True
                     break
             if not fichier_ok:
                 raise forms.ValidationError(_('Filetype should be .doc, .xls, .pdf or .zip'))
-                #raise forms.ValidationError('Filetype should be .doc, .xls, .pdf or .zip')
-            filelen = float(len(self.cleaned_data['fichier'].content)) / 1024
+            filelen = float(self.cleaned_data['fichier'].size) / 1024
             if filelen > 1024:
                 filelen = filelen / 1024
                 raise forms.ValidationError(_('Maximum size allowed is 1 Mo, this file is %.2f Mo' % filelen))
-                #raise forms.ValidationError(_('Maximum size allowed is 1 Mo'))
         return self.cleaned_data['fichier']
 
 class MailForm(forms.Form):

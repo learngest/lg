@@ -23,7 +23,7 @@ class WorkForm4(forms.Form):
                 raise forms.ValidationError(_('Filetype should be .doc, .xls, .pdf or .zip'))
                 #raise forms.ValidationError('Filetype should be .doc, .xls, .pdf or .zip')
             #filelen = float(len(self.cleaned_data['fichier'].content)) / 1024
-            filelen = float(request.FILES['fichier'].size) / 1024
+            filelen = float(self.cleaned_data['fichier'].size) / 1024
             if filelen > 1024:
                 filelen = filelen / 1024
                 raise forms.ValidationError(_('Maximum size allowed is 1 Mo, this file is %.2f Mo' % filelen))
