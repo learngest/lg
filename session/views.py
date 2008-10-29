@@ -223,7 +223,7 @@ def lost_password(request):
             u.save(change_password=True)
             fmail = open(settings.MEDIA_ROOT + 'logins/mail_newpass.txt')
             mailmsg = fmail.read()
-            mailmsg = mailmsg.decode('iso-8859-1')
+            mailmsg = mailmsg.decode('utf8')
             mailmsg = mailmsg % {'nom': u.prenom_nom(),
                                  'password': newpassword,
                                  }
