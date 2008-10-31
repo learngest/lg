@@ -14,7 +14,7 @@ def send_mail(sender, recipients, subject, msg):
         if not parametre:
             return 255
     msg = msg.encode('utf8')
-    message = MIMEText(msg,'plain','iso-8859-1')
+    message = MIMEText(msg,'plain','utf-8')
     message['From'] = sender
     message['To'] = ', '.join(recipients)
     message['Subject'] = subject
