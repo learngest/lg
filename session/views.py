@@ -7,6 +7,7 @@ from urllib import quote
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
+from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import iri_to_uri
 
@@ -221,12 +222,14 @@ def lost_password(request):
             newpassword = sha.new(str(random.random())).hexdigest()[:8]
             u.password = newpassword
             u.save(change_password=True)
-            fmail = open(settings.MEDIA_ROOT + 'logins/mail_newpass.txt')
-            mailmsg = fmail.read()
-            mailmsg = mailmsg.decode('utf8')
-            mailmsg = mailmsg % {'nom': u.prenom_nom(),
-                                 'password': newpassword,
-                                 }
+#            fmail = open(settings.MEDIA_ROOT + 'logins/mail_newpass.txt')
+#            mailmsg = fmail.read()
+#            mailmsg = mailmsg.decode('utf8')
+#            mailmsg = mailmsg % {'nom': u.prenom_nom(),
+#                                 'password': newpassword,
+#                                 }
+            mailmsg = render_to_string('mail_newpass.txt', 
+                    {'nom': u.prenom_nom(), 'password': newpassword,})
             send_mail(sender='info@learngest.com',
                       recipients=[u.email,'support@learngest.com'],
                       subject='Your login',

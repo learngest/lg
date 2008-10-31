@@ -1,0 +1,17 @@
+Hello {{nom}}
+
+Your Learngest password (http://learngest.com/) has just been changed on
+your request.
+
+Your new password is {{password}}
+
+Bonjour {{nom}}
+
+A votre demande, votre mot de passe Learngest (http://learngest.com/) a
+été modifié.
+
+Votre nouveau mot de passe est {{password}}
+
+-- 
+L'équipe Learngest
+http://learngest.com/
