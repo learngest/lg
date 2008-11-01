@@ -7,6 +7,7 @@ from urllib import quote
 
 from django.conf import settings
 from django.http import Http404, HttpResponseRedirect
+from django.template.loader import render_to_string
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
 from django.utils.translation import ugettext_lazy as _, ugettext
 from django.utils.encoding import smart_str
@@ -890,16 +891,17 @@ def create_logins(request):
                 nom, prenom, email = line.split('\t')
                 nom = nom.title()
                 prenom = prenom.title()
-                login = prenom[:2] + nom
-                login = unicodedata.normalize('NFKD',login).encode('ASCII','ignore').lower()
-                i = login.rfind(' ')
-                if i > 5:
-                    login = login[0:i]
-                login = login.replace(' ','')
-                i = login.rfind('-')
-                if i > 5:
-                    login = login[0:i]
-                login = login.replace('-','')
+#                login = prenom[:2] + nom
+#                login = unicodedata.normalize('NFKD',login).encode('ASCII','ignore').lower()
+#                i = login.rfind(' ')
+#                if i > 5:
+#                    login = login[0:i]
+#                login = login.replace(' ','')
+#                i = login.rfind('-')
+#                if i > 5:
+#                    login = login[0:i]
+#                login = login.replace('-','')
+                login = email.split('@')[0][:20]
                 password = sha.new(str(random.random())).hexdigest()[:8]
                 try:
                     Utilisateur.objects.get(login=login)
@@ -915,29 +917,34 @@ def create_logins(request):
                     status = ugettext('Saved.')
                 if request.POST['envoi_mail']=='1' and saved:
                     try:
-                        fmail = open(settings.MEDIA_ROOT + 'logins/mail_login.txt')
-                        mailmsg = fmail.read()
-                        mailmsg = mailmsg.decode('iso-8859-1')
-                        mailmsg = mailmsg % {'login': u.login, 
-                                             'password': password,
-                                             'groupe': g.nom,
-                                             'coach': g.administrateur.prenom_nom(),
-                                             'coach_mail': g.administrateur.email,
-                                             }
+#                        fmail = open(settings.MEDIA_ROOT + 'logins/mail_login.txt')
+#                        mailmsg = fmail.read()
+#                        mailmsg = mailmsg.decode('iso-8859-1')
+#                        mailmsg = mailmsg % {'login': u.login, 
+#                                             'password': password,
+#                                             'groupe': g.nom,
+#                                             'coach': g.administrateur.prenom_nom(),
+#                                             'coach_mail': g.administrateur.email,
+#                                             }
+                        mailmsg = render_to_string('mail_newpass.txt', 
+                                {'login': u.login, 
+                                  'password': password,
+                                  'groupe': g.nom,
+                                  'coach': g.administrateur.prenom_nom(),
+                                  'coach_mail': g.administrateur.email,})
                         send_mail(sender='info@learngest.com',
                                   recipients=[u.email],
-                                  #subject='Your finance course login - Votre login pour le cours de finance',
                                   subject='E-learning - %s' % g.client.nom,
                                   msg = mailmsg,
                                   )
                         status = ' '.join((status,ugettext('Mail sent.')))
                     except IOError:
                         status = ' '.join((status,ugettext('Mail error.')))
-                    fmail.close()
+                    #fmail.close()
                 if saved:
                     #newline = '\t'.join((nom,prenom,email,login,password,'\n'))
                     newline = ';'.join((nom,prenom,email,login,password,'\n'))
-                    newline =newline.encode('iso-8859-1')
+                    newline = newline.encode('iso-8859-1')
                     flogin.write(newline)
                 logins.append({'login':login, 'password': password, 
                                 'nom':nom,'prenom':prenom,'email':email,
