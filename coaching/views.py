@@ -926,7 +926,7 @@ def create_logins(request):
 #                                             'coach': g.administrateur.prenom_nom(),
 #                                             'coach_mail': g.administrateur.email,
 #                                             }
-                        mailmsg = render_to_string('mail_newpass.txt', 
+                        mailmsg = render_to_string('mail_login.txt', 
                                 {'login': u.login, 
                                   'password': password,
                                   'groupe': g.nom,
