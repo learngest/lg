@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
-French version at the end of this email - Version française à la fin de ce mail
+French version at the end of this email - Version franÃ§aise Ã  la fin de ce mail
 -------------------------------------------------------------------------------
 
 Fullfilling the request of your school, a login and password have just
@@ -37,42 +37,42 @@ We wish you a pleasant and rich learning experience with Learngest !
 
 Bonjour,
 
-A la demande de votre institution, nous vous avons créé un accès à la
+A la demande de votre institution, nous vous avons crÃ©Ã© un accÃ¨s Ã  la
 plateforme d'enseignement Learngest. Ce mail vous donne des informations
-sur la manière de l'utiliser, veuillez le lire attentivement et le
-conserver, car il contient vos paramètres de connexion.
+sur la maniÃ¨re de l'utiliser, veuillez le lire attentivement et le
+conserver, car il contient vos paramÃ¨tres de connexion.
 
 Pour travailler, rendez-vous sur
 http://learngest.com/
 
-Et entrez vos paramètres
+Et entrez vos paramÃ¨tres
 login : {{login}}
 mot de passe : {{password}}
 
 Faites bien attention de respecter strictement le login et le mot de passe 
 (majuscules/minuscules, ne pas confondre le O et le 0, le 1 et le l, etc.)
 
-Pour réduire les risques d'erreur, vous pouvez si vous en avez l'habitude
-copier et coller les paramètres donnés ci-dessus dans le formulaire d'accès.
+Pour rÃ©duire les risques d'erreur, vous pouvez si vous en avez l'habitude
+copier et coller les paramÃ¨tres donnÃ©s ci-dessus dans le formulaire d'accÃ¨s.
 
-Vous avez la possibilité de changer votre mot de passe une fois connecté
+Vous avez la possibilitÃ© de changer votre mot de passe une fois connectÃ©
 (choisissez le bouton "Mon profil" pour le faire). 
 
 Rappelez-vous de ne pas choisir un mot de passe trop simple, de ne pas
-le confier à d'autres, et de vous déconnecter lorsque vous avez fini de
-travailler.  Vous éviterez ainsi les déconvenues lors de la validation
+le confier Ã  d'autres, et de vous dÃ©connecter lorsque vous avez fini de
+travailler.  Vous Ã©viterez ainsi les dÃ©convenues lors de la validation
 de votre travail.
 
 Vous appartenez au groupe {{groupe}}.
 Votre coach est {{coach}} ({{coach_mail}}).
 
-En cas de difficulté de connexion, contactez votre coach, qui a reçu une
+En cas de difficultÃ© de connexion, contactez votre coach, qui a reÃ§u une
 liste de tous les logins et mots de passe de votre groupe.
 
-En cas de difficulté avec les tests, le contenu des cours, etc.,
+En cas de difficultÃ© avec les tests, le contenu des cours, etc.,
 contactez votre coach ou votre professeur.
 
 Nous vous souhaitons un bon travail sur la plateforme Learngest.
 -- 
-L'équipe Learngest
+L'Ã©quipe Learngest
 http://learngest.com/
