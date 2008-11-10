@@ -538,14 +538,14 @@ class Coached(models.Model):
         return u'%s - %s - %s' % (self.groupe.nom, self.cours.slug, self.coach.nom)
 
 class NonTrashManager(models.Manager):
-  ''' Query only objects which have not been trashed. '''
-  def get_query_set(self):
-    return super(NonTrashManager, self).get_query_set().filter(trashed_at__isnull=True)
+    ''' Query only objects which have not been trashed. '''
+    def get_query_set(self):
+        return super(NonTrashManager, self).get_query_set().filter(trashed_at__isnull=True)
 
 class TrashManager(models.Manager):
-  ''' Query only objects which have been trashed. '''
-  def get_query_set(self):
-    return super(TrashManager, self).get_query_set().filter(trashed_at__isnull=False)
+    ''' Query only objects which have been trashed. '''
+    def get_query_set(self):
+        return super(TrashManager, self).get_query_set().filter(trashed_at__isnull=False)
 
 class Work(models.Model):
     """Devoir à rendre pour un groupe et un cours.
@@ -636,7 +636,8 @@ class Echeance(models.Model):
         if self.utilisateur:
             if self.module:
                 try:
-                    e = Echeance.objects.get(utilisateur=self.utilisateur,groupe=self.groupe,
+                    e = Echeance.objects.get(utilisateur=self.utilisateur,
+                                        groupe=self.groupe,
                                         module=self.module, cours=self.cours)
                     e.echeance = self.echeance
                     super (Echeance, e).save(force_insert, force_update)
@@ -644,7 +645,8 @@ class Echeance(models.Model):
                     super(Echeance, self).save(force_insert, force_update)
             else:
                 try:
-                    e = Echeance.objects.get(utilisateur=self.utilisateur,groupe=self.groupe,
+                    e = Echeance.objects.get(utilisateur=self.utilisateur,
+                                        groupe=self.groupe,
                                         module__isnull=True, cours=self.cours)
                     e.echeance = self.echeance
                     super (Echeance, e).save(force_insert, force_update)
@@ -653,7 +655,8 @@ class Echeance(models.Model):
         else:
             if self.module:
                 try:
-                    e = Echeance.objects.get(utilisateur__isnull=True,groupe=self.groupe,
+                    e = Echeance.objects.get(utilisateur__isnull=True,
+                                        groupe=self.groupe,
                                         module=self.module, cours=self.cours)
                     e.echeance = self.echeance
                     super (Echeance, e).save(force_insert, force_update)
@@ -661,7 +664,8 @@ class Echeance(models.Model):
                     super(Echeance, self).save(force_insert, force_update)
             else:
                 try:
-                    e = Echeance.objects.get(utilisateur__isnull=True,groupe=self.groupe,
+                    e = Echeance.objects.get(utilisateur__isnull=True,
+                                        groupe=self.groupe,
                                         module__isnull=True, cours=self.cours)
                     e.echeance = self.echeance
                     super (Echeance, e).save(force_insert, force_update)
