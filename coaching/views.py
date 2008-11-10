@@ -327,8 +327,11 @@ def add_echeance(request):
                 else:
                     m = Module.objects.get(id=f3.cleaned_data['module'])
                     mf = m
-                Echeance.objects.create(groupe=g,utilisateur=u,cours=c,module=m,
-                                        echeance=f3.cleaned_data['deadline'])
+                e = Echeance(groupe=g,utilisateur=u,cours=c,module=m,
+                        echeance=f3.cleaned_data['deadline'])
+                e.save()
+#                Echeance.objects.create(groupe=g,utilisateur=u,cours=c,module=m,
+#                                        echeance=f3.cleaned_data['deadline'])
                 if 'save' in request.POST:
                     msg = _('Deadline successfully created. \
                             <a href="/coaching/echeance/add/" style="font-weight: bold;">Add a new one</a>')
@@ -397,7 +400,7 @@ def add_echeance(request):
 add_echeance = visitor_is(ADMINISTRATEUR)(add_echeance) 
 
 def maj_echeance(request):
-    """View: adds a deadline for user/group and course/module.
+    """View: updates or deletes a deadline for user/group and course/module.
     """
     # récup visiteur
     v = request.session['v']
