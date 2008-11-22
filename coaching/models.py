@@ -141,12 +141,14 @@ class Utilisateur(models.Model):
         """
         if not self.id:
             self.creation = datetime.datetime.now()
-            self.nb_retards = self.nperfs()[3]
-            self.nb_actuel = self.nperfs()[2]
-            self.nb_valides = 0
-            self.nb_modules = 0
-            for c in self.cours_list():
-                self.nb_modules += c.modulecours_set.count()
+            self.nb_valides, self.nb_modules, \
+                    self.nb_actuel, self.nb_retard = self.nperfs()
+#            self.nb_retards = self.nperfs()[3]
+#            self.nb_actuel = self.nperfs()[2]
+#            self.nb_valides = 0
+#            self.nb_modules = self.nperfs()[1]
+#            for c in self.cours_list():
+#                self.nb_modules += c.modulecours_set.count()
         else:
             self.modification = datetime.datetime.now()
 
