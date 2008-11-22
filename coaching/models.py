@@ -142,7 +142,7 @@ class Utilisateur(models.Model):
         if not self.id:
             self.creation = datetime.datetime.now()
             self.nb_valides, self.nb_modules, \
-                    self.nb_actuel, self.nb_retard = self.nperfs()
+                    self.nb_actuel, self.nb_retards = self.nperfs()
 #            self.nb_retards = self.nperfs()[3]
 #            self.nb_actuel = self.nperfs()[2]
 #            self.nb_valides = 0
