@@ -1164,6 +1164,12 @@ def time_csv(request):
             secondes = 600
         return secondes
 
+    def prettyprint(secs):
+        return "%02i:%02i:%02i" % (
+                int(secs / 3600), 
+                int((secs % 3600) / 60), 
+                secs%60) 
+
     import csv
     from django.http import HttpResponse
     v = request.session['v']
@@ -1240,7 +1246,7 @@ def time_csv(request):
                         u.email]]
 
             for module in modules:
-                ligne.append(u.timespent.get(module.slug,0))
+                ligne.append(prettyprint(u.timespent.get(module.slug,0)))
 
             writer.writerow(ligne)
 
