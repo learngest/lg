@@ -81,6 +81,17 @@ class Groupe(models.Model):
                 liste_work.append(zipname)
         return liste_work
 
+    def modules_list(self):
+        """
+        Liste des modules des cours de ce groupe
+
+        Renvoie une liste d'objets modules.
+        """
+        liste = []
+        for c in self.cours.all():
+            liste.extend([mc.module for mc in c.modulecours_set.all()])
+        return liste
+
 class Utilisateur(models.Model):
     """
     Le modèle de base utilisateur (Utilisateur).

@@ -16,6 +16,7 @@ from session.views import visitor_is, visitor_is_at_least, visitor_may_see_list
 from coaching.forms import *
 from coaching.models import Client, Utilisateur, Groupe, Echeance, Work, WorkDone, Log
 from learning.models import Cours, Module, Contenu, ModuleCours
+from testing.models import Granule
 from lg.listes import *
 
 def makefilters(params, filtres):
@@ -1153,3 +1154,96 @@ def liste_csv(request):
         return response
 
 liste_csv = visitor_is_at_least(ADMINISTRATEUR)(liste_csv)
+
+def time_csv(request):
+
+    def sanitize_temps(start, end):
+        temps = end - start
+        secondes = temps.days * 86400 + temps.seconds
+        if secondes > 14400:
+            secondes = 600
+        return secondes
+
+    import csv
+    from django.http import HttpResponse
+    v = request.session['v']
+    if not 'gid' in request.GET:
+        return HttpResponseRedirect('/coaching/')
+    else:
+        try:
+            g = Groupe.objects.get(pk=request.GET['gid'])
+        except Groupe.DoesNotExist:
+            return HttpResponseRedirect('/coaching/')
+        if not g in v.groupes_list():
+            return HttpResponseRedirect('/coaching/')
+        response = HttpResponse(mimetype='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=temps-g%s.csv' % request.GET['gid']
+        writer = csv.writer(response,delimiter=';')
+        modules = g.modules_list()
+
+        ligne = [s.encode("iso-8859-1") for s in [ugettext('Last Name'),
+                        ugettext('First Name'),
+                        ugettext('Login'),
+                        ugettext('Email'),]]
+        for module in modules:
+            ligne.append(module.titre(langue=v.langue).encode("iso-8859-1"))
+        writer.writerow(ligne)
+
+        for u in g.utilisateur_set.all():
+            logs = Log.objects.filter(utilisateur=u).order_by('date')
+            u.timespent = {}
+            curmod = None
+            testing = False
+            for log in logs:
+                if curmod:
+                    if testing:
+                        testing = False
+                        if '/noter/' in log.path:
+                            secondes = sanitize_temps(curtime, log.date)
+                            u.timespent[curmod] = u.timespent.get(curmod,0) \
+                                    + secondes
+                    else:
+                        if log.path in ('/','/login/'):
+                            secondes = 600
+                        else:
+                            secondes = sanitize_temps(curtime, log.date)
+                            u.timespent[curmod] = u.timespent.get(curmod,0) \
+                                    + secondes
+                    curmod = None
+                if '/learning/' in log.path:
+                    parts = log.path.split('/')
+                    try:
+                        curmod = parts[3]
+                    except IndexError:
+                        continue
+                    if curmod:
+                        curtime = log.date
+                    else:
+                        continue
+                else:
+                    if '/testing/' in log.path:
+                        testing = True
+                        parts = log.path.split('/')
+                        granslug = parts[2]
+                        try:
+                            granule = Granule.objects.get(slug=granslug)
+                        except Granule.DoesNotExist:
+                            continue
+                        curmod = granule.module.slug
+                        curtime = log.date
+                    else:
+                        continue
+
+            ligne = [s.encode("iso-8859-1") for s in [u.nom, 
+                        u.prenom, 
+                        u.login, 
+                        u.email]]
+
+            for module in modules:
+                ligne.append(u.timespent.get(module.slug,0))
+
+            writer.writerow(ligne)
+
+        return response
+
+time_csv = visitor_is_at_least(ADMINISTRATEUR)(time_csv)
