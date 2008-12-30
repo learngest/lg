@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-03 15:18+0200\n"
+"POT-Creation-Date: 2008-12-29 15:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Anh J. anhj@gcu.info\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,9 +36,9 @@ msgstr "资料来源"
 #: coaching/forms.py:60 templates/coaching/add_echeance.html:25
 #: templates/coaching/add_echeance.html:53 templates/coaching/add_work.html:23
 #: templates/coaching/add_work.html:25 templates/coaching/add_work.html:67
-#: templates/coaching/fiche.html:30 templates/coaching/liste_admin.html:75
+#: templates/coaching/fiche.html:30 templates/coaching/liste_admin.html:76
 #: templates/coaching/liste_clients.html:49
-#: templates/coaching/liste_coach.html:65
+#: templates/coaching/liste_coach.html:66
 #: templates/coaching/liste_echeance.html:49
 #: templates/coaching/liste_work.html:49 templates/coaching/logins.html:28
 #: templates/coaching/logins2.html:28 templates/coaching/logins2.html.py:29
@@ -85,20 +85,21 @@ msgstr "姓"
 msgid "First name"
 msgstr "名"
 
-#: coaching/forms.py:22 coaching/views.py:1122 learning/forms.py:33
-#: templates/coaching/logins2.html:45 templates/coaching/logins3.html:45
+#: coaching/forms.py:22 coaching/views.py:1135 coaching/views.py:1193
+#: learning/forms.py:34 templates/coaching/logins2.html:45
+#: templates/coaching/logins3.html:45
 msgid "Email"
 msgstr "电子邮件"
 
-#: coaching/forms.py:26 learning/forms.py:37
+#: coaching/forms.py:26 learning/forms.py:38
 msgid "New password"
 msgstr "密码"
 
-#: coaching/forms.py:31 learning/forms.py:42
+#: coaching/forms.py:31 learning/forms.py:43
 msgid "New password (again)"
 msgstr "再一次输入密码"
 
-#: coaching/forms.py:42 learning/forms.py:48
+#: coaching/forms.py:42 learning/forms.py:49
 msgid "Please enter the same password twice."
 msgstr "错误 :密码有误"
 
@@ -161,171 +162,174 @@ msgstr "附件"
 msgid "Filetype should be .doc, .xls, .pdf or .zip"
 msgstr "文件应该是 .doc, .xls, .pdf 或 .zip 的格式"
 
-#: coaching/forms.py:84 learning/forms.py:28
+#: coaching/forms.py:83 learning/forms.py:29
 #, python-format
 msgid "Maximum size allowed is 1 Mo, this file is %.2f Mo"
 msgstr "最大规格 1 Mo, 本文件是 %.2f Mo"
 
-#: coaching/forms.py:89 templates/coaching/sendmail.html:28
+#: coaching/forms.py:87 templates/coaching/sendmail.html:28
 msgid "Subject"
 msgstr "主题"
 
-#: coaching/forms.py:90
+#: coaching/forms.py:88
 msgid "Text"
 msgstr "内容"
 
-#: coaching/views.py:37 coaching/views.py:42
+#: coaching/views.py:39 coaching/views.py:44
 msgid "All"
 msgstr "全部"
 
-#: coaching/views.py:70 coaching/views.py:284 coaching/views.py:793
+#: coaching/views.py:72 coaching/views.py:288 coaching/views.py:800
 msgid "group"
 msgstr "小组"
 
-#: coaching/views.py:71 coaching/views.py:285
+#: coaching/views.py:73 coaching/views.py:289
 msgid "course"
 msgstr "课程"
 
-#: coaching/views.py:114
+#: coaching/views.py:117
 msgid ""
 "Assignment successfully created.                             <a href=\"/"
 "coaching/work/add/\" style=\"font-weight: bold;\">Add a new one</a>"
 msgstr ""
-"成功加入的作业. "
-"<a href=\"/coaching/work/add/\" style=\"font-weight: bold;\">增加另外要交的作业</a>"
+"成功加入的作业. <a href=\"/coaching/work/add/\" style=\"font-weight: bold;\">"
+"增加另外要交的作业</a>"
 
-#: coaching/views.py:185
+#: coaching/views.py:188
 #, python-format
 msgid ""
 "This assignment has been deleted.             <a href=\"/coaching/work/"
 "manage/?id=%s&undo\" style=\"color: red;\">Undo</a>"
 msgstr ""
-"该作业已被取消"
-"<a href=\"/coaching/work/manage/?id=%s&undo\" style=\"color: red;\">取消</a>"
+"该作业已被取消<a href=\"/coaching/work/manage/?id=%s&undo\" style=\"color: "
+"red;\">取消</a>"
 
-#: coaching/views.py:219
+#: coaching/views.py:223
 msgid "Assignment successfully saved."
 msgstr "成功修改的工作"
 
-#: coaching/views.py:241
+#: coaching/views.py:245
 msgid "Assignment successfully restored."
 msgstr "成功恢复的工作"
 
-#: coaching/views.py:306 coaching/views.py:351 coaching/views.py:358
-#: coaching/views.py:379 coaching/views.py:412 coaching/views.py:435
-#: coaching/views.py:475
+#: coaching/views.py:310 coaching/views.py:358 coaching/views.py:365
+#: coaching/views.py:386 coaching/views.py:419 coaching/views.py:442
+#: coaching/views.py:482
 msgid "== All Students =="
 msgstr "== 所有学生 =="
 
-#: coaching/views.py:313 coaching/views.py:323 coaching/views.py:365
-#: coaching/views.py:417 coaching/views.py:440 coaching/views.py:480
+#: coaching/views.py:317 coaching/views.py:327 coaching/views.py:372
+#: coaching/views.py:424 coaching/views.py:447 coaching/views.py:487
 msgid "== All Modules =="
 msgstr "== 所有模块 =="
 
-#: coaching/views.py:330
+#: coaching/views.py:337
 msgid ""
 "Deadline successfully created.                             <a href=\"/"
 "coaching/echeance/add/\" style=\"font-weight: bold;\">Add a new one</a>"
 msgstr ""
-"成功增加的日期"
-"<a href=\"/coaching/echeance/add/\" style=\"font-weight: bold;\">增加另一日期</a>"
+"成功增加的日期<a href=\"/coaching/echeance/add/\" style=\"font-weight: bold;"
+"\">增加另一日期</a>"
 
-#: coaching/views.py:406
+#: coaching/views.py:413
 #, python-format
 msgid ""
 "This deadline has been deleted.             <a href=\"/coaching/echeance/"
 "manage/?id=%s&undo\" style=\"color: red;\">Undo</a>"
 msgstr ""
-"该日期已被取消"
-"<a href=\"/coaching/echeance/manage/?id=%s&undo\" style=\"color: red;\">取消</a>"
+"该日期已被取消<a href=\"/coaching/echeance/manage/?id=%s&undo\" style="
+"\"color: red;\">取消</a>"
 
-#: coaching/views.py:444
+#: coaching/views.py:451
 msgid "Deadline successfully saved."
 msgstr "成功修改的日期"
 
-#: coaching/views.py:463
+#: coaching/views.py:470
 msgid "Deadline successfully restored."
 msgstr "成功恢复的日期"
 
-#: coaching/views.py:658
+#: coaching/views.py:665
 msgid "Late"
 msgstr "推迟"
 
-#: coaching/views.py:664
+#: coaching/views.py:671
 msgid "Completed late"
 msgstr "推迟确认"
 
-#: coaching/views.py:747 learning/views.py:35
+#: coaching/views.py:754 learning/views.py:35
 #, python-format
 msgid "%s changed successfully."
 msgstr "%s 成功修改"
 
-#: coaching/views.py:794
+#: coaching/views.py:801
 msgid "language"
 msgstr "语言"
 
-#: coaching/views.py:839
+#: coaching/views.py:846
 msgid "client"
 msgstr "客户"
 
-#: coaching/views.py:905
+#: coaching/views.py:913
 msgid "Exists already."
 msgstr "已存在"
 
-#: coaching/views.py:913
+#: coaching/views.py:921
 msgid "Saved."
 msgstr "挽救"
 
-#: coaching/views.py:931
+#: coaching/views.py:944
 msgid "Mail sent."
 msgstr "已发邮件"
 
-#: coaching/views.py:933
+#: coaching/views.py:946
 msgid "Mail error."
 msgstr "错误邮件"
 
-#: coaching/views.py:1077
+#: coaching/views.py:1090
 msgid "The message has been sent."
 msgstr "已发信息"
 
-#: coaching/views.py:1119 templates/learning/profile.html:24
+#: coaching/views.py:1132 coaching/views.py:1190
+#: templates/learning/profile.html:24
 msgid "Last Name"
 msgstr "姓"
 
-#: coaching/views.py:1120 templates/learning/profile.html:25
+#: coaching/views.py:1133 coaching/views.py:1191
+#: templates/learning/profile.html:25
 msgid "First Name"
 msgstr "名"
 
-#: coaching/views.py:1121 session/forms.py:10 session/forms.py:22
-#: templates/coaching/fiche.html:25 templates/coaching/liste_admin.html:78
-#: templates/coaching/liste_coach.html:68 templates/coaching/logins3.html:46
+#: coaching/views.py:1134 coaching/views.py:1192 session/forms.py:10
+#: session/forms.py:22 templates/coaching/fiche.html:25
+#: templates/coaching/liste_admin.html:79
+#: templates/coaching/liste_coach.html:69 templates/coaching/logins3.html:46
 #: templates/learning/profile.html:14
 msgid "Login"
 msgstr "登陆"
 
-#: coaching/views.py:1123 templates/coaching/liste_admin.html:84
-#: templates/coaching/liste_coach.html:72
+#: coaching/views.py:1136 templates/coaching/liste_admin.html:85
+#: templates/coaching/liste_coach.html:73
 msgid "Last Work"
 msgstr "最新邮件"
 
-#: coaching/views.py:1124 templates/coaching/liste_admin.html:83
-#: templates/coaching/liste_coach.html:71
+#: coaching/views.py:1137 templates/coaching/liste_admin.html:84
+#: templates/coaching/liste_coach.html:72
 msgid "Time Spent"
 msgstr ""
 
-#: coaching/views.py:1125 templates/coaching/liste_admin.html:79
+#: coaching/views.py:1138 templates/coaching/liste_admin.html:80
 msgid "Modules"
 msgstr "模块"
 
-#: coaching/views.py:1126
+#: coaching/views.py:1139
 msgid "Validated"
 msgstr "确认"
 
-#: coaching/views.py:1127
+#: coaching/views.py:1140
 msgid "Validated Late"
 msgstr "推迟确认"
 
-#: coaching/views.py:1128
+#: coaching/views.py:1141
 msgid "Currently Late"
 msgstr "目前推迟"
 
@@ -333,7 +337,7 @@ msgstr "目前推迟"
 msgid "File name"
 msgstr "文件名"
 
-#: learning/views.py:350 learning/views.py:421 testing/views.py:84
+#: learning/views.py:348 learning/views.py:419 testing/views.py:84
 msgid "We are sorry, this content is not available in your preferred language."
 msgstr "抱歉,在你所偏爱的语言里没有该内容"
 
@@ -345,41 +349,35 @@ msgstr "密码"
 msgid "Remember me on this computer"
 msgstr "在该电脑中保存我的登录信息"
 
-#: session/views.py:215 session/views.py:268
+#: session/views.py:216 session/views.py:271
 msgid "Bad login. Please try again."
 msgstr "不名登陆, 请重试"
 
-#: session/views.py:235
+#: session/views.py:238
 msgid ""
 "Your new password has just been sent to you. <a href=\"/\">Back to login "
 "form</a>."
-msgstr ""
-"你的新密码刚刚已发给你. "
-"<a href=\"/\">回到首页</a>"
+msgstr "你的新密码刚刚已发给你. <a href=\"/\">回到首页</a>"
 
-#: session/views.py:304
+#: session/views.py:307
 msgid "Sorry, expired account."
 msgstr "抱歉,你的帐号目前还没有确认"
 
-#: session/views.py:306
+#: session/views.py:309
 msgid "Password error. Please try again."
 msgstr "密码无效,请重试"
 
-#: session/views.py:310
+#: session/views.py:313
 msgid ""
 "Your browser does not seem to accept cookies. Please change your settings "
 "and try again."
-msgstr ""
-"你的浏览器好象不能接受 cookie,"
-"请更改你的参数并重试"
+msgstr "你的浏览器好象不能接受 cookie,请更改你的参数并重试"
 
-#: session/views.py:339
+#: session/views.py:342
 msgid ""
 "You have been logged out. Thanks for visiting us today. <br><a href=\"/login/"
 "\">New login</a>"
-msgstr ""
-"你已离开,感谢你的访问."
-" <br><a href=\"/login/\">回到首页</a>"
+msgstr "你已离开,感谢你的访问. <br><a href=\"/login/\">回到首页</a>"
 
 #: templates/404.html:8 templates/404.html.py:31 templates/500.html:8
 #: templates/500.html.py:31 templates/base.html:8 templates/base.html.py:33
@@ -568,7 +566,7 @@ msgstr "发邮件给该学生"
 msgid "Time spent online by this student (estimation) :"
 msgstr ""
 
-#: templates/coaching/detail.html:39 templates/coaching/liste_admin.html:80
+#: templates/coaching/detail.html:39 templates/coaching/liste_admin.html:81
 msgid "Done"
 msgstr "有效"
 
@@ -691,39 +689,44 @@ msgstr "下载该小组所交的作业"
 msgid "Save this table as a .csv file"
 msgstr "将该表格存为csv的格式"
 
-#: templates/coaching/liste_admin.html:54
-#: templates/coaching/liste_coach.html:44
-msgid "Information"
+#: templates/coaching/liste_admin.html:52
+#: templates/coaching/liste_coach.html:42
+msgid "Get a report of time spent per module as a .csv file"
 msgstr ""
 
 #: templates/coaching/liste_admin.html:55
 #: templates/coaching/liste_coach.html:45
+msgid "Information"
+msgstr ""
+
+#: templates/coaching/liste_admin.html:56
+#: templates/coaching/liste_coach.html:46
 msgid ""
 "Time spent by the students is estimated and should not be seen as accurate."
 msgstr ""
 
-#: templates/coaching/liste_admin.html:56
+#: templates/coaching/liste_admin.html:57
 msgid ""
 "The number of currently late modules is calculated once per day on midnight "
 "(Europe/Paris time)."
 msgstr ""
 
-#: templates/coaching/liste_admin.html:77
-#: templates/coaching/liste_coach.html:67
+#: templates/coaching/liste_admin.html:78
+#: templates/coaching/liste_coach.html:68
 msgid "Name"
 msgstr "姓"
 
-#: templates/coaching/liste_admin.html:81
-#: templates/coaching/liste_coach.html:70
+#: templates/coaching/liste_admin.html:82
+#: templates/coaching/liste_coach.html:71
 msgid "Done Late"
 msgstr "延迟确认"
 
-#: templates/coaching/liste_admin.html:82
+#: templates/coaching/liste_admin.html:83
 msgid "Cur. Late"
 msgstr "目前推迟"
 
-#: templates/coaching/liste_admin.html:106
-#: templates/coaching/liste_coach.html:92
+#: templates/coaching/liste_admin.html:107
+#: templates/coaching/liste_coach.html:93
 msgid "This group is empty"
 msgstr "该小组为空"
 
@@ -767,7 +770,7 @@ msgstr "辅导"
 msgid "list"
 msgstr "名单"
 
-#: templates/coaching/liste_coach.html:69 templates/learning/tdb.html:30
+#: templates/coaching/liste_coach.html:70 templates/learning/tdb.html:30
 msgid "Progress"
 msgstr "获得"
 
@@ -935,8 +938,7 @@ msgstr "将学生的作业收上来"
 #: templates/coaching/menu.html:28
 msgid ""
 "View log file (all requests to dashboard, contents and tests) for last 7 days"
-msgstr ""
-"查阅最近7天的登录页面(将看过的全部页面存盘)"
+msgstr "查阅最近7天的登录页面(将看过的全部页面存盘)"
 
 #: templates/coaching/sendmail.html:14
 msgid "email"
@@ -1023,8 +1025,7 @@ msgstr "重新连接"
 msgid ""
 "Click on the module name to get details about its contents, tests and your "
 "results."
-msgstr ""
-"点击模块的名称以获得其详细内容,相关的考试和您的成绩"
+msgstr "点击模块的名称以获得其详细内容,相关的考试和您的成绩"
 
 #: templates/learning/tdb.html:15
 msgid "Click on the icons in the contents column to read the contents."
@@ -1067,8 +1068,8 @@ msgid ""
 "remember yours, use the form below and you will be sent a new password to "
 "the email address which is bound to your account."
 msgstr ""
-"所有的密码都以变码的形式保存在数据库里."
-"如果您忘记了密码,使用该公式就可通过您的邮件地址获得新的密码."
+"所有的密码都以变码的形式保存在数据库里.如果您忘记了密码,使用该公式就可通过您"
+"的邮件地址获得新的密码."
 
 #: templates/session/lostpw.html:14
 msgid ""
@@ -1076,8 +1077,8 @@ msgid ""
 "followed by your last name. The whole login shoud be lowercase, with no "
 "spaces, hyphens or underscores."
 msgstr ""
-"您的登录可通过您的名字的前面两位字母跟随着您的姓来建立,"
-"所有字母需小写,没有重音符号,没有空格和破折号"
+"您的登录可通过您的名字的前面两位字母跟随着您的姓来建立,所有字母需小写,没有重"
+"音符号,没有空格和破折号"
 
 #: templates/testing/noter.html:7
 msgid "test grading"
