@@ -1155,7 +1155,7 @@ def liste_csv(request):
             writer.writerow(ligne)
         return response
 
-liste_csv = visitor_is_at_least(ADMINISTRATEUR)(liste_csv)
+liste_csv = visitor_is_at_least(COACH)(liste_csv)
 
 def time_csv(request):
 
@@ -1254,4 +1254,4 @@ def time_csv(request):
 
         return response
 
-time_csv = visitor_is_at_least(ADMINISTRATEUR)(time_csv)
+time_csv = visitor_is_at_least(COACH)(time_csv)
