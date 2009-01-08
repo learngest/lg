@@ -2,11 +2,12 @@
 # vim:encoding=utf-8:
 
 import datetime
+import csv
 
 from urllib import quote
 
 from django.conf import settings
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.template.loader import render_to_string
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
 from django.utils.translation import ugettext_lazy as _, ugettext
@@ -1035,7 +1036,6 @@ def create_logins(request):
                                  'form': f,
                                 })
 create_logins = visitor_is(STAFF)(create_logins)
-    
 
 def menu(request):
     """View: displays administrator's menu.
@@ -1116,8 +1116,6 @@ def send_email(request):
 send_email = visitor_is_at_least(COACH)(send_email)
 
 def liste_csv(request):
-    import csv
-    from django.http import HttpResponse
     v = request.session['v']
     if not 'gid' in request.GET:
         return HttpResponseRedirect('/coaching/')
@@ -1154,7 +1152,6 @@ def liste_csv(request):
                         u.nb_actuel))
             writer.writerow(ligne)
         return response
-
 liste_csv = visitor_is_at_least(COACH)(liste_csv)
 
 def time_csv(request):
@@ -1172,8 +1169,6 @@ def time_csv(request):
                 int((secs % 3600) / 60), 
                 secs%60) 
 
-    import csv
-    from django.http import HttpResponse
     v = request.session['v']
     if not 'gid' in request.GET:
         return HttpResponseRedirect('/coaching/')
@@ -1253,5 +1248,4 @@ def time_csv(request):
             writer.writerow(ligne)
 
         return response
-
 time_csv = visitor_is_at_least(COACH)(time_csv)
