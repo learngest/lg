@@ -755,3 +755,13 @@ class Valide(models.Model):
                 self.date = datetime.datetime.now()
         super(Valide, self).save(force_insert, force_update)
 
+class Tempsparmodule(models.Model):
+    """
+    Stocke le temps passé par utilisateur et module
+    """
+    utilisateur = models.ForeignKey(Utilisateur)
+    module = models.ForeignKey(Module)
+    tempspasse = models.IntegerField(blank=True, null=True)
+
+    def __unicode__(self):
+        return u"%s - %s - %d" % (self.utilisateur, self.granule, self.tempspasse)
