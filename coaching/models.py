@@ -531,7 +531,13 @@ class Utilisateur(models.Model):
         if self.status == ADMINISTRATEUR:
             return self.groupes.all()
         if self.status == COACH:
-            return [gc.groupe for gc in self.coached.all()]
+            seen = {}
+            result = []
+            for item in [gc.groupe for gc in self.coached.all()]:
+                if item in seen: continue
+                seen[item] = 1
+                result.append(item)
+            return result
 
 class Coached(models.Model):
     """
