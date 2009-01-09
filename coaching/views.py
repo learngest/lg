@@ -15,7 +15,7 @@ from django.utils.encoding import smart_str
 
 from session.views import visitor_is, visitor_is_at_least, visitor_may_see_list
 from coaching.forms import *
-from coaching.models import Client, Utilisateur, Groupe, Echeance, Work, WorkDone, Log
+from coaching.models import Client, Utilisateur, Groupe, Echeance, Work, WorkDone, Log, Tempsparmodule
 from learning.models import Cours, Module, Contenu, ModuleCours
 from testing.models import Granule
 from lg.listes import *
@@ -1154,15 +1154,14 @@ def liste_csv(request):
         return response
 liste_csv = visitor_is_at_least(COACH)(liste_csv)
 
-def time_csv(request):
+def sanitize_temps(start, end):
+    temps = end - start
+    secondes = temps.days * 86400 + temps.seconds
+    if secondes > 14400:
+        secondes = 600
+    return secondes
 
-    def sanitize_temps(start, end):
-        temps = end - start
-        secondes = temps.days * 86400 + temps.seconds
-        if secondes > 14400:
-            secondes = 600
-        return secondes
-
+def old_time_csv(request):
     def prettyprint(secs):
         return "%02i:%02i:%02i" % (
                 int(secs / 3600), 
@@ -1244,6 +1243,58 @@ def time_csv(request):
 
             for module in modules:
                 ligne.append(prettyprint(u.timespent.get(module.slug,0)))
+
+            writer.writerow(ligne)
+
+        return response
+old_time_csv = visitor_is_at_least(COACH)(old_time_csv)
+
+def time_csv(request):
+    def prettyprint(secs):
+        return "%02i:%02i:%02i" % (
+                int(secs / 3600), 
+                int((secs % 3600) / 60), 
+                secs%60) 
+
+    v = request.session['v']
+    if not 'gid' in request.GET:
+        return HttpResponseRedirect('/coaching/')
+    else:
+        try:
+            g = Groupe.objects.get(pk=request.GET['gid'])
+        except Groupe.DoesNotExist:
+            return HttpResponseRedirect('/coaching/')
+        if not g in v.groupes_list():
+            return HttpResponseRedirect('/coaching/')
+        response = HttpResponse(mimetype='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=temps-g%s.csv' % request.GET['gid']
+        writer = csv.writer(response,delimiter=';')
+        modules = g.modules_list()
+
+        ligne = [s.encode("iso-8859-1") for s in [ugettext('Last Name'),
+                        ugettext('First Name'),
+                        ugettext('Login'),
+                        ugettext('Email'),]]
+        for module in modules:
+            ligne.append(module.titre(langue=v.langue).encode("iso-8859-1"))
+        writer.writerow(ligne)
+
+        for u in g.utilisateur_set.all():
+
+            ligne = [s.encode("iso-8859-1") for s in [u.nom, 
+                        u.prenom, 
+                        u.login, 
+                        u.email]]
+
+            for module in modules:
+                try:
+                    temps = Tempsparmodule.objects.get(
+                            utilisateur = u,
+                            module = module)
+                    tempspasse = temps.tempspasse
+                except Tempsparmodule.DoesNotExist:
+                    tempspasse = 0
+                ligne.append(prettyprint(tempspasse))
 
             writer.writerow(ligne)
 

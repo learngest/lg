@@ -764,4 +764,4 @@ class Tempsparmodule(models.Model):
     tempspasse = models.IntegerField(blank=True, null=True)
 
     def __unicode__(self):
-        return u"%s - %s - %d" % (self.utilisateur, self.granule, self.tempspasse)
+        return u"%s - %s - %d" % (self.utilisateur, self.module, self.tempspasse)
