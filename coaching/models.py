@@ -132,7 +132,7 @@ class Utilisateur(models.Model):
     groupe = models.ForeignKey(Groupe)
 
     class Meta:
-        unique_together = (("nom","prenom"),)
+        #unique_together = (("nom","prenom"),)
         ordering = ['groupe','nom']
 
     def __unicode__(self):
