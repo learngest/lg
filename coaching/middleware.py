@@ -30,31 +30,34 @@ class LogMiddleware(object):
                             '/welcome','/products','/about'):
                 if request.path.startswith(ignore):
                     return
+            for ignore in ('.jpg','.png/','.gif'):
+                if request.path.endswith(ignore):
+                    return
             u = request.session['v']
             try:
                 dernierlog = Log.objects.filter(utilisateur=u).latest('date')
-                if request.path in ('/','/login/'):
-                    # maj le temps passé si nécessaire
-                    if dernierlog.path != '/logout/':
-                        if dernierlog.path == '/testing/noter/':
-                            ajout = 20
-                        else:
-                            ajout = 10*60
-                        if u.tempspasse:
-                            u.tempspasse += ajout
-                        else:
-                            u.tempspasse = ajout
-                        request.session['v'] = u
-                        u.save()
-                    return
-                else:
-                    temps = datetime.datetime.now() - dernierlog.date
-                    if u.tempspasse:
-                        u.tempspasse += temps.days*86400 + temps.seconds
-                    else:
-                        u.tempspasse = temps.days*86400 + temps.seconds
-                    request.session['v'] = u
-                    u.save()
+#                if request.path in ('/','/login/'):
+#                    # maj le temps passé si nécessaire
+#                    if dernierlog.path != '/logout/':
+#                        if dernierlog.path == '/testing/noter/':
+#                            ajout = 20
+#                        else:
+#                            ajout = 10*60
+#                        if u.tempspasse:
+#                            u.tempspasse += ajout
+#                        else:
+#                            u.tempspasse = ajout
+#                        request.session['v'] = u
+#                        u.save()
+#                    return
+#                else:
+#                    temps = datetime.datetime.now() - dernierlog.date
+#                    if u.tempspasse:
+#                        u.tempspasse += temps.days*86400 + temps.seconds
+#                    else:
+#                        u.tempspasse = temps.days*86400 + temps.seconds
+#                    request.session['v'] = u
+#                    u.save()
 
                 secondes = 0
                 if '/learning/' in dernierlog.path:
@@ -84,14 +87,14 @@ class LogMiddleware(object):
                 if curmod:
                     if testing:
                         if '/noter/' in request.path:
-                            secondes = sanitize_temps(curtime, 
-                                    datetime.datetime.now())
+                            secondes = min(14400, sanitize_temps(curtime, 
+                                    datetime.datetime.now()))
                     else:
                         if request.path in ('/','/login/'):
                             secondes = 600
                         else:
-                            secondes = sanitize_temps(curtime, 
-                                    datetime.datetime.now())
+                            secondes = min(14400, sanitize_temps(curtime, 
+                                    datetime.datetime.now()))
                     try:
                         module = Module.objects.get(slug=curmod)
                     except Module.DoesNotExist:
@@ -108,6 +111,12 @@ class LogMiddleware(object):
                                     module = module,
                                     tempspasse = secondes)
                         temps.save()
+                        if u.tempspasse:
+                            u.tempspasse += secondes
+                        else:
+                            u.tempspasse = secondes
+                        request.session['v'] = u
+                        u.save()
 
             except Log.DoesNotExist:
                 pass
