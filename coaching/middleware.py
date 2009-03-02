@@ -87,14 +87,18 @@ class LogMiddleware(object):
                 if curmod:
                     if testing:
                         if '/noter/' in request.path:
-                            secondes = min(14400, sanitize_temps(curtime, 
-                                    datetime.datetime.now()))
+#                            secondes = min(14400, sanitize_temps(curtime, 
+#                                    datetime.datetime.now()))
+                            secondes = sanitize_temps(curtime, 
+                                    datetime.datetime.now())
                     else:
                         if request.path in ('/','/login/'):
                             secondes = 600
                         else:
-                            secondes = min(14400, sanitize_temps(curtime, 
-                                    datetime.datetime.now()))
+#                            secondes = min(14400, sanitize_temps(curtime, 
+#                                    datetime.datetime.now()))
+                            secondes = sanitize_temps(curtime, 
+                                    datetime.datetime.now())
                     try:
                         module = Module.objects.get(slug=curmod)
                     except Module.DoesNotExist:
