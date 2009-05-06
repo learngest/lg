@@ -109,7 +109,7 @@ test = new_visitor_may_see_granule(test)
 def noter(request):
     """View: notes a test.
     """
-
+    import finance
     def clean(astring, bad=(' ','%')):
         for badchar in bad:
             astring = astring.replace(badchar,'')
