@@ -36,6 +36,23 @@ def irr(cashflows, precision=10**-4, maxrate=10**6):
             binf = irr
     return irr
 
+def ytm(emission,coupon,rembt,duree):
+    """
+    Return YTM of bond (float) in %
+    emission : issuing price
+    coupon : coupon value
+    rembt : repayment price
+    duree : duration (years)
+    WARNING - coupons are supposed to be paid yearly
+    """
+    cf = [-emission]
+    for i in range(duree-1):
+        cf.append(coupon)
+    cf.append(coupon+rembt)
+    print cf
+    return irr(cf)
+
+
 def main():
     """
     For testing purposes
@@ -48,6 +65,7 @@ def main():
     therate = irr(cashflows, 10**-6)
     print "%.4f %%" % therate
     print npv(therate, cashflows)
+    print ytm(99,5,100,10)
     return 0
 
 if __name__ == "__main__":
