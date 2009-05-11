@@ -231,7 +231,7 @@ class Utilisateur(models.Model):
         Si l'utilisateur est administrateur d'un groupe,
         il peut consulter les cours de ce groupe.
         S'il est coach d'un groupe-cours, il peut consulter
-        ce cours.
+        ce cours + ceux auxquels est inscrit son groupe.
         S'il est étudiant, il peut consulter les cours auxquels
         est inscrit son groupe.
 
@@ -240,6 +240,8 @@ class Utilisateur(models.Model):
         if self.status == STAFF:
             return Cours.objects.select_related()
         liste = []
+        g = self.groupe
+        liste.extend(g.cours.select_related())
         if self.status in (ADMINISTRATEUR, COACH):
             for g in self.groupes_list():
                 for c in g.cours.select_related():
@@ -247,9 +249,9 @@ class Utilisateur(models.Model):
                         i = liste.index(c)
                     except ValueError:
                         liste.append(c)
-        else:
-            g = self.groupe
-            liste.extend(g.cours.select_related())
+#        else:
+#            g = self.groupe
+#            liste.extend(g.cours.select_related())
         return liste
 
     def modules_list(self):
