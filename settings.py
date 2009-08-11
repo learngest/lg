@@ -1,42 +1,24 @@
 # -*- encoding: utf-8 -*-
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+
+# local only settings, not managed by git
+from setting_nogit import *
 
 import sys
 sys.path.append('/usr/local/src/django_apps/')
-
-ADMINS = (
-     ('JcB', 'jcb@t60'),
-)
 
 MANAGERS = ADMINS
 
 DEFAULT_CHARSET = 'utf-8'
 
-DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
-DATABASE_NAME = 'test0910'             # Or path to database file if using sqlite3.
-DATABASE_USER = 'jcb'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'nikop00l'         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
-
-# Local time zone for this installation. Choices can be found here:
-# http://www.postgresql.org/docs/8.1/static/datetime-keywords.html#DATETIME-TIMEZONE-SET-TABLE
-# although not all variations may be possible on all operating systems.
-# If running in a Windows environment this must be set to the same as your
-# system time zone.
 TIME_ZONE = 'Europe/Paris'
 
-# Language code for this installation. All choices can be found here:
-# http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
-# http://blogs.law.harvard.edu/tech/stories/storyReader$15
 LANGUAGE_CODE = 'en-us'
 
-
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
 USE_I18N = True
+
+# User profile
+AUTH_PROFILE_MODULE = 'coaching.UserProfile'
 
 # Session management
 SESSION_ENGINE = 'django.contrib.sessions.backends.file'
@@ -88,7 +70,7 @@ PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 ALLOWED_INCLUDE_ROOTS = (os.path.join(os.path.dirname(PROJECT_PATH),'contents'),)
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Put strings here, like "/home/html/django_templates"
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(PROJECT_PATH, 'templates'),
