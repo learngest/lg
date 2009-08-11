@@ -2,7 +2,7 @@
 
 
 # local only settings, not managed by git
-from setting_nogit import *
+from settings_nogit import *
 
 import sys
 sys.path.append('/usr/local/src/django_apps/')
@@ -16,6 +16,8 @@ TIME_ZONE = 'Europe/Paris'
 LANGUAGE_CODE = 'en-us'
 
 USE_I18N = True
+
+SITE_ID = 1
 
 # User profile
 AUTH_PROFILE_MODULE = 'coaching.UserProfile'
@@ -56,7 +58,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'lg.coaching.middleware.LastMiddleware',
+#    'lg.coaching.middleware.LastMiddleware',
 #    'lg.coaching.middleware.LogMiddleware',
     'django.middleware.doc.XViewMiddleware',
 )
