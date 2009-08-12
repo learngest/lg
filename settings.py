@@ -80,7 +80,7 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = (
 #    'lg.pages',
-#    'lg.learning',
+    'lg.learning',
     'lg.coaching',
 #    'lg.testing',
     'django.contrib.auth',
