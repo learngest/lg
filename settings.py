@@ -1,5 +1,4 @@
-# -*- encoding: iso-8859-15 -*-
-# vim:fileencoding=iso-8859-1:
+# -*- encoding: utf8 -*-
 
 DEBUG = False
 #TEMPLATE_DEBUG = DEBUG
@@ -18,7 +17,7 @@ DEFAULT_CHARSET = 'utf-8'
 DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
 DATABASE_NAME = 'lg0809'             # Or path to database file if using sqlite3.
 DATABASE_USER = 'jcb'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'yelenaàç'         # Not used with sqlite3.
+DATABASE_PASSWORD = 'nikop00l'         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
