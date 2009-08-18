@@ -9,6 +9,9 @@ from django.utils.translation import ugettext as _
 from lg import listes
 #from lg.coaching.models import Groupe
 
+class UserProfileForm(forms.Form):
+    login = forms.CharField(max_length=30, label=_('Login'))
+
 class LoginsForm(forms.Form):
     source = forms.FileField(label=_('Source file'))
     groupe = forms.ChoiceField(label=_('Group'))
