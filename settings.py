@@ -1,10 +1,10 @@
 # -*- encoding: utf8 -*-
 
-DEBUG = False
-#TEMPLATE_DEBUG = DEBUG
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
-import sys
-sys.path.append('/usr/local/src/django_apps/')
+#import sys
+#sys.path.append('/usr/local/src/django_apps/')
 
 ADMINS = (
      ('JcB', 'jcbagneris@learngest.com'),
@@ -48,12 +48,12 @@ SESSION_COOKIE_AGE = 21600 # 6h in seconds
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home/jcb/dev/lg/web/upload/'
+MEDIA_ROOT = '/home/jcb/learngest/web/uploads/'
 
 # URL that handles the media served from MEDIA_ROOT.
 # Example: "http://media.lawrence.com"
 #MEDIA_URL = 'http://localhost.localdomain:8000/upload/'
-MEDIA_URL = '/upload/'
+MEDIA_URL = '/uploads/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
