@@ -48,12 +48,12 @@ SESSION_COOKIE_AGE = 21600 # 6h in seconds
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home/jcb/learngest/web/uploads/'
+MEDIA_ROOT = '/home/jcb/learngest/web/upload/'
 
 # URL that handles the media served from MEDIA_ROOT.
 # Example: "http://media.lawrence.com"
 #MEDIA_URL = 'http://localhost.localdomain:8000/upload/'
-MEDIA_URL = '/uploads/'
+MEDIA_URL = '/upload/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
