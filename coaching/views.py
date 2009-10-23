@@ -912,6 +912,11 @@ def create_logins(request):
                 password = sha.new(str(random.random())).hexdigest()[:8]
                 try:
                     Utilisateur.objects.get(login=login)
+                    login = '%s2' % login
+                except Utilisateur.DoesNotExist:
+                    pass
+                try:
+                    Utilisateur.objects.get(login=login)
                     saved = False
                     status = ugettext('Exists already.')
                 except Utilisateur.DoesNotExist:
