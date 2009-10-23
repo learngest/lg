@@ -912,6 +912,7 @@ def create_logins(request):
                 password = sha.new(str(random.random())).hexdigest()[:8]
                 try:
                     Utilisateur.objects.get(login=login)
+                    login = login[:19]
                     login = '%s2' % login
                 except Utilisateur.DoesNotExist:
                     pass
