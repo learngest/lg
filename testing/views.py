@@ -6,6 +6,7 @@ import datetime
 
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
+from django.template import Context, loader
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 
@@ -97,13 +98,23 @@ def test(request, slug=None, **kwargs):
             enonces[q.enonce.id]['questions'].append(output_rnd(q))
         else:
             enonces[q.enonce.id]['questions'].append(output_exa(q))
-    return render_to_response('testing/test.html',
-                                {'visiteur': v.prenom_nom(),
-                                'client': v.groupe.client,
-                                'admin': v.status,
-                                'titre': gt,
-                                'msg': msg,
-                                'enonces': enonces.values(),})
+#    return render_to_response('testing/test.html',
+#                                {'visiteur': v.prenom_nom(),
+#                                'client': v.groupe.client,
+#                                'admin': v.status,
+#                                'titre': gt,
+#                                'msg': msg,
+#                                'enonces': enonces.values(),})
+    t = loader.get_template('testing/test.html')
+    c = Context({'visiteur': v.prenom_nom(),
+                    'client': v.groupe.client,
+                    'admin': v.status,
+                    'titre': gt,
+                    'msg': msg,
+                    'enonces': enonces.values(),})
+    response = HttpResponse(t.render(c))
+    response['Cache-Control'] = 'no-cache, no-store'
+    return response
 test = new_visitor_may_see_granule(test)
 
 def noter(request):
