@@ -12,6 +12,7 @@ from django.template.loader import render_to_string
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
 from django.utils.translation import ugettext_lazy as _, ugettext
 from django.utils.encoding import smart_str
+from django.core.mail import EmailMessage
 
 from session.views import visitor_is, visitor_is_at_least, visitor_may_see_list
 from coaching.forms import *
@@ -1052,7 +1053,7 @@ def send_email(request):
     """View: sends an email to user or group.
     """
     #from mailer.sender import send_mail
-    from lg.utils import send_mail
+    #from lg.utils import send_mail
     v = request.session['v']
     if 'id' in request.GET:
         # verif v est coach du groupe des id
@@ -1084,11 +1085,17 @@ def send_email(request):
     if request.method == 'POST':
         f = MailForm(request.POST)
         if f.is_valid():
-            send_mail(sender=v.email,
-                      recipients=email_list,
-                      subject=f.cleaned_data['subject'],
-                      msg = f.cleaned_data['content'],
-                      )
+            mail = EmailMessage(subject=f.cleaned_data['subject'],
+                    body=f.cleaned_data['content'],
+                    from_email='%s <profs@learngest.com>' % v.prenom_nom(),
+                    to=email_list,
+                    headers={'Reply-To': v.email})
+            mail.send()
+#            send_mail(sender=v.email,
+#                      recipients=email_list,
+#                      subject=f.cleaned_data['subject'],
+#                      msg = f.cleaned_data['content'],
+#                      )
             msg = _('The message has been sent.')
             return render_to_response('coaching/sendmail.html',
                                         {'visiteur': v.prenom_nom(),
