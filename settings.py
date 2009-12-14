@@ -34,7 +34,7 @@ TIME_ZONE = 'Europe/Paris'
 LANGUAGE_CODE = 'en-us'
 
 EMAIL_HOST = 'localhost'
-EMAIL_PORT = 25
+EMAIL_PORT = 1025
 
 SITE_ID = 1
 
