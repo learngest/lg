@@ -1,25 +1,30 @@
-# -*- encoding: utf8 -*-
+# -*- encoding: utf-8 -*-
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+import sys
+import os.path
 
-#import sys
-#sys.path.append('/usr/local/src/django_apps/')
+try:
+    from local_settings import *
+except ImportError:
+    pass
 
-ADMINS = (
-     ('JcB', 'jcbagneris@learngest.com'),
-)
+try:
+    from dev_settings import *
+except ImportError:
+    pass
 
-MANAGERS = ADMINS
+try:
+    from prod_settings import *
+except ImportError:
+    pass
 
-DEFAULT_CHARSET = 'utf-8'
+try:
+    if LOCAL_APPS_PATH:
+        sys.path.append(LOCAL_APPS_PATH)
+except NameError:
+    pass
 
-DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
-DATABASE_NAME = 'lg0809'             # Or path to database file if using sqlite3.
-DATABASE_USER = 'jcb'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'nikop00l'         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 # Local time zone for this installation. Choices can be found here:
 # http://www.postgresql.org/docs/8.1/static/datetime-keywords.html#DATETIME-TIMEZONE-SET-TABLE
@@ -33,11 +38,6 @@ TIME_ZONE = 'Europe/Paris'
 # http://blogs.law.harvard.edu/tech/stories/storyReader$15
 LANGUAGE_CODE = 'en-us'
 
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
-
-SITE_ID = 1
-
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
@@ -45,10 +45,6 @@ USE_I18N = True
 # Session management                                                                                              
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True                                                                            
 SESSION_COOKIE_AGE = 21600 # 6h in seconds 
-
-# Absolute path to the directory that holds media.
-# Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home/jcb/learngest/web/upload/'
 
 # URL that handles the media served from MEDIA_ROOT.
 # Example: "http://media.lawrence.com"
@@ -84,10 +80,6 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'lg.urls'
 
-import os.path
-
-PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
-
 ALLOWED_INCLUDE_ROOTS = (os.path.join(os.path.dirname(PROJECT_PATH),'contents'),)
 
 TEMPLATE_DIRS = (
@@ -102,7 +94,6 @@ INSTALLED_APPS = (
     'lg.learning',
     'lg.coaching',
     'lg.testing',
-#    'mailer',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
