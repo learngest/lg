@@ -50,11 +50,16 @@ SESSION_COOKIE_AGE = 21600 # 6h in seconds
 # Example: "http://media.lawrence.com"
 #MEDIA_URL = 'http://localhost.localdomain:8000/upload/'
 MEDIA_URL = '/upload/'
+MEDIA_ROOT = os.path.normpath(os.path.join(PROJECT_PATH, '../upload'))
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = '/media/admin/'
+# never put a beginning / on contents prefix
+CONTENTS_PREFIX = '../contents'
+ALLOWED_INCLUDE_ROOTS = (
+        os.path.normpath(os.path.join(PROJECT_PATH, CONTENTS_PREFIX)),)
 
 
 # Make this unique, and don't share it with anybody.
@@ -79,8 +84,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'lg.urls'
-
-ALLOWED_INCLUDE_ROOTS = (os.path.join(os.path.dirname(PROJECT_PATH),'contents'),)
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
