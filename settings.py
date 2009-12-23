@@ -58,6 +58,7 @@ MEDIA_ROOT = os.path.normpath(os.path.join(PROJECT_PATH, '../upload'))
 ADMIN_MEDIA_PREFIX = '/media/admin/'
 # never put a beginning / on contents prefix
 CONTENTS_PREFIX = '../contents'
+CONTENTS_URL = 'contents'
 ALLOWED_INCLUDE_ROOTS = (
         os.path.normpath(os.path.join(PROJECT_PATH, CONTENTS_PREFIX)),)
 

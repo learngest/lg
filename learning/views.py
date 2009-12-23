@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-# vim:encoding=utf-8:
 
 import os
 #import os.path
@@ -10,6 +9,7 @@ from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.template.defaulttags import include_is_allowed
+from django.contrib.sites.models import Site
 
 import listes
 from learning.models import Cours, Module, Contenu, ModuleTitre
@@ -421,22 +421,35 @@ def support(request, slug=None, **kwargs):
             HttpResponseRedirect('/tdb/')
     except AssertionError:
         c = lc[0]
-    #base = ''.join(('http://',request.META['HTTP_HOST']))
-    base = ''
-    if 'HTTP_X_FORWARDED_HOST' in request.META:
-        base =''.join(('http://',request.META['HTTP_X_FORWARDED_HOST']))
-    else:
-        if 'HTTP_REFERER' in request.META:
-            base = '/'.join(request.META['HTTP_REFERER'].split('/')[:3])
-        else:
-            HttpResponseRedirect('/home/')
+#    base = ''
+#    if 'HTTP_X_FORWARDED_HOST' in request.META:
+#        base =''.join(('http://',request.META['HTTP_X_FORWARDED_HOST']))
+#    else:
+#        if 'HTTP_REFERER' in request.META:
+#            base = '/'.join(request.META['HTTP_REFERER'].split('/')[:3])
+#        else:
+#            HttpResponseRedirect('/home/')
+    site_id = getattr(settings, 'SITE_ID', 1)
+    site = Site.objects.get(id=site_id)
+    base = ''.join(('http://', site.domain))
+    contents_prefix = getattr(settings, 'CONTENTS_PREFIX', 'contents')
+    contents_url = getattr(settings, 'CONTENTS_URL', 'contents')
     v.lastw = datetime.datetime.now()
     request.session['v'] = v
     v.save()
     if ltyp == 'htm':
-        support_path = os.path.join(os.path.dirname(settings.PROJECT_PATH), \
-                                    'contents',c.module.slug,c.langue,c.ressource)
-        base = os.path.join(base,'contents',c.module.slug,c.langue,c.ressource)
+        support_path = os.path.normpath(os.path.join(
+                                settings.PROJECT_PATH,
+                                contents_prefix,
+                                c.module.slug,
+                                c.langue,
+                                c.ressource))
+        base = os.path.join(
+                base,
+                contents_url,
+                c.module.slug,
+                c.langue,
+                c.ressource)
         if not include_is_allowed(support_path):
             HttpResponseRedirect('/tdb/')
         try:
@@ -455,8 +468,19 @@ def support(request, slug=None, **kwargs):
                                      'msg': msg,
                                      'support': support})
     else:
-        support = os.path.join('/contents',c.module.slug,c.langue,'flash',c.ressource)
-        base = os.path.join(base,'contents',c.module.slug,c.langue,'flash',c.ressource)
+        support = os.path.join('/',
+                contents_url,
+                c.module.slug,
+                c.langue,
+                'flash',
+                c.ressource)
+        base = os.path.join(
+                base,
+                contents_url,
+                c.module.slug,
+                c.langue,
+                'flash',
+                c.ressource)
         return render_to_response('learning/anim.html',
                                     {'visiteur': v.prenom_nom(),
                                      'client': v.groupe.client,
