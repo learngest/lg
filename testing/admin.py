@@ -5,9 +5,11 @@ from django.contrib import admin
 from testing.models import Granule, GranuleTitre, Enonce, Question, Reponse
 
 class GranuleAdmin(admin.ModelAdmin):
-    list_display = ('module','rang','slug','nbq','score_min')
-    #ordering = ['module','rang']
-    ordering = ('slug',)
+#    list_display = ('module','rang','slug','nbq','score_min')
+#    ordering = ('slug',)
+    ordering = ['slug'] 
+    list_display = ('id','slug',)
+    list_display_links = ('slug',)
 admin.site.register(Granule, GranuleAdmin)
 
 class GranuleTitreAdmin(admin.ModelAdmin):

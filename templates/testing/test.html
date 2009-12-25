@@ -2,6 +2,12 @@
 {% extends "in_session.html" %}
 {% load i18n %}
 
+{% block baselink %}
+<!-- ie behaviour -->
+<style type="text/css">img {behavior: url("/media/style/pngbehavior.htc");}</style>
+<base href="{{ baselink }}" />
+
+{% endblock baselink %}
 {% block breadcrumb %}
 <a href="/learning/tdb/">{% trans "dashboard" %}</a>
 &gt; {% trans "test" %}

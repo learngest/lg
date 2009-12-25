@@ -9,6 +9,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import Context, loader
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
+from django.contrib.sites.models import Site
 
 from testing.models import Module, Granule, GranuleTitre, Enonce, Question, Reponse
 from coaching.models import Utilisateur, Resultat, Valide
@@ -105,12 +106,21 @@ def test(request, slug=None, **kwargs):
 #                                'titre': gt,
 #                                'msg': msg,
 #                                'enonces': enonces.values(),})
+    site_id = getattr(settings, 'SITE_ID', 1)
+    site = Site.objects.get(id=site_id)
+    base = ''.join(('http://', site.domain))
+    contents_prefix = getattr(settings, 'CONTENTS_URL', 'contents')
+    suffixe = os.path.join( contents_prefix,
+                            gr.module.slug,
+                            'imgtests/')
+    base = os.path.join(base, suffixe)
     t = loader.get_template('testing/test.html')
     c = Context({'visiteur': v.prenom_nom(),
                     'client': v.groupe.client,
                     'admin': v.status,
                     'titre': gt,
                     'msg': msg,
+                    'baselink': base,
                     'enonces': enonces.values(),})
     response = HttpResponse(t.render(c))
     response['Cache-Control'] = 'no-cache, no-store'
@@ -259,6 +269,14 @@ def noter(request):
     u.nb_valides = uperfs[0]
     request.session['v'] = u
     u.save()
+    site_id = getattr(settings, 'SITE_ID', 1)
+    site = Site.objects.get(id=site_id)
+    base = ''.join(('http://', site.domain))
+    contents_prefix = getattr(settings, 'CONTENTS_URL', 'contents')
+    suffixe = os.path.join( contents_prefix,
+                            g.module.slug,
+                            'imgtests/')
+    base = os.path.join(base, suffixe)
 
     return render_to_response('testing/noter.html',
                                 {'visiteur': u.prenom_nom(),
@@ -269,6 +287,7 @@ def noter(request):
                                 'total': total,
                                 'max': max,
                                 'valide': valide,
+                                'baselink': base,
                                 'enonces': enonces.values(),})
 noter = has_visitor(noter)
 
