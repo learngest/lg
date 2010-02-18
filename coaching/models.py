@@ -649,7 +649,7 @@ class Echeance(models.Model):
             self.groupe = u.groupe
         if not self.cours:
             # recherche du cours à partir du groupe et du module
-            for c in self.groupe.cours_set.all():
+            for c in self.groupe.cours.all():
                 if self.module in [mc.module for mc in c.modulecours_set.all()]:
                     self.cours = c
                     break
