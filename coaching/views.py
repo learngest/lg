@@ -889,8 +889,11 @@ def create_logins(request):
             g = Groupe.objects.get(id=request.POST['groupe'])
             logins = []
             fich_logins = 'logins/logins-g%s-%s.csv'% (g.id, time.strftime('%Y%m%d%H%M%S',time.localtime()))
+            fich_erreurs = 'logins/erreurs-g%s-%s.csv'% (g.id, time.strftime('%Y%m%d%H%M%S',time.localtime()))
             nom_logins = settings.MEDIA_ROOT + fich_logins
+            nom_erreurs = settings.MEDIA_ROOT + fich_erreurs
             flogin = open(nom_logins,'w')
+            ferreur = open(nom_erreurs,'w')
             for line in open(request.POST['fsource']):
                 line = line.strip()
                 line = line.decode('iso-8859-1')
@@ -954,11 +957,16 @@ def create_logins(request):
                     newline = ';'.join((nom,prenom,email,login,password,'\n'))
                     newline = newline.encode('iso-8859-1')
                     flogin.write(newline)
+                else:
+                    newline = ';'.join((nom,prenom,email,login,'\n'))
+                    newline = newline.encode('iso-8859-1')
+                    ferreur.write(newline)
                 logins.append({'login':login, 'password': password, 
                                 'nom':nom,'prenom':prenom,'email':email,
                                 'status': status,
                                 })
             flogin.close()
+            ferreur.close()
             v.lastw = datetime.datetime.now()
             request.session['v'] = v
             v.save()
