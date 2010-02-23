@@ -256,23 +256,30 @@ def login(request):
     Checks cookie support.
     Sets and gets cookie if "remember me on this computer" is set.
     May redirect to a calling view, otherwise sends to /home/."""
-    from base64 import encodestring, decodestring
+    from base64 import b64encode, b64decode
     import datetime
+    import unicodedata
     if request.method == 'POST':
         if request.session.test_cookie_worked():
             request.session.delete_test_cookie()
             f = LoginForm(request.POST)
             msg=''
             if f.is_valid():
+                flogin = f.cleaned_data['login']
+                flogin = unicodedata.normalize('NFKD', 
+                        flogin).encode('ascii', 'ignore')
+                fpassword = f.cleaned_data['password']
                 try:
-                    u = Utilisateur.objects.get(login=f.cleaned_data['login'])
+                    #u = Utilisateur.objects.get(login=f.cleaned_data['login'])
+                    u = Utilisateur.objects.get(login=flogin)
                 except Utilisateur.DoesNotExist:
                     f = LoginForm()
                     msg = _('Bad login. Please try again.')
                     request.session.set_test_cookie()
                     return render_to_response('session/login.html',{'form': f, 'msg': msg})
                 # tester mot de passe valide et utilisateur non périmé 
-                if u.is_pwd_correct(f.cleaned_data['password']):
+                #if u.is_pwd_correct(f.cleaned_data['password']):
+                if u.is_pwd_correct(fpassword):
                     if u.is_valid():
                         # enregistrer l'heure de login
                         Log.objects.create(utilisateur=u,
@@ -285,8 +292,10 @@ def login(request):
                         request.session['django_language'] = u.langue
                         # traiter cookie "remember me"
                         if f.cleaned_data['remember']:
-                            cookie_data = encodestring('%s:%s' % (f.cleaned_data['login'], 
-                                f.cleaned_data['password']))
+#                            cookie_data = encodestring(
+#                                    '%s:%s' % (f.cleaned_data['login'], 
+#                                        f.cleaned_data['password']))
+                            cookie_data = b64encode( '%s:%s' % (flogin, fpassword))
                             max_age = 30*24*60*60
                             expires = datetime.datetime.strftime(datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age), "%a, %d-%b-%Y %H:%M:%S GMT")
                             response.set_cookie('eMaster', cookie_data, max_age=max_age, expires=expires)
@@ -320,7 +329,8 @@ def login(request):
             pass
         # recup login cookie s'il existe
         if 'eMaster' in request.COOKIES:
-            cookie_data = decodestring(request.COOKIES['eMaster'])
+            #cookie_data = decodestring(request.COOKIES['eMaster'])
+            cookie_data = b64decode(request.COOKIES['eMaster'])
             try:
                 l,p = cookie_data.split(':')
             except ValueError:
