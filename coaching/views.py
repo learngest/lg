@@ -888,8 +888,8 @@ def create_logins(request):
         if 'fsource' in request.POST:
             g = Groupe.objects.get(id=request.POST['groupe'])
             logins = []
-            fich_logins = 'logins/logins-g%s-%s.csv'% (g.id, time.strftime('%Y%m%d%H%M%S',time.localtime()))
-            fich_erreurs = 'logins/erreurs-g%s-%s.csv'% (g.id, time.strftime('%Y%m%d%H%M%S',time.localtime()))
+            fich_logins = '/logins/logins-g%s-%s.csv'% (g.id, time.strftime('%Y%m%d%H%M%S',time.localtime()))
+            fich_erreurs = '/logins/erreurs-g%s-%s.csv'% (g.id, time.strftime('%Y%m%d%H%M%S',time.localtime()))
             nom_logins = settings.MEDIA_ROOT + fich_logins
             nom_erreurs = settings.MEDIA_ROOT + fich_erreurs
             flogin = open(nom_logins,'w')
@@ -989,7 +989,7 @@ def create_logins(request):
                 g = Groupe.objects.get(id=f.cleaned_data['groupe'])
                 start_now = False
                 logins = []
-                nom_source = settings.MEDIA_ROOT + 'logins/source-g%s-%s.txt'\
+                nom_source = settings.MEDIA_ROOT + '/logins/source-g%s-%s.txt'\
                         % (g.id, time.strftime('%Y%m%d%H%M%S',time.localtime()))
                 fsource = open(nom_source, 'w')
                 for line in StringIO.StringIO(request.FILES['source'].read()):
