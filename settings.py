@@ -63,9 +63,6 @@ ALLOWED_INCLUDE_ROOTS = (
         os.path.normpath(os.path.join(PROJECT_PATH, CONTENTS_PREFIX)),)
 
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = '0+eqr)$n_fu=t05k63m$ly3!78wp@s$mlpm7gopkag#uz8$0uf'
-
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
