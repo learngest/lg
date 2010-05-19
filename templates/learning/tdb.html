@@ -5,19 +5,27 @@
 {% block breadcrumb %}{% trans "dashboard" %}{% endblock breadcrumb %}
 
 {% block content %}
-<div class="panel">
+<div class="content">
+
 <h2>{% trans "Welcome to your dashboard" %}</h2>
 <p>
 {% trans "You are " %} {{ visiteur }}.
 ({% trans "If you are not" %} {{ prenom }}, <a href="/login/">{% trans "please log in" %}</a>)
 </p>
-<p>{% trans "Click on the module name to get details about its contents, tests and your results." %}<br />
-{% trans "Click on the icons in the contents column to read the contents." %}<br />
-{% trans "Click on the current test link to go to the last test you tried or the first one if you did not try any yet." %}</p>
+
+<div class="info">
+	<h2>{% trans "Information" %}</h2>
+	<p>{% trans "Click on the module name to get details about its contents, tests and your results." %}</p>
+	<p>{% trans "Click on the icons in the contents column to read the contents." %}</p>
+	<p>{% trans "Click on the current test link to go to the last test you tried or the first one if you did not try any yet." %}</p>
 </div>
+
 <h2>{% trans "Common Documentation" %}</h2>
-<p><a href="/learning/common/faq/">{% trans "Frequently Asked Questions" %}</a></p>
-<p><a href="/learning/common/glossaire/">{% trans "Glossary" %}</a></p>
+<ul>
+	<li><a href="/learning/common/faq/">{% trans "Frequently Asked Questions" %}</a></li>
+	<li><a href="/learning/common/glossaire/">{% trans "Glossary" %}</a></li>
+</ul>
+
 {% for cours in les_cours %}
 <h2>{{ cours.title }}</h2>
 <table>
@@ -91,4 +99,6 @@
 </table>
 {% endif %}
 {% endfor %}
+
+</div><!-- END .content -->
 {% endblock content %}

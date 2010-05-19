@@ -2,12 +2,11 @@
 {% extends "in_session.html" %}
 {% load i18n %}
 
-{% block breadcrumb %}
-<a href="/learning/tdb/">{% trans "dashboard" %}</a>
-&gt; {% trans "module" %}
-{% endblock breadcrumb %}
+{% block breadcrumb %}<a href="/learning/tdb/">{% trans "dashboard" %}</a> &gt; {% trans "module" %}{% endblock breadcrumb %}
 
 {% block content %}
+<div class="content">
+
 <h2>{{ module.title }}</h2>
 {% if module.valide %}
 <p>{% trans "Module completed on" %} {{ module.datev }}</p>
@@ -68,4 +67,6 @@
 </tbody>
 </table>
 {% endif %}
+
+</div><!-- END .content -->
 {% endblock content %}

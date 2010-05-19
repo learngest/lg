@@ -1,21 +1,38 @@
 {% extends "base_page.html" %}
 {% load i18n %}
 
-{% block breadcrumb %}Login form{% endblock breadcrumb %}
+{% block title %}{% trans "Lost password" %}{% endblock %}
+
+{% block breadcrumb %}{% trans "Lost password" %}{% endblock breadcrumb %}
+
 {% block content %}
-{% if msg %}
-<p class="errmsg">{{ msg|safe }}</p>
-{% endif %}
-<form method="post">
-<fieldset style="width: 30%;">
-    <h2>{% trans "Lost password" %}</h2>
-    <p>{% trans "All passwords are stored encrypted in our database. If you really cannot remember yours, use the form below and you will be sent a new password to the email address which is bound to your account."%}</p>
-    <p><label for="id_{{ form.login.name }}">{{ form.login.label }}</label> {{ form.login }} {{ form.errors.login }}</p>
-    <p>{% trans "Your login is probably built from the first two letters of your fisrt name, followed by your last name. The whole login shoud be lowercase, with no spaces, hyphens or underscores." %}</p>
-</fieldset>
-<input type="submit" value="Ok" />
-</form>
-<script type="text/javascript">
-document.getElementById('id_login').focus()
-</script>
+
+	<div class="content">
+
+		{% if msg %}<p class="errmsg">{{ msg|safe }}</p>{% endif %}
+
+		<form action="" method="post" id="login-form">
+			<h1>{% trans "Lost password" %}</h1>
+			
+			
+			<p>{% trans "All passwords are stored encrypted in our database. If you really cannot remember yours, use the form below and you will be sent a new password to the email address which is bound to your account."%}</p>
+			
+			<div class="form-row{% if form.login.errors %} error{% endif %}">
+				<label for="id_{{ form.login.name }}">{{ form.login.label }}</label>
+				{{ form.login }} {{ form.errors.login }}
+			</div>
+
+			<p>{% trans "Your login is probably built from the first two letters of your fisrt name, followed by your last name. The whole login shoud be lowercase, with no spaces, hyphens or underscores." %}</p>
+
+			<div class="submit-row">
+				<input class="btn" type="submit" value="{% trans "OK" %}" />
+				<br class="clear" />
+			</div>
+		</form>
+	</div><!-- END .content -->
+
+	<script type="text/javascript">
+	document.getElementById('id_{{ form.login.name }}').focus()
+	</script>
+
 {% endblock content %}

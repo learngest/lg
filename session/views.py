@@ -349,7 +349,7 @@ def logout(request):
         del request.session['django_language']
     except KeyError:
         pass
-    msg = _('You have been logged out. Thanks for visiting us today. <br><a href="/login/">New login</a>')
+    msg = _('You have been logged out. Thanks for visiting us today. <br /><a href="/login/">New login</a>')
     return render_to_response('msg.html',{'msg': msg})
 
 def home(request):

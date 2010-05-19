@@ -36,12 +36,14 @@ def profile(request):
             return render_to_response('learning/profile.html',
                 {'visiteur': v.prenom_nom(), 
                  'admin': v.status,
+                 'here': 'profile',
                 'v': v, 
                 'form': f, 'msg': msg})
         else:
             return render_to_response('learning/profile.html',
                 {'visiteur': v.prenom_nom(), 
                  'admin': v.status,
+                 'here': 'profile',
                  'client': v.groupe.client,
                 'v': v, 'form': f})
     else:
@@ -49,6 +51,7 @@ def profile(request):
         return render_to_response('learning/profile.html',
                 {'visiteur': v.prenom_nom(), 
                  'admin': v.status,
+                 'here': 'profile',
                  'client': v.groupe.client,
                 'v': v,
                 'form': f,
@@ -309,6 +312,7 @@ def tdb(request):
     return render_to_response('learning/tdb.html',
             {'visiteur': u.prenom_nom(),
              'client': u.groupe.client,
+             'here': 'dashboard',
              'prenom': u.prenom,
              'vgroupe': u.groupe,
              'admin': u.status,

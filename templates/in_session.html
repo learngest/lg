@@ -4,20 +4,29 @@
 {% block baselink %}{% endblock baselink %}
 {% block javascript %}{% endblock javascript %}
 
-{% block menu %}
-<p><a href="/logout/">{% trans "Log out" %}</a></p>
-<p><a href="/learning/profile/">{% trans "My account" %}</a></p>
-<p><a href="/learning/tdb/">{% trans "Dashboard" %}</a></p>
-{% if admin %}
-<p><a href="/coaching/">{% trans "Administration" %}</a></p>
-{% endif %}
-{% endblock menu %}
+{% block login_inline %}{% endblock %}
+{% block product_nav %}{% endblock %}
 
-{% block breadcrumb %}{% trans "Innovative e-learning Master" %}{% endblock breadcrumb %}
+{% block user_infos %}
+<p><a class="user" href="{% url l_profile %}">Marc Hertzog</a></p>
+<p><a class="logout" href="{% url logout %}">Déconnexion</a></p>
+{% endblock %}
 
-{% block session %}
-<p>{{ visiteur }}{% if vgroupe %} - {{ vgroupe }}{% endif %}</p>
-{% endblock session %}
+{% block nav %}
+<div id="nav-container">
+	<ul id="nav">
+		<li><a href="{% url c_admin %}"{% ifequal here 'admin' %} class="selected"{% endifequal %}>{% trans "Administration" %}</a></li>
+		<li><a href="{% url l_dashboard %}"{% ifequal here 'dashboard' %} class="selected"{% endifequal %}>{% trans "Tableau des cours" %}</a></li>
+		<li><a href="{% url l_profile %}"{% ifequal here 'profile' %} class="selected"{% endifequal %}>{% trans "Profil" %}</a></li>
+	</ul>
+</div>{% endblock %}
 
-{% block content %}
-{% endblock content %}
+{# {% if admin %} #}
+{# <p><a href="/coaching/">{% trans "Administration" %}</a></p> #}
+{# {% endif %} #}
+{#  #}
+{# {% block session %} #}
+{# <p>{{ visiteur }}{% if vgroupe %} - {{ vgroupe }}{% endif %}</p> #}
+{# {% endblock session %} #}
+
+{% block content %}{% endblock content %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Demonstration" %}{% endblock %}
+
+{% block breadcrumb %}{% trans "Demonstration" %}{% endblock breadcrumb %}
+
+{% block content %}
+
+	<div class="highlight-container">
+		<div class="highlight demo">
+			<h1>{% trans "Demonstration" %}</h1>
+			<p>{% trans "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mollis erat sed massa posuere nec facilisis leo blandit. Curabitur metus libero, mollis in fermentum id, blandit sed turpis. Nam ultricies eleifend risus, non ullamcorper nunc sollicitudin vel. Pellentesque tincidunt rutrum mi a pulvinar." %}</p>
+		</div>
+	</div><!-- END .highlight-container -->
+
+	<div class="content">
+		<div class="block50">
+			<h2>{% trans "The advantages of distance learning and eLearning" %}</h2>
+			<p>{% trans "Our training programs are designed to reduce as much as possible the difficulties often faced by companies and educational establishments using traditional learning methods." %}</p>
+			<p>{% trans "Our training programs are designed to reduce as much as possible the difficulties often faced by companies and educational establishments using traditional learning methods." %}</p>
+		</div>
+		<div class="block50 last">
+			
+			<form action="#" method="post" id="login-form">
+				<p class="warning">{% trans "Démonstration" %}</p>
+				<h1>Formulaire de connexion</h1>
+				<div class="form-row">
+					<label for="id_username">Nom d'utilisateur</label>
+					<input type="text" name="username" id="id_username" />
+				</div>
+				<div class="form-row">
+					<label for="id_password">Mot de passe</label>
+					<input type="password" name="password" id="id_password" />
+				</div>
+				<div class="form-row inline">
+					<label for="id_remember">Se souvenir de moi sur cet ordinateur ?</label>
+					<input type="checkbox" name="remember" id="id_remember" />
+				</div>
+				<div class="submit-row">
+					<input class="btn" type="submit" value="Connexion" />
+					<a href="#" class="forgot">J'ai perdu mon mot de passe</a>
+				</div>
+			</form>
+			
+		</div>
+		<br class="clear" />
+	</div><!-- END .content -->
+
+{% endblock content %}

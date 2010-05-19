@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block breadcrumb %}{% trans "Home &gt; Welcome" %}{% endblock breadcrumb %}
+
+{% block content %}
+
+	<div class="highlight-container">
+		<div class="highlight books">
+			<h1>{% trans "Learngest, specialists in business and financial eLearning" %}</h1>
+			<p>{% trans "Learngest is an organization of distance learning specialists in the field of finance." %}</p>
+			<p>{% trans "Contact:" %} <a href="#"><strong>info@learngest.com</strong></a></p>
+		</div>
+	</div><!-- END .highlight-container -->
+
+	<div class="content">
+		<div class="block50">
+			<h2>{% trans "The advantages of distance learning and eLearning" %}</h2>
+			<p>{% trans "Our training programs are designed to reduce as much as possible the difficulties often faced by companies and educational establishments using traditional learning methods:" %}</p>
+			<a href="{% url demo %}" class="big-link l-demo">
+				<span class="title">{% trans "Demonstration" %}</span>
+				<span class="desc strong">{% trans "Lorem ipsum dolor sit amet, consectetur adipiscing elit." %}</span>
+			</a>
+		</div>
+		<div class="block50 last">
+			<h2>{% trans "Learngest: real benefits for your training programs" %}</h2>
+			<a href="{% url overview %}" class="big-link l-overview">
+				<span class="title">{% trans "Overview" %}</span>
+				<span class="desc">{% trans "Lorem ipsum dolor sit amet, consectetur adipiscing elit." %}</span>
+			</a>
+			<a href="{% url news %}" class="big-link l-news">
+				<span class="title">{% trans "News" %}</span>
+				<span class="desc">{% trans "Lorem ipsum dolor sit amet, consectetur adipiscing elit." %}</span>
+			</a>
+			<a href="{% url contributors %}" class="big-link l-contrib">
+				<span class="title">{% trans "Contributors" %}</span>
+				<span class="desc">{% trans "Lorem ipsum dolor sit amet, consectetur adipiscing elit." %}</span>
+			</a>
+		</div>
+		<br class="clear" />
+	</div><!-- END .content -->
+
+{% endblock content %}

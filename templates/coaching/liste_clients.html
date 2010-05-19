@@ -1,4 +1,3 @@
-<!-- vim: set encoding=utf8 fileencoding=utf8: -->
 {% extends "in_session.html" %}
 {% load i18n %}
 
@@ -7,50 +6,45 @@
     <script type="text/javascript" src="/media/js/jquery.tablesorter.js"></script>
 {% endblock javascript %}
 
-{% block menu %}
-<p><a href="/logout/">{% trans "Log out" %}</a></p>
-<p><a href="/learning/profile/">{% trans "My account" %}</a></p>
-<p><a href="/learning/tdb/">{% trans "Dashboard" %}</a></p>
-<p><a href="/coaching/">{% trans "Administration" %}</a></p>
-{% endblock menu %}
-
-{% block breadcrumb %}
-<a href="/coaching/">{% trans "administration" %}</a>
-&gt; {% trans "clients statistics" %}
-{% endblock breadcrumb %}
+{% block breadcrumb %}<a href="{% url c_admin %}">{% trans "administration" %}</a> &gt; {% trans "clients statistics" %}{% endblock breadcrumb %}
 
 {% block content %}
-<div id="rightcol">
-	<h2>{% trans "Filter" %}</h2>
-    {% for filtre in liste_filtres %}
-    <h3>{% trans "By " %}{{ filtre.title }}</h3>
-	<ul>
-        {% for item in filtre.valeurs %}
-        {% if item.selected %}<li class="selected">{{ item.libel }}{% else %}<li><a href="?{{ item.url }}">{{ item.libel }}</a>{% endif %}</li>
-		{% endfor %}
-	</ul>	
-    {% endfor %}
-</div>
+<div class="content">
 
-{% if liste_groupes %}
-<h2>{% trans "Client statistics" %}</h2>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#lista").tablesorter({ widgets: ['zebra']});
-        var c = [[0,0],[1,0]];
-        $("#lista").trigger("sorton",[c]);
-        return false;
-})
-</script>
+	<h2>{% trans "Client statistics" %}</h2>
+
+	{% if liste_filtres %}
+	<div class="filter">
+		<h2>{% trans "Filter" %}</h2>
+		{% for filtre in liste_filtres %}
+		<h3>{% trans "By " %}{{ filtre.title }}</h3>
+		<ul class="changelist-filter">
+			{% for item in filtre.valeurs %}
+			<li{% if item.selected %} class="selected"{% endif %}><a href="?{{ item.url }}">{{ item.libel }}</a>{% if not forloop.last %} | {% endif %}</li>
+			{% endfor %}
+		</ul>
+		{% endfor %}
+	</div>
+	{% endif %}
+
+	{% if liste_groupes %}
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#lista").tablesorter({ widgets: ['zebra']});
+		var c = [[0,0],[1,0]];
+		$("#lista").trigger("sorton",[c]);
+		return false;
+	});
+	</script>
 	<table id="lista">
 		<thead>
 			<tr>
 				<th>{% trans "Client" %}</th>
 				<th>{% trans "Group" %}</th>
-				<th style="text-align: center;">{% trans "# Courses" %}</th>
-				<th style="text-align: center;">{% trans "# Modules" %}</th>
-				<th style="text-align: center;">{% trans "# Logins" %}</th>
-				<th style="text-align: center;">{% trans "# Connected Yesterday" %}</th>
+				<th class="center">{% trans "# Courses" %}</th>
+				<th class="center">{% trans "# Modules" %}</th>
+				<th class="center">{% trans "# Logins" %}</th>
+				<th class="center">{% trans "# Connected Yesterday" %}</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -58,15 +52,17 @@
             <tr>
 				<td>{{ groupe.client }}</td>
 				<td><a href="/coaching/lista/?groupe={{ groupe.id }}">{{ groupe.nom }}</a></td>
-                <td style="text-align: center;">{{ groupe.nb_cours }}</td>
-                <td style="text-align: center;">{{ groupe.nb_modules }}</td>
-				<td style="text-align: center;">{{ groupe.nb_logins }}</td>
-				<td style="text-align: center;">{{ groupe.hier }}</td>
+                <td class="center">{{ groupe.nb_cours }}</td>
+                <td class="center">{{ groupe.nb_modules }}</td>
+				<td class="center">{{ groupe.nb_logins }}</td>
+				<td class="center">{{ groupe.hier }}</td>
 			</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 	{% else %}
 	<p>{% trans "This list is empty" %}</p>
-{% endif %}
+	{% endif %}
+
+</div><!-- END .content -->
 {% endblock content %}

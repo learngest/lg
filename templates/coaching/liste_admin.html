@@ -1,4 +1,3 @@
-<!-- vim: set encoding=utf8 fileencoding=utf8: -->
 {% extends "in_session.html" %}
 {% load i18n %}
 
@@ -7,30 +6,26 @@
     <script type="text/javascript" src="/media/js/jquery.tablesorter.js"></script>
 {% endblock javascript %}
 
-{% block menu %}
-<p><a href="/logout/">{% trans "Log out" %}</a></p>
-<p><a href="/learning/profile/">{% trans "My account" %}</a></p>
-<p><a href="/learning/tdb/">{% trans "Dashboard" %}</a></p>
-<p><a href="/coaching/">{% trans "Administration" %}</a></p>
-{% endblock menu %}
-
-{% block breadcrumb %}
-<a href="/coaching/">{% trans "administration" %}</a>
-&gt; {% trans "students" %}
-{% endblock breadcrumb %}
+{% block breadcrumb %}<a href="{% url c_admin %}">{% trans "administration" %}</a> &gt; {% trans "students" %}{% endblock breadcrumb %}
 
 {% block content %}
-<div id="rightcol">
-	<h2>{% trans "Filter" %}</h2>
-    {% for filtre in liste_filtres %}
-    <h3>{% trans "By " %}{{ filtre.title }}</h3>
-	<ul>
-        {% for item in filtre.valeurs %}
-        {% if item.selected %}<li class="selected">{{ item.libel }}{% else %}<li><a href="?{{ item.url }}">{{ item.libel }}</a>{% endif %}</li>
+<div class="content">
+	
+	{% if liste_filtres %}
+	<div class="filter">
+		<h2>{% trans "Filter" %}</h2>
+		{% for filtre in liste_filtres %}
+		<h3>{% trans "By " %}{{ filtre.title }}</h3>
+		<ul class="changelist-filter">
+			{% for item in filtre.valeurs %}
+			<li{% if item.selected %} class="selected"{% endif %}><a href="?{{ item.url }}">{{ item.libel }}</a>{% if not forloop.last %} | {% endif %}</li>
+			{% endfor %}
+		</ul>
+		<br class="clear" />
 		{% endfor %}
-	</ul>	
-    {% endfor %}
-</div>
+	</div>
+	{% endif %}
+
 
 {% if liste_utilisateurs %}
 <h2>{% trans "Students management" %} 
@@ -51,12 +46,12 @@
 </h2>
 {% endif %}
 
-<div class="panel">
-<h2>{% trans "Information" %}</h2>
-<p>{% trans "Time spent by the students is estimated and should not be seen as accurate." %}<br />
-{% trans "The number of currently late modules is calculated once per day on midnight (Europe/Paris time)." %}</p>
+<div class="info">
+	<h2>{% trans "Information" %}</h2>
+	<p>{% trans "Time spent by the students is estimated and should not be seen as accurate." %}<br />
+		{% trans "The number of currently late modules is calculated once per day on midnight (Europe/Paris time)." %}</p>
 </div>
-<p></p>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $("#lista").tablesorter({ widgets: ['zebra']});
@@ -106,4 +101,6 @@
 	{% else %}
 	<p>{% trans "This group is empty" %}</p>
 {% endif %}
+
+</div><!-- END .content -->
 {% endblock content %}

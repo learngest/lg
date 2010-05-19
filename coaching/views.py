@@ -817,6 +817,7 @@ def liste_utilisateurs(request, **kwargs):
     return render_to_response(template,
             {'visiteur': v.prenom_nom(),
              'client': v.groupe.client,
+             'here': 'admin',
              'gid': gid,
              'liste_utilisateurs': lu, 'liste_filtres': lf,})
 liste_utilisateurs = visitor_may_see_list(liste_utilisateurs)
@@ -868,6 +869,7 @@ def liste_clients(request):
             {'visiteur': v.prenom_nom(),
              'client': v.groupe.client,
              'liste_filtres': lf,
+             'here': 'admin',
              'liste_groupes': liste,
             })
 liste_clients = visitor_is(STAFF)(liste_clients)
@@ -940,6 +942,7 @@ def create_logins(request):
                         mailmsg = render_to_string('mail_login.txt', 
                                 {'login': u.login, 
                                   'password': password,
+                                  'here': 'admin',
                                   'groupe': g.nom,
                                   'coach': g.administrateur.prenom_nom(),
                                   'coach_mail': g.administrateur.email,})
@@ -974,6 +977,7 @@ def create_logins(request):
                                 {'visiteur': v.prenom_nom(),
                                  'client': v.groupe.client,
                                  'logins': logins,
+                                 'here': 'admin',
                                  'groupe': g,
                                  'langue': request.POST['langue'],
                                  'fermeture': request.POST['fermeture'],
@@ -1009,6 +1013,7 @@ def create_logins(request):
                             return render_to_response('coaching/logins.html',
                                                     {'visiteur': v.prenom_nom(),
                                                      'client': v.groupe.client,
+                                                     'here': 'admin',
                                                      'errmsg': errmsg,
                                                      'form': f,
                                                     })
@@ -1024,6 +1029,7 @@ def create_logins(request):
                                     {'visiteur': v.prenom_nom(),
                                      'client': v.groupe.client,
                                      'logins': logins,
+                                     'here': 'admin',
                                      'groupe': g,
                                      'langue': f.cleaned_data['langue'],
                                      'fermeture': f.cleaned_data['fermeture'],
@@ -1033,6 +1039,7 @@ def create_logins(request):
             else:
                 return render_to_response('coaching/logins.html',
                                         {'visiteur': v.prenom_nom(),
+                                         'here': 'admin',
                                          'client': v.groupe.client,
                                          'form': f,
                                         })
@@ -1041,6 +1048,7 @@ def create_logins(request):
         f.fields['groupe'].choices = [(g.id, g.nom) for g in Groupe.objects.all()]
         return render_to_response('coaching/logins.html',
                                 {'visiteur': v.prenom_nom(),
+                                 'here': 'admin',
                                  'client': v.groupe.client,
                                  'form': f,
                                 })
@@ -1054,6 +1062,7 @@ def menu(request):
     return render_to_response('coaching/menu.html',
             {'visiteur': v.prenom_nom(), 
              'client': v.groupe.client,
+             'here': 'admin',
              'staff': v.status==STAFF })
 menu = visitor_is(ADMINISTRATEUR)(menu)
 

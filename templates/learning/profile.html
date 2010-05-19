@@ -7,6 +7,8 @@
 {% endblock breadcrumb %}
 
 {% block content %}
+<div class="content">
+
 {% if msg %}<p class="infomsg">{{ msg|safe }}</p>{% endif %}
 <form method="post">
 <fieldset>
@@ -35,4 +37,6 @@
 </fieldset>
 <input type="submit" value="{% trans "Save" %}" />
 </form>
+
+</div><!-- END .content -->
 {% endblock content %}

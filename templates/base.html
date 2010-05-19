@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="/media/style/{{ client.style }}" type="text/css" media="screen" title="Normal" />
 	<link rel="stylesheet" href="/media/style/print.css" type="text/css" media="print" />
 	{% else %}
-	<link rel="stylesheet" href="/media/style/base.css" type="text/css" media="screen" title="Normal" />
+	<link rel="stylesheet" href="/media/css/learngest.css" type="text/css" media="screen" title="Normal" />
 	<link rel="stylesheet" href="/media/style/print.css" type="text/css" media="print" />
 	{% endif %}
 	{% endblock style %}
@@ -19,24 +19,55 @@
     {% block javascript %}{% endblock javascript %}
 </head>
 <body>
-	
-<div id="header">
-<h1>eLearning
-{% if client.nom %}
- - {{ client.nom }}
-{% endif %}
-</h1>
-</div><!-- header -->
 
-<div class="menu">{% block menu %}{% endblock %}</div><!-- menu -->
+{% block header_toolbar %}<div id="header-toolbar-container">
+	<div id="header-toolbar">
+		{% block login_inline %}<form action="{% url login %}" method="post">
+			<label for="login">{% trans "Login" %}</label>
+			<input type="text" name="login" value="" id="login" />
+			<label for="password">{% trans "Mot de passe" %}</label>
+			<input type="password" name="password" value="" id="password" />
+			<input class="btn" type="submit" value="{% trans "Connexion" %}" />
+		</form>{% endblock login_inline %}
+		{% block user_infos %}{% endblock %}
+		{% block lang %}<form action="#" method="get">
+			<label for="lang">{% trans "Langue" %}</label>
+			<select name="lang" id="lang">
+				<option value="option1">{% trans "Français" %}</option>
+				<option value="option2">{% trans "Anglais" %}</option>
+			</select>
+			<input class="btn" type="submit" value="Ok" />
+		</form>{% endblock lang %}
+	</div>
+</div>{% endblock header_toolbar %}
 
-<div class="breadcrumb"><p>{% block breadcrumb %}{% trans "Innovative e-learning software" %}{% endblock %}</p></div><!-- breadcrumb -->
+{% block header %}<div id="header-container">
+	<div id="header">
+		<h1>eLearning</h1>
+		<p>{% if client.nom %}{{ client.nom }}{% else %}{% trans "Innovative e-learning Master" %}{% endif %}</p>
+		{% block product_nav %}<ul id="product-nav">
+			<li><a href="{% url home %}"{% ifequal here 'home' %} class="selected"{% endifequal %}>{% trans "Home" %}</a></li>
+			<li><a href="{% url news %}"{% ifequal here 'news' %} class="selected"{% endifequal %}>{% trans "News" %}</a></li>
+			<li><a href="{% url demo %}"{% ifequal here 'demo' %} class="selected"{% endifequal %}>{% trans "Demonstration" %}</a></li>
+			<li><a href="{% url overview %}"{% ifequal here 'overview' %} class="selected"{% endifequal %}>{% trans "Overview" %}</a></li>
+			<li><a href="{% url contributors %}"{% ifequal here 'contributors' %} class="selected"{% endifequal %}>{% trans "Contributors" %}</a></li>
+		</ul>{% endblock product_nav %}
+	</div>
+</div>{% endblock header %}
 
-<div class="session">{% block session %}{% endblock %}</div><!-- session -->
+{% block nav %}{% endblock %}
 
-<div class="corps">{% block content %}{% endblock %}</div><!-- corps -->
+<div id="content-container">
+	<div id="breadcrumb">{% block breadcrumb %}{% trans "Innovative e-learning software" %}{% endblock %}</div>
+	{% block content %}{% endblock %}
+</div>
 
-<div id="footer"></div>
+{% block footer %}<div id="footer-container">
+	<div id="footer">
+		<p>{% trans "© learngest.com 2009-" %}{% now "Y" %} | <a href="{% url legal %}">{% trans "Legal notices" %}</a></p>
+	</div>
+</div>{% endblock %}
 
 </body>
 </html>
+
