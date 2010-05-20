@@ -1,72 +1,79 @@
-<!-- vim: set encoding=utf8: -->
 {% extends "in_session.html" %}
 {% load i18n %}
 
-{% block breadcrumb %}<a href="/learning/tdb/">{% trans "dashboard" %}</a> &gt; {% trans "module" %}{% endblock breadcrumb %}
+{% block breadcrumb %}<a href="{% url l_dashboard %}">{% trans "dashboard" %}</a> &gt; {% trans "module" %}{% endblock breadcrumb %}
 
 {% block content %}
 <div class="content">
 
-<h2>{{ module.title }}</h2>
-{% if module.valide %}
-<p>{% trans "Module completed on" %} {{ module.datev }}</p>
-{% if module.retard %}
-<p class="retard">{% trans "Deadline was" %} {{ module.echeance }}</p>
-{% endif %}
-{% else %}
-{% if module.echeance %}
-<p{% if module.retard %} class="retard"{% endif %}>{% trans "Deadline" %} {{ module.echeance }}</p>
-{% endif %}
-{% endif %}
-{% if module.docs %}
-<h3>{% trans "Contents" %}</h3>
-<table style="width: 60%;">
-<thead>
-<tr>
-<th style="width: 35%;">{% trans "Content" %}</th>
-<th style="width: 20%;">{% trans "Last view" %}</th>
-<th style="text-align: center;">{% trans "Times viewed" %}</th>
-</tr>
-</thead>
-<tbody>
-{% for doc in module.docs %}
-<tr class="{% cycle odd,even %}">
-    <td><a href="{{ doc.url }}"><img src="{{doc.img }}" alt="{{ doc.typd }}" /></a>
-        <a href="{{ doc.url }}">{{ doc.titre }}</a></td>
-<td>{{ doc.lastconsult }}</td>
-<td style="text-align: center;">{{ doc.nbconsult }}</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-{% endif %}
+<h1>{{ module.title }}</h1>
 
-{% if module.tests %}
-<h3>{% trans "Tests" %}</h3>
-<table>
-<thead>
-<tr>
-<th style="width: 25%;">{% trans "Test" %}</th>
-<th style="text-align: center;">{% trans "Tries" %}</th>
-<th style="text-align: center;">{% trans "Last try" %}</th>
-<th style="text-align: center;">{% trans "Best try" %}</th>
-<th style="text-align: center;">{% trans "Completed" %}</th>
-</tr>
-</thead>
-<tbody>
-{% for test in module.tests %}
-<tr class="{% cycle odd,even %}">
-<td><a href="/testing/{{ test.slug }}/">{{ test.title }}</a></td>
-<td style="text-align: center;">{{ test.nbtries }}</td>
+	<div class="admin-item">
+		{% if module.valide %}
+		<p>{% trans "Module completed on" %} {{ module.datev }}</p>
+		{% if module.retard %}
+		<p class="retard">{% trans "Deadline was" %} {{ module.echeance }}</p>
+		{% endif %}
+		{% else %}
+		{% if module.echeance %}
+		<p{% if module.retard %} class="retard"{% endif %}>{% trans "Deadline" %} {{ module.echeance }}</p>
+		{% endif %}
+		{% endif %}
+	</div>
 
-<td style="text-align: center;">{% if test.lastdate %}{{ test.lastdate }} - {{ test.lastscore }} %{% endif %}</td>
-<td style="text-align: center;">{% if test.bestdate %}{{ test.bestdate }} - {{ test.bestscore }} %{% endif %}</td>
-<td style="text-align: center;">{% if test.validdate %}{{ test.validdate }} - {{ test.validscore }} %{% endif %}</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-{% endif %}
+	{% if module.docs %}
+	<div class="admin-item">
+		<h2>{% trans "Contents" %}</h2>
+		<table>
+		<thead>
+		<tr>
+		<th style="width: 35%;">{% trans "Content" %}</th>
+		<th style="width: 20%;">{% trans "Last view" %}</th>
+		<th class="center">{% trans "Times viewed" %}</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for doc in module.docs %}
+		<tr class="{% cycle odd,even %}">
+		    <td><a href="{{ doc.url }}"><img src="{{doc.img }}" alt="{{ doc.typd }}" /></a>
+		        <a href="{{ doc.url }}">{{ doc.titre }}</a></td>
+		<td>{{ doc.lastconsult }}</td>
+		<td class="center">{{ doc.nbconsult }}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+	</div>
+	{% endif %}
+
+	{% if module.tests %}
+	<div class="admin-item">
+		<h2>{% trans "Tests" %}</h2>
+		<table>
+		<thead>
+		<tr>
+		<th style="width: 25%;">{% trans "Test" %}</th>
+		<th class="center">{% trans "Tries" %}</th>
+		<th class="center">{% trans "Last try" %}</th>
+		<th class="center">{% trans "Best try" %}</th>
+		<th class="center">{% trans "Completed" %}</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for test in module.tests %}
+		<tr class="{% cycle odd,even %}">
+		<td><a href="/testing/{{ test.slug }}/">{{ test.title }}</a></td>
+		<td class="center">{{ test.nbtries }}</td>
+
+		<td class="center">{% if test.lastdate %}{{ test.lastdate }} - {{ test.lastscore }} %{% endif %}</td>
+		<td class="center">{% if test.bestdate %}{{ test.bestdate }} - {{ test.bestscore }} %{% endif %}</td>
+		<td class="center">{% if test.validdate %}{{ test.validdate }} - {{ test.validscore }} %{% endif %}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+	</div>
+	{% endif %}
 
 </div><!-- END .content -->
 {% endblock content %}

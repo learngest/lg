@@ -1,82 +1,84 @@
-<!-- vim: set encoding=utf8 fileencoding=utf8: -->
 {% extends "in_session.html" %}
 {% load i18n %}
 
-{% block menu %}
-<p><a href="/logout/">{% trans "Log out" %}</a></p>
-<p><a href="/learning/profile/">{% trans "My account" %}</a></p>
-<p><a href="/learning/tdb/">{% trans "Dashboard" %}</a></p>
-<p><a href="/coaching/">{% trans "Administration" %}</a></p>
-{% endblock menu %}
-
 {% block breadcrumb %}
-<a href="/coaching/">{% trans "administration" %}</a>
-&gt; <a href="/coaching/work/?l">{% trans "assignment" %}</a>
+<a href="{% url c_admin %}">{% trans "administration" %}</a>
+&gt; <a href="{% url c_work %}?l">{% trans "assignment" %}</a>
 &gt; {% trans "add" %}
 {% endblock breadcrumb %}
 
 {% block content %}
-<h2>{% trans "Add an assignment" %}</h2>
-{% if msg %}<p class="infomsg">{{ msg|safe }}</p>{% endif %}
-<form enctype="multipart/form-data" method="post">
-<fieldset>
-<h2>{% trans "Group" %}</h2>
-{% if cours %}
-<p><label for="groupe">{% trans "Group" %}</label> {{ groupe.nom }}</p>
-</fieldset>
-<fieldset>
-<h2>{% trans "Course" %}</h2>
-<p><label for="cours">{% trans "Course" %}</label> {{ cours.title }}</p>
-{% if msg %}
-</fieldset>
-<fieldset>
-<h2>{% trans "Assignment" %}</h2>
-{% if deadline %}
-<p><label for="deadline">{% trans "Deadline" %}</label> {{ deadline }}</p>
-{% else %}
-<p><label for="deadline">{% trans "Deadline" %}</label> {% trans "No deadline" %}</p>
-{% endif %}
-<p><label for="titre">{% trans "Title" %}</label> {{ titre }}</p>
-{% if libel %}
-<p><label for="description">{% trans "Description" %}</label> {{ libel }}</p>
-{% endif %}
-{%if fichier %}
-<p><label for="filename">{% trans "Additional document" %}</label> {{ fichier.filename }}</p>
-{% endif %}
-</fieldset>
-{% else %}
-</fieldset>
-<fieldset>
-<h2>{% trans "Assignment" %}</h2>
-{% if deadline %}
-<p><label for="deadline">{% trans "Deadline" %}</label> {{ deadline }}</p>
-{% else %}
-<p><label for="deadline">{% trans "Deadline" %}</label> {% trans "No deadline" %}</p>
-{% endif %}
-<p><label for="id_{{ form.titre.name }}">{{ form.titre.label }}</label> {{ form.titre }} {{ form.errors.titre}}</p>
-<p><label for="id_{{ form.libel.name }}">{{ form.libel.label }}</label> {{ form.libel }} {{ form.errors.libel}}</p>
-<p><label for="id_{{ form.fichier.name }}">{{ form.fichier.label }}</label> {{ form.fichier }} {{ form.errors.fichier }}</p>
-</fieldset>
-<input type="hidden" name="g" value="{{ groupe.id }}" />
-<input type="hidden" name="c" value="{{ cours.id }}" />
-<input type="submit" value="{% trans "Save" %}" name="save" />
-<input type="submit" value="{% trans "Save and add a new one" %}" />
-{% endif %}
-{% else %}
-{% if groupe %}
-<p><label for="groupe">{% trans "Group" %}</label> {{ groupe.nom }}</p>
-</fieldset>
-<fieldset>
-<h2>{% trans "Course" %}</h2>
-<p><label for="id_{{ form.cours.name }}">{{ form.cours.label }}</label> {{ form.cours }}</p>
-</fieldset>
-<input type="hidden" name="g" value="{{ groupe.id }}" />
-<input type="submit" value="{% trans "Continue" %}" />
-{% else %}
-<p><label for="id_{{ form.groupe.name }}">{{ form.groupe.label }}</label> {{ form.groupe }} {{ form.errors.groupe }}</p>
-</fieldset>
-<input type="submit" value="{% trans "Continue" %}" />
-{% endif %}
-{% endif %}
-</form>
+<div class="content">
+
+	<h1>{% trans "Add an assignment" %}</h1>
+	{% if msg %}<p class="infomsg">{{ msg|safe }}</p>{% endif %}
+	<form action="" enctype="multipart/form-data" method="post">
+		<fieldset>
+		<h2>{% trans "Group" %}</h2>
+		{% if cours %}
+		<p><label for="groupe">{% trans "Group" %}</label> {{ groupe.nom }}</p>
+		</fieldset>
+		<fieldset>
+		<h2>{% trans "Course" %}</h2>
+		<p><label for="cours">{% trans "Course" %}</label> {{ cours.title }}</p>
+		{% if msg %}
+		</fieldset>
+		<fieldset>
+		<h2>{% trans "Assignment" %}</h2>
+		{% if deadline %}
+		<p><label for="deadline">{% trans "Deadline" %}</label> {{ deadline }}</p>
+		{% else %}
+		<p><label for="deadline">{% trans "Deadline" %}</label> {% trans "No deadline" %}</p>
+		{% endif %}
+		<p><label for="titre">{% trans "Title" %}</label> {{ titre }}</p>
+		{% if libel %}
+		<p><label for="description">{% trans "Description" %}</label> {{ libel }}</p>
+		{% endif %}
+		{%if fichier %}
+		<p><label for="filename">{% trans "Additional document" %}</label> {{ fichier.filename }}</p>
+		{% endif %}
+		</fieldset>
+		{% else %}
+		</fieldset>
+		<fieldset>
+		<h2>{% trans "Assignment" %}</h2>
+		{% if deadline %}
+		<p><label for="deadline">{% trans "Deadline" %}</label> {{ deadline }}</p>
+		{% else %}
+		<p><label for="deadline">{% trans "Deadline" %}</label> {% trans "No deadline" %}</p>
+		{% endif %}
+		<p{% if form.titre.errors %} class="error"{% endif %}><label for="id_{{ form.titre.name }}">{{ form.titre.label }}</label> {{ form.titre }} {{ form.errors.titre}}</p>
+		<p{% if form.libel.errors %} class="error"{% endif %}><label for="id_{{ form.libel.name }}">{{ form.libel.label }}</label> {{ form.libel }} {{ form.errors.libel}}</p>
+		<p{% if form.fichier.errors %} class="error"{% endif %}><label for="id_{{ form.fichier.name }}">{{ form.fichier.label }}</label> {{ form.fichier }} {{ form.errors.fichier }}</p>
+		</fieldset>
+		<fieldset class="submit">
+			<input type="hidden" name="g" value="{{ groupe.id }}" />
+			<input type="hidden" name="c" value="{{ cours.id }}" />
+			<input type="submit" value="{% trans "Save" %}" name="save" />
+			<input type="submit" value="{% trans "Save and add a new one" %}" />
+		</fieldset>
+		{% endif %}
+		{% else %}
+		{% if groupe %}
+		<p><label for="groupe">{% trans "Group" %}</label> {{ groupe.nom }}</p>
+		</fieldset>
+		<fieldset>
+		<h2>{% trans "Course" %}</h2>
+		<p><label for="id_{{ form.cours.name }}">{{ form.cours.label }}</label> {{ form.cours }}</p>
+		</fieldset>
+		<fieldset class="submit">
+			<input type="hidden" name="g" value="{{ groupe.id }}" />
+			<input type="submit" value="{% trans "Continue" %}" />
+		</fieldset>
+		{% else %}
+		<p{% if form.groupe.errors %} class="error"{% endif %}><label for="id_{{ form.groupe.name }}">{{ form.groupe.label }}</label> {{ form.groupe }} {{ form.errors.groupe }}</p>
+		</fieldset>
+		<fieldset class="submit">
+			<input type="submit" value="{% trans "Continue" %}" />
+		</fieldset>
+		{% endif %}
+		{% endif %}
+	</form>
+
+</div><!-- END .content -->
 {% endblock content %}

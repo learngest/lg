@@ -9,14 +9,20 @@
 {% block javascript %}<script type="text/javascript" src="/media/js/support.js"></script>{% endblock javascript %}
 
 {% block breadcrumb %}
-<a href="/learning/tdb/">{% trans "dashboard" %}</a>
+<a href="{% url l_dashboard %}">{% trans "dashboard" %}</a>
 &gt; {% trans "handout" %}
 {% endblock breadcrumb %}
 
 {% block content %}
-{% if msg %}
-<p class="infomsg">{{ msg|safe }}</p>
-{% endif %}
-<p id="aide" class="nop">{% trans "Click on the sections (sub)titles to show or hide their contents. Click on the chapter's title to show or hide the outline." %} <a href="javascript: openClose('aide',0)">{% trans "Hide this" %}</a></p>
-{{ support|safe }}
+<div class="content">
+
+	{% if msg %}<p class="infomsg">{{ msg|safe }}</p>{% endif %}
+
+	<div class="info" id="aide">
+		<p>{% trans "Click on the sections (sub)titles to show or hide their contents. Click on the chapter's title to show or hide the outline." %} <a href="javascript: openClose('aide',0)">{% trans "Hide this" %}</a></p>
+	</div>
+
+	{{ support|safe }}
+
+</div><!-- END .content -->
 {% endblock content %}

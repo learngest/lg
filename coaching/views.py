@@ -77,6 +77,7 @@ def liste_works(request, **kwargs):
     lf = makefilters(request.GET, lf)
     return render_to_response('coaching/liste_work.html',
                             {'visiteur': u.prenom_nom(),
+                             'here': 'admin',
                              'client': u.groupe.client,
                              'liste_works': le, 
                              'liste_filtres': lf,})
@@ -121,6 +122,7 @@ def add_work(request):
                     return render_to_response('coaching/add_work.html',
                         {'visiteur': v.prenom_nom(),
                          'client': v.groupe.client,
+                         'here': 'admin',
                          'msg' : msg,
                          'groupe': g, 'cours': c, 'deadline': e,
                          'titre': f3.cleaned_data['titre'],
@@ -133,6 +135,7 @@ def add_work(request):
                 return render_to_response('coaching/add_work.html',
                     {'visiteur': v.prenom_nom(), 
                      'client': v.groupe.client,
+                     'here': 'admin',
                      'form': f3, 'groupe': g, 'cours': c, 'deadline': e  })
         else:
             if 'g' in request.POST:
@@ -151,6 +154,7 @@ def add_work(request):
                     return render_to_response('coaching/add_work.html',
                         {'visiteur': v.prenom_nom(), 
                          'client': v.groupe.client,
+                         'here': 'admin',
                          'form': f3, 'groupe': g, 'cours': c, 'deadline': e  })
             else:
                 # deuxième étape, cours
@@ -163,6 +167,7 @@ def add_work(request):
                     return render_to_response('coaching/add_work.html',
                         {'visiteur': v.prenom_nom(), 
                          'client': v.groupe.client,
+                         'here': 'admin',
                             'form': f2, 'groupe': g })
     # première étape, groupe
     f = WorkForm1()
@@ -170,6 +175,7 @@ def add_work(request):
     return render_to_response('coaching/add_work.html',
         {'visiteur': v.prenom_nom(), 
          'client': v.groupe.client,
+         'here': 'admin',
         'form': f })
 add_work = visitor_is(ADMINISTRATEUR)(add_work) 
 
@@ -192,6 +198,7 @@ def maj_work(request):
             return render_to_response('coaching/maj_work.html',
                                     {'visiteur': v.prenom_nom(),
                                     'client': v.groupe.client,
+                                    'here': 'admin',
                                     'msg' : msg,
                                     'deleted': True,
                                     'groupe': w.groupe,
@@ -228,6 +235,7 @@ def maj_work(request):
             return render_to_response('coaching/maj_work.html',
                                     {'visiteur': v.prenom_nom(),
                                     'client': v.groupe.client,
+                                    'here': 'admin',
                                     'msg' : msg,
                                     'form': f,
                                     'groupe': w.groupe,
@@ -259,6 +267,7 @@ def maj_work(request):
     return render_to_response('coaching/maj_work.html',
                             {'visiteur': v.prenom_nom(),
                             'client': v.groupe.client,
+                            'here': 'admin',
                             'msg' : msg,
                             'form': f,
                             'groupe': e.groupe,
@@ -293,6 +302,7 @@ def liste_echeances(request, **kwargs):
     lf = makefilters(request.GET, lf)
     return render_to_response('coaching/liste_echeance.html',
             {'visiteur': u.prenom_nom(),
+             'here': 'admin',
              'client': u.groupe.client,
              'liste_echeances': le, 'liste_filtres': lf,})
 liste_echeances = visitor_is(ADMINISTRATEUR)(liste_echeances)
@@ -341,6 +351,7 @@ def add_echeance(request):
                     return render_to_response('coaching/add_echeance.html',
                             {'visiteur': v.prenom_nom(),
                             'client': v.groupe.client,
+                            'here': 'admin',
                             'msg' : msg,
                             'groupe': g, 'utilisateur': uf, 'cours': c, 'module': mf, 
                             'deadline': f3.cleaned_data['deadline']  })
@@ -349,7 +360,8 @@ def add_echeance(request):
                     return HttpResponseRedirect('/coaching/echeance/add/')
             else:
                 return render_to_response('coaching/add_echeance.html',
-                        {'visiteur': v.prenom_nom(), 
+                        {'visiteur': v.prenom_nom(),
+                         'here': 'admin',
                          'client': v.groupe.client,
                         'form': f3, 'groupe': g, 'utilisateur': uf, 'cours': c  })
         else:
@@ -377,6 +389,7 @@ def add_echeance(request):
                     return render_to_response('coaching/add_echeance.html',
                             {'visiteur': v.prenom_nom(), 
                              'client': v.groupe.client,
+                             'here': 'admin',
                             'form': f3, 'groupe': g, 'utilisateur': u, 'cours': c  })
             else:
                 # deuxième étape, utilisateur et cours
@@ -392,6 +405,7 @@ def add_echeance(request):
                     return render_to_response('coaching/add_echeance.html',
                             {'visiteur': v.prenom_nom(), 
                              'client': v.groupe.client,
+                             'here': 'admin',
                             'form': f2, 'groupe': g })
     # première étape, groupe
     f = EcheanceForm1()
@@ -399,6 +413,7 @@ def add_echeance(request):
     return render_to_response('coaching/add_echeance.html',
             {'visiteur': v.prenom_nom(), 
              'client': v.groupe.client,
+             'here': 'admin',
             'form': f })
 add_echeance = visitor_is(ADMINISTRATEUR)(add_echeance) 
 
@@ -427,6 +442,7 @@ def maj_echeance(request):
             return render_to_response('coaching/maj_echeance.html',
                                     {'visiteur': v.prenom_nom(),
                                     'client': v.groupe.client,
+                                    'here': 'admin',
                                     'msg' : msg,
                                     'groupe': e.groupe, 'utilisateur': u,
                                     'cours': e.cours, 'module': m,
@@ -456,6 +472,7 @@ def maj_echeance(request):
             return render_to_response('coaching/maj_echeance.html',
                                     {'visiteur': v.prenom_nom(),
                                     'client': v.groupe.client,
+                                    'here': 'admin',
                                     'msg' : msg,
                                     'form': f,
                                     'groupe': e.groupe, 'utilisateur': u,
@@ -490,6 +507,7 @@ def maj_echeance(request):
     return render_to_response('coaching/maj_echeance.html',
                             {'visiteur': v.prenom_nom(),
                             'client': v.groupe.client,
+                            'here': 'admin',
                             'msg' : msg,
                             'form': f,
                             'groupe': e.groupe, 'utilisateur': u,
@@ -709,6 +727,7 @@ def detail_utilisateur(request):
     return render_to_response('coaching/detail.html',
             {'visiteur': v.prenom_nom(),
              'client': v.groupe.client,
+             'here': 'admin',
              'admin': v.status>COACH,
              'u' : u,
              'les_cours': les_cours }) 
@@ -1117,6 +1136,7 @@ def send_email(request):
             return render_to_response('coaching/sendmail.html',
                                         {'visiteur': v.prenom_nom(),
                                          'msg': msg,
+                                         'here': 'admin',
                                          'from': v.email,
                                          'dest_list': dest_list,
                                          'subject': f.cleaned_data['subject'],
@@ -1126,6 +1146,7 @@ def send_email(request):
             return render_to_response('coaching/sendmail.html',
                                         {'visiteur': v.prenom_nom(),
                                          'from': v.email,
+                                         'here': 'admin',
                                          'dest_list': dest_list,
                                          'form': f,
                                         })
@@ -1134,6 +1155,7 @@ def send_email(request):
         return render_to_response('coaching/sendmail.html',
                                     {'visiteur': v.prenom_nom(),
                                      'from': v.email,
+                                     'here': 'admin',
                                      'dest_list': dest_list,
                                      'form': f,
                                     })

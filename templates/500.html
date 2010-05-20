@@ -8,34 +8,37 @@
 	<title>Learngest | {% block title %}{% trans "Innovative e-learning software" %}{% endblock %}</title>
 	{% block style %}
 	{% if client.style %}
-	<link rel="stylesheet" href="/media/style/{{ client.style }}" type="text/css" title="Normal" media="screen"/>
+	<link rel="stylesheet" href="/media/style/{{ client.style }}" type="text/css" media="screen" title="Normal" />
+	<link rel="stylesheet" href="/media/style/print.css" type="text/css" media="print" />
 	{% else %}
-	<link rel="stylesheet" href="/media/style/base.css" type="text/css" title="Normal" media="screen"/>
+	<link rel="stylesheet" href="/media/css/learngest.css" type="text/css" media="screen" title="Normal" />
+	<link rel="stylesheet" href="/media/style/print.css" type="text/css" media="print" />
 	{% endif %}
 	{% endblock style %}
     {% block baselink %}{% endblock baselink %}
     {% block javascript %}{% endblock javascript %}
 </head>
 <body>
-	
-<div id="header">
-<h1>eLearning
-{% if client.nom %}
- - {{ client.nom }}
-{% endif %}
-</h1>
-</div><!-- header -->
 
-<div class="menu">{% block menu %}{% endblock %}</div><!-- menu -->
+<div id="header-toolbar-container"><div id="header-toolbar">&nbsp;</div></div>
 
-<div class="breadcrumb"><p>{% block breadcrumb %}{% trans "Innovative e-learning software" %}{% endblock %}</p></div><!-- breadcrumb -->
+<div id="header-container">
+	<div id="header">
+		<h1>eLearning</h1>
+		<p>{% if client.nom %}{{ client.nom }}{% else %}{% trans "Innovative e-learning Master" %}{% endif %}</p>
+	</div>
+</div>
 
-<div class="session">{% block session %}{% endblock %}</div><!-- session -->
+<div id="content-container">
 
-<div class="corps">
-	<p>{% trans "The action you required caused an error." %}</p>
-	<p><a href="/home/">{% trans "Back to your starting page" %}</a></p>
-</div><!-- corps -->
+	<div id="breadcrumb">&nbsp;</div>
+
+	<div class="content">
+		<h1>{% trans "The action you required caused an error." %}</h1>
+		<p><a href="/home/">{% trans "Back to your starting page" %}</a></p>
+	</div><!-- END .content -->
+
+</div>
 
 <div id="footer"></div>
 

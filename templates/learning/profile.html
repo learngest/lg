@@ -1,42 +1,42 @@
-<!-- vim: set encoding=utf8 fileencoding=utf8: -->
 {% extends "in_session.html" %}
 {% load i18n %}
 
-{% block breadcrumb %}
-{% trans "profile" %}
-{% endblock breadcrumb %}
+{% block breadcrumb %}{% trans "Profile" %}{% endblock breadcrumb %}
 
 {% block content %}
 <div class="content">
 
-{% if msg %}<p class="infomsg">{{ msg|safe }}</p>{% endif %}
-<form method="post">
-<fieldset>
-    <h2>{% trans "Credentials" %}</h2>
-    <p><label for="login">{% trans "Login" %}</label> {{ v.login }}</p>
-    <p><label for="id_{{ form.newpassword.name }}">{{ form.newpassword.label }}</label> {{ form.newpassword }}</p>
-    <p><label for="id_{{ form.newpassword2.name }}">{{ form.newpassword2.label }}</label> {{ form.newpassword2 }} {{ form.errors.newpassword2 }}</p>
-</fieldset>
-<fieldset>
-    <h2>{% trans "Group" %}</h2>
-    <p><label for="groupe">{% trans "Group" %}</label> {{ v.groupe }}</p>
-</fieldset>
-<fieldset>
-    <h2>{% trans "Identity" %}</h2>
-    <p><label for="name">{% trans "Last Name" %}</label> {{ v.nom }}</p>
-    <p><label for="firstname">{% trans "First Name" %}</label> {{ v.prenom }}</p>
-    <p><label for="id_{{ form.email.name }}">{{ form.email.label }}</label> {{ form.email }} {{ form.errors.email }}</p>
-</fieldset>
-<fieldset>
-    <h2>{% trans "Valid till" %}</h2>
-    <p><label for="valid">{% trans "Valid till" %}</label> {{ v.fermeture }}</p>
-</fieldset>
-<fieldset>
-    <h2>{% trans "Language" %}</h2>
-    <p><label for="id_{{ form.langue.name }}">{{ form.langue.label }}</label> {{ form.langue }} {{ form.errors.langue }}</p>
-</fieldset>
-<input type="submit" value="{% trans "Save" %}" />
-</form>
+	{% if msg %}<p class="infomsg">{{ msg|safe }}</p>{% endif %}
+
+	<form action="" method="post">
+		<fieldset>
+		    <h2>{% trans "Credentials" %}</h2>
+		    <p><label for="login">{% trans "Login" %}</label> {{ v.login }}</p>
+		    <p><label for="id_{{ form.newpassword.name }}">{{ form.newpassword.label }}</label> {{ form.newpassword }}</p>
+		    <p><label for="id_{{ form.newpassword2.name }}">{{ form.newpassword2.label }}</label> {{ form.newpassword2 }} {{ form.errors.newpassword2 }}</p>
+		</fieldset>
+		<fieldset>
+		    <h2>{% trans "Group" %}</h2>
+		    <p><label for="groupe">{% trans "Group" %}</label> {{ v.groupe }}</p>
+		</fieldset>
+		<fieldset>
+		    <h2>{% trans "Identity" %}</h2>
+		    <p><label for="name">{% trans "Last Name" %}</label> {{ v.nom }}</p>
+		    <p><label for="firstname">{% trans "First Name" %}</label> {{ v.prenom }}</p>
+		    <p{% if form.email.errors %} class="error"{% endif %}><label for="id_{{ form.email.name }}">{{ form.email.label }}</label> {{ form.email }} {{ form.errors.email }}</p>
+		</fieldset>
+		<fieldset>
+		    <h2>{% trans "Valid till" %}</h2>
+		    <p><label for="valid">{% trans "Valid till" %}</label> {{ v.fermeture }}</p>
+		</fieldset>
+		<fieldset>
+		    <h2>{% trans "Language" %}</h2>
+		    <p><label for="id_{{ form.langue.name }}">{{ form.langue.label }}</label> {{ form.langue }} {{ form.errors.langue }}</p>
+		</fieldset>
+		<fieldset class="submit">
+			<input type="submit" value="{% trans "Save" %}" />
+		</fieldset>
+	</form>
 
 </div><!-- END .content -->
 {% endblock content %}

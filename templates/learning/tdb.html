@@ -1,4 +1,3 @@
-<!-- vim: set encoding=utf8: -->
 {% extends "in_session.html" %}
 {% load i18n %}
 
@@ -7,98 +6,102 @@
 {% block content %}
 <div class="content">
 
-<h2>{% trans "Welcome to your dashboard" %}</h2>
-<p>
-{% trans "You are " %} {{ visiteur }}.
-({% trans "If you are not" %} {{ prenom }}, <a href="/login/">{% trans "please log in" %}</a>)
-</p>
+	<h1>{% trans "Welcome to your dashboard" %}</h1>
+	<p>
+	{% trans "You are " %} <strong>{{ visiteur }}</strong>.
+	({% trans "If you are not" %} {{ prenom }}, <a href="/login/">{% trans "please log in" %}</a>)
+	</p>
 
-<div class="info">
-	<h2>{% trans "Information" %}</h2>
-	<p>{% trans "Click on the module name to get details about its contents, tests and your results." %}</p>
-	<p>{% trans "Click on the icons in the contents column to read the contents." %}</p>
-	<p>{% trans "Click on the current test link to go to the last test you tried or the first one if you did not try any yet." %}</p>
-</div>
+	<div class="info">
+		<h2>{% trans "Information" %}</h2>
+		<p>{% trans "Click on the module name to get details about its contents, tests and your results." %}</p>
+		<p>{% trans "Click on the icons in the contents column to read the contents." %}</p>
+		<p>{% trans "Click on the current test link to go to the last test you tried or the first one if you did not try any yet." %}</p>
+	</div>
 
-<h2>{% trans "Common Documentation" %}</h2>
-<ul>
-	<li><a href="/learning/common/faq/">{% trans "Frequently Asked Questions" %}</a></li>
-	<li><a href="/learning/common/glossaire/">{% trans "Glossary" %}</a></li>
-</ul>
+	<div class="admin-item">
+		<h2>{% trans "Common Documentation" %}</h2>
+		<ul>
+			<li><a href="/learning/common/faq/">{% trans "Frequently Asked Questions" %}</a></li>
+			<li><a href="/learning/common/glossaire/">{% trans "Glossary" %}</a></li>
+		</ul>
+	</div>
 
-{% for cours in les_cours %}
-<h2>{{ cours.title }}</h2>
-<table>
-<thead>
-<tr>
-<th style="width: 35%;">{% trans "Module" %}</th>
-<th style="width: 15%;">{% trans "Deadline" %}</th>
-<th style="text-align: center;">{% trans "Contents" %}</th>
-<th style="text-align: center;">{% if test %}{% trans "Tests" %}{% endif %}</th>
-<th style="text-align: center;">{% trans "Progress" %}</th>
-</tr>
-</thead>
-<tbody>
-{% for module in cours.modules %}
-<tr class="{% cycle odd,even %}{% if not module.ouvert %} closed{% endif %}">
-{% if module.ouvert %}
-<td><a href="{{ module.url }}">{{ module.title }}</a></td>
-<td{% if module.retard %} class="retard"{% endif %}>{{ module.echeance }}</td>
-<td style="text-align: center;">
-	{% for doc in module.docs %}
-	<a href="{{ doc.url }}"><img src="{{ doc.img }}" alt="{{ doc.type }}" /></a>
-    &nbsp;
+	{% for cours in les_cours %}
+	<div class="admin-item">
+		<h2>{{ cours.title }}</h2>
+		<table>
+			<thead>
+			<tr>
+				<th style="width: 35%;">{% trans "Module" %}</th>
+				<th style="width: 15%;">{% trans "Deadline" %}</th>
+				<th class="center">{% trans "Contents" %}</th>
+				<th class="center">{% if test %}{% trans "Tests" %}{% endif %}</th>
+				<th class="center">{% trans "Progress" %}</th>
+			</tr>
+			</thead>
+			<tbody>
+			{% for module in cours.modules %}
+			<tr class="{% cycle odd,even %}{% if not module.ouvert %} closed{% endif %}">
+				{% if module.ouvert %}
+				<td><a href="{{ module.url }}">{{ module.title }}</a></td>
+				<td{% if module.retard %} class="retard"{% endif %}>{{ module.echeance }}</td>
+				<td class="center">
+					{% for doc in module.docs %}
+					<a href="{{ doc.url }}"><img src="{{ doc.img }}" alt="{{ doc.type }}" /></a>
+				    &nbsp;
+					{% endfor %}
+				</td>
+				<!-- <td><a href="/testing/{{ module.curtestid }}/">{{ module.curtest }}</a></td> -->
+				<td class="center">{{ module.gsc }}</td>
+				<td class="center">{{ module.progress }}</td>
+				{% else %}
+				<td>{{ module.title }}</td>
+				<td{% if module.retard %} class="retard"{% endif %}>{{ module.echeance }}</td>
+				<td></td>
+				<td></td>
+				<td class="center">{{ module.progress }}</td>
+				{% endif %}
+			</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		{% if cours.devoirs %}
+		<table>
+			<thead>
+			<tr>
+				<th style="width: 35%;">{% trans "Assignment" %}</th>
+				<th style="width: 15%;">{% trans "Deadline" %}</th>
+				<th>{% trans "Uploaded on" %}</th>
+				<th style="width: 15%;">{% trans "Signature" %}</th>
+			</tr>
+			</thead>
+			<tbody>
+			{% for devoir in cours.devoirs %}
+				<tr class="{% cycle odd,even %}{% if not devoir.open %} closed{% endif %}">
+				{% if not devoir.rendu_le %}
+				<td><a href="{{ devoir.url }}">{{ devoir.titre }}</a></td>
+				<td{% if devoir.retard %} class="retard"{% endif %}>{{ devoir.echeance }}</td>
+				<td></td>
+				<td></td>
+				{% else %}
+				<td>{{ devoir.titre }}</td>
+				<td{% if devoir.retard %} class="retard"{% endif %}>{{ devoir.echeance }}</td>
+				{% if devoir.rendu_le %}
+				<td>{{ devoir.rendu_le }}</td>
+				<td>{{ devoir.signature }}</td>
+				{% else %}
+				<td></td>
+				<td></td>
+				{% endif %}
+				{% endif %}
+			</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		{% endif %}
+	</div><!-- END .item -->
 	{% endfor %}
-</td>
-<!-- <td><a href="/testing/{{ module.curtestid }}/">{{ module.curtest }}</a></td> -->
-<td style="text-align: center;">{{ module.gsc }}</td>
-<td style="text-align: center;">{{ module.progress }}</td>
-{% else %}
-<td>{{ module.title }}</td>
-<td{% if module.retard %} class="retard"{% endif %}>{{ module.echeance }}</td>
-<td></td>
-<td></td>
-<td style="text-align: center;">{{ module.progress }}</td>
-{% endif %}
-</tr>
-{% endfor %}
-</tbody>
-</table>
-{% if cours.devoirs %}
-<table>
-<thead>
-<tr>
-<th style="width: 35%;">{% trans "Assignment" %}</th>
-<th style="width: 15%;">{% trans "Deadline" %}</th>
-<th>{% trans "Uploaded on" %}</th>
-<th style="width: 15%;">{% trans "Signature" %}</th>
-</tr>
-</thead>
-<tbody>
-{% for devoir in cours.devoirs %}
-<tr class="{% cycle odd,even %}{% if not devoir.open %} closed{% endif %}">
-{% if not devoir.rendu_le %}
-<td><a href="{{ devoir.url }}">{{ devoir.titre }}</a></td>
-<td{% if devoir.retard %} class="retard"{% endif %}>{{ devoir.echeance }}</td>
-<td></td>
-<td></td>
-{% else %}
-<td>{{ devoir.titre }}</td>
-<td{% if devoir.retard %} class="retard"{% endif %}>{{ devoir.echeance }}</td>
-{% if devoir.rendu_le %}
-<td>{{ devoir.rendu_le }}</td>
-<td>{{ devoir.signature }}</td>
-{% else %}
-<td></td>
-<td></td>
-{% endif %}
-{% endif %}
-</tr>
-{% endfor %}
-</tbody>
-</table>
-{% endif %}
-{% endfor %}
 
 </div><!-- END .content -->
 {% endblock content %}

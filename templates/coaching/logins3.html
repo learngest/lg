@@ -1,66 +1,61 @@
-<!-- vim: set encoding=utf8 fileencoding=utf8: -->
 {% extends "in_session.html" %}
 {% load i18n %}
 
-{% block menu %}
-<p><a href="/logout/">{% trans "Log out" %}</a></p>
-<p><a href="/learning/profile/">{% trans "My account" %}</a></p>
-<p><a href="/learning/tdb/">{% trans "Dashboard" %}</a></p>
-<p><a href="/coaching/">{% trans "Administration" %}</a></p>
-{% endblock menu %}
-
 {% block breadcrumb %}
-<a href="/coaching/">{% trans "administration" %}</a>
+<a href="{% url c_admin %}">{% trans "administration" %}</a>
 &gt; {% trans "create logins" %}
 {% endblock breadcrumb %}
 
 {% block content %}
-{% if msg %}<p class="infomsg">{{ msg|safe }}</p>{% endif %}
-{% if errmsg %}<p class="errmsg">{{ errmsg|safe }}</p>{% endif %}
+<div class="content">
+
+	{% if msg %}<p class="infomsg">{{ msg|safe }}</p>{% endif %}
+	{% if errmsg %}<p class="errmsg">{{ errmsg|safe }}</p>{% endif %}
     
-<form>
-<fieldset>
-<h2>{% trans "File" %}</h2>
-<p><label for="fsource">{% trans "Logins file" %}</label> <a href="/upload/{{ usource }}">{{ fsource }}</a></p>
-</fieldset>
+	<form action="">
+		<fieldset>
+			<h2>{% trans "File" %}</h2>
+			<p><label for="fsource">{% trans "Logins file" %}</label> <a href="/upload/{{ usource }}">{{ fsource }}</a></p>
+		</fieldset>
 
-<fieldset>
-<h2>{% trans "Group" %}</h2>
-<p><label for="groupe">{% trans "Group" %}</label>{{ groupe.nom }}</p>
-</fieldset>
+		<fieldset>
+			<h2>{% trans "Group" %}</h2>
+			<p><label for="groupe">{% trans "Group" %}</label>{{ groupe.nom }}</p>
+		</fieldset>
 
-<fieldset>
-<h2>{% trans "Settings" %}</h2>
-<p><label for="langue">{% trans "Preferred language" %}</label> {{ langue }}</p>
-<p><label for="fermeture">{% trans "Valid till" %}</label> {{ fermeture }}</p>
-<p><label for="envoi_mail">{% trans "Send credentials by mail" %}</label> {% if envoi_mail %}{% trans "Yes" %}{% else %}{% trans "No" %}{% endif %}</p>
-</fieldset>
+		<fieldset>
+			<h2>{% trans "Settings" %}</h2>
+			<p><label for="langue">{% trans "Preferred language" %}</label> {{ langue }}</p>
+			<p><label for="fermeture">{% trans "Valid till" %}</label> {{ fermeture }}</p>
+			<p><label for="envoi_mail">{% trans "Send credentials by mail" %}</label> {% if envoi_mail %}{% trans "Yes" %}{% else %}{% trans "No" %}{% endif %}</p>
+		</fieldset>
 
-<h2>{% trans "Status of logins creation" %}</h2>
-<table>
-<thead>
-<tr>
-<th>{% trans "Last name" %}</th>
-<th>{% trans "First name" %}</th>
-<th>{% trans "Email" %}</th>
-<th>{% trans "Login" %}</th>
-<th>{% trans "Password" %}</th>
-<th>{% trans "Status" %}</th>
-</tr>
-</thead>
-<tbody>
-{% for login in logins %}
-<tr class="{% cycle odd,even %}">
-<td>{{ login.nom }}</td>
-<td>{{ login.prenom }}</td>
-<td>{{ login.email }}</td>
-<td>{{ login.login }}</td>
-<td>{{ login.password }}</td>
-<td>{{ login.status }}</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-</form>
+		<h2>{% trans "Status of logins creation" %}</h2>
+		<table>
+		<thead>
+		<tr>
+			<th>{% trans "Last name" %}</th>
+			<th>{% trans "First name" %}</th>
+			<th>{% trans "Email" %}</th>
+			<th>{% trans "Login" %}</th>
+			<th>{% trans "Password" %}</th>
+			<th>{% trans "Status" %}</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for login in logins %}
+		<tr class="{% cycle odd,even %}">
+			<td>{{ login.nom }}</td>
+			<td>{{ login.prenom }}</td>
+			<td>{{ login.email }}</td>
+			<td>{{ login.login }}</td>
+			<td>{{ login.password }}</td>
+			<td>{{ login.status }}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+	</form>
 
+</div><!-- END .content -->
 {% endblock content %}

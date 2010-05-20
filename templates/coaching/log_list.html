@@ -1,22 +1,15 @@
-<!-- vim: set encoding=utf8: -->
 {% extends "in_session.html" %}
 {% load i18n %}
 
-{% block menu %}
-<p><a href="/logout/">{% trans "Log out" %}</a></p>
-<p><a href="/learning/profile/">{% trans "My account" %}</a></p>
-<p><a href="/learning/tdb/">{% trans "Dashboard" %}</a></p>
-<p><a href="/coaching/">{% trans "Administration" %}</a></p>
-{% endblock menu %}
-
 {% block breadcrumb %}
-<a href="/coaching/">{% trans "administration" %}</a>
+<a href="{% url c_admin %}">{% trans "administration" %}</a>
 &gt; {% trans "logs" %}
 {% endblock breadcrumb %}
 
-
 {% block content %}
-<h3>{% trans "Logs" %}</h3>
+<div class="content">
+
+<h1>{% trans "Logs" %}</h1>
 <table>
 <thead>
 <tr>
@@ -55,4 +48,6 @@
 </span>
 {% endif %}
 </p>
+
+</div><!-- END .content -->
 {% endblock content %}

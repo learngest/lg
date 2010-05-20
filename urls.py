@@ -18,10 +18,6 @@ urlpatterns = patterns('',
 
 # Developpement
 if settings.SITE_ID==1:
-    
-    print settings.PROJECT_PATH
-    print os.path.join(settings.PROJECT_PATH, 'web/media')
-    
     contents_root = os.path.join(settings.PROJECT_PATH, settings.CONTENTS_PREFIX)
     contents_root = os.path.normpath(contents_root)
     uploads_root = os.path.join(settings.PROJECT_PATH, settings.MEDIA_ROOT)

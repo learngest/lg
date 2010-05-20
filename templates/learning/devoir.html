@@ -1,30 +1,36 @@
-<!-- vim: set encoding=utf8: -->
 {% extends "in_session.html" %}
 {% load i18n %}
 
 {% block breadcrumb %}
-<a href="/learning/tdb/">{% trans "dashboard" %}</a>
+<a href="{% url l_dashboard %}">{% trans "dashboard" %}</a>
 &gt; {% trans "assignment" %}
 {% endblock breadcrumb %}
 
 {% block content %}
-<h2>{{ devoir.titre }}</h2>
-<form enctype="multipart/form-data" method="post">
-<fieldset>
-<h2>{% trans "Assignment" %}</h2>
-<p>{{ devoir.libel }}</p>
-{% if devoir.fname %}
-<p>{% trans "Download additional document:" %} <a href="{{ devoir.url }}">{{ devoir.fname }}</a></p>
-{% endif %}
-</fieldset>
-<fieldset>
-<h2>{% trans "Upload your work" %}</h2>
-{% if fichier %}
-<p>{% trans "Succesfully uploaded" %} {{ fichier }} {% trans ", signature is" %} {{ signature }}</p>
-{% else %}
-<p><label for="id_{{ form.fichier.name }}">{{ form.fichier.label }}</label> {{ form.fichier }} {{ form.errors.fichier }}</p>
-</fieldset>
-<input type="submit" value="{% trans "Save" %}" name="save" />
-{% endif %}
+<div class="content">
+
+<h1>{{ devoir.titre }}</h1>
+
+<form action="" enctype="multipart/form-data" method="post">
+	<fieldset>
+		<h2>{% trans "Assignment" %}</h2>
+		<p>{{ devoir.libel }}</p>
+		{% if devoir.fname %}
+		<p>{% trans "Download additional document:" %} <a href="{{ devoir.url }}">{{ devoir.fname }}</a></p>
+		{% endif %}
+	</fieldset>
+	<fieldset>
+		<h2>{% trans "Upload your work" %}</h2>
+		{% if fichier %}
+		<p>{% trans "Succesfully uploaded" %} {{ fichier }} {% trans ", signature is" %} {{ signature }}</p>
+		{% else %}
+		<p><label for="id_{{ form.fichier.name }}">{{ form.fichier.label }}</label> {{ form.fichier }} {{ form.errors.fichier }}</p>
+	</fieldset>
+	<fieldset class="submit">
+		<input type="submit" value="{% trans "Save" %}" name="save" />
+	</fieldset>
+	{% endif %}
 </form>
+
+</div><!-- END .content -->
 {% endblock content %}

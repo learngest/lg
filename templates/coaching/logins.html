@@ -30,7 +30,9 @@
 		<p><label for="id_{{ form.envoi_mail.name }}">{{ form.envoi_mail.label }}</label> {{ form.envoi_mail }} {{ form.errors.envoi_mail }}</p>
 	</fieldset>
 
-	<input type="submit" value="{% trans "Save" %}" />
+	<fieldset class="submit">
+		<input type="submit" value="{% trans "Save" %}" />
+	</fieldset>
 
 </form>
 

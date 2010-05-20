@@ -1,4 +1,3 @@
-<!-- vim: set encoding=utf8 fileencoding=utf8: -->
 {% extends "in_session.html" %}
 {% load i18n %}
 
@@ -7,89 +6,84 @@
     <script type="text/javascript" src="/media/js/jquery.tablesorter.js"></script>
 {% endblock javascript %}
 
-{% block breadcrumb %}{% trans "coaching" %} &gt; {% trans "list" %}{% endblock breadcrumb %}
+{% block breadcrumb %}{% trans "Coaching" %} &gt; {% trans "List" %}{% endblock breadcrumb %}
 
 {% block content %}
-<div id="rightcol">
-	<h2>{% trans "Filter" %}</h2>
-    {% for filtre in liste_filtres %}
-    <h3>{% trans "By " %}{{ filtre.title }}</h3>
-	<ul>
-        {% for item in filtre.valeurs %}
-        {% if item.selected %}<li class="selected">{{ item.libel }}{% else %}<li><a href="?{{ item.url }}">{{ item.libel }}</a>{% endif %}</li>
-		{% endfor %}
-	</ul>	
-    {% endfor %}
-</div>
+<div class="content">
 
-{% if liste_utilisateurs %}
-<h2>{% trans "Students management" %} 
-{% if gid %}
- - {{ gid.nom }}</h2>
-<p class="nop"><a href="/coaching/sendmail/?gid={{ gid.id }}">{% trans "Send a mail to this group" %}</a></p>
-<p class="nop"><a href="/coaching/csv/?gid={{ gid.id }}">{% trans "Save this table as a .csv file" %}</a></p>
-<p class="nop"><a href="/coaching/timecsv/?gid={{ gid.id }}">{% trans "Get a report of time spent per module as a .csv file" %}</a></p>
-{%if gid.workdone %}
-<p class="nop">{% trans "Download works from this group:" %}</p>
-<ul>
-{% for work in gid.workdone %}
-<li class="nop"><a href="/upload/workdone/{{ work }}">{{ work }}</a></li>
-{% endfor %}
-</ul>
-{% endif %}
-{% else %}
-</h2>
-{% endif %}
+{% include 'includes/filter.html' %}
 
-<div class="panel">
-<h2>{% trans "Information" %}</h2>
-<p>{% trans "Time spent by the students is estimated and should not be seen as accurate." %}<br />
-</p>
-</div>
-<p></p>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#liste").tablesorter({ widgets: ['zebra']});
-		{% if gid %}
-		var c = [[0,0]];
-		{% else %}
-		var c = [[0,0],[1,0]];
-		{% endif %}
-        $("#liste").trigger("sorton",[c]);
-        return false;
-})
-</script>
-	<table id="liste">
-		<thead>
-			<tr>
-				{% if not gid %}
-				<th>{% trans "Group" %}</th>
-				{% endif %}
-				<th>{% trans "Name" %}</th>
-				<th>{% trans "Login" %}</th>
-				<th style="text-align: center;">{% trans "Progress" %}</th>
-				<th style="text-align: center;">{% trans "Done Late" %}</th>
-				<th style="text-align: center;">{% trans "Time Spent" %}</th>
-				<th style="text-align: center;">{% trans "Last Work" %}</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for utilisateur in liste_utilisateurs %}
-			<tr>
-				{% if not gid %}
-				<td>{{ utilisateur.groupe.nom }}</td>
-				{% endif %}
-				<td>{{ utilisateur.nom_prenom }}</td>
-				<td><a href="/coaching/detail/?id={{ utilisateur.id }}">{{ utilisateur.login }}</a></td>
-				<td style="text-align: center;">{{ utilisateur.nb_valides }}/{{ utilisateur.nb_modules }}</td>
-                <td style="text-align: center;">{{ utilisateur.nb_retards }}</td>
-				<td style="text-align: center;">{{ utilisateur.time_elapsed }}</td>
-                <td style="text-align: center;">{% if utilisateur.lastw %}{{ utilisateur.lastw }}{% endif %}</td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+	{% if not liste_utilisateurs %}
+		<p>{% trans "This group is empty" %}</p>
+
 	{% else %}
-	<p>{% trans "This group is empty" %}</p>
-{% endif %}
+
+		<h1>{% trans "Students management" %}{% if gid %} - {{ gid.nom }}{% endif %}</h1>
+		{% if gid %}
+		<ul>
+			<li><a href="{% url c_sendmail %}?gid={{ gid.id }}">{% trans "Send a mail to this group" %}</a></li>
+			<li><a href="{% url c_csv %}?gid={{ gid.id }}">{% trans "Save this table as a .csv file" %}</a></li>
+			<li><a href="{% url c_timecsv %}?gid={{ gid.id }}">{% trans "Get a report of time spent per module as a .csv file" %}</a></li>
+		</ul>
+		{% endif %}
+		{%if gid.workdone %}
+		<p class="nop">{% trans "Download works from this group:" %}</p>
+		<ul>
+		{% for work in gid.workdone %}
+			<li class="nop"><a href="/upload/workdone/{{ work }}">{{ work }}</a></li>
+		{% endfor %}
+		</ul>
+		{% endif %}
+
+		<div class="panel">
+		<h2>{% trans "Information" %}</h2>
+		<p>{% trans "Time spent by the students is estimated and should not be seen as accurate." %}<br />
+		</p>
+		</div>
+
+		<script type="text/javascript">
+		    $(document).ready(function() {
+		        $("#liste").tablesorter({ widgets: ['zebra']});
+				{% if gid %}
+				var c = [[0,0]];
+				{% else %}
+				var c = [[0,0],[1,0]];
+				{% endif %}
+		        $("#liste").trigger("sorton",[c]);
+		        return false;
+		})
+		</script>
+			<table id="liste">
+				<thead>
+					<tr>
+						{% if not gid %}
+						<th>{% trans "Group" %}</th>
+						{% endif %}
+						<th>{% trans "Name" %}</th>
+						<th>{% trans "Login" %}</th>
+						<th class="center">{% trans "Progress" %}</th>
+						<th class="center">{% trans "Done Late" %}</th>
+						<th class="center">{% trans "Time Spent" %}</th>
+						<th class="center">{% trans "Last Work" %}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for utilisateur in liste_utilisateurs %}
+					<tr>
+						{% if not gid %}
+						<td>{{ utilisateur.groupe.nom }}</td>
+						{% endif %}
+						<td>{{ utilisateur.nom_prenom }}</td>
+						<td><a href="{% url c_detail %}?id={{ utilisateur.id }}">{{ utilisateur.login }}</a></td>
+						<td class="center">{{ utilisateur.nb_valides }}/{{ utilisateur.nb_modules }}</td>
+		                <td class="center">{{ utilisateur.nb_retards }}</td>
+						<td class="center">{{ utilisateur.time_elapsed }}</td>
+		                <td class="center">{% if utilisateur.lastw %}{{ utilisateur.lastw }}{% endif %}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+	{% endif %}
+
+</div><!-- END .content -->
 {% endblock content %}

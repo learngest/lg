@@ -1,0 +1,15 @@
+{% load i18n %}
+{% if liste_filtres %}
+<div class="filter">
+	<h2>{% trans "Filter" %}</h2>
+	{% for filtre in liste_filtres %}
+	<h3>{% trans "By " %}{{ filtre.title }}</h3>
+	<ul class="changelist-filter">
+		{% for item in filtre.valeurs %}
+		<li{% if item.selected %} class="selected"{% endif %}><a href="?{{ item.url }}">{{ item.libel }}</a>{% if not forloop.last %} | {% endif %}</li>
+		{% endfor %}
+	</ul>
+	<br />
+	{% endfor %}
+</div>
+{% endif %}

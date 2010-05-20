@@ -1,38 +1,36 @@
-<!-- vim: set encoding=utf8 fileencoding=utf8: -->
 {% extends "in_session.html" %}
 {% load i18n %}
 
-{% block menu %}
-<p><a href="/logout/">{% trans "Log out" %}</a></p>
-<p><a href="/learning/profile/">{% trans "My account" %}</a></p>
-<p><a href="/learning/tdb/">{% trans "Dashboard" %}</a></p>
-<p><a href="/coaching/">{% trans "Administration" %}</a></p>
-{% endblock menu %}
-
 {% block breadcrumb %}
-<a href="/coaching/">{% trans "administration" %}</a>
+<a href="{% url c_admin %}">{% trans "administration" %}</a>
 &gt; {% trans "email" %}
 {% endblock breadcrumb %}
 
 {% block content %}
-<h2>{% trans "Send an email" %}</h2>
-{% if msg %}
-<p class="infomsg">{{ msg|safe }}</p>
-{% endif %}
-<form enctype="multipart/form-data" method="post">
-<fieldset>
-<h2>{% trans "Message" %}</h2>
-<p><label for="from">{% trans "From" %}</label> {{ visiteur }} &lt;{{ from }}&gt;</p>
-<p><label for="to">{% trans "To" %}</label>{% for dest in dest_list %}{{ dest }}{% if forloop.last %} {% else %}, {% endif %}{% endfor %}</p>
-{% if msg %}
-<p><label for="id_subject">{% trans "Subject" %}</label> {{ subject }} </p>
-<p><label for="id_content">{% trans "Message" %}</label></p>
-<p> {{ content }} </p>
-{% else %}
-<p><label for="id_{{ form.subject.name }}">{{ form.subject.label }}</label> {{ form.subject }} {{ form.errors.subject }}</p>
-    <p><label for="id_{{ form.content.name }}">{{ form.content.label }}</label> {{ form.content }}</p>
-</fieldset>
-<input type="submit" value="{% trans "Send" %}" />
-{% endif %}
-</form>
+<div class="content">
+
+	<h1>{% trans "Send an email" %}</h1>
+
+	{% if msg %}<p class="infomsg">{{ msg|safe }}</p>{% endif %}
+
+	<form action="" enctype="multipart/form-data" method="post">
+		<fieldset>
+			<h2>{% trans "Message" %}</h2>
+			<p><label for="from">{% trans "From" %}</label> {{ visiteur }} &lt;{{ from }}&gt;</p>
+			<p><label for="to">{% trans "To" %}</label>{% for dest in dest_list %}{{ dest }}{% if forloop.last %} {% else %}, {% endif %}{% endfor %}</p>
+			{% if msg %}
+			<p><label for="id_subject">{% trans "Subject" %}</label> {{ subject }} </p>
+			<p><label for="id_content">{% trans "Message" %}</label></p>
+			<p> {{ content }} </p>
+			{% else %}
+			<p{% if form.subject.errors %} class="error"{% endif %}><label for="id_{{ form.subject.name }}">{{ form.subject.label }}</label> {{ form.subject }} {{ form.errors.subject }}</p>
+			<p><label for="id_{{ form.content.name }}">{{ form.content.label }}</label> {{ form.content }}</p>
+		</fieldset>
+		<fieldset class="submit">
+			<input type="submit" value="{% trans "Send" %}" />
+		</fieldset>
+		{% endif %}
+	</form>
+
+</div><!-- END .content -->
 {% endblock content %}

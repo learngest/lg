@@ -1,45 +1,46 @@
-<!-- vim: set encoding=utf8: -->
 {% extends "in_session.html" %}
 {% load i18n %}
 
-{% block menu %}
-<p><a href="/logout/">{% trans "Log out" %}</a></p>
-<p><a href="/learning/profile/">{% trans "My account" %}</a></p>
-<p><a href="/learning/tdb/">{% trans "Dashboard" %}</a></p>
-<p><a href="/coaching/">{% trans "Administration" %}</a></p>
-{% endblock menu %}
-
 {% block breadcrumb %}
-<a href="/coaching/">{% trans "administration" %}</a>
+<a href="{% url c_admin %}">{% trans "administration" %}</a>
 {% if admin %}
-&gt; <a href="/coaching/lista/?l">{% trans "students" %}</a>
+&gt; <a href="{% url c_lista %}?l">{% trans "students" %}</a>
 {% endif %}
-&gt; <a href="/coaching/detail/?id={{ u.id }}">{% trans "detail" %}</a>
+&gt; <a href="{% url c_detail %}?id={{ u.id }}">{% trans "detail" %}</a>
 &gt; {% trans "log" %}
 {% endblock breadcrumb %}
 
 
 {% block content %}
-<h2>{{ u.prenom_nom }}</h2>
-{% if admin %}
-<p><a href="/coaching/ficha/{{ u.login }}/">{% trans "Change this user's profile" %}</a></p>
-{% endif %}
-<p><a href="/coaching/detail/?id={{ u.id }}">{% trans "Back to this user's details" %}</a></p>
-<h3>{% trans "Log : 50 last pages viewed" %}</h3>
-<table>
-<thead>
-<tr>
-<th style="width: 35%;">{% trans "Date" %}</th>
-<th>{% trans "Url" %}</th>
-</tr>
-</thead>
-<tbody>
-{% for log in logs %}
-<tr class="{% cycle odd,even %}">
-<td>{{ log.date }}</td>
-<td>{{ log.path }}{% if log.qstring %}?{{ log.qstring }}{% endif %}</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
+<div class="content">
+
+	<div class="admin-item">
+		<h1>{{ u.prenom_nom }}</h1>
+		<ul>
+			{% if admin %}<li><a href="{% url c_ficha utilisateur=u.login %}">{% trans "Change this user's profile" %}</a></li>{% endif %}
+			<li><a href="{% url c_detail %}?id={{ u.id }}">{% trans "Back to this user's details" %}</a></li>
+		</ul>
+	</div>
+
+	<div class="admin-item">
+		<h2>{% trans "Log : 50 last pages viewed" %}</h2>
+		<table>
+			<thead>
+				<tr>
+					<th style="width: 35%;">{% trans "Date" %}</th>
+					<th>{% trans "Url" %}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for log in logs %}
+				<tr class="{% cycle odd,even %}">
+					<td>{{ log.date }}</td>
+					<td>{{ log.path }}{% if log.qstring %}?{{ log.qstring }}{% endif %}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+</div><!-- END .content -->
 {% endblock content %}

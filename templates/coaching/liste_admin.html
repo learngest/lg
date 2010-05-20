@@ -6,101 +6,90 @@
     <script type="text/javascript" src="/media/js/jquery.tablesorter.js"></script>
 {% endblock javascript %}
 
-{% block breadcrumb %}<a href="{% url c_admin %}">{% trans "administration" %}</a> &gt; {% trans "students" %}{% endblock breadcrumb %}
+{% block breadcrumb %}<a href="{% url c_admin %}">{% trans "Administration" %}</a> &gt; {% trans "Students" %}{% endblock breadcrumb %}
 
 {% block content %}
 <div class="content">
-	
-	{% if liste_filtres %}
-	<div class="filter">
-		<h2>{% trans "Filter" %}</h2>
-		{% for filtre in liste_filtres %}
-		<h3>{% trans "By " %}{{ filtre.title }}</h3>
-		<ul class="changelist-filter">
-			{% for item in filtre.valeurs %}
-			<li{% if item.selected %} class="selected"{% endif %}><a href="?{{ item.url }}">{{ item.libel }}</a>{% if not forloop.last %} | {% endif %}</li>
-			{% endfor %}
-		</ul>
-		<br class="clear" />
-		{% endfor %}
-	</div>
-	{% endif %}
 
+	{% include 'includes/filter.html' %}
 
-{% if liste_utilisateurs %}
-<h2>{% trans "Students management" %} 
-{% if gid %}
- - {{ gid.nom }}</h2>
-<p class="nop"><a href="/coaching/sendmail/?gid={{ gid.id }}">{% trans "Send a mail to this group" %}</a></p>
-<p class="nop"><a href="/coaching/csv/?gid={{ gid.id }}">{% trans "Save this table as a .csv file" %}</a></p>
-<p class="nop"><a href="/coaching/timecsv/?gid={{ gid.id }}">{% trans "Get a report of time spent per module as a .csv file" %}</a></p>
-{%if gid.workdone %}
-<p class="nop">{% trans "Download works from this group:" %}</p>
-<ul>
-{% for work in gid.workdone %}
-<li class="nop"><a href="/upload/workdone/{{ work }}">{{ work }}</a></li>
-{% endfor %}
-</ul>
-{% endif %}
-{% else %}
-</h2>
-{% endif %}
+	{% if not liste_utilisateurs %}
 
-<div class="info">
-	<h2>{% trans "Information" %}</h2>
-	<p>{% trans "Time spent by the students is estimated and should not be seen as accurate." %}<br />
-		{% trans "The number of currently late modules is calculated once per day on midnight (Europe/Paris time)." %}</p>
-</div>
+		<p>{% trans "This group is empty" %}</p>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#lista").tablesorter({ widgets: ['zebra']});
-		{% if gid %}
-		var c = [[0,0]];
-		{% else %}
-		var c = [[0,0],[1,0]];
-		{% endif %}
-        $("#lista").trigger("sorton",[c]);
-        return false;
-})
-</script>
-	<table id="lista">
-		<thead>
-			<tr>
-				{% if not gid %}
-				<th>{% trans "Group" %}</th>
-				{% endif %}
-				<th>{% trans "Name" %}</th>
-				<th>{% trans "Login" %}</th>
-				<th style="text-align: center;">{% trans "Modules" %}</th>
-				<th style="text-align: center;">{% trans "Done" %}</th>
-				<th style="text-align: center;">{% trans "Done Late" %}</th>
-				<th style="text-align: center;">{% trans "Cur. Late" %}</th>
-				<th style="text-align: center;">{% trans "Time Spent" %}</th>
-				<th style="text-align: center;">{% trans "Last Work" %}</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for utilisateur in liste_utilisateurs %}
-            <tr>
-				{% if not gid %}
-				<td>{{ utilisateur.groupe.nom }}</td>
-				{% endif %}
-				<td>{{ utilisateur.nom_prenom }}</td>
-				<td><a href="/coaching/detail/?id={{ utilisateur.id }}">{{ utilisateur.login }}</a></td>
-				<td style="text-align: center;">{{ utilisateur.nb_modules }}</td>
-                <td style="text-align: center;">{{ utilisateur.nb_valides }}</td>
-                <td style="text-align: center;">{{ utilisateur.nb_retards }}</td>
-				<td style="text-align: center;">{{ utilisateur.nb_actuel }}</td>
-				<td style="text-align: center;">{{ utilisateur.time_elapsed }}</td>
-                <td style="text-align: center;">{% if utilisateur.lastw %}{{ utilisateur.lastw }}{% endif %}</td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
 	{% else %}
-	<p>{% trans "This group is empty" %}</p>
-{% endif %}
+
+		<h1>{% trans "Students management" %}{% if gid %} - {{ gid.nom }}{% endif %}</h1>
+		{% if gid %}
+		<ul>
+			<li><a href="{% url c_sendmail %}?gid={{ gid.id }}">{% trans "Send a mail to this group" %}</a></li>
+			<li><a href="{% url c_csv %}?gid={{ gid.id }}">{% trans "Save this table as a .csv file" %}</a></li>
+			<li><a href="{% url c_timecsv %}?gid={{ gid.id }}">{% trans "Get a report of time spent per module as a .csv file" %}</a></li>
+		</ul>
+		{% endif %}
+		{%if gid.workdone %}
+		<p class="nop">{% trans "Download works from this group:" %}</p>
+		<ul>
+		{% for work in gid.workdone %}
+			<li class="nop"><a href="/upload/workdone/{{ work }}">{{ work }}</a></li>
+		{% endfor %}
+		</ul>
+		{% endif %}
+
+		<div class="info">
+			<h2>{% trans "Information" %}</h2>
+			<p>{% trans "Time spent by the students is estimated and should not be seen as accurate." %}<br />
+				{% trans "The number of currently late modules is calculated once per day on midnight (Europe/Paris time)." %}</p>
+		</div>
+
+		<script type="text/javascript">
+		    $(document).ready(function() {
+		        $("#lista").tablesorter({ widgets: ['zebra']});
+				{% if gid %}
+				var c = [[0,0]];
+				{% else %}
+				var c = [[0,0],[1,0]];
+				{% endif %}
+		        $("#lista").trigger("sorton",[c]);
+		        return false;
+		})
+		</script>
+			<table id="lista">
+				<thead>
+					<tr>
+						{% if not gid %}
+						<th>{% trans "Group" %}</th>
+						{% endif %}
+						<th>{% trans "Name" %}</th>
+						<th>{% trans "Login" %}</th>
+						<th class="center">{% trans "Modules" %}</th>
+						<th class="center">{% trans "Done" %}</th>
+						<th class="center">{% trans "Done Late" %}</th>
+						<th class="center">{% trans "Cur. Late" %}</th>
+						<th class="center">{% trans "Time Spent" %}</th>
+						<th class="center">{% trans "Last Work" %}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for utilisateur in liste_utilisateurs %}
+		            <tr>
+						{% if not gid %}
+						<td>{{ utilisateur.groupe.nom }}</td>
+						{% endif %}
+						<td>{{ utilisateur.nom_prenom }}</td>
+						<td><a href="{% url c_detail %}?id={{ utilisateur.id }}">{{ utilisateur.login }}</a></td>
+						<td class="center">{{ utilisateur.nb_modules }}</td>
+		                <td class="center">{{ utilisateur.nb_valides }}</td>
+		                <td class="center">{{ utilisateur.nb_retards }}</td>
+						<td class="center">{{ utilisateur.nb_actuel }}</td>
+						<td class="center">{{ utilisateur.time_elapsed }}</td>
+		                <td class="center">{% if utilisateur.lastw %}{{ utilisateur.lastw }}{% endif %}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+	{% endif %}
 
 </div><!-- END .content -->
 {% endblock content %}

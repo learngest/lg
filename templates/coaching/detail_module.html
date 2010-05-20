@@ -1,82 +1,86 @@
-<!-- vim: set encoding=utf8: -->
 {% extends "in_session.html" %}
 {% load i18n %}
 
-{% block menu %}
-<p><a href="/logout/">{% trans "Log out" %}</a></p>
-<p><a href="/learning/profile/">{% trans "My account" %}</a></p>
-<p><a href="/learning/tdb/">{% trans "Dashboard" %}</a></p>
-<p><a href="/coaching/">{% trans "Administration" %}</a></p>
-{% endblock menu %}
-
 {% block breadcrumb %}
-<a href="/coaching/">{% trans "administration" %}</a>
+<a href="{% url c_admin %}">{% trans "administration" %}</a>
 {% if admin %}
-&gt; <a href="/coaching/lista/?l">{% trans "students" %}</a>
+&gt; <a href="{% url c_lista %}?l">{% trans "students" %}</a>
 {% endif %}
-&gt; <a href="/coaching/detail/?id={{ u.id }}">{% trans "detail" %}</a>
+&gt; <a href="{% url c_detail %}?id={{ u.id }}">{% trans "detail" %}</a>
 &gt; {% trans "module" %}
 {% endblock breadcrumb %}
 
 {% block content %}
-<h2>{{ u.prenom_nom }} - {{ u.groupe }}</h2>
-<h3>{{ module.title }}</h3>
-{% if module.valide %}
-<p>{% trans "Module completed on" %} {{ module.datev }}</p>
-{% if module.retard %}
-<p class="retard">{% trans "Deadline was" %} {{ module.echeance }}</p>
-{% endif %}
-{% else %}
-{% if module.echeance %}
-<p{% if module.retard %} class="retard"{% endif %}>{% trans "Deadline" %} {{ module.echeance }}</p>
-{% endif %}
-{% endif %}
-{% if module.docs %}
-<h3>{% trans "Contents" %}</h3>
-<table style="width: 60%;">
-<thead>
-<tr>
-<th style="width: 35%;">{% trans "Content" %}</th>
-<th style="width: 20%;">{% trans "Last view" %}</th>
-<th style="text-align: center;">{% trans "Times viewed" %}</th>
-</tr>
-</thead>
-<tbody>
-{% for doc in module.docs %}
-<tr class="{% cycle odd,even %}">
-    <td><img src="{{doc.img }}" alt="{{ doc.typd }}" /> {{ doc.titre }}</td>
-<td>{{ doc.lastconsult }}</td>
-<td style="text-align: center;">{{ doc.nbconsult }}</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-{% endif %}
+<div class="content">
 
-{% if module.tests %}
-<h3>{% trans "Tests" %}</h3>
-<table>
-<thead>
-<tr>
-<th style="width: 25%;">{% trans "Test" %}</th>
-<th style="text-align: center;">{% trans "Tries" %}</th>
-<th style="text-align: center;">{% trans "Last try" %}</th>
-<th style="text-align: center;">{% trans "Best try" %}</th>
-<th style="text-align: center;">{% trans "Completed" %}</th>
-</tr>
-</thead>
-<tbody>
-{% for test in module.tests %}
-<tr class="{% cycle odd,even %}">
-<td>{{ test.title }}</td>
-<td style="text-align: center;">{{ test.nbtries }}</td>
+	<div class="admin-item">
+		<h1>{{ u.prenom_nom }} - {{ u.groupe }}</h1>
+		<h2>{{ module.title }}</h2>
 
-<td style="text-align: center;">{% if test.lastdate %}{{ test.lastdate }} - {{ test.lastscore }} %{% endif %}</td>
-<td style="text-align: center;">{% if test.bestdate %}{{ test.bestdate }} - {{ test.bestscore }} %{% endif %}</td>
-<td style="text-align: center;">{% if test.validdate %}{{ test.validdate }} - {{ test.validscore }} %{% endif %}</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-{% endif %}
+	{% if module.valide %}
+		<p>{% trans "Module completed on" %} {{ module.datev }}</p>
+		{% if module.retard %}
+		<p class="retard">{% trans "Deadline was" %} {{ module.echeance }}</p>
+		{% endif %}
+	{% else %}
+		{% if module.echeance %}
+		<p{% if module.retard %} class="retard"{% endif %}>{% trans "Deadline" %} {{ module.echeance }}</p>
+		{% endif %}
+	{% endif %}
+	</div>
+
+	{% if module.docs %}
+	<div class="admin-item">
+		<h3>{% trans "Contents" %}</h3>
+		<table>
+		<thead>
+		<tr>
+		<th style="width: 35%;">{% trans "Content" %}</th>
+		<th style="width: 20%;">{% trans "Last view" %}</th>
+		<th class="center">{% trans "Times viewed" %}</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for doc in module.docs %}
+		<tr class="{% cycle odd,even %}">
+		    <td><img src="{{doc.img }}" alt="{{ doc.typd }}" /> {{ doc.titre }}</td>
+		<td>{{ doc.lastconsult }}</td>
+		<td class="center">{{ doc.nbconsult }}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+	</div>
+	{% endif %}
+
+	{% if module.tests %}
+	<div class="admin-item">
+		<h3>{% trans "Tests" %}</h3>
+		<table>
+		<thead>
+		<tr>
+		<th style="width: 25%;">{% trans "Test" %}</th>
+		<th class="center">{% trans "Tries" %}</th>
+		<th class="center">{% trans "Last try" %}</th>
+		<th class="center">{% trans "Best try" %}</th>
+		<th class="center">{% trans "Completed" %}</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for test in module.tests %}
+		<tr class="{% cycle odd,even %}">
+		<td>{{ test.title }}</td>
+		<td class="center">{{ test.nbtries }}</td>
+
+		<td class="center">{% if test.lastdate %}{{ test.lastdate }} - {{ test.lastscore }} %{% endif %}</td>
+		<td class="center">{% if test.bestdate %}{{ test.bestdate }} - {{ test.bestscore }} %{% endif %}</td>
+		<td class="center">{% if test.validdate %}{{ test.validdate }} - {{ test.validscore }} %{% endif %}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+	</div>
+	{% endif %}
+
+</div><!-- END .content -->
 {% endblock content %}

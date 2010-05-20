@@ -1,43 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
-<!-- vim: set encoding=utf8 fileencoding=utf8: -->
+{% extends "base.html" %}
 {% load i18n %}
-<head>
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<title>Learngest | {% block title %}{% trans "Innovative e-learning software" %}{% endblock %}</title>
-	{% block style %}
-	{% if client.style %}
-	<link rel="stylesheet" href="/media/style/{{ client.style }}" type="text/css" title="Normal" media="screen"/>
-	{% else %}
-	<link rel="stylesheet" href="/media/style/base.css" type="text/css" title="Normal" media="screen"/>
-	{% endif %}
-	{% endblock style %}
-    {% block baselink %}{% endblock baselink %}
-    {% block javascript %}{% endblock javascript %}
-</head>
-<body>
-	
-<div id="header">
-<h1>eLearning
-{% if client.nom %}
- - {{ client.nom }}
-{% endif %}
-</h1>
-</div><!-- header -->
 
-<div class="menu">{% block menu %}{% endblock %}</div><!-- menu -->
+{% block header_toolbar %}<div id="header-toolbar-container"><div id="header-toolbar">&nbsp;</div></div>{% endblock %}
 
-<div class="breadcrumb"><p>{% block breadcrumb %}{% trans "Innovative e-learning software" %}{% endblock %}</p></div><!-- breadcrumb -->
+{% block breadcrumb %}&nbsp;{% endblock %}
 
-<div class="session">{% block session %}{% endblock %}</div><!-- session -->
+{% block content %}
+<div class="content">
 
-<div class="corps">
-	<p>{% trans "Ooops - It seems the page you requested doesn't exist." %}</p>
+	<h1>{% trans "Ooops - It seems the page you requested doesn't exist." %}</h1>
 	<p><a href="/home/">{% trans "Back to your starting page" %}</a></p>
-</div><!-- corps -->
 
-<div id="footer"></div>
+</div><!-- END .content -->
+{% endblock content %}
 
 </body>
 </html>

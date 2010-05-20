@@ -64,6 +64,24 @@ a:hover, a:focus, a:active { text-decoration: none; }
 .btn:hover, .btn:focus, .btn:active {
 	background: #202019;
 }
+/* Add Link */
+a.add:link,
+a.add:visited {
+	display: inline-block;
+	background: #F4F5EF url(../img/add.gif) no-repeat 4px 50%;
+	padding: 4px 6px 4px 20px;
+	margin: 8px 0;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid #E3E4DE;
+}
+a.add:hover,
+a.add:focus,
+a.add:active {
+	background: #C1C3B8 url(../img/add.gif) no-repeat 4px 50%;
+	color: #000;
+}
 /* Big links
 ----------------------------- */
 /* Global */
@@ -156,8 +174,12 @@ table {
 table th,
 table td {
 	text-align: left;
-	padding: 2px 4px;
+	padding: 4px;
 	border: 1px solid #ededed;
+}
+table td.retard {
+	background: #e99696;
+	font-weight: bold;
 }
 table tr.even {
 	background: #fbfbf9;
@@ -165,6 +187,14 @@ table tr.even {
 table th {
 	background: #f6f6f6;
 }
+table td a:link,
+table td a:visited {
+	color: #1a1a12;
+}
+table td a:hover,
+table td a:focus,
+table td a:active {}
+
 /* Misc */
 blockquote {
 	border-left: 8px solid #EFF1E8;
@@ -455,6 +485,11 @@ hr {
 div.item {
 	margin: 0 0 40px 0;
 }
+/* item => admin
+----------------------------- */
+div.admin-item {
+	margin: 0 0 26px 0;
+}
 /* info + filter
 ----------------------------- */
 div.info, div.filter {
@@ -519,6 +554,27 @@ ul.changelist-filter li.selected a {
 	color: #e5060d;
 	text-decoration: underline;
 }
+/* infomsg
+----------------------------- */
+.infomsg {
+	background: #f2ffe7;
+	border: 1px solid #d6eac5;
+	border-width: 1px 0;
+	margin: 10px 0;
+	padding: 10px;
+	margin: 20px 0;
+}
+/* errmsg
+----------------------------- */
+.errmsg {
+	background: #e9ddc9;
+	color: #d32d2d;
+	border: 1px solid #d32d2d;
+	border-width: 1px 0;
+	margin: 10px 0;
+	padding: 10px;
+	margin: 20px 0;
+}
 
 /* FORMS
 -------------------------------------------------------- */
@@ -544,9 +600,38 @@ ul.changelist-filter li.selected a {
 	margin: 0;
 	padding: 2px 10px;
 }
+/* fieldset */
 fieldset {
+	background: #F4F5EF;
+	padding: 0 10px;
 	border: 1px solid transparent;
 	margin: 0 0 8px 0;
+}
+fieldset.submit {
+	margin-top: 20px;
+	padding: 10px 0;
+	background: transparent;
+}
+fieldset label {
+	display: block;
+	width: 200px;
+	margin-right: 10px;
+	float: left;
+}
+fieldset label + input {
+	position: relative;
+	top: -4px;
+}
+fieldset .errorlist {
+	margin: -10px 0 0 210px;
+}
+fieldset p, fieldset div {
+	clear: left;
+	margin: 10px 0;
+}
+fieldset textarea {
+	width: 400px;
+	max-width: 600px;
 }
 /* form-row */
 .form-row {
