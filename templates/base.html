@@ -30,6 +30,7 @@
 			<input class="btn" type="submit" value="{% trans "Connexion" %}" />
 		</form>{% endblock login_inline %}
 		{% block user_infos %}{% endblock %}
+		<!--
 		{% block lang %}<form action="#" method="get">
 			<label for="lang">{% trans "Langue" %}</label>
 			<select name="lang" id="lang">
@@ -38,6 +39,7 @@
 			</select>
 			<input class="btn" type="submit" value="Ok" />
 		</form>{% endblock lang %}
+		-->
 	</div>
 </div>{% endblock header_toolbar %}
 
@@ -58,7 +60,9 @@
 {% block nav %}{% endblock %}
 
 <div id="content-container">
+	<!--
 	<div id="breadcrumb">{% block breadcrumb %}{% trans "Innovative e-learning software" %}{% endblock %}</div>
+	-->
 	{% block content %}{% endblock %}
 </div>
 
