@@ -692,6 +692,70 @@ a.forgot:active {
 	color: #d32d2d;
 }
 
+/* HTML SUPPORT
+-------------------------------------------------------- */
+div.chapter {
+    text-align: justify;
+    margin: 2% 6% 1% 3em;
+    max-width: 60em;
+    width:expression(
+        document.body.clientWidth > (500/12) *
+        parseInt(document.body.currentStyle.fontSize)?
+            "60em":
+            "auto" );
+}
+
+div.chapter h3 a { 
+	font-size: 26px; 
+	font-variant: small-caps; 
+	font-weight: bold;
+}
+div.chapter h4 { font-size: 19px; }
+div.chapter h5 { font-size: 17px; }
+div.chapter h6 { font-size: 16px; }
+
+div.exemple {
+	background: #ebede2;
+    padding: 0.5em 1.5em;
+    border-left: 2px solid #d2ddcd; 
+    margin-top: 1em;
+}
+
+.exemple p:first-child {
+    color: #e74b4c;
+    font-weight: bold;
+}
+
+.exemple table {
+    background: #eef;
+    width: 95%;
+    margin: auto;
+}
+
+.equation {
+    margin: auto;
+    padding: 0.5em 1em;
+    width: 80%;
+    background: #eee;
+    border: 1px solid #aaa;
+}
+
+.equation img {
+    text-align: center;
+    padding: 0 3em;
+}
+
+.equation p.titre {
+    margin-top: 0;
+    padding: 0;
+    text-align: left;
+    font-weight: bold;
+    color: #e74b4c;
+}
+
+
+
+
 /* FOOTER
 -------------------------------------------------------- */
 #footer {
