@@ -184,7 +184,7 @@ def module(request, slug=None):
                 d = m.contenu_set.get(type=typ,langue='fr')
             except Contenu.DoesNotExist:
                 continue
-        d.img = "/media/img/%s.gif" % d.type
+        d.img = "/media/img/%s.png" % d.type
         if d.type in ('htm','swf'):
             d.nbconsult, d.lastconsult = u.stats_contenu(d)
         m.docs.append(d)
@@ -252,7 +252,7 @@ def tdb(request):
 #                    d.img = "/media/img/%s.gif" % d.type
 #                    m.docs.append(d)
                 for d in m.contenu_set.filter(langue='fr').order_by('type'):
-                    d.img = "/media/img/%s.gif" % d.type
+                    d.img = "/media/img/%s.png" % d.type
                     m.docs.append(d)
 
 #                if not u.groupe.is_demo:
