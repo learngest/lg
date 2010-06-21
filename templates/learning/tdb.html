@@ -8,7 +8,8 @@
 
 	<h1>{% trans "Welcome to your dashboard" %}</h1>
 	<p>
-	{% trans "You are " %} <strong>{{ visiteur }}</strong>.
+	{% trans "You are " %} <strong>{{ visiteur }}</strong>
+	{% if vgroupe %}({% trans "group"%} {{ vgroupe }}){% endif %}.
 	({% trans "If you are not" %} {{ prenom }}, <a href="/login/">{% trans "please log in" %}</a>)
 	</p>
 
