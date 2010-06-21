@@ -8,11 +8,11 @@
 	<title>Learngest | {% block title %}{% trans "Innovative e-learning software" %}{% endblock %}</title>
 	{% block style %}
 	{% if client.style %}
-	<link rel="stylesheet" href="/media/style/{{ client.style }}" type="text/css" media="screen" title="Normal" />
-	<link rel="stylesheet" href="/media/style/print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="/media/css/{{ client.style }}" type="text/css" media="screen" title="Normal" />
+	<link rel="stylesheet" href="/media/css/print.css" type="text/css" media="print" />
 	{% else %}
 	<link rel="stylesheet" href="/media/css/learngest.css" type="text/css" media="screen" title="Normal" />
-	<link rel="stylesheet" href="/media/style/print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="/media/css/print.css" type="text/css" media="print" />
 	{% endif %}
 	{% endblock style %}
     {% block baselink %}{% endblock baselink %}
