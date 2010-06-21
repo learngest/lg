@@ -1082,6 +1082,7 @@ def menu(request):
             {'visiteur': v.prenom_nom(), 
              'client': v.groupe.client,
              'here': 'admin',
+             'admin': v.status,
              'staff': v.status==STAFF })
 menu = visitor_is(ADMINISTRATEUR)(menu)
 

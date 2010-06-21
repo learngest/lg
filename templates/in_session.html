@@ -16,9 +16,7 @@
 <div id="nav-container">
 	<ul id="nav">
 
-		{# TODO FIX ADMIN display #}
-		<li><a href="{% url c_admin %}"{% ifequal here 'admin' %} class="selected"{% endifequal %}>{% trans "Administration" %}</a></li>
-		{# {% if admin %}<li><a href="{% url c_admin %}"{% ifequal here 'admin' %} class="selected"{% endifequal %}>{% trans "Administration" %}</a></li>{% endif %} #}
+		{% if admin %}<li><a href="{% url c_admin %}"{% ifequal here 'admin' %} class="selected"{% endifequal %}>{% trans "Administration" %}</a></li>{% endif %}
 
 		<li><a href="{% url l_dashboard %}"{% ifequal here 'dashboard' %} class="selected"{% endifequal %}>{% trans "Tableau des cours" %}</a></li>
 		<li><a href="{% url l_profile %}"{% ifequal here 'profile' %} class="selected"{% endifequal %}>{% trans "Profil" %}</a></li>
