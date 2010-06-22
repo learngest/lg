@@ -32,5 +32,5 @@ log_dict = {
 }
 
 urlpatterns += patterns('django.views.generic.list_detail',
-    (r'^logs/$', 'object_list', log_dict),
+    url(r'^logs/$', 'object_list', log_dict, name='c_logs'),
 )
