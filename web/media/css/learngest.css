@@ -753,7 +753,19 @@ div.exemple {
     color: #e74b4c;
 }
 
+/* TESTS ET NOTATION
+-------------------------------------------------------- */
 
+.enonce {
+	background: #F4F5EF;
+	padding: 0 10px;
+	border: 1px solid transparent;
+	margin: 0 0 8px 0;
+}
+.enonce p.score {
+	color: #e74b4c;
+    font-weight: bold;
+}
 
 
 /* FOOTER
