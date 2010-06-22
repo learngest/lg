@@ -184,6 +184,7 @@ table td.retard {
 table tr.even {
 	background: #fbfbf9;
 }
+table tr:hover {background: #e2e6ef;}
 table th {
 	background: #f6f6f6;
 }
