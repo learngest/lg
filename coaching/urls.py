@@ -23,14 +23,6 @@ urlpatterns = patterns('',
     url(r'^work/$', 'lg.coaching.views.liste_works', name='c_work'),
     url(r'^work/add/?$', 'lg.coaching.views.add_work', name='c_work_add'),
     url(r'^work/manage/?$', 'lg.coaching.views.maj_work', name='c_work_manage'),
+    url(r'^logs/$', 'lg.coaching.views.logs', name='c_logs'),
 )
 
-log_dict = {
-    'queryset': Log.objects.all(),
-    'paginate_by': 23,
-    'allow_empty': True,
-}
-
-urlpatterns += patterns('django.views.generic.list_detail',
-    url(r'^logs/$', 'object_list', log_dict, name='c_logs'),
-)

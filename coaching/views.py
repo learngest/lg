@@ -13,6 +13,7 @@ from django.shortcuts import render_to_response, get_object_or_404, get_list_or_
 from django.utils.translation import ugettext_lazy as _, ugettext
 from django.utils.encoding import smart_str
 from django.core.mail import EmailMessage
+from django.views.generic import list_detail
 
 from session.views import visitor_is, visitor_is_at_least, visitor_may_see_list
 from coaching.forms import *
@@ -562,21 +563,25 @@ def log_utilisateur(request):
 log_utilisateur = visitor_is_at_least(COACH)(log_utilisateur)
 
 def logs(request):
-    """View: log des visites des 7 derniers jours
+    """View: log des visites
     """
-    import datetime
     # récup visiteur
     v = request.session['v']
-    d = datetime.datetime.now() - datetime.timedelta(days=7)
     us = Utilisateur.objects.filter(groupe__in=v.groupes_list())
-    logs = Log.objects.filter(utilisateur__in=us, date__gt=d)
+    logs = Log.objects.filter(utilisateur__in=us)
     v.lastw = datetime.datetime.now()
     request.session['v'] = v
     v.save()
-    return render_to_response('coaching/logs.html',
-            {'visiteur': v.prenom_nom(),
-             'client': v.groupe.client,
-             'logs': logs }) 
+    return list_detail.object_list(
+            request,
+            queryset=logs,
+            paginate_by= 23,
+            allow_empty= True,
+            extra_context = {
+                'visiteur': v.prenom_nom(),
+                'staff': v.status==STAFF,
+                },
+            )
 logs = visitor_is(ADMINISTRATEUR)(logs)
 
 def detail_module(request):
