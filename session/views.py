@@ -10,6 +10,7 @@ from django.shortcuts import render_to_response
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import iri_to_uri
+from django.core.urlresolvers import reverse
 
 from lg.listes import *
 from session.forms import LoginForm, LoginOnlyForm
@@ -23,23 +24,25 @@ def new_visitor_may_see_granule(view_func):
 
     def _dec(request, *args, **kwargs):
         if not 'v' in request.session:
-            return HttpResponseRedirect('/login/?next=%s' % quote(request.get_full_path()))
+            return HttpResponseRedirect('%s?next=%s' % (
+                reverse('login'),
+                quote(request.get_full_path())))
         u = request.session['v']
         if not 'slug' in kwargs:
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         # les groupes de demo n'ont pas de tests
         if u.groupe.is_demo:
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         # test granule demandée existe
         try:
             granule = Granule.objects.get(slug=kwargs['slug'])
         except Granule.DoesNotExist:
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         # test granule est dans la liste des granules du visiteur
         # et module est ouvert
         if granule in u.granules_list() and u.module_is_open(granule.module):
             return view_func(request, *args, **kwargs)
-        return HttpResponseRedirect('/home/')
+        return HttpResponseRedirect(reverse('v_home'))
     return _dec
 
 def visitor_may_see_granule(view_func):
@@ -48,30 +51,32 @@ def visitor_may_see_granule(view_func):
 
     def _dec(request, *args, **kwargs):
         if not 'v' in request.session:
-            return HttpResponseRedirect('/login/?next=%s' % quote(request.get_full_path()))
+            return HttpResponseRedirect('%s?next=%s' % (
+                reverse('login'),
+                quote(request.get_full_path())))
         u = request.session['v']
         if not 'id' in request.GET:
             # pas de granule demandée, redirection vers /home
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         id_gran = request.GET['id']
         # les groupes de demo n'ont pas de tests
         if u.groupe.is_demo:
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         # test granule id est bien un entier
         try:
             id_gran = int(id_gran)
         except ValueError:
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         # test granule demandée existe
         try:
             granule = Granule.objects.get(id=id_gran)
         except Granule.DoesNotExist:
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         # test granule est dans la liste des granules du visiteur
         # et module est ouvert
         if granule in u.granules_list() and u.module_is_open(granule.module):
             return view_func(request, *args, **kwargs)
-        return HttpResponseRedirect('/home/')
+        return HttpResponseRedirect(reverse('v_home'))
     return _dec
 
 def visitor_may_see_work(view_func):
@@ -79,27 +84,29 @@ def visitor_may_see_work(view_func):
 
     def _dec(request, *args, **kwargs):
         if not 'v' in request.session:
-            return HttpResponseRedirect('/login/?next=%s' % quote(request.get_full_path()))
+            return HttpResponseRedirect('%s?next=%s' % (
+                reverse('login'),
+                quote(request.get_full_path())))
         u = request.session['v']
         # checks that visitor's group course contains this assignment
         if not 'id' in request.GET:
             # pas de travail demandé, redirection vers /home
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         id_work = request.GET['id']
         # test asignment id est bien un entier
         try:
             id_work = int(id_work)
         except ValueError:
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         # test assignment demandé existe
         try:
             w = Work.objects.get(id=id_work)
         except Work.DoesNotExist:
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         # test assignment est dans la liste des travaux à rendre, et non rendu
         if w in u.work_list() and not u.work_done(w):
             return view_func(request, *args, **kwargs)
-        return HttpResponseRedirect('/home/')
+        return HttpResponseRedirect(reverse('v_home'))
     return _dec
 
 def new_visitor_may_see_module(view_func):
@@ -107,21 +114,23 @@ def new_visitor_may_see_module(view_func):
 
     def _dec(request, *args, **kwargs):
         if not 'v' in request.session:
-            return HttpResponseRedirect('/login/?next=%s' % quote(request.get_full_path()))
+            return HttpResponseRedirect('%s?next=%s' % (
+                reverse('login'),
+                quote(request.get_full_path())))
         u = request.session['v']
         # checks that visitor's group courses contain module
         if not 'slug' in kwargs:
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         # test module demandé existe
         try:
             module = Module.objects.get(slug=kwargs['slug'])
         except Module.DoesNotExist:
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         # test module est dans la liste des modules du visiteur
         # et module est ouvert
         if module in u.modules_list() and u.module_is_open(module):
             return view_func(request, *args, **kwargs)
-        return HttpResponseRedirect('/home/')
+        return HttpResponseRedirect(reverse('v_home'))
     return _dec
 
 def visitor_may_see_module(view_func):
@@ -129,28 +138,30 @@ def visitor_may_see_module(view_func):
 
     def _dec(request, *args, **kwargs):
         if not 'v' in request.session:
-            return HttpResponseRedirect('/login/?next=%s' % quote(request.get_full_path()))
+            return HttpResponseRedirect('%s?next=%s' % (
+                reverse('login'),
+                quote(request.get_full_path())))
         u = request.session['v']
         # checks that visitor's group courses contain module
         if not 'id' in request.GET:
             # pas de module demandé, redirection vers /home
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         id_mod = request.GET['id']
         # test module id est bien un entier
         try:
             id_mod = int(id_mod)
         except ValueError:
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         # test module demandé existe
         try:
             module = Module.objects.get(id=id_mod)
         except Module.DoesNotExist:
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         # test module est dans la liste des modules du visiteur
         # et module est ouvert
         if module in u.modules_list() and u.module_is_open(module):
             return view_func(request, *args, **kwargs)
-        return HttpResponseRedirect('/home/')
+        return HttpResponseRedirect(reverse('v_home'))
     return _dec
 
 def visitor_is(level=ETUDIANT):
@@ -159,11 +170,13 @@ def visitor_is(level=ETUDIANT):
     def _dec(view_func):
         def _check_visitor(request, *args, **kwargs):
             if not 'v' in request.session:
-                return HttpResponseRedirect('/login/?next=%s' % quote(request.get_full_path()))
+                return HttpResponseRedirect('%s?next=%s' % (
+                    reverse('login'),
+                    quote(request.get_full_path())))
             u = request.session['v']
             if u.status in (level, STAFF):
                 return view_func(request, *args, **kwargs)
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         return _check_visitor
     return _dec
 
@@ -173,11 +186,13 @@ def visitor_is_at_least(level=ETUDIANT):
     def _dec(view_func):
         def _check_visitor(request, *args, **kwargs):
             if not 'v' in request.session:
-                return HttpResponseRedirect('/login/?next=%s' % quote(request.get_full_path()))
+                return HttpResponseRedirect('%s?next=%s' % (
+                    reverse('login'),
+                    quote(request.get_full_path())))
             u = request.session['v']
             if u.status >= level:
                 return view_func(request, *args, **kwargs)
-            return HttpResponseRedirect('/home/')
+            return HttpResponseRedirect(reverse('v_home'))
         return _check_visitor
     return _dec
 
@@ -186,11 +201,13 @@ def visitor_may_see_list(view_func):
 
     def _dec(request, *args, **kwargs):
         if not 'v' in request.session:
-            return HttpResponseRedirect('/login/?next=%s' % quote(request.get_full_path()))
+            return HttpResponseRedirect('%s?next=%s' % (
+                reverse('login'),
+                quote(request.get_full_path())))
         u = request.session['v']
-        if u.status in (kwargs['ltyp'], STAFF): 
+        if u.status > ETUDIANT:
             return view_func(request, *args, **kwargs)
-        return HttpResponseRedirect('/home/')
+        return HttpResponseRedirect(reverse('v_home'))
     return _dec
 
 def has_visitor(view_func):
@@ -198,7 +215,9 @@ def has_visitor(view_func):
 
     def _dec(request, *args, **kwargs):
         if not 'v' in request.session:
-            return HttpResponseRedirect('/login/?next=%s' % quote(request.get_full_path()))
+            return HttpResponseRedirect('%s?next=%s' % (
+                reverse('login'),
+                quote(request.get_full_path())))
         return view_func(request, *args, **kwargs)
     return _dec
 
@@ -357,10 +376,10 @@ def home(request):
 
     u = request.session['v']
     if u.status >= ADMINISTRATEUR:
-        return HttpResponseRedirect('/coaching/')
+        return HttpResponseRedirect(reverse('c_admin'))
     else:
         if u.status == COACH:
-            return HttpResponseRedirect('/coaching/liste/')
-    return HttpResponseRedirect('/learning/tdb/')
+            return HttpResponseRedirect(reverse('c_lista'))
+    return HttpResponseRedirect(reverse('l_dashboard'))
 home = has_visitor(home) 
 
