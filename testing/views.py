@@ -15,6 +15,7 @@ from testing.models import Module, Granule, GranuleTitre, Enonce, Question, Repo
 from coaching.models import Utilisateur, Resultat, Valide
 from session.views import new_visitor_may_see_granule, has_visitor
 
+(ETUDIANT, COACH, ADMINISTRATEUR, STAFF) = range(4)
 
 def output_rnd(question):
     import random
@@ -117,7 +118,7 @@ def test(request, slug=None, **kwargs):
     t = loader.get_template('testing/test.html')
     c = Context({'visiteur': v.prenom_nom(),
                     'client': v.groupe.client,
-                    'admin': v.status,
+                    'staff': v.status==STAFF,
                     'titre': gt,
                     'msg': msg,
                     'baselink': base,
@@ -246,6 +247,7 @@ def noter(request):
     except ZeroDivisionError:
         score = 0.
     u = request.session['v']
+    langue = request.GET.get('l',request.session['django_language'])
     try:
         g = q.granule
     except UnboundLocalError:
@@ -281,14 +283,15 @@ def noter(request):
     return render_to_response('testing/noter.html',
                                 {'visiteur': u.prenom_nom(),
                                  'granule': g.slug,
-                                'client': u.groupe.client,
-                                'vgroupe': u.groupe,
-                                'admin': u.status,
-                                'total': total,
-                                'max': max,
-                                'valide': valide,
-                                'baselink': base,
-                                'enonces': enonces.values(),})
+                                 'titre': g.titre(langue),
+                                 'client': u.groupe.client,
+                                 'vgroupe': u.groupe,
+                                 'staff': u.status==STAFF,
+                                 'total': total,
+                                 'max': max,
+                                 'valide': valide,
+                                 'baselink': base,
+                                 'enonces': enonces.values(),})
 noter = has_visitor(noter)
 
 

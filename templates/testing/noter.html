@@ -3,7 +3,7 @@
 
 {% block baselink %}
 <!-- ie behaviour -->
-<style type="text/css">img {behavior: url("/media/style/pngbehavior.htc");}</style>
+<style type="text/css">img {behavior: url("/media/css/pngbehavior.htc");}</style>
 <base href="{{ baselink }}" />
 {% endblock baselink %}
 
@@ -16,7 +16,7 @@
 {% block content %}
 <div class="content">
 
-<h1>{% trans "Grade" %}</h1>
+    <h1>{% trans "Grade" %} - {{ titre }}</h1>
 	{% for enonce in enonces %}
 	<div class="enonce">
 		<p>{{ enonce.libel|safe }}</p>
@@ -31,7 +31,7 @@
 		{% if valide %}
 		<p>{% trans "Congratulations, you succeeded !" %}</p>
 		{% else %}
-        <p>{% trans "Your score is too low, please try again." %} <a href="/testing/{{ granule }}/">{% trans "Try again now" %}</a></p>
+        <p>{% trans "Your score is too low, please try again." %} <a href="{% url t_test %}{{ granule }}/">{% trans "Try again now" %}</a></p>
 		{% endif %}
 	</div>
 
