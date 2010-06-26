@@ -827,10 +827,6 @@ def liste_utilisateurs(request, **kwargs):
     ll = {'nom': 'langue', 'title': _('language'), 'valeurs': [{'id': l[0], 'libel':l[1]} for l in LISTE_LANGUES]}
     lf = [filtre for filtre in [lg,ll] if len(filtre['valeurs'])>1]
     lf = makefilters(request.GET, lf)
-    if kwargs['ltyp'] == COACH:
-        template = 'coaching/liste_coach.html'
-    else:
-        template = 'coaching/liste_admin.html'
     v.lastw = datetime.datetime.now()
     request.session['v'] = v
     v.save()
@@ -838,7 +834,7 @@ def liste_utilisateurs(request, **kwargs):
         gid = Groupe.objects.get(id=params['groupe'])
     else:
         gid = None
-    return render_to_response(template,
+    return render_to_response('coaching/liste_admin.html',
             {'visiteur': v.prenom_nom(),
              'client': v.groupe.client,
              'staff': v.status==STAFF,
