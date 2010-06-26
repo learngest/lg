@@ -49,8 +49,8 @@ urlpatterns += patterns('',
 
 # Applications
 urlpatterns += patterns('',
-    (r'^home/', 'lg.session.views.home'),
-    (r'^blah/(.*)', admin.site.root),
+    url(r'^home/', 'lg.session.views.home', name='v_home'),
+    url(r'^blah/(.*)', admin.site.root, name='admin'),
     (r'^coaching/', include ('lg.coaching.urls')),
     (r'^learning/', include ('lg.learning.urls')),
     (r'^testing/', include ('lg.testing.urls')),
