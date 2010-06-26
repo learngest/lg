@@ -17,6 +17,8 @@ from learning.forms import WorkForm4, UtilisateurForm
 from coaching.models import Utilisateur, Echeance, Work, WorkDone, Log
 from session.views import visitor_may_see_module, visitor_may_see_work, has_visitor, new_visitor_may_see_module
 
+(ETUDIANT, COACH, ADMINISTRATEUR, STAFF) = range(4)
+
 def profile(request):
     # récup visiteur
     v = request.session['v']
@@ -35,14 +37,14 @@ def profile(request):
             msg = _('%s changed successfully.') % v.login
             return render_to_response('learning/profile.html',
                 {'visiteur': v.prenom_nom(), 
-                 'admin': v.status,
+                 'staff': v.status==STAFF,
                  'here': 'profile',
                 'v': v, 
                 'form': f, 'msg': msg})
         else:
             return render_to_response('learning/profile.html',
                 {'visiteur': v.prenom_nom(), 
-                 'admin': v.status,
+                 'staff': v.status==STAFF,
                  'here': 'profile',
                  'client': v.groupe.client,
                 'v': v, 'form': f})
@@ -50,7 +52,7 @@ def profile(request):
         f = UtilisateurForm(v.__dict__)
         return render_to_response('learning/profile.html',
                 {'visiteur': v.prenom_nom(), 
-                 'admin': v.status,
+                 'staff': v.status==STAFF,
                  'here': 'profile',
                  'client': v.groupe.client,
                 'v': v,
@@ -200,7 +202,7 @@ def module(request, slug=None):
     return render_to_response('learning/module.html',
             {'visiteur': u.prenom_nom(),
              'client': u.groupe.client,
-             'here': 'dashboard',
+             'staff': u.status==STAFF,
              'vgroupe': u.groupe,
              'admin': u.status,
              'module': m }) 
@@ -317,6 +319,7 @@ def tdb(request):
             {'visiteur': u.prenom_nom(),
              'client': u.groupe.client,
              'here': 'dashboard',
+             'staff': u.status==STAFF,
              'prenom': u.prenom,
              'vgroupe': u.groupe,
              'admin': u.status,
@@ -471,7 +474,7 @@ def support(request, slug=None, **kwargs):
         return render_to_response('learning/support.html',
                                     {'visiteur': v.prenom_nom(),
                                      'client': v.groupe.client,
-                                     'here': 'dashboard',
+                                     'staff': v.status==STAFF,
                                      'vgroupe': v.groupe,
                                      'admin': v.status,
                                      'baselink': base,
@@ -494,7 +497,7 @@ def support(request, slug=None, **kwargs):
         return render_to_response('learning/anim.html',
                                     {'visiteur': v.prenom_nom(),
                                      'client': v.groupe.client,
-                                     'here': 'dashboard',
+                                     'staff': v.status==STAFF,
                                      'vgroupe': v.groupe,
                                      'admin': v.status,
                                      'baselink': base,
