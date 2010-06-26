@@ -1,25 +1,11 @@
 {% extends "in_session.html" %}
 {% load i18n %}
 
-{% block breadcrumb %}
-<a href="{% url c_admin %}">{% trans "administration" %}</a>
-{% if admin %}
-&gt; <a href="{% url c_lista %}?l">{% trans "students" %}</a>
-{% endif %}
-&gt; <a href="{% url c_detail %}?id={{ u.id }}">{% trans "detail" %}</a>
-&gt; {% trans "log" %}
-{% endblock breadcrumb %}
-
-
 {% block content %}
 <div class="content">
 
 	<div class="admin-item">
-		<h1>{{ u.prenom_nom }}</h1>
-		<ul>
-			{% if admin %}<li><a href="{% url c_ficha utilisateur=u.login %}">{% trans "Change this user's profile" %}</a></li>{% endif %}
-			<li><a href="{% url c_detail %}?id={{ u.id }}">{% trans "Back to this user's details" %}</a></li>
-		</ul>
+    <h1><a href="{% url c_detail %}?id={{ u.id }}">{{ u.prenom_nom }}</a> - <a href="{% url c_lista %}?groupe={{ u.groupe.id }}">{{ u.groupe }}</a></h1>
 	</div>
 
 	<div class="admin-item">

@@ -39,7 +39,7 @@
 			{% for groupe in liste_groupes %}
             <tr>
 				<td>{{ groupe.client }}</td>
-				<td><a href="/coaching/lista/?groupe={{ groupe.id }}">{{ groupe.nom }}</a></td>
+				<td><a href="{% url c_lista %}?groupe={{ groupe.id }}">{{ groupe.nom }}</a></td>
                 <td class="center">{{ groupe.nb_cours }}</td>
                 <td class="center">{{ groupe.nb_modules }}</td>
 				<td class="center">{{ groupe.nb_logins }}</td>

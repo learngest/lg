@@ -6,12 +6,10 @@
     <script type="text/javascript" src="/media/js/jquery.tablesorter.js"></script>
 {% endblock javascript %}
 
-{% block breadcrumb %}<a href="{% url c_admin %}">{% trans "Administration" %}</a> &gt; {% trans "Students" %}{% endblock breadcrumb %}
-
 {% block content %}
 <div class="content">
 
-	{% include 'includes/filter.html' %}
+{% include 'includes/filter.html' %}
 
 	{% if not liste_utilisateurs %}
 

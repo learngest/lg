@@ -6,14 +6,13 @@
     <script type="text/javascript" src="/media/js/jquery.tablesorter.js"></script>
 {% endblock javascript %}
 
-{% block breadcrumb %}{% trans "Coaching" %} &gt; {% trans "List" %}{% endblock breadcrumb %}
-
 {% block content %}
 <div class="content">
 
 {% include 'includes/filter.html' %}
 
 	{% if not liste_utilisateurs %}
+
 		<p>{% trans "This group is empty" %}</p>
 
 	{% else %}
@@ -35,25 +34,25 @@
 		</ul>
 		{% endif %}
 
-		<div class="panel">
-		<h2>{% trans "Information" %}</h2>
-		<p>{% trans "Time spent by the students is estimated and should not be seen as accurate." %}<br />
-		</p>
+		<div class="info">
+			<h2>{% trans "Information" %}</h2>
+			<p>{% trans "Time spent by the students is estimated and should not be seen as accurate." %}<br />
+				{% trans "The number of currently late modules is calculated once per day on midnight (Europe/Paris time)." %}</p>
 		</div>
 
 		<script type="text/javascript">
 		    $(document).ready(function() {
-		        $("#liste").tablesorter({ widgets: ['zebra']});
+		        $("#lista").tablesorter({ widgets: ['zebra']});
 				{% if gid %}
 				var c = [[0,0]];
 				{% else %}
 				var c = [[0,0],[1,0]];
 				{% endif %}
-		        $("#liste").trigger("sorton",[c]);
+		        $("#lista").trigger("sorton",[c]);
 		        return false;
 		})
 		</script>
-			<table id="liste">
+			<table id="lista">
 				<thead>
 					<tr>
 						{% if not gid %}

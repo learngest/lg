@@ -22,7 +22,7 @@
 {% for log in object_list %}
 <tr class="{% cycle odd,even %}">
 <td>{{ log.date }}</td>
-<td><a href="/coaching/detail/?id={{ log.utilisateur.id }}">{{ log.utilisateur.nom_prenom }}</a></td>
+<td><a href="{% url c_detail %}?id={{ log.utilisateur.id }}">{{ log.utilisateur.nom_prenom }}</a></td>
 <td>{{ log.path }}{% if log.qstring %}?{{ log.qstring }}{% endif %}</td>
 </tr>
 {% endfor %}
@@ -32,19 +32,19 @@
 
 {% if has_previous %}
 <span class="pagination">
-<a href="/coaching/logs/?page=1">&lt;&lt;</a> 
+	<a href="{% url c_logs %}?page=1">&lt;&lt;</a> 
 </span>
 <span class="pagination">
-<a href="/coaching/logs/?page={{ previous }}">&lt;</a>
+	<a href="{% url c_logs %}?page={{ previous }}">&lt;</a>
 </span>
 {% endif %}
 {{ page }} / {{ pages }}
 {% if has_next %}
 <span class="pagination">
-<a href="/coaching/logs/?page={{ next }}">&gt;</a>
+	<a href="{% url c_logs %}?page={{ next }}">&gt;</a>
 </span>
 <span class="pagination">
-<a href="/coaching/logs/?page={{ pages }}">&gt;&gt;</a>
+	<a href="{% url c_logs %}?page={{ pages }}">&gt;&gt;</a>
 </span>
 {% endif %}
 </p>

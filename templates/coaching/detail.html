@@ -1,16 +1,11 @@
 {% extends "in_session.html" %}
 {% load i18n %}
 
-{% block breadcrumb %}<a href="{% url c_admin %}">{% trans "administration" %}</a>
-{% if admin %} &gt; <a href="{% url c_lista %}?l">{% trans "students" %}</a>{% endif %}
- &gt; {% trans "detail" %}
-{% endblock breadcrumb %}
-
 {% block content %}
 <div class="content">
 
 	<div class="admin-item">
-		<h1>{{ u.prenom_nom }} - {{ u.groupe }}</h1>
+        <h1>{{ u.prenom_nom }} - <a href="{% url c_lista %}?groupe={{ u.groupe.id }}">{{ u.groupe }}</a></h1>
 		<ul>
 			{% if admin %}<li><a href="{% url c_ficha utilisateur=u.login %}">{% trans "Change this user's profile" %}</a></li>{% endif %}
 			<li><a href="{% url c_log %}?id={{ u.id }}">{% trans "See this user's log" %}</a></li>
@@ -40,7 +35,7 @@
 				<td class="center{% if module.retard %} retard{% endif %}">{{ module.echeance }}</td>
 				<td class="center">{{ module.progress }}</td>
 				<td class="center">{{ module.essais }}</td>
-				<td class="center retard">{{ module.problem }}</td>
+				<td class="center{% if module.problem %} retard{% endif %}">{{ module.problem }}</td>
 			</tr>
 			{% endfor %}
 			</tbody>

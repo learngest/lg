@@ -362,9 +362,9 @@ def add_echeance(request):
             else:
                 return render_to_response('coaching/add_echeance.html',
                         {'visiteur': v.prenom_nom(),
-                         'here': 'admin',
+                         'staff': v.status==STAFF,
                          'client': v.groupe.client,
-                        'form': f3, 'groupe': g, 'utilisateur': uf, 'cours': c  })
+                         'form': f3, 'groupe': g, 'utilisateur': uf, 'cours': c })
         else:
             if 'g' in request.POST:
                 # troisième étape, module et echéance
@@ -414,8 +414,8 @@ def add_echeance(request):
     return render_to_response('coaching/add_echeance.html',
             {'visiteur': v.prenom_nom(), 
              'client': v.groupe.client,
-            'staff': v.status==STAFF,
-            'form': f })
+             'staff': v.status==STAFF,
+             'form': f })
 add_echeance = visitor_is(ADMINISTRATEUR)(add_echeance) 
 
 def maj_echeance(request):
@@ -443,7 +443,7 @@ def maj_echeance(request):
             return render_to_response('coaching/maj_echeance.html',
                                     {'visiteur': v.prenom_nom(),
                                     'client': v.groupe.client,
-                                    'here': 'admin',
+                                    'staff': v.status==STAFF,
                                     'msg' : msg,
                                     'groupe': e.groupe, 'utilisateur': u,
                                     'cours': e.cours, 'module': m,
@@ -473,7 +473,7 @@ def maj_echeance(request):
             return render_to_response('coaching/maj_echeance.html',
                                     {'visiteur': v.prenom_nom(),
                                     'client': v.groupe.client,
-                                    'here': 'admin',
+                                    'staff': v.status==STAFF,
                                     'msg' : msg,
                                     'form': f,
                                     'groupe': e.groupe, 'utilisateur': u,
@@ -508,36 +508,13 @@ def maj_echeance(request):
     return render_to_response('coaching/maj_echeance.html',
                             {'visiteur': v.prenom_nom(),
                             'client': v.groupe.client,
-                            'here': 'admin',
+                            'staff': v.status==STAFF,
                             'msg' : msg,
                             'form': f,
                             'groupe': e.groupe, 'utilisateur': u,
                             'cours': e.cours, 'module': m,
                              })
 maj_echeance = visitor_is(ADMINISTRATEUR)(maj_echeance) 
-
-def retards_utilisateur(request):
-    """View: liste des retards d'un utilisateur
-    """
-    # récup visiteur
-    v = request.session['v']
-    try:
-        u = Utilisateur.objects.get(id=request.GET['id'])
-    except Utilisateur.DoesNotExist:
-        return HttpResponseRedirect('/home/')
-    if not u.groupe in v.groupes_list():
-        return HttpResponseRedirect('/home/')
-    logs = Log.objects.filter(utilisateur=u)[:50]
-    v.lastw = datetime.datetime.now()
-    request.session['v'] = v
-    v.save()
-    return render_to_response('coaching/retards.html',
-            {'visiteur': v.prenom_nom(),
-             'client': v.groupe.client,
-             'admin': v.status>COACH,
-             'u' : u,
-             'logs': logs }) 
-retards_utilisateur = visitor_is_at_least(COACH)(retards_utilisateur)
 
 def log_utilisateur(request):
     """View: log des visites d'un utilisateur
@@ -557,7 +534,7 @@ def log_utilisateur(request):
     return render_to_response('coaching/log.html',
             {'visiteur': v.prenom_nom(),
              'client': v.groupe.client,
-             'admin': v.status>COACH,
+             'staff': v.status==STAFF,
              'u' : u,
              'logs': logs }) 
 log_utilisateur = visitor_is_at_least(COACH)(log_utilisateur)
@@ -628,7 +605,7 @@ def detail_module(request):
                 d = m.contenu_set.get(type=typ,langue='fr')
             except Contenu.DoesNotExist:
                 continue
-        d.img = "/media/img/%s.gif" % d.type
+        d.img = "/media/img/%s.png" % d.type
         if d.type in ('htm','swf'):
             d.nbconsult, d.lastconsult = u.stats_contenu(d)
         m.docs.append(d)
@@ -647,7 +624,7 @@ def detail_module(request):
     return render_to_response('coaching/detail_module.html',
             {'visiteur': v.prenom_nom(),
              'client': v.groupe.client,
-             'admin': v.status>COACH,
+             'staff': v.status==STAFF,
              'vgroupe': v.groupe,
              'u': u,
              'module': m }) 
@@ -732,7 +709,7 @@ def detail_utilisateur(request):
     return render_to_response('coaching/detail.html',
             {'visiteur': v.prenom_nom(),
              'client': v.groupe.client,
-             'here': 'admin',
+             'staff': v.status==STAFF,
              'admin': v.status>COACH,
              'u' : u,
              'les_cours': les_cours }) 
@@ -1113,9 +1090,11 @@ def send_email(request):
     if 'gid' in request.GET:
         dest_list = [u.prenom_nom() for u in g.utilisateur_set.all()]
         email_list = [u.email for u in g.utilisateur_set.all()]
+        u = None
     else:
         dest_list = []
         email_list = []
+        g = None
         for id in request.GET.getlist('id'):
             u = Utilisateur.objects.get(pk=id)
             dest_list.append(u.prenom_nom())
@@ -1138,8 +1117,10 @@ def send_email(request):
             return render_to_response('coaching/sendmail.html',
                                         {'visiteur': v.prenom_nom(),
                                          'msg': msg,
-                                         'here': 'admin',
+                                         'staff': v.status==STAFF,
                                          'from': v.email,
+                                         'gid': g,
+                                         'uid': u,
                                          'dest_list': dest_list,
                                          'subject': f.cleaned_data['subject'],
                                          'content': f.cleaned_data['content'],
@@ -1148,18 +1129,22 @@ def send_email(request):
             return render_to_response('coaching/sendmail.html',
                                         {'visiteur': v.prenom_nom(),
                                          'from': v.email,
-                                         'here': 'admin',
+                                         'staff': v.status==STAFF,
                                          'dest_list': dest_list,
                                          'form': f,
+                                         'gid': g,
+                                         'uid': u,
                                         })
     else:
         f = MailForm()
         return render_to_response('coaching/sendmail.html',
                                     {'visiteur': v.prenom_nom(),
                                      'from': v.email,
-                                     'here': 'admin',
+                                     'staff': v.status==STAFF,
                                      'dest_list': dest_list,
                                      'form': f,
+                                     'gid': g,
+                                     'uid': u,
                                     })
 send_email = visitor_is_at_least(COACH)(send_email)
 

@@ -1,15 +1,10 @@
 {% extends "in_session.html" %}
 {% load i18n %}
 
-{% block breadcrumb %}
-<a href="{% url c_admin %}">{% trans "administration" %}</a>
-&gt; {% trans "email" %}
-{% endblock breadcrumb %}
-
 {% block content %}
 <div class="content">
 
-	<h1>{% trans "Send an email" %}</h1>
+    <h1>{% trans "Send an email" %}{% if uid %} - <a href="{% url c_detail %}?id={{ uid.id }}">{{ uid.prenom_nom }}</a>{% endif %}{% if gid %} - <a href="{% url c_lista %}?groupe={{ gid.id }}">{{ gid.nom }}</a>{% endif %}</h1>
 
 	{% if msg %}<p class="infomsg">{{ msg|safe }}</p>{% endif %}
 

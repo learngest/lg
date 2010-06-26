@@ -1,20 +1,11 @@
 {% extends "in_session.html" %}
 {% load i18n %}
 
-{% block breadcrumb %}
-<a href="{% url c_admin %}">{% trans "administration" %}</a>
-{% if admin %}
-&gt; <a href="{% url c_lista %}?l">{% trans "students" %}</a>
-{% endif %}
-&gt; <a href="{% url c_detail %}?id={{ u.id }}">{% trans "detail" %}</a>
-&gt; {% trans "module" %}
-{% endblock breadcrumb %}
-
 {% block content %}
 <div class="content">
 
 	<div class="admin-item">
-		<h1>{{ u.prenom_nom }} - {{ u.groupe }}</h1>
+        <h1><a href="{% url c_detail %}?id={{ u.id }}">{{ u.prenom_nom }}</a> - <a href="{% url c_lista %}?groupe={{ u.groupe.id }}">{{ u.groupe }}</a></h1>
 		<h2>{{ module.title }}</h2>
 
 	{% if module.valide %}

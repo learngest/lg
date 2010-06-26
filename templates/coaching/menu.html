@@ -9,18 +9,12 @@
 	<h1>{% trans "Administrator's homepage" %}</h1>
 	<ul>
 	    {% if staff %}
-		<!--
-		<li><a href="/blah/">{% trans "Manage database" %}</a></li>
-		-->
 	    <li><a href="{% url c_client %}">{% trans "View clients statistics" %}</a></li>
 	    <li><a href="{% url c_logins %}">{% trans "Create logins from file" %}</a></li>
 	    {% endif %}
 	    <li><a href="{% url c_lista %}?l">{% trans "Manage your students" %}</a></li>
 	    <li><a href="{% url c_echeance %}?l">{% trans "See, add or delete courses or modules deadlines" %}</a></li>
 	    <li><a href="{% url c_work %}?l">{% trans "See, add or delete assignments" %}</a></li>
-		<!--
-	    <li><a href="/coaching/work/recup/">{% trans "Download work uploaded by students" %}</a></li>
-		-->
 	    <li><a href="{% url c_logs %}">{% trans "View log file (all requests to dashboard, contents and tests) for last 7 days" %}</a></li>
 	</ul>
 </div><!-- END .content -->
