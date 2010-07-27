@@ -8,86 +8,87 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-29 15:37+0100\n"
+"POT-Creation-Date: 2010-07-27 15:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Anh J. anhj@gcu.info\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: listes.py:16
+#: listes.py:16 templates/base.html:38
 msgid "French"
-msgstr ""
+msgstr "Français"
 
-#: listes.py:17
+#: listes.py:17 templates/base.html:39
 msgid "English"
-msgstr ""
+msgstr "Anglais"
 
 #: listes.py:18
 msgid "Simplified Chinese"
-msgstr ""
+msgstr "Chinois simplifié"
 
 #: coaching/forms.py:13
 msgid "Source file"
 msgstr "Fichier source"
 
 #: coaching/forms.py:14 coaching/forms.py:38 coaching/forms.py:46
-#: coaching/forms.py:60 templates/coaching/add_echeance.html:25
-#: templates/coaching/add_echeance.html:53 templates/coaching/add_work.html:23
-#: templates/coaching/add_work.html:25 templates/coaching/add_work.html:67
-#: templates/coaching/fiche.html:30 templates/coaching/liste_admin.html:76
-#: templates/coaching/liste_clients.html:49
-#: templates/coaching/liste_coach.html:66
-#: templates/coaching/liste_echeance.html:49
-#: templates/coaching/liste_work.html:49 templates/coaching/logins.html:28
-#: templates/coaching/logins2.html:28 templates/coaching/logins2.html.py:29
-#: templates/coaching/logins3.html:28 templates/coaching/logins3.html.py:29
-#: templates/coaching/maj_echeance.html:24 templates/coaching/maj_work.html:23
-#: templates/coaching/maj_work.html:24 templates/learning/profile.html:19
+#: coaching/forms.py:60 templates/coaching/add_echeance.html:21
+#: templates/coaching/add_echeance.html:51 templates/coaching/add_work.html:17
+#: templates/coaching/add_work.html:19 templates/coaching/add_work.html:63
+#: templates/coaching/fiche.html:26 templates/coaching/liste_admin.html:59
+#: templates/coaching/liste_clients.html:31
+#: templates/coaching/liste_coach.html:59
+#: templates/coaching/liste_echeance.html:36
+#: templates/coaching/liste_work.html:36 templates/coaching/logins.html:24
+#: templates/coaching/logins2.html:25 templates/coaching/logins2.html.py:26
+#: templates/coaching/logins3.html:23 templates/coaching/logins3.html.py:24
+#: templates/coaching/maj_echeance.html:20 templates/coaching/maj_work.html:19
+#: templates/coaching/maj_work.html:20 templates/learning/profile.html:19
 #: templates/learning/profile.html.py:20
 msgid "Group"
 msgstr "Groupe"
 
 #: coaching/forms.py:15 coaching/forms.py:36
-#: templates/coaching/logins2.html:34 templates/coaching/logins3.html:34
+#: templates/coaching/logins2.html:31 templates/coaching/logins3.html:29
 msgid "Preferred language"
 msgstr "Langue préférée"
 
-#: coaching/forms.py:16 coaching/forms.py:34 templates/coaching/fiche.html:40
-#: templates/coaching/logins2.html:35 templates/coaching/logins3.html:35
+#: coaching/forms.py:16 coaching/forms.py:34 templates/coaching/fiche.html:36
+#: templates/coaching/logins2.html:32 templates/coaching/logins3.html:30
 #: templates/learning/profile.html:29 templates/learning/profile.html.py:30
 msgid "Valid till"
 msgstr "Valide jusqu'au"
 
-#: coaching/forms.py:17 templates/coaching/logins2.html:36
-#: templates/coaching/logins3.html:36
+#: coaching/forms.py:17 templates/coaching/logins2.html:33
+#: templates/coaching/logins3.html:31
 msgid "No"
 msgstr "Non"
 
-#: coaching/forms.py:17 templates/coaching/logins2.html:36
-#: templates/coaching/logins3.html:36
+#: coaching/forms.py:17 templates/coaching/logins2.html:33
+#: templates/coaching/logins3.html:31
 msgid "Yes"
 msgstr "Oui"
 
-#: coaching/forms.py:17 templates/coaching/logins2.html:36
-#: templates/coaching/logins3.html:36
+#: coaching/forms.py:17 templates/coaching/logins2.html:33
+#: templates/coaching/logins3.html:31
 msgid "Send credentials by mail"
 msgstr "Envoyer les informations par mail"
 
-#: coaching/forms.py:20 templates/coaching/logins2.html:43
-#: templates/coaching/logins3.html:43
+#: coaching/forms.py:20 templates/coaching/logins2.html:40
+#: templates/coaching/logins3.html:38
 msgid "Last name"
 msgstr "Nom"
 
-#: coaching/forms.py:21 templates/coaching/logins2.html:44
-#: templates/coaching/logins3.html:44
+#: coaching/forms.py:21 templates/coaching/logins2.html:41
+#: templates/coaching/logins3.html:39
 msgid "First name"
 msgstr "Prénom"
 
-#: coaching/forms.py:22 coaching/views.py:1135 coaching/views.py:1193
-#: learning/forms.py:34 templates/coaching/logins2.html:45
-#: templates/coaching/logins3.html:45
+#: coaching/forms.py:22 coaching/views.py:1169 coaching/views.py:1223
+#: coaching/views.py:1311 learning/forms.py:34
+#: templates/coaching/logins2.html:42 templates/coaching/logins3.html:40
 msgid "Email"
 msgstr ""
 
@@ -103,58 +104,58 @@ msgstr "Entrez à nouveau le mot de passe"
 msgid "Please enter the same password twice."
 msgstr "Erreur : les mots de passes sont différents."
 
-#: coaching/forms.py:49 templates/coaching/add_echeance.html:26
-#: templates/coaching/liste_echeance.html:50
-#: templates/coaching/log_list.html:24 templates/coaching/logs.html:24
-#: templates/coaching/maj_echeance.html:25
+#: coaching/forms.py:49 templates/coaching/add_echeance.html:22
+#: templates/coaching/liste_echeance.html:37
+#: templates/coaching/log_list.html:17 templates/coaching/logs.html:18
+#: templates/coaching/maj_echeance.html:21
 msgid "Student"
 msgstr "Etudiant"
 
 #: coaching/forms.py:50 coaching/forms.py:63
-#: templates/coaching/add_echeance.html:30 templates/coaching/add_work.html:28
-#: templates/coaching/add_work.html:29 templates/coaching/add_work.html:70
-#: templates/coaching/liste_echeance.html:51
-#: templates/coaching/liste_work.html:51
-#: templates/coaching/maj_echeance.html:29 templates/coaching/maj_work.html:27
-#: templates/coaching/maj_work.html:28
+#: templates/coaching/add_echeance.html:26 templates/coaching/add_work.html:22
+#: templates/coaching/add_work.html:23 templates/coaching/add_work.html:66
+#: templates/coaching/liste_echeance.html:38
+#: templates/coaching/liste_work.html:38
+#: templates/coaching/maj_echeance.html:25 templates/coaching/maj_work.html:23
+#: templates/coaching/maj_work.html:24
 msgid "Course"
 msgstr "Cours"
 
-#: coaching/forms.py:53 templates/coaching/add_echeance.html:32
-#: templates/coaching/detail.html:37 templates/coaching/liste_echeance.html:52
-#: templates/coaching/maj_echeance.html:30 templates/learning/tdb.html:26
+#: coaching/forms.py:53 templates/coaching/add_echeance.html:28
+#: templates/coaching/detail.html:24 templates/coaching/liste_echeance.html:39
+#: templates/coaching/maj_echeance.html:26 templates/learning/tdb.html:37
 msgid "Module"
 msgstr ""
 
 #: coaching/forms.py:54 coaching/forms.py:57
-#: templates/coaching/add_echeance.html:35
-#: templates/coaching/add_echeance.html:36
-#: templates/coaching/add_echeance.html:42 templates/coaching/add_work.html:35
-#: templates/coaching/add_work.html:37 templates/coaching/add_work.html:52
-#: templates/coaching/add_work.html:54 templates/coaching/detail.html:38
-#: templates/coaching/detail.html.py:61
-#: templates/coaching/detail_module.html:31
-#: templates/coaching/liste_echeance.html:53
-#: templates/coaching/liste_work.html:50
-#: templates/coaching/maj_echeance.html:33
-#: templates/coaching/maj_echeance.html:35 templates/coaching/maj_work.html:33
-#: templates/coaching/maj_work.html:35 templates/learning/module.html:19
-#: templates/learning/tdb.html:27 templates/learning/tdb.html.py:64
+#: templates/coaching/add_echeance.html:31
+#: templates/coaching/add_echeance.html:32
+#: templates/coaching/add_echeance.html:38 templates/coaching/add_work.html:29
+#: templates/coaching/add_work.html:31 templates/coaching/add_work.html:46
+#: templates/coaching/add_work.html:48 templates/coaching/detail.html:25
+#: templates/coaching/detail.html.py:48
+#: templates/coaching/detail_module.html:18
+#: templates/coaching/liste_echeance.html:40
+#: templates/coaching/liste_work.html:37
+#: templates/coaching/maj_echeance.html:29
+#: templates/coaching/maj_echeance.html:31 templates/coaching/maj_work.html:29
+#: templates/coaching/maj_work.html:31 templates/learning/module.html:19
+#: templates/learning/tdb.html:38 templates/learning/tdb.html.py:75
 msgid "Deadline"
 msgstr "Echéance"
 
-#: coaching/forms.py:66 templates/coaching/add_work.html:39
-#: templates/coaching/maj_work.html:38
+#: coaching/forms.py:66 templates/coaching/add_work.html:33
+#: templates/coaching/maj_work.html:34
 msgid "Title"
 msgstr "Titre"
 
-#: coaching/forms.py:67 templates/coaching/add_work.html:41
-#: templates/coaching/maj_work.html:40
+#: coaching/forms.py:67 templates/coaching/add_work.html:35
+#: templates/coaching/maj_work.html:36
 msgid "Description"
 msgstr ""
 
-#: coaching/forms.py:68 templates/coaching/add_work.html:44
-#: templates/coaching/maj_work.html:43
+#: coaching/forms.py:68 templates/coaching/add_work.html:38
+#: templates/coaching/maj_work.html:39
 msgid "Additional document"
 msgstr "Fichier joint"
 
@@ -167,7 +168,7 @@ msgstr "Le fichier doit être de type .doc, .xls, .pdf ou .zip"
 msgid "Maximum size allowed is 1 Mo, this file is %.2f Mo"
 msgstr "La taille maximum est de 1 Mo, ce fichier fait %.2f Mo"
 
-#: coaching/forms.py:87 templates/coaching/sendmail.html:28
+#: coaching/forms.py:87 templates/coaching/sendmail.html:17
 msgid "Subject"
 msgstr "Sujet"
 
@@ -175,19 +176,20 @@ msgstr "Sujet"
 msgid "Text"
 msgstr "Contenu"
 
-#: coaching/views.py:39 coaching/views.py:44
+#: coaching/views.py:43 coaching/views.py:48
 msgid "All"
 msgstr "Tout"
 
-#: coaching/views.py:72 coaching/views.py:288 coaching/views.py:800
+#: coaching/views.py:76 coaching/views.py:301 coaching/views.py:804
+#: templates/learning/tdb.html:12
 msgid "group"
 msgstr "groupe"
 
-#: coaching/views.py:73 coaching/views.py:289
+#: coaching/views.py:77 coaching/views.py:302
 msgid "course"
 msgstr "cours"
 
-#: coaching/views.py:117
+#: coaching/views.py:122
 msgid ""
 "Assignment successfully created.                             <a href=\"/"
 "coaching/work/add/\" style=\"font-weight: bold;\">Add a new one</a>"
@@ -195,7 +197,7 @@ msgstr ""
 "Travail ajouté avec succès.  <a href=\"/coaching/work/add/\" style=\"color: "
 "red;\">Ajouter un autre travail à rendre</a>"
 
-#: coaching/views.py:188
+#: coaching/views.py:198
 #, python-format
 msgid ""
 "This assignment has been deleted.             <a href=\"/coaching/work/"
@@ -204,26 +206,26 @@ msgstr ""
 "Ce travail a été supprimé.  <a href=\"/coaching/work/manage/?id=%s&undo\" "
 "style=\"color: red;\">Annuler</a>"
 
-#: coaching/views.py:223
+#: coaching/views.py:234
 msgid "Assignment successfully saved."
 msgstr "Travail modifié avec succès."
 
-#: coaching/views.py:245
+#: coaching/views.py:257
 msgid "Assignment successfully restored."
 msgstr "Travail restauré avec succès."
 
-#: coaching/views.py:310 coaching/views.py:358 coaching/views.py:365
-#: coaching/views.py:386 coaching/views.py:419 coaching/views.py:442
-#: coaching/views.py:482
+#: coaching/views.py:324 coaching/views.py:374 coaching/views.py:381
+#: coaching/views.py:403 coaching/views.py:438 coaching/views.py:462
+#: coaching/views.py:503
 msgid "== All Students =="
 msgstr "== Tous les étudiants =="
 
-#: coaching/views.py:317 coaching/views.py:327 coaching/views.py:372
-#: coaching/views.py:424 coaching/views.py:447 coaching/views.py:487
+#: coaching/views.py:331 coaching/views.py:341 coaching/views.py:388
+#: coaching/views.py:443 coaching/views.py:467 coaching/views.py:508
 msgid "== All Modules =="
 msgstr "== Tous les modules =="
 
-#: coaching/views.py:337
+#: coaching/views.py:351
 msgid ""
 "Deadline successfully created.                             <a href=\"/"
 "coaching/echeance/add/\" style=\"font-weight: bold;\">Add a new one</a>"
@@ -231,105 +233,105 @@ msgstr ""
 "Echéance ajoutée avec succès.  <a href=\"/coaching/echeance/addstyle="
 "\"color: red;\">Ajouter une autre échéance</a>"
 
-#: coaching/views.py:413
+#: coaching/views.py:432
 #, python-format
 msgid ""
 "This deadline has been deleted.             <a href=\"/coaching/echeance/"
 "manage/?id=%s&undo\" style=\"color: red;\">Undo</a>"
 msgstr ""
-"Cette échéance a été supprimée.  <a href=\"/coaching/echeance/manage/?id=%"
-"s&undo\" style=\"color: red;\">Annuler</a>"
+"Cette échéance a été supprimée.  <a href=\"/coaching/echeance/manage/?id="
+"%s&undo\" style=\"color: red;\">Annuler</a>"
 
-#: coaching/views.py:451
+#: coaching/views.py:471
 msgid "Deadline successfully saved."
 msgstr "Echéance modifiée avec succès."
 
-#: coaching/views.py:470
+#: coaching/views.py:491
 msgid "Deadline successfully restored."
 msgstr "Echéance restaurée avec succès."
 
-#: coaching/views.py:665
+#: coaching/views.py:668
 msgid "Late"
 msgstr "Retard"
 
-#: coaching/views.py:671
+#: coaching/views.py:674
 msgid "Completed late"
 msgstr "Validé en retard"
 
-#: coaching/views.py:754 learning/views.py:35
+#: coaching/views.py:758 learning/views.py:38
 #, python-format
 msgid "%s changed successfully."
 msgstr "%s modifié avec succès."
 
-#: coaching/views.py:801
+#: coaching/views.py:805
 msgid "language"
 msgstr "langue"
 
-#: coaching/views.py:846
+#: coaching/views.py:847
 msgid "client"
 msgstr "client"
 
-#: coaching/views.py:913
+#: coaching/views.py:920
 msgid "Exists already."
 msgstr "Existe déjà."
 
-#: coaching/views.py:921
+#: coaching/views.py:928
 msgid "Saved."
 msgstr "Sauvé."
 
-#: coaching/views.py:944
+#: coaching/views.py:952
 msgid "Mail sent."
 msgstr "Mail envoyé."
 
-#: coaching/views.py:946
+#: coaching/views.py:954
 msgid "Mail error."
 msgstr "Erreur mail."
 
-#: coaching/views.py:1090
+#: coaching/views.py:1117
 msgid "The message has been sent."
 msgstr "Le message a été envoyé."
 
-#: coaching/views.py:1132 coaching/views.py:1190
+#: coaching/views.py:1166 coaching/views.py:1220 coaching/views.py:1308
 #: templates/learning/profile.html:24
 msgid "Last Name"
 msgstr "Nom"
 
-#: coaching/views.py:1133 coaching/views.py:1191
+#: coaching/views.py:1167 coaching/views.py:1221 coaching/views.py:1309
 #: templates/learning/profile.html:25
 msgid "First Name"
 msgstr "Prénom"
 
-#: coaching/views.py:1134 coaching/views.py:1192 session/forms.py:10
-#: session/forms.py:22 templates/coaching/fiche.html:25
-#: templates/coaching/liste_admin.html:79
-#: templates/coaching/liste_coach.html:69 templates/coaching/logins3.html:46
-#: templates/learning/profile.html:14
+#: coaching/views.py:1168 coaching/views.py:1222 coaching/views.py:1310
+#: session/forms.py:10 session/forms.py:22 templates/base.html:27
+#: templates/coaching/fiche.html:21 templates/coaching/liste_admin.html:62
+#: templates/coaching/liste_coach.html:62 templates/coaching/logins3.html:41
+#: templates/learning/profile.html:14 templates/session/login.html:6
 msgid "Login"
 msgstr "Login"
 
-#: coaching/views.py:1136 templates/coaching/liste_admin.html:85
-#: templates/coaching/liste_coach.html:73
+#: coaching/views.py:1170 templates/coaching/liste_admin.html:68
+#: templates/coaching/liste_coach.html:66
 msgid "Last Work"
 msgstr "Dernier travail"
 
-#: coaching/views.py:1137 templates/coaching/liste_admin.html:84
-#: templates/coaching/liste_coach.html:72
+#: coaching/views.py:1171 templates/coaching/liste_admin.html:67
+#: templates/coaching/liste_coach.html:65
 msgid "Time Spent"
 msgstr "Temps passé"
 
-#: coaching/views.py:1138 templates/coaching/liste_admin.html:80
+#: coaching/views.py:1172 templates/coaching/liste_admin.html:63
 msgid "Modules"
 msgstr ""
 
-#: coaching/views.py:1139
+#: coaching/views.py:1173
 msgid "Validated"
 msgstr "Validés"
 
-#: coaching/views.py:1140
+#: coaching/views.py:1174
 msgid "Validated Late"
 msgstr "Validés en retard"
 
-#: coaching/views.py:1141
+#: coaching/views.py:1175
 msgid "Currently Late"
 msgstr "Actuellement en retard"
 
@@ -337,23 +339,24 @@ msgstr "Actuellement en retard"
 msgid "File name"
 msgstr "Nom du fichier"
 
-#: learning/views.py:348 learning/views.py:419 testing/views.py:84
+#: learning/views.py:360 learning/views.py:432 testing/views.py:88
 msgid "We are sorry, this content is not available in your preferred language."
 msgstr "Désolé, ce contenu n'est pas disponible dans votre langue préférée."
 
-#: session/forms.py:15 templates/coaching/logins3.html:47
+#: session/forms.py:15 templates/base.html:29
+#: templates/coaching/logins3.html:42
 msgid "Password"
-msgstr ""
+msgstr "Mot de passe"
 
 #: session/forms.py:17
 msgid "Remember me on this computer"
 msgstr "Se souvenir de moi sur cet ordinateur"
 
-#: session/views.py:216 session/views.py:271
+#: session/views.py:235 session/views.py:296
 msgid "Bad login. Please try again."
 msgstr "Login inconnu. Merci de réessayer"
 
-#: session/views.py:238
+#: session/views.py:257
 msgid ""
 "Your new password has just been sent to you. <a href=\"/\">Back to login "
 "form</a>."
@@ -361,15 +364,15 @@ msgstr ""
 "Votre nouveau mot de passe vient de vous être envoyé. <a href=\"/\">Retour "
 "au formulaire de login</a>."
 
-#: session/views.py:307
+#: session/views.py:335
 msgid "Sorry, expired account."
 msgstr "Désolé, votre compte n'est pas valide actuellement."
 
-#: session/views.py:309
+#: session/views.py:337
 msgid "Password error. Please try again."
 msgstr "Mot de passe invalide, merci de réessayer"
 
-#: session/views.py:313
+#: session/views.py:341
 msgid ""
 "Your browser does not seem to accept cookies. Please change your settings "
 "and try again."
@@ -377,343 +380,319 @@ msgstr ""
 "Votre navigateur ne semble pas accepter les cookies. Merci de modifier vos "
 "règlages et de réessayer."
 
-#: session/views.py:342
+#: session/views.py:371
 msgid ""
-"You have been logged out. Thanks for visiting us today. <br><a href=\"/login/"
-"\">New login</a>"
+"You have been logged out. Thanks for visiting us today. <br /><a href=\"/"
+"login/\">New login</a>"
 msgstr ""
-"Vous êtes déconnecté. Merci de votre visite. <br><a href=\"/login/\">Nouveau "
-"login</a>"
+"Vous êtes déconnecté. Merci de votre visite. <br /><a href=\"/login/"
+"\">Nouveau login</a>"
 
-#: templates/404.html:8 templates/404.html.py:31 templates/500.html:8
-#: templates/500.html.py:31 templates/base.html:8 templates/base.html.py:33
-msgid "Innovative e-learning software"
-msgstr "Plate-forme de e-learning"
-
-#: templates/404.html:36
+#: templates/404.html:11
 msgid "Ooops - It seems the page you requested doesn't exist."
 msgstr "La page demandée n'existe pas."
 
-#: templates/404.html:37 templates/500.html:37
+#: templates/404.html:12 templates/500.html:38
 msgid "Back to your starting page"
 msgstr "Retour à la page d'accueil"
 
-#: templates/500.html:36
-msgid "The action you required caused an error."
-msgstr "L'action demandée a causé une erreur."
+#: templates/500.html:8 templates/base.html:8 templates/base.html.py:65
+msgid "Innovative e-learning software"
+msgstr "Plate-forme de e-learning"
 
-#: templates/in_session.html:8 templates/coaching/add_echeance.html:6
-#: templates/coaching/add_work.html:6 templates/coaching/detail.html:6
-#: templates/coaching/detail_module.html:6 templates/coaching/fiche.html:6
-#: templates/coaching/liste_admin.html:11
-#: templates/coaching/liste_clients.html:11
-#: templates/coaching/liste_echeance.html:11
-#: templates/coaching/liste_work.html:11 templates/coaching/log.html:6
-#: templates/coaching/log_list.html:6 templates/coaching/logins.html:6
-#: templates/coaching/logins2.html:6 templates/coaching/logins3.html:6
-#: templates/coaching/logs.html:6 templates/coaching/maj_echeance.html:6
-#: templates/coaching/maj_work.html:6 templates/coaching/menu.html:6
-#: templates/coaching/sendmail.html:6
-msgid "Log out"
-msgstr "Déconnexion"
-
-#: templates/in_session.html:9 templates/coaching/add_echeance.html:7
-#: templates/coaching/add_work.html:7 templates/coaching/detail.html:7
-#: templates/coaching/detail_module.html:7 templates/coaching/fiche.html:7
-#: templates/coaching/liste_admin.html:12
-#: templates/coaching/liste_clients.html:12
-#: templates/coaching/liste_echeance.html:12
-#: templates/coaching/liste_work.html:12 templates/coaching/log.html:7
-#: templates/coaching/log_list.html:7 templates/coaching/logins.html:7
-#: templates/coaching/logins2.html:7 templates/coaching/logins3.html:7
-#: templates/coaching/logs.html:7 templates/coaching/maj_echeance.html:7
-#: templates/coaching/maj_work.html:7 templates/coaching/menu.html:7
-#: templates/coaching/sendmail.html:7
-msgid "My account"
-msgstr "Mon profil"
-
-#: templates/in_session.html:10 templates/coaching/add_echeance.html:8
-#: templates/coaching/add_work.html:8 templates/coaching/detail.html:8
-#: templates/coaching/detail_module.html:8 templates/coaching/fiche.html:8
-#: templates/coaching/liste_admin.html:13
-#: templates/coaching/liste_clients.html:13
-#: templates/coaching/liste_echeance.html:13
-#: templates/coaching/liste_work.html:13 templates/coaching/log.html:8
-#: templates/coaching/log_list.html:8 templates/coaching/logins.html:8
-#: templates/coaching/logins2.html:8 templates/coaching/logins3.html:8
-#: templates/coaching/logs.html:8 templates/coaching/maj_echeance.html:8
-#: templates/coaching/maj_work.html:8 templates/coaching/menu.html:8
-#: templates/coaching/sendmail.html:8
-msgid "Dashboard"
-msgstr "Tableau des cours"
-
-#: templates/in_session.html:12 templates/coaching/add_echeance.html:9
-#: templates/coaching/add_work.html:9 templates/coaching/detail.html:9
-#: templates/coaching/detail_module.html:9 templates/coaching/fiche.html:9
-#: templates/coaching/liste_admin.html:14
-#: templates/coaching/liste_clients.html:14
-#: templates/coaching/liste_echeance.html:14
-#: templates/coaching/liste_work.html:14 templates/coaching/log.html:9
-#: templates/coaching/log_list.html:9 templates/coaching/logins.html:9
-#: templates/coaching/logins2.html:9 templates/coaching/logins3.html:9
-#: templates/coaching/logs.html:9 templates/coaching/maj_echeance.html:9
-#: templates/coaching/maj_work.html:9 templates/coaching/sendmail.html:9
-msgid "Administration"
-msgstr ""
-
-#: templates/in_session.html:16
+#: templates/500.html:28 templates/base.html:49
 msgid "Innovative e-learning Master"
 msgstr "Votre Master en e-learning"
 
-#: templates/coaching/add_echeance.html:13 templates/coaching/add_work.html:13
-#: templates/coaching/detail.html:13 templates/coaching/detail_module.html:13
-#: templates/coaching/fiche.html:13 templates/coaching/liste_admin.html:18
-#: templates/coaching/liste_clients.html:18
-#: templates/coaching/liste_echeance.html:18
-#: templates/coaching/liste_work.html:18 templates/coaching/log.html:13
-#: templates/coaching/log_list.html:13 templates/coaching/logins.html:13
-#: templates/coaching/logins2.html:13 templates/coaching/logins3.html:13
-#: templates/coaching/logs.html:13 templates/coaching/maj_echeance.html:13
-#: templates/coaching/maj_work.html:13 templates/coaching/menu.html:10
-#: templates/coaching/sendmail.html:13
-msgid "administration"
-msgstr ""
+#: templates/500.html:37
+msgid "The action you required caused an error."
+msgstr "L'action demandée a causé une erreur."
 
-#: templates/coaching/add_echeance.html:14
-#: templates/coaching/liste_echeance.html:19
-#: templates/coaching/maj_echeance.html:14
-msgid "deadlines"
-msgstr "échéances"
+#: templates/base.html:31 templates/session/login.html:31
+msgid "Log in"
+msgstr "Connexion"
 
-#: templates/coaching/add_echeance.html:15 templates/coaching/add_work.html:15
-msgid "add"
-msgstr "ajout"
-
-#: templates/coaching/add_echeance.html:19
-msgid "Add a deadline"
-msgstr "Ajouter une échéance"
-
-#: templates/coaching/add_echeance.html:23
-#: templates/coaching/maj_echeance.html:23
-msgid "Group or Student"
-msgstr "Groupe ou étudiant"
-
-#: templates/coaching/add_echeance.html:29
-#: templates/coaching/add_echeance.html:57
-#: templates/coaching/maj_echeance.html:28
-msgid "Course or Module"
-msgstr "Cours ou module"
-
-#: templates/coaching/add_echeance.html:48 templates/coaching/add_work.html:62
-#: templates/coaching/fiche.html:47 templates/coaching/logins.html:39
-#: templates/coaching/maj_echeance.html:40 templates/coaching/maj_work.html:55
-#: templates/learning/devoir.html:27 templates/learning/profile.html:36
-msgid "Save"
-msgstr "Sauver"
-
-#: templates/coaching/add_echeance.html:49 templates/coaching/add_work.html:63
-msgid "Save and add a new one"
-msgstr "Enregistrer et ajouter un autre"
-
-#: templates/coaching/add_echeance.html:61
-#: templates/coaching/add_echeance.html:65 templates/coaching/add_work.html:74
-#: templates/coaching/add_work.html:78
-msgid "Continue"
-msgstr "Continuer"
-
-#: templates/coaching/add_work.html:14 templates/learning/devoir.html:7
-msgid "assignment"
-msgstr "travail à rendre"
-
-#: templates/coaching/add_work.html:19
-msgid "Add an assignment"
-msgstr "Ajouter un travail à rendre"
-
-#: templates/coaching/add_work.html:33 templates/coaching/add_work.html:50
-#: templates/coaching/detail.html:60 templates/coaching/liste_work.html:52
-#: templates/coaching/maj_work.html:31 templates/learning/devoir.html:14
-#: templates/learning/tdb.html:63
-msgid "Assignment"
-msgstr "Travail à rendre"
-
-#: templates/coaching/add_work.html:37 templates/coaching/add_work.html:54
-#: templates/coaching/maj_work.html:35
-msgid "No deadline"
-msgstr "Pas d'échéance"
-
-#: templates/coaching/detail.html:15 templates/coaching/detail_module.html:15
-#: templates/coaching/fiche.html:14 templates/coaching/liste_admin.html:19
-#: templates/coaching/log.html:15
-msgid "students"
-msgstr "étudiants"
-
-#: templates/coaching/detail.html:17 templates/coaching/detail_module.html:17
-#: templates/coaching/fiche.html:15 templates/coaching/log.html:17
-msgid "detail"
-msgstr "détail"
-
-#: templates/coaching/detail.html:24 templates/coaching/log.html:25
-msgid "Change this user's profile"
-msgstr "Modifier les informations de cet étudiant"
-
-#: templates/coaching/detail.html:26
-msgid "See this user's log"
-msgstr "Voir le log des consultations de cet étudiant"
-
-#: templates/coaching/detail.html:28
-msgid "Download all this student's works:"
-msgstr "Télécharger tous les travaux de cet étudiant :"
-
-#: templates/coaching/detail.html:30
-msgid "Send an email to this user"
-msgstr "Envoyer un mail à cet étudiant"
-
-#: templates/coaching/detail.html:31
-msgid "Time spent online by this student (estimation) :"
-msgstr "Temps passé sur la plateforme par cet étudiant (estimation) :"
-
-#: templates/coaching/detail.html:39 templates/coaching/liste_admin.html:81
-msgid "Done"
-msgstr "Validés"
-
-#: templates/coaching/detail.html:40 templates/coaching/detail_module.html:62
-#: templates/learning/module.html:51
-msgid "Tries"
-msgstr "Essais"
-
-#: templates/coaching/detail.html:41
-msgid "Problem ?"
-msgstr "Problème ?"
-
-#: templates/coaching/detail.html:62 templates/learning/tdb.html:65
-msgid "Uploaded on"
-msgstr "Rendu le"
-
-#: templates/coaching/detail.html:63 templates/learning/tdb.html:66
-msgid "Signature"
-msgstr ""
-
-#: templates/coaching/detail_module.html:18 templates/learning/module.html:7
-msgid "module"
-msgstr ""
-
-#: templates/coaching/detail_module.html:25 templates/learning/module.html:13
-msgid "Module completed on"
-msgstr "Module validé le"
-
-#: templates/coaching/detail_module.html:27 templates/learning/module.html:15
-msgid "Deadline was"
-msgstr "Echéance : "
-
-#: templates/coaching/detail_module.html:35 templates/learning/module.html:23
-#: templates/learning/tdb.html:28
-msgid "Contents"
-msgstr "Supports"
-
-#: templates/coaching/detail_module.html:39 templates/learning/module.html:27
-msgid "Content"
-msgstr "Support"
-
-#: templates/coaching/detail_module.html:40 templates/learning/module.html:28
-msgid "Last view"
-msgstr "Dernière consultation"
-
-#: templates/coaching/detail_module.html:41 templates/learning/module.html:29
-msgid "Times viewed"
-msgstr "Consultations"
-
-#: templates/coaching/detail_module.html:57 templates/learning/module.html:46
-#: templates/learning/tdb.html:29
-msgid "Tests"
-msgstr ""
-
-#: templates/coaching/detail_module.html:61 templates/learning/module.html:50
-msgid "Test"
-msgstr ""
-
-#: templates/coaching/detail_module.html:63 templates/learning/module.html:52
-msgid "Last try"
-msgstr "Dernier essai"
-
-#: templates/coaching/detail_module.html:64 templates/learning/module.html:53
-msgid "Best try"
-msgstr "Meilleur essai"
-
-#: templates/coaching/detail_module.html:65 templates/learning/module.html:54
-msgid "Completed"
-msgstr "Validé"
-
-#: templates/coaching/fiche.html:16 templates/learning/profile.html:6
-msgid "profile"
-msgstr "profil"
-
-#: templates/coaching/fiche.html:24 templates/learning/profile.html:13
-msgid "Credentials"
-msgstr "Informations de connexion"
-
-#: templates/coaching/fiche.html:34 templates/learning/profile.html:23
-msgid "Identity"
-msgstr "Identité"
-
-#: templates/coaching/fiche.html:44 templates/learning/profile.html:33
+#: templates/base.html:36 templates/coaching/fiche.html:40
+#: templates/learning/profile.html:33
 msgid "Language"
 msgstr "Langue"
 
-#: templates/coaching/liste_admin.html:24
-#: templates/coaching/liste_clients.html:24
-#: templates/coaching/liste_coach.html:14
-#: templates/coaching/liste_echeance.html:24
-#: templates/coaching/liste_work.html:24
-msgid "Filter"
-msgstr "Filtre"
+#: templates/base.html:51
+msgid "Home"
+msgstr "Accueil"
 
-#: templates/coaching/liste_admin.html:26
-#: templates/coaching/liste_clients.html:26
+#: templates/base.html:52 templates/product/home.html:32
+#: templates/product/news.html:4 templates/product/news.html.py:6
+msgid "News"
+msgstr ""
+
+#: templates/base.html:53 templates/product/demo.html:4
+#: templates/product/demo.html.py:6 templates/product/demo.html:12
+#: templates/product/home.html:21 templates/product/news.html:14
+msgid "Demonstration"
+msgstr "Démonstration"
+
+#: templates/base.html:54 templates/product/home.html:28
+#: templates/product/overview.html:4 templates/product/overview.html.py:6
+#: templates/product/overview.html:12
+msgid "Overview"
+msgstr "Présentation"
+
+#: templates/base.html:55 templates/product/contributors.html:4
+#: templates/product/contributors.html:6
+#: templates/product/contributors.html:12 templates/product/home.html:36
+msgid "Contributors"
+msgstr "Contributeurs"
+
+#: templates/base.html:56
+msgid "Courses"
+msgstr "Cours"
+
+#: templates/base.html:72
+msgid "© learngest.com 2009-"
+msgstr ""
+
+#: templates/base.html:72
+msgid "Legal notices"
+msgstr "Mentions légales"
+
+#: templates/in_session.html:20 templates/coaching/liste_clients.html:9
+#: templates/coaching/menu.html:4
+msgid "Administration"
+msgstr ""
+
+#: templates/in_session.html:22
+msgid "Tableau des cours"
+msgstr ""
+
+#: templates/in_session.html:23
+msgid "Profil"
+msgstr "profil"
+
+#: templates/coaching/add_echeance.html:5 templates/coaching/add_work.html:5
+#: templates/coaching/fiche.html:5 templates/coaching/liste_echeance.html:9
+#: templates/coaching/liste_work.html:9 templates/coaching/log_list.html:5
+#: templates/coaching/logins.html:4 templates/coaching/logins2.html:5
+#: templates/coaching/logins3.html:5 templates/coaching/logs.html:5
+#: templates/coaching/maj_echeance.html:5 templates/coaching/maj_work.html:5
+#: templates/coaching/menu.html:5
+msgid "administration"
+msgstr ""
+
+#: templates/coaching/add_echeance.html:6
+#: templates/coaching/liste_echeance.html:9
+#: templates/coaching/maj_echeance.html:6
+msgid "deadlines"
+msgstr "échéances"
+
+#: templates/coaching/add_echeance.html:7 templates/coaching/add_work.html:7
+msgid "add"
+msgstr "ajout"
+
+#: templates/coaching/add_echeance.html:13
+msgid "Add a deadline"
+msgstr "Ajouter une échéance"
+
+#: templates/coaching/add_echeance.html:19
+#: templates/coaching/maj_echeance.html:19
+msgid "Group or Student"
+msgstr "Groupe ou étudiant"
+
+#: templates/coaching/add_echeance.html:25
+#: templates/coaching/add_echeance.html:55
+#: templates/coaching/maj_echeance.html:24
+msgid "Course or Module"
+msgstr "Cours ou module"
+
+#: templates/coaching/add_echeance.html:45 templates/coaching/add_work.html:57
+#: templates/coaching/fiche.html:44 templates/coaching/logins.html:36
+#: templates/coaching/maj_echeance.html:37 templates/coaching/maj_work.html:52
+#: templates/learning/devoir.html:30 templates/learning/profile.html:37
+msgid "Save"
+msgstr "Sauver"
+
+#: templates/coaching/add_echeance.html:46 templates/coaching/add_work.html:58
+msgid "Save and add a new one"
+msgstr "Enregistrer et ajouter un autre"
+
+#: templates/coaching/add_echeance.html:60
+#: templates/coaching/add_echeance.html:66 templates/coaching/add_work.html:71
+#: templates/coaching/add_work.html:77
+msgid "Continue"
+msgstr "Continuer"
+
+#: templates/coaching/add_work.html:6 templates/learning/devoir.html:6
+msgid "assignment"
+msgstr "travail à rendre"
+
+#: templates/coaching/add_work.html:13
+msgid "Add an assignment"
+msgstr "Ajouter un travail à rendre"
+
+#: templates/coaching/add_work.html:27 templates/coaching/add_work.html:44
+#: templates/coaching/detail.html:47 templates/coaching/liste_work.html:39
+#: templates/coaching/maj_work.html:27 templates/learning/devoir.html:16
+#: templates/learning/tdb.html:74
+msgid "Assignment"
+msgstr "Travail à rendre"
+
+#: templates/coaching/add_work.html:31 templates/coaching/add_work.html:48
+#: templates/coaching/maj_work.html:31
+msgid "No deadline"
+msgstr "Pas d'échéance"
+
+#: templates/coaching/detail.html:10
+msgid "Change this user's profile"
+msgstr "Modifier les informations de cet étudiant"
+
+#: templates/coaching/detail.html:11
+msgid "See this user's log"
+msgstr "Voir le log des consultations de cet étudiant"
+
+#: templates/coaching/detail.html:12
+msgid "Download all this student's works:"
+msgstr "Télécharger tous les travaux de cet étudiant :"
+
+#: templates/coaching/detail.html:13
+msgid "Send an email to this user"
+msgstr "Envoyer un mail à cet étudiant"
+
+#: templates/coaching/detail.html:14
+msgid "Time spent online by this student (estimation) :"
+msgstr "Temps passé sur la plateforme par cet étudiant (estimation) :"
+
+#: templates/coaching/detail.html:26 templates/coaching/liste_admin.html:64
+msgid "Done"
+msgstr "Validés"
+
+#: templates/coaching/detail.html:27 templates/coaching/detail_module.html:54
+#: templates/learning/module.html:56
+msgid "Tries"
+msgstr "Essais"
+
+#: templates/coaching/detail.html:28
+msgid "Problem ?"
+msgstr "Problème ?"
+
+#: templates/coaching/detail.html:49 templates/learning/tdb.html:76
+msgid "Uploaded on"
+msgstr "Rendu le"
+
+#: templates/coaching/detail.html:50 templates/learning/tdb.html:77
+msgid "Signature"
+msgstr ""
+
+#: templates/coaching/detail_module.html:12 templates/learning/module.html:13
+msgid "Module completed on"
+msgstr "Module validé le"
+
+#: templates/coaching/detail_module.html:14 templates/learning/module.html:15
+msgid "Deadline was"
+msgstr "Echéance : "
+
+#: templates/coaching/detail_module.html:25 templates/learning/module.html:26
+#: templates/learning/tdb.html:39
+msgid "Contents"
+msgstr "Supports"
+
+#: templates/coaching/detail_module.html:29 templates/learning/module.html:30
+msgid "Content"
+msgstr "Support"
+
+#: templates/coaching/detail_module.html:30 templates/learning/module.html:31
+msgid "Last view"
+msgstr "Dernière consultation"
+
+#: templates/coaching/detail_module.html:31 templates/learning/module.html:32
+msgid "Times viewed"
+msgstr "Consultations"
+
+#: templates/coaching/detail_module.html:49 templates/learning/module.html:51
+#: templates/learning/tdb.html:40
+msgid "Tests"
+msgstr ""
+
+#: templates/coaching/detail_module.html:53 templates/learning/module.html:55
+msgid "Test"
+msgstr ""
+
+#: templates/coaching/detail_module.html:55 templates/learning/module.html:57
+msgid "Last try"
+msgstr "Dernier essai"
+
+#: templates/coaching/detail_module.html:56 templates/learning/module.html:58
+msgid "Best try"
+msgstr "Meilleur essai"
+
+#: templates/coaching/detail_module.html:57 templates/learning/module.html:59
+msgid "Completed"
+msgstr "Validé"
+
+#: templates/coaching/fiche.html:6
+msgid "students"
+msgstr "étudiants"
+
+#: templates/coaching/fiche.html:7
+msgid "detail"
+msgstr "détail"
+
+#: templates/coaching/fiche.html:8
+msgid "profile"
+msgstr "profil"
+
+#: templates/coaching/fiche.html:20 templates/learning/profile.html:13
+msgid "Credentials"
+msgstr "Informations de connexion"
+
+#: templates/coaching/fiche.html:30 templates/learning/profile.html:23
+msgid "Identity"
+msgstr "Identité"
+
+#: templates/coaching/liste_admin.html:16
 #: templates/coaching/liste_coach.html:16
-#: templates/coaching/liste_echeance.html:26
-#: templates/coaching/liste_work.html:26
-msgid "By "
-msgstr "Par "
+msgid "This group is empty"
+msgstr "Ce groupe est vide"
 
-#: templates/coaching/liste_admin.html:36
-#: templates/coaching/liste_coach.html:26
+#: templates/coaching/liste_admin.html:20
+#: templates/coaching/liste_coach.html:20
 msgid "Students management"
 msgstr "Gestion des étudiants"
 
-#: templates/coaching/liste_admin.html:39
-#: templates/coaching/liste_coach.html:29
+#: templates/coaching/liste_admin.html:23
+#: templates/coaching/liste_coach.html:23
 msgid "Send a mail to this group"
 msgstr "Envoyer un mail à ce groupe"
 
-#: templates/coaching/liste_admin.html:41
-#: templates/coaching/liste_coach.html:31
-msgid "Download works from this group:"
-msgstr "Télécharger les travaux rendus par ce groupe :"
-
-#: templates/coaching/liste_admin.html:51
-#: templates/coaching/liste_coach.html:41
+#: templates/coaching/liste_admin.html:24
+#: templates/coaching/liste_coach.html:24
 msgid "Save this table as a .csv file"
 msgstr "Sauver ce tableau au format .csv"
 
-#: templates/coaching/liste_admin.html:52
-#: templates/coaching/liste_coach.html:42
+#: templates/coaching/liste_admin.html:25
+#: templates/coaching/liste_coach.html:25
 msgid "Get a report of time spent per module as a .csv file"
 msgstr "Récupérer le temps passé par module au format .csv"
 
-#: templates/coaching/liste_admin.html:55
-#: templates/coaching/liste_coach.html:45
+#: templates/coaching/liste_admin.html:29
+#: templates/coaching/liste_coach.html:29
+msgid "Download works from this group:"
+msgstr "Télécharger les travaux rendus par ce groupe :"
+
+#: templates/coaching/liste_admin.html:38
+#: templates/coaching/liste_coach.html:38 templates/learning/tdb.html:17
 msgid "Information"
 msgstr ""
 
-#: templates/coaching/liste_admin.html:56
-#: templates/coaching/liste_coach.html:46
+#: templates/coaching/liste_admin.html:39
+#: templates/coaching/liste_coach.html:39
 msgid ""
 "Time spent by the students is estimated and should not be seen as accurate."
 msgstr ""
 "Le temps passé par les étudiants est estimé et ne doit pas être considéré "
 "comme précis."
 
-#: templates/coaching/liste_admin.html:57
+#: templates/coaching/liste_admin.html:40
+#: templates/coaching/liste_coach.html:40
 msgid ""
 "The number of currently late modules is calculated once per day on midnight "
 "(Europe/Paris time)."
@@ -721,293 +700,285 @@ msgstr ""
 "Le nombre de modules actuellement en retard est calculé une fois par 24h à "
 "minuit heure de Paris."
 
-#: templates/coaching/liste_admin.html:78
-#: templates/coaching/liste_coach.html:68
+#: templates/coaching/liste_admin.html:61
+#: templates/coaching/liste_coach.html:61
 msgid "Name"
 msgstr "Nom"
 
-#: templates/coaching/liste_admin.html:82
-#: templates/coaching/liste_coach.html:71
+#: templates/coaching/liste_admin.html:65
+#: templates/coaching/liste_coach.html:64
 msgid "Done Late"
 msgstr "Validés<br />en retard"
 
-#: templates/coaching/liste_admin.html:83
+#: templates/coaching/liste_admin.html:66
 msgid "Cur. Late"
 msgstr "Actuellement<br />en retard"
 
-#: templates/coaching/liste_admin.html:107
-#: templates/coaching/liste_coach.html:93
-msgid "This group is empty"
-msgstr "Ce groupe est vide"
+#: templates/coaching/liste_clients.html:9
+msgid "Clients statistics"
+msgstr "Statistiques clients"
 
-#: templates/coaching/liste_clients.html:19
-msgid "clients statistics"
-msgstr "statistiques clients"
-
-#: templates/coaching/liste_clients.html:36
+#: templates/coaching/liste_clients.html:14
 msgid "Client statistics"
 msgstr "Statistiques clients"
 
-#: templates/coaching/liste_clients.html:48
+#: templates/coaching/liste_clients.html:30
 msgid "Client"
 msgstr "Client"
 
-#: templates/coaching/liste_clients.html:50
+#: templates/coaching/liste_clients.html:32
 msgid "# Courses"
 msgstr "Nb cours"
 
-#: templates/coaching/liste_clients.html:51
+#: templates/coaching/liste_clients.html:33
 msgid "# Modules"
 msgstr "Nb modules"
 
-#: templates/coaching/liste_clients.html:52
+#: templates/coaching/liste_clients.html:34
 msgid "# Logins"
 msgstr "Nb logins"
 
-#: templates/coaching/liste_clients.html:53
+#: templates/coaching/liste_clients.html:35
 msgid "# Connected Yesterday"
 msgstr "Nb connectés hier"
 
-#: templates/coaching/liste_clients.html:70
+#: templates/coaching/liste_clients.html:52
 msgid "This list is empty"
 msgstr "Cette liste est vide"
 
-#: templates/coaching/liste_coach.html:10
-msgid "coaching"
-msgstr ""
-
-#: templates/coaching/liste_coach.html:10
-msgid "list"
-msgstr "liste"
-
-#: templates/coaching/liste_coach.html:70 templates/learning/tdb.html:30
+#: templates/coaching/liste_coach.html:63 templates/learning/tdb.html:41
 msgid "Progress"
 msgstr "Acquis"
 
-#: templates/coaching/liste_echeance.html:35
+#: templates/coaching/liste_echeance.html:16
 msgid "Deadlines management"
 msgstr "Gestion des échéances"
 
-#: templates/coaching/liste_echeance.html:36
+#: templates/coaching/liste_echeance.html:18
 msgid "Add new deadlines"
 msgstr "Ajouter des échéances"
 
-#: templates/coaching/liste_echeance.html:69
+#: templates/coaching/liste_echeance.html:21
 msgid "No deadline here."
 msgstr "Pas d'échéance."
 
-#: templates/coaching/liste_work.html:19 templates/coaching/maj_work.html:14
+#: templates/coaching/liste_work.html:9 templates/coaching/maj_work.html:6
 msgid "assignments"
 msgstr "travaux à rendre"
 
-#: templates/coaching/liste_work.html:35
+#: templates/coaching/liste_work.html:16
 msgid "Assignments management"
 msgstr "Gestion des travaux à rendre"
 
-#: templates/coaching/liste_work.html:36
+#: templates/coaching/liste_work.html:18
 msgid "Add new assignments"
 msgstr "Ajouter des travaux à rendre"
 
-#: templates/coaching/liste_work.html:67
+#: templates/coaching/liste_work.html:21
 msgid "No assignments here."
 msgstr "Pas de travaux à rendre."
 
-#: templates/coaching/log.html:18 templates/coaching/logs.html:14
-msgid "log"
-msgstr ""
-
-#: templates/coaching/log.html:27
-msgid "Back to this user's details"
-msgstr "Retour au récapitulatif de cet étudiant"
-
-#: templates/coaching/log.html:28
+#: templates/coaching/log.html:12
 msgid "Log : 50 last pages viewed"
 msgstr "Log : les 50 dernières pages visitées"
 
-#: templates/coaching/log.html:32 templates/coaching/log_list.html:23
-#: templates/coaching/logs.html:23
+#: templates/coaching/log.html:16 templates/coaching/log_list.html:16
+#: templates/coaching/logs.html:17
 msgid "Date"
 msgstr "Date"
 
-#: templates/coaching/log.html:33 templates/coaching/log_list.html:25
-#: templates/coaching/logs.html:25
+#: templates/coaching/log.html:17 templates/coaching/log_list.html:18
+#: templates/coaching/logs.html:19
 msgid "Url"
 msgstr ""
 
-#: templates/coaching/log_list.html:14
+#: templates/coaching/log_list.html:6
 msgid "logs"
 msgstr ""
 
-#: templates/coaching/log_list.html:19
+#: templates/coaching/log_list.html:12
 msgid "Logs"
 msgstr ""
 
-#: templates/coaching/logins.html:14 templates/coaching/logins2.html:14
-#: templates/coaching/logins3.html:14
+#: templates/coaching/logins.html:4 templates/coaching/logins2.html:6
+#: templates/coaching/logins3.html:6
 msgid "create logins"
 msgstr "création des logins"
 
-#: templates/coaching/logins.html:23 templates/coaching/logins2.html:23
-#: templates/coaching/logins3.html:23
+#: templates/coaching/logins.html:10 templates/coaching/logins2.html:12
+#: templates/coaching/logins3.html:11
+msgid "Login creation"
+msgstr "Logins à créer"
+
+#: templates/coaching/logins.html:19 templates/coaching/logins2.html:20
+#: templates/coaching/logins3.html:18
 msgid "File"
 msgstr "Fichier"
 
-#: templates/coaching/logins.html:33 templates/coaching/logins2.html:33
-#: templates/coaching/logins3.html:33
+#: templates/coaching/logins.html:29 templates/coaching/logins2.html:30
+#: templates/coaching/logins3.html:28
 msgid "Settings"
 msgstr "Autres"
 
-#: templates/coaching/logins2.html:24
+#: templates/coaching/logins2.html:21
 msgid "Uploaded source file"
 msgstr "Fichier source"
 
-#: templates/coaching/logins2.html:39
+#: templates/coaching/logins2.html:36
 msgid "Logins to create"
 msgstr "Logins à créer"
 
-#: templates/coaching/logins2.html:65
+#: templates/coaching/logins2.html:63
 msgid "Create"
 msgstr "Créer"
 
-#: templates/coaching/logins3.html:24
+#: templates/coaching/logins3.html:19
 msgid "Logins file"
 msgstr "Fichier de logins"
 
-#: templates/coaching/logins3.html:39
+#: templates/coaching/logins3.html:34
 msgid "Status of logins creation"
 msgstr "Résultat de la création"
 
-#: templates/coaching/logins3.html:48
+#: templates/coaching/logins3.html:43
 msgid "Status"
 msgstr "Statut"
 
-#: templates/coaching/logs.html:19
+#: templates/coaching/logs.html:6
+msgid "log"
+msgstr ""
+
+#: templates/coaching/logs.html:13
 msgid "Log : last 7 days"
 msgstr "Log : les 7 derniers jours"
 
-#: templates/coaching/maj_echeance.html:15 templates/coaching/maj_work.html:15
+#: templates/coaching/maj_echeance.html:7 templates/coaching/maj_work.html:7
 msgid "change"
 msgstr "modifier"
 
-#: templates/coaching/maj_echeance.html:19
+#: templates/coaching/maj_echeance.html:13
 msgid "Change or delete a deadline"
 msgstr "Modifier ou supprimer une échéance"
 
-#: templates/coaching/maj_echeance.html:41
+#: templates/coaching/maj_echeance.html:38
 msgid "Delete this deadline"
 msgstr "Supprimer cette échéance"
 
-#: templates/coaching/maj_work.html:19
+#: templates/coaching/maj_work.html:13
 msgid "Change or delete an assignment"
 msgstr "Modifier ou supprimer un travail à rendre"
 
-#: templates/coaching/maj_work.html:50
+#: templates/coaching/maj_work.html:46
 msgid "Current document"
 msgstr "Fichier joint"
 
-#: templates/coaching/maj_work.html:51
+#: templates/coaching/maj_work.html:47
 msgid "You may change it below:"
 msgstr "Vous pouvez le changer ci-dessous :"
 
-#: templates/coaching/maj_work.html:56
+#: templates/coaching/maj_work.html:53
 msgid "Delete this assignment"
 msgstr "Supprimer ce travail à rendre"
 
-#: templates/coaching/menu.html:13
+#: templates/coaching/menu.html:9
 msgid "Administrator's homepage"
 msgstr "Administration"
 
-#: templates/coaching/menu.html:17
-msgid "Manage database"
-msgstr "Gérer la base de données"
-
-#: templates/coaching/menu.html:19
+#: templates/coaching/menu.html:12
 msgid "View clients statistics"
 msgstr "Voir les statistiques par client"
 
-#: templates/coaching/menu.html:20
+#: templates/coaching/menu.html:13
 msgid "Create logins from file"
 msgstr "Créer des logins à partir d'un fichier"
 
-#: templates/coaching/menu.html:22
+#: templates/coaching/menu.html:15
 msgid "Manage your students"
 msgstr "Gérer vos étudiants"
 
-#: templates/coaching/menu.html:23
+#: templates/coaching/menu.html:16
 msgid "See, add or delete courses or modules deadlines"
 msgstr "Voir, ajouter ou supprimer des échéances"
 
-#: templates/coaching/menu.html:24
+#: templates/coaching/menu.html:17
 msgid "See, add or delete assignments"
 msgstr "Voir, ajouter ou supprimer des travaux à rendre"
 
-#: templates/coaching/menu.html:26
-msgid "Download work uploaded by students"
-msgstr "Récupérer les travaux des étudiants"
-
-#: templates/coaching/menu.html:28
+#: templates/coaching/menu.html:18
 msgid ""
 "View log file (all requests to dashboard, contents and tests) for last 7 days"
 msgstr ""
 "Consulter le fichier de log (enregistrement de toutes les pages consultées) "
 "pour les 7 derniers jours"
 
-#: templates/coaching/sendmail.html:14
-msgid "email"
-msgstr "email"
-
-#: templates/coaching/sendmail.html:18
+#: templates/coaching/sendmail.html:7
 msgid "Send an email"
 msgstr "Envoyer un mail"
 
-#: templates/coaching/sendmail.html:24 templates/coaching/sendmail.html:29
+#: templates/coaching/sendmail.html:13 templates/coaching/sendmail.html:18
 msgid "Message"
 msgstr ""
 
-#: templates/coaching/sendmail.html:25
+#: templates/coaching/sendmail.html:14
 msgid "From"
 msgstr ""
 
-#: templates/coaching/sendmail.html:26
+#: templates/coaching/sendmail.html:15
 msgid "To"
 msgstr ""
 
-#: templates/coaching/sendmail.html:35
+#: templates/coaching/sendmail.html:25
 msgid "Send"
 msgstr "Envoyer"
 
-#: templates/learning/anim.html:7 templates/learning/devoir.html:6
-#: templates/learning/module.html:6 templates/learning/support.html:12
-#: templates/learning/tdb.html:5 templates/testing/noter.html:6
-#: templates/testing/test.html:6
+#: templates/includes/filter.html:4
+msgid "Filter"
+msgstr "Filtre"
+
+#: templates/includes/filter.html:6
+msgid "By "
+msgstr "Par "
+
+#: templates/learning/anim.html:6 templates/learning/devoir.html:5
+#: templates/learning/module.html:4 templates/learning/support.html:12
+#: templates/learning/tdb.html:4 templates/testing/noter.html:11
+#: templates/testing/test.html:11
 msgid "dashboard"
 msgstr "tableau des cours"
 
-#: templates/learning/anim.html:8
+#: templates/learning/anim.html:7
 msgid "animation"
 msgstr ""
 
-#: templates/learning/devoir.html:17
+#: templates/learning/devoir.html:19
 msgid "Download additional document:"
 msgstr "Téléchargez le fichier joint :"
 
-#: templates/learning/devoir.html:21
+#: templates/learning/devoir.html:23
 msgid "Upload your work"
 msgstr "Rendez votre devoir"
 
-#: templates/learning/devoir.html:23
+#: templates/learning/devoir.html:25
 msgid "Succesfully uploaded"
 msgstr "Enregistré avec succès"
 
-#: templates/learning/devoir.html:23
+#: templates/learning/devoir.html:25
 msgid ", signature is"
 msgstr ", signature :"
+
+#: templates/learning/module.html:4
+msgid "module"
+msgstr ""
+
+#: templates/learning/profile.html:4
+msgid "Profile"
+msgstr "profil"
 
 #: templates/learning/support.html:13
 msgid "handout"
 msgstr "support"
 
-#: templates/learning/support.html:20
+#: templates/learning/support.html:22
 msgid ""
 "Click on the sections (sub)titles to show or hide their contents. Click on "
 "the chapter's title to show or hide the outline."
@@ -1015,7 +986,7 @@ msgstr ""
 "Cliquer sur les titres des sections pour cacher ou montrer leur contenu. "
 "Cliquer sur le titre du chapitre pour cacher ou montrer le plan."
 
-#: templates/learning/support.html:20
+#: templates/learning/support.html:22
 msgid "Hide this"
 msgstr "Cacher l'aide"
 
@@ -1027,15 +998,15 @@ msgstr "Tableau de bord"
 msgid "You are "
 msgstr "Vous êtes "
 
-#: templates/learning/tdb.html:12
+#: templates/learning/tdb.html:13
 msgid "If you are not"
 msgstr "Si vous n'êtes pas"
 
-#: templates/learning/tdb.html:12
+#: templates/learning/tdb.html:13
 msgid "please log in"
 msgstr "retournez vous connecter"
 
-#: templates/learning/tdb.html:14
+#: templates/learning/tdb.html:18
 msgid ""
 "Click on the module name to get details about its contents, tests and your "
 "results."
@@ -1043,12 +1014,12 @@ msgstr ""
 "Cliquez sur le nom du module pour obtenir des détails sur son contenu, les "
 "tests associés et vos résultats."
 
-#: templates/learning/tdb.html:15
+#: templates/learning/tdb.html:19
 msgid "Click on the icons in the contents column to read the contents."
 msgstr ""
 "Cliquez sur les icônes de la colonne Supports pour accéder aux contenus."
 
-#: templates/learning/tdb.html:16
+#: templates/learning/tdb.html:20
 msgid ""
 "Click on the current test link to go to the last test you tried or the first "
 "one if you did not try any yet."
@@ -1056,31 +1027,205 @@ msgstr ""
 "Cliquez sur le lien dans la colonne Test en cours pour accéder au dernier "
 "test  tenté, ou au premier de ceux-ci si vous n'avez encore rien tenté."
 
-#: templates/learning/tdb.html:18
+#: templates/learning/tdb.html:24
 msgid "Common Documentation"
 msgstr "Documentation générale"
 
-#: templates/learning/tdb.html:19
+#: templates/learning/tdb.html:26
 msgid "Frequently Asked Questions"
 msgstr "Foire aux questions"
 
-#: templates/learning/tdb.html:20
+#: templates/learning/tdb.html:27
 msgid "Glossary"
 msgstr "Glossaire"
 
-#: templates/session/login.html:11
-msgid "Access form"
+#: templates/pages/page.html:4 templates/product/home.html:4
+msgid "Home &gt; Welcome"
+msgstr ""
+
+#: templates/product/contributors.html:13 templates/product/legal.html:13
+#: templates/product/overview.html:13
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mollis erat "
+"sed massa posuere nec facilisis leo blandit. Curabitur metus libero, mollis "
+"in fermentum id, blandit sed turpis. Nam ultricies eleifend risus."
+msgstr ""
+
+#: templates/product/contributors.html:19 templates/product/demo.html:19
+#: templates/product/home.html:18 templates/product/legal.html:18
+#: templates/product/overview.html:20 templates/product/overview.html.py:43
+msgid "The advantages of distance learning and eLearning"
+msgstr ""
+
+#: templates/product/contributors.html:20
+#: templates/product/contributors.html:29 templates/product/home.html:19
+#: templates/product/legal.html:19 templates/product/overview.html:21
+#: templates/product/overview.html.py:31 templates/product/overview.html:44
+#: templates/product/overview.html.py:54
+msgid ""
+"Our training programs are designed to reduce as much as possible the "
+"difficulties often faced by companies and educational establishments using "
+"traditional learning methods:"
+msgstr ""
+
+#: templates/product/contributors.html:22
+#: templates/product/contributors.html:31
+msgid ""
+"a highly experienced team of authors and coaches, university professors and "
+"tutors from specialized higher education institutions and corporate "
+"consultants;"
+msgstr ""
+
+#: templates/product/contributors.html:23
+#: templates/product/contributors.html:32
+msgid "a wide range of training modules;"
+msgstr ""
+
+#: templates/product/contributors.html:24
+#: templates/product/contributors.html:33
+msgid "a broad experience of initial and professional education;"
+msgstr ""
+
+#: templates/product/contributors.html:25
+#: templates/product/contributors.html:34
+msgid "a rich catalogue of specific support material, written by our tutors."
+msgstr ""
+
+#: templates/product/demo.html:13
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mollis erat "
+"sed massa posuere nec facilisis leo blandit. Curabitur metus libero, mollis "
+"in fermentum id, blandit sed turpis. Nam ultricies eleifend risus, non "
+"ullamcorper nunc sollicitudin vel. Pellentesque tincidunt rutrum mi a "
+"pulvinar."
+msgstr ""
+
+#: templates/product/demo.html:20 templates/product/demo.html.py:21
+msgid ""
+"Our training programs are designed to reduce as much as possible the "
+"difficulties often faced by companies and educational establishments using "
+"traditional learning methods."
+msgstr ""
+
+#: templates/product/demo.html:26
+msgid "Démonstration"
+msgstr ""
+
+#: templates/product/home.html:10
+msgid "Learngest, specialists in business and financial eLearning"
+msgstr ""
+
+#: templates/product/home.html:11
+msgid ""
+"Learngest is an organization of distance learning specialists in the field "
+"of finance."
+msgstr ""
+
+#: templates/product/home.html:12
+#, fuzzy
+msgid "Contact:"
+msgstr "Support"
+
+#: templates/product/home.html:22 templates/product/home.html.py:29
+#: templates/product/home.html:33 templates/product/home.html.py:37
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+msgstr ""
+
+#: templates/product/home.html:26 templates/product/news.html:21
+#: templates/product/overview.html:30 templates/product/overview.html.py:53
+msgid "Learngest: real benefits for your training programs"
+msgstr ""
+
+#: templates/product/legal.html:4 templates/product/legal.html.py:6
+#: templates/product/legal.html:12
+msgid "Legal"
+msgstr ""
+
+#: templates/product/news.html:15
+msgid "Lorem ipsum dolor."
+msgstr ""
+
+#: templates/product/news.html:22
+msgid "Published <strong>14 May 2010</strong> by <strong>Lorem Ipsum</strong>"
+msgstr ""
+
+#: templates/product/news.html:23
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mollis erat "
+"sed massa posuere nec facilisis leo blandit. Curabitur metus libero, mollis "
+"in fermentum id, blandit sed turpis. Nam ultricies eleifend risus, non "
+"ullamcorper nunc sollicitudin vel. Pellentesque tincidunt rutrum mi a "
+"pulvinar. Mauris pretium tellus in leo aliquam at vulputate massa rhoncus. "
+"Vivamus rutrum neque sit amet est sodales vel accumsan ipsum lobortis. Nam "
+"adipiscing vestibulum est, at gravida quam sodales eu."
+msgstr ""
+
+#: templates/product/news.html:24
+msgid ""
+"Aliquam in elit posuere massa dignissim fermentum. Nam consequat nisl vel "
+"felis cursus placerat. Praesent dictum ullamcorper ante, at placerat nisl "
+"eleifend et. Quisque bibendum, orci sit amet ultrices dapibus, urna est "
+"viverra metus, sollicitudin ultricies purus enim nec lacus. Maecenas in "
+"justo et augue imperdiet mattis nec at odio. Curabitur tellus metus, viverra "
+"ut vestibulum eget, pretium a est."
+msgstr ""
+
+#: templates/product/news.html:25
+msgid ""
+"Pellentesque venenatis, felis at ullamcorper mattis, lectus mauris porta "
+"leo, sed hendrerit magna tortor sit amet massa. In hac habitasse platea "
+"dictumst. Donec auctor volutpat mattis. Morbi sapien ligula, convallis id "
+"volutpat ac, viverra pulvinar nibh. Nulla facilisi. Morbi pretium mauris id "
+"lectus consectetur pellentesque. Praesent id dignissim tellus."
+msgstr ""
+
+#: templates/product/overview.html:18
+msgid "Part 1: Lorem ipsum"
+msgstr ""
+
+#: templates/product/overview.html:23 templates/product/overview.html.py:33
+#: templates/product/overview.html:46 templates/product/overview.html.py:56
+#, fuzzy
+msgid "Unordered list test"
+msgstr "Noter le test"
+
+#: templates/product/overview.html:24 templates/product/overview.html.py:34
+#: templates/product/overview.html:47 templates/product/overview.html.py:57
+msgid ""
+"Another list element. Lorem ipsum dolor sit amet, consectetur adipisicing "
+"elit."
+msgstr ""
+
+#: templates/product/overview.html:25 templates/product/overview.html.py:35
+#: templates/product/overview.html:48 templates/product/overview.html.py:58
+msgid "Yet another element in the list"
+msgstr ""
+
+#: templates/product/overview.html:26 templates/product/overview.html.py:36
+#: templates/product/overview.html:49 templates/product/overview.html.py:59
+msgid ""
+"Some long text. Lorem ipsum dolor sit amet, consectetur adipisicing elit. "
+"Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+msgstr ""
+
+#: templates/session/login.html:8
+msgid "Login form"
 msgstr "Formulaire de connexion"
 
 #: templates/session/login.html:17
+msgid "Login Form"
+msgstr "Formulaire de connexion"
+
+#: templates/session/login.html:32
 msgid "Help, I lost my password"
 msgstr "J'ai perdu mon mot de passe"
 
-#: templates/session/lostpw.html:11
+#: templates/session/lostpw.html:4 templates/session/lostpw.html.py:6
+#: templates/session/lostpw.html:15
 msgid "Lost password"
 msgstr "Mot de passe perdu"
 
-#: templates/session/lostpw.html:12
+#: templates/session/lostpw.html:18
 msgid ""
 "All passwords are stored encrypted in our database. If you really cannot "
 "remember yours, use the form below and you will be sent a new password to "
@@ -1091,7 +1236,7 @@ msgstr ""
 "recevrez un nouveau mot de passe à l'adresse email qui est associée à votre "
 "compte."
 
-#: templates/session/lostpw.html:14
+#: templates/session/lostpw.html:25
 msgid ""
 "Your login is probably built from the first two letters of your fisrt name, "
 "followed by your last name. The whole login shoud be lowercase, with no "
@@ -1101,54 +1246,49 @@ msgstr ""
 "de votre prénom, suivies de votre nom, l'ensemble en minuscules et sans "
 "accents, espaces ni tirets."
 
-#: templates/testing/noter.html:7
+#: templates/session/lostpw.html:28
+msgid "OK"
+msgstr ""
+
+#: templates/testing/noter.html:12
 msgid "test grading"
 msgstr "notation"
 
-#: templates/testing/noter.html:12
+#: templates/testing/noter.html:19
 msgid "Grade"
 msgstr "Notation"
 
-#: templates/testing/noter.html:18
+#: templates/testing/noter.html:25
 msgid "You answered"
 msgstr "Votre réponse :"
 
-#: templates/testing/noter.html:23
+#: templates/testing/noter.html:30
 msgid "Final score"
 msgstr "Score final"
 
-#: templates/testing/noter.html:25
+#: templates/testing/noter.html:32
 msgid "Congratulations, you succeeded !"
 msgstr "Félicitations, vous avez réussi ce test."
 
-#: templates/testing/noter.html:27
+#: templates/testing/noter.html:34
 msgid "Your score is too low, please try again."
 msgstr "Ce score est insuffisant, vous devrez tenter ce test à nouveau."
 
-#: templates/testing/noter.html:27
+#: templates/testing/noter.html:34
 msgid "Try again now"
 msgstr "Réessayer maintenant."
 
-#: templates/testing/test.html:7
+#: templates/testing/test.html:12
 msgid "test"
 msgstr ""
 
-#: templates/testing/test.html:24
+#: templates/testing/test.html:32
 msgid "Grade the test"
 msgstr "Noter le test"
 
-#: testing/views.py:142 testing/views.py:160 testing/views.py:172
+#: testing/views.py:165 testing/views.py:183 testing/views.py:195
 msgid "nothing"
 msgstr "pas de réponse"
 
-#~ msgid "Delays"
-#~ msgstr "Retards"
-
-#~ msgid "Current test"
-#~ msgstr "Test en cours"
-
-#~ msgid "login form"
-#~ msgstr "accès"
-
-#~ msgid "learning"
-#~ msgstr "cours"
+#~ msgid "Access Form"
+#~ msgstr "Formulaire de connexion"
