@@ -1,8 +1,0 @@
-{% extends "base.html" %}
-
-{% block contenu %}
-<div class="content">
-	<h1 id="nomenu">{{ object.get_section_display }} &gt; {{ object.titre }}</h1>
-	{{ object.contenu|safe }}
-</div><!-- END .content -->
-{% endblock %}

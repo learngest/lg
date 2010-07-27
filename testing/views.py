@@ -10,6 +10,7 @@ from django.template import Context, loader
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.contrib.sites.models import Site
+from django.core.urlresolvers import reverse
 
 from testing.models import Module, Granule, GranuleTitre, Enonce, Question, Reponse
 from coaching.models import Utilisateur, Resultat, Valide
@@ -78,7 +79,7 @@ def test(request, slug=None, **kwargs):
     try:
         gr = Granule.objects.get(slug=slug)
     except Granule.DoesNotExist:
-        HttpResponseRedirect('/home/')
+        HttpResponseRedirect(reverse('v_home'))
     gt = gr.titre(langue)
     questions = Question.objects.filter(granule=gr).filter(langue=langue).order_by('?')[:gr.nbq]
     msg = None
@@ -138,7 +139,7 @@ def noter(request):
         return astring
 
     if not request.method == 'POST':
-        HttpResponseRedirect('/home/')
+        HttpResponseRedirect(reverse('v_home'))
     max,total = (0,0)
     enonces = {}
     #for quest,rep in request.POST.items():
@@ -251,7 +252,7 @@ def noter(request):
     try:
         g = q.granule
     except UnboundLocalError:
-        return HttpResponseRedirect('/home/')
+        return HttpResponseRedirect(reverse('v_home'))
     r = Resultat(utilisateur=u, granule=g, score=score)
     r.save()
     valide = score >= q.granule.score_min

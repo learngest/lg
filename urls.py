@@ -37,19 +37,9 @@ if settings.SITE_ID==1:
     {'document_root': uploads_root }),
     )
 
-# Product
-urlpatterns += patterns('',
-    url(r'^$', direct_to_template, { 'template': 'product/home.html', 'extra_context': { 'here': 'home', } }, name='home'),
-    url(r'^news/$', direct_to_template, { 'template': 'product/news.html', 'extra_context': { 'here': 'news', } }, name='news'),
-    url(r'^demo/$', direct_to_template, { 'template': 'product/demo.html', 'extra_context': { 'here': 'demo', } }, name='demo'),
-    url(r'^overview/$', direct_to_template, { 'template': 'product/overview.html', 'extra_context': { 'here': 'overview', } }, name='overview'),
-    url(r'^contributors/$', direct_to_template, { 'template': 'product/contributors.html', 'extra_context': { 'here': 'contributors', } }, name='contributors'),
-    url(r'^legal/$', direct_to_template, { 'template': 'product/legal.html', }, name='legal'),
-    )
-
 # Applications
 urlpatterns += patterns('',
-    url(r'^home/', 'lg.session.views.home', name='v_home'),
+    url(r'^start/', 'lg.session.views.home', name='v_home'),
     url(r'^blah/(.*)', admin.site.root, name='admin'),
     (r'^coaching/', include ('lg.coaching.urls')),
     (r'^learning/', include ('lg.learning.urls')),
@@ -58,19 +48,18 @@ urlpatterns += patterns('',
     )
 
 # Old media
-if settings.SITE_ID==1:
-    urlpatterns += patterns('',
-    (r'^style/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': '/home/jcb/learngest/web/media/style'}),
-    (r'^js/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': '/home/jcb/learngest/web/media/js'}),
-    (r'^img/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': '/home/jcb/learngest/web/media/img'}),
-    )
+#if settings.SITE_ID==1:
+#    urlpatterns += patterns('',
+#    (r'^style/(?P<path>.*)$', 'django.views.static.serve',
+#        {'document_root': '/home/jcb/learngest/web/media/style'}),
+#    (r'^js/(?P<path>.*)$', 'django.views.static.serve',
+#        {'document_root': '/home/jcb/learngest/web/media/js'}),
+#    (r'^img/(?P<path>.*)$', 'django.views.static.serve',
+#        {'document_root': '/home/jcb/learngest/web/media/img'}),
+#    )
 
-# Presentation website - keep last or <section> would catch other urls
+# Public pages - keep last or <section> would catch other urls
 urlpatterns += patterns('',
-    (r'^(?P<section>[a-z0-9-]+)/(?P<slug>[a-z0-9-]*)',
-        'lg.pages.views.page_detail'),
+    (r'^(?P<page>[a-z0-9-]*)', 'lg.pages.views.page'),
     )
 

@@ -102,3 +102,4 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 )
 
+PAGES = ['home', 'news', 'demo', 'overview', 'contributors', 'legal',]

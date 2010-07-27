@@ -10,6 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.template.defaulttags import include_is_allowed
 from django.contrib.sites.models import Site
+from django.core.urlresolvers import reverse
 
 import listes
 from learning.models import Cours, Module, Contenu, ModuleTitre
@@ -68,7 +69,7 @@ def devoir(request):
     try:
         w = Work.objects.get(id=request.GET['id'])
     except Work.DoesNotExist:
-        HttpResponseRedirect('/home/')
+        HttpResponseRedirect(reverse('v_home'))
     w.url = w.fichier.url
     if w.fichier.path:
         w.fname = os.path.basename(w.fichier.path)
@@ -368,7 +369,7 @@ def help_support(request, slug=None):
         if 'HTTP_REFERER' in request.META:
             base = '/'.join(request.META['HTTP_REFERER'].split('/')[:3])
         else:
-            HttpResponseRedirect('/home/')
+            HttpResponseRedirect(reverse('v_home'))
     v.lastw = datetime.datetime.now()
     request.session['v'] = v
     v.save()
@@ -440,7 +441,7 @@ def support(request, slug=None, **kwargs):
 #        if 'HTTP_REFERER' in request.META:
 #            base = '/'.join(request.META['HTTP_REFERER'].split('/')[:3])
 #        else:
-#            HttpResponseRedirect('/home/')
+#            HttpResponseRedirect(reverse('v_home'))
     site_id = getattr(settings, 'SITE_ID', 1)
     site = Site.objects.get(id=site_id)
     base = ''.join(('http://', site.domain))

@@ -329,7 +329,7 @@ def login(request):
                             return response
                         else:
                             response.status_code = 302
-                            response['Location'] = '/home/'
+                            response['Location'] = reverse('v_home')
                             return response
                     else:
                         msg = _('Sorry, expired account.')

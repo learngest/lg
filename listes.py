@@ -34,8 +34,3 @@ LISTE_TYPQ = (
         ('num', 'Réponse numérique, 5 chiffres significatifs'),
 )
 
-LISTE_SECTIONS = (
-        ('welcome', 'Home'),
-        ('products', 'Products'),
-        ('about', 'About'),
-)

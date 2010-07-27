@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block breadcrumb %}{% trans "Home &gt; Welcome" %}{% endblock breadcrumb %}
+
+{% block content %}
+	{{ contenu|safe }}
+{% endblock content %}

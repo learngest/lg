@@ -14,6 +14,7 @@ from django.utils.translation import ugettext_lazy as _, ugettext
 from django.utils.encoding import smart_str
 from django.core.mail import EmailMessage
 from django.views.generic import list_detail
+from django.core.urlresolvers import reverse
 
 from session.views import visitor_is, visitor_is_at_least, visitor_may_see_list
 from coaching.forms import *
@@ -524,9 +525,9 @@ def log_utilisateur(request):
     try:
         u = Utilisateur.objects.get(id=request.GET['id'])
     except Utilisateur.DoesNotExist:
-        return HttpResponseRedirect('/home/')
+        return HttpResponseRedirect(reverse('v_home'))
     if not u.groupe in v.groupes_list():
-        return HttpResponseRedirect('/home/')
+        return HttpResponseRedirect(reverse('v_home'))
     logs = Log.objects.filter(utilisateur=u)[:50]
     v.lastw = datetime.datetime.now()
     request.session['v'] = v
@@ -569,19 +570,19 @@ def detail_module(request):
     try:
         u = Utilisateur.objects.get(id=uid)
     except Utilisateur.DoesNotExist:
-        HttpResponseRedirect('/home/')
+        HttpResponseRedirect(reverse('v_home'))
     # module demandé
     id_mod = request.GET['mid']
     try:
         m = Module.objects.get(id=id_mod)
     except Module.DoesNotExist:
-        HttpResponseRedirect('/home/')
+        HttpResponseRedirect(reverse('v_home'))
     # recup cours auquel le module appartient
     id_cours = request.GET['cid']
     try:
         c = Cours.objects.get(id=id_cours)
     except Cours.DoesNotExist:
-        HttpResponseRedirect('/home/')
+        HttpResponseRedirect(reverse('v_home'))
     m.title = m.titre(langue=u.langue)
     m.valide = u.module_is_valide(m)
     if u.echeance(c,m):
@@ -638,9 +639,9 @@ def detail_utilisateur(request):
     try:
         u = Utilisateur.objects.get(id=request.GET['id'])
     except Utilisateur.DoesNotExist:
-        return HttpResponseRedirect('/home/')
+        return HttpResponseRedirect(reverse('v_home'))
     if not u.groupe in v.groupes_list():
-        return HttpResponseRedirect('/home/')
+        return HttpResponseRedirect(reverse('v_home'))
     # récup des dossiers rendus
     import os.path
     u.zfichier = ''.join(('g%d' % u.groupe.id,'-', 
@@ -732,9 +733,9 @@ def profile_utilisateur_admin(request, utilisateur=None):
     try:
         u = Utilisateur.objects.get(login=utilisateur)
     except Utilisateur.DoesNotExist:
-        return HttpResponseRedirect('/home/')
+        return HttpResponseRedirect(reverse('v_home'))
     if not u.groupe in v.groupes_list():
-        return HttpResponseRedirect('/home/')
+        return HttpResponseRedirect(reverse('v_home'))
     if request.method == 'POST':
         f = UtilisateurForm(request.POST)
         f.fields['groupe_id'].choices = [(g.id,g.nom) for g in v.groupes_list()]
