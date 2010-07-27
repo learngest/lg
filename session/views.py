@@ -380,14 +380,23 @@ def login(request):
 
 def logout(request):
     """View: deletes visitor from session, displays farewell message."""
+    lang = request.GET.get('lang',None)
+    if lang:
+        request.session['django_language'] = lang
+        activate(lang)
+    else:
+        lang = get_language()
 
     try:
         del request.session['v']
-        del request.session['django_language']
+    #    del request.session['django_language']
     except KeyError:
         pass
     msg = _('You have been logged out. Thanks for visiting us today. <br /><a href="/login/">New login</a>')
-    return render_to_response('msg.html',{'msg': msg})
+    return render_to_response('msg.html',
+            {'msg': msg,
+             'fr_selected': lang=='fr',
+            })
 
 def home(request):
     """View: selects an entry view suitable for visitor's level."""
