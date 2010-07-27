@@ -14,7 +14,7 @@
 		{% if msg %}<p class="errmsg">{{ msg|safe }}</p>{% endif %}
 
 		<form action="" method="post" id="login-form">
-			<h1>{% trans "Access Form" %}</h1>
+			<h1>{% trans "Login Form" %}</h1>
 			<div class="form-row{% if form.login.errors %} error{% endif %}">
 				<label for="id_{{ form.login.name }}">{{ form.login.label }}</label>
 				{{ form.login }} {{ form.errors.login }}
@@ -28,7 +28,7 @@
 				{{ form.remember }} {{ form.errors.remember }}
 			</div>
 			<div class="submit-row">
-				<input class="btn" type="submit" value="{% trans "Connexion" %}" />
+				<input class="btn" type="submit" value="{% trans "Log in" %}" />
 				<a href="{% url lostpw %}" class="forgot">{% trans "Help, I lost my password" %}</a>
 			</div>
 		</form>

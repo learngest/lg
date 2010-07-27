@@ -8,7 +8,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template.loader import render_to_string
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import activate, get_language, ugettext_lazy as _
 from django.utils.encoding import iri_to_uri
 from django.core.urlresolvers import reverse
 
@@ -278,6 +278,12 @@ def login(request):
     from base64 import b64encode, b64decode
     import datetime
     import unicodedata
+    lang = request.GET.get('lang',None)
+    if lang:
+        request.session['django_language'] = lang
+        activate(lang)
+    else:
+        lang = get_language()
     if request.method == 'POST':
         if request.session.test_cookie_worked():
             request.session.delete_test_cookie()
@@ -295,7 +301,10 @@ def login(request):
                     f = LoginForm()
                     msg = _('Bad login. Please try again.')
                     request.session.set_test_cookie()
-                    return render_to_response('session/login.html',{'form': f, 'msg': msg})
+                    return render_to_response('session/login.html',
+                            {'form': f,
+                             'fr_selected': lang=='fr',
+                             'msg': msg})
                 # tester mot de passe valide et utilisateur non périmé 
                 #if u.is_pwd_correct(f.cleaned_data['password']):
                 if u.is_pwd_correct(fpassword):
@@ -336,10 +345,16 @@ def login(request):
                 else:
                     msg = _('Password error. Please try again.')
             request.session.set_test_cookie()
-            return render_to_response('session/login.html',{'form': f, 'msg': msg})
+            return render_to_response('session/login.html',
+                    {'form': f, 
+                     'fr_selected': lang=='fr',
+                     'msg': msg})
         else:
             msg = _('Your browser does not seem to accept cookies. Please change your settings and try again.')
-            return render_to_response('msg.html',{'msg': msg})
+            return render_to_response('msg.html',
+                    {'msg': msg,
+                     'fr_selected': lang=='fr',
+                    })
     else:
         try:
             del request.session['v']
@@ -358,7 +373,10 @@ def login(request):
         else:
             f = LoginForm()
         request.session.set_test_cookie()
-        return render_to_response('session/login.html',{'form': f})
+        return render_to_response('session/login.html',
+                {'form': f,
+                 'fr_selected': lang=='fr',
+                })
 
 def logout(request):
     """View: deletes visitor from session, displays farewell message."""
