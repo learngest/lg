@@ -29,4 +29,6 @@ def page(request, page='home'):
     return render_to_response('pages/page.html',
             {'here': page,
              'contenu': contenu,
+             'lang': lang,
+             'fr_selected': lang=='fr',
             }) 

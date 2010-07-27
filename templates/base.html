@@ -35,8 +35,8 @@
 		{% block lang %}<form action="#" method="get">
 			<label for="lang">{% trans "Langue" %}</label>
 			<select name="lang" id="lang">
-				<option value="fr">{% trans "Français" %}</option>
-				<option value="en">{% trans "Anglais" %}</option>
+                <option value="fr" {% if fr_selected %}selected{% endif %}>{% trans "Français" %}</option>
+                <option value="en" {% if not fr_selected %}selected{% endif %}>{% trans "Anglais" %}</option>
 			</select>
 			<input class="btn" type="submit" value="Ok" />
 		</form>{% endblock lang %}
@@ -48,11 +48,11 @@
 		<h1>eLearning</h1>
 		<p>{% if client.nom %}{{ client.nom }}{% else %}{% trans "Innovative e-learning Master" %}{% endif %}</p>
 		{% block product_nav %}<ul id="product-nav">
-			<li><a href="/home/"{% ifequal here 'home' %} class="selected"{% endifequal %}>{% trans "Home" %}</a></li>
-			<li><a href="/news/"{% ifequal here 'news' %} class="selected"{% endifequal %}>{% trans "News" %}</a></li>
-			<li><a href="/demo/"{% ifequal here 'demo' %} class="selected"{% endifequal %}>{% trans "Demonstration" %}</a></li>
-			<li><a href="/overview/"{% ifequal here 'overview' %} class="selected"{% endifequal %}>{% trans "Overview" %}</a></li>
-			<li><a href="/contributors/"{% ifequal here 'contributors' %} class="selected"{% endifequal %}>{% trans "Contributors" %}</a></li>
+            <li><a href="/home/?lang={{ lang}}"{% ifequal here 'home' %} class="selected"{% endifequal %}>{% trans "Home" %}</a></li>
+			<li><a href="/news/?lang={{ lang}}"{% ifequal here 'news' %} class="selected"{% endifequal %}>{% trans "News" %}</a></li>
+			<li><a href="/demo/?lang={{ lang}}"{% ifequal here 'demo' %} class="selected"{% endifequal %}>{% trans "Demonstration" %}</a></li>
+			<li><a href="/overview/?lang={{ lang}}"{% ifequal here 'overview' %} class="selected"{% endifequal %}>{% trans "Overview" %}</a></li>
+			<li><a href="/contributors/?lang={{ lang}}"{% ifequal here 'contributors' %} class="selected"{% endifequal %}>{% trans "Contributors" %}</a></li>
 		</ul>{% endblock product_nav %}
 	</div>
 </div>{% endblock header %}
@@ -68,7 +68,7 @@
 
 {% block footer %}<div id="footer-container">
 	<div id="footer">
-		<p>{% trans "© learngest.com 2009-" %}{% now "Y" %} | <a href="/legal/">{% trans "Legal notices" %}</a></p>
+		<p>{% trans "© learngest.com 2009-" %}{% now "Y" %} | <a href="/legal/?lang={{ lang}}">{% trans "Legal notices" %}</a></p>
 	</div>
 </div>{% endblock %}
 
