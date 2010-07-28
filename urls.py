@@ -12,6 +12,7 @@ admin.autodiscover()
 # Base
 urlpatterns = patterns('',
     url(r'^login/', 'lg.session.views.login', name='login'),
+    url(r'^democreate/', 'lg.session.views.democreate', name='democreate'),
     url(r'^lostpw/', 'lg.session.views.lost_password', name='lostpw'),
     url(r'^logout/', 'lg.session.views.logout', name='logout'),
     )

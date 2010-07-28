@@ -8,6 +8,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template.loader import render_to_string
+from django.template.defaultfilters import slugify
 from django.utils.translation import activate, get_language, ugettext_lazy as _
 from django.utils.encoding import iri_to_uri
 from django.core.urlresolvers import reverse
@@ -268,6 +269,49 @@ def lost_password(request):
         return render_to_response('session/lostpw.html',
                 {'form': f,
                 })
+
+def democreate(request):
+    """
+    View: create a demo account
+    """
+    import datetime
+    import unicodedata
+    if request.method == 'POST':
+        wanted_login = slugify(request.POST['username'])
+        wanted_pass = request.POST['password']
+        if len(wanted_pass)<5:
+            print "pass trop court"
+            return HttpResponseRedirect('/demo/')
+        try:
+            groupe = Groupe.objects.get(nom='Finance Demo')
+        except Groupe.DoesNotExist:
+            print "groupe inexistant"
+            return HttpResponseRedirect('/demo/')
+        fermeture = datetime.datetime.now() + datetime.timedelta(7)
+        try:
+            u = Utilisateur.objects.get(login=wanted_login)
+            print "existe deja"
+            return HttpResponseRedirect('/demo/')
+        except Utilisateur.DoesNotExist:
+            u = Utilisateur(
+                    login=wanted_login,
+                    password=wanted_pass,
+                    nom='Learngest',
+                    prenom='Demo',
+                    email='email@provider.com',
+                    fermeture=fermeture,
+                    langue=get_language(),
+                    groupe=groupe,
+                    )
+            u.save()
+            # seems stupid, but needed to force db to return an id for this
+            # user, otherwise considered as an administrator
+            u = Utilisateur.objects.get(login=wanted_login)
+            request.session['v'] = u
+            request.session['django_language'] = u.langue
+            return HttpResponseRedirect(reverse('v_home'))
+    else:
+        return HttpResponseRedirect('/demo/')
 
 def login(request):
     """View: allow a visitor to log in, checking credentials provided.
