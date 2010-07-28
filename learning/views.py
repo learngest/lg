@@ -6,7 +6,7 @@ import datetime
 
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import activate, ugettext_lazy as _
 from django.conf import settings
 from django.template.defaulttags import include_is_allowed
 from django.contrib.sites.models import Site
@@ -29,6 +29,7 @@ def profile(request):
             v.email = f.cleaned_data['email']
             v.langue = f.cleaned_data['langue']
             request.session['django_language'] = v.langue
+            activate(v.langue)
             if f.cleaned_data['newpassword2']:
                 v.password = f.cleaned_data['newpassword2']
                 v.save(change_password=True)
