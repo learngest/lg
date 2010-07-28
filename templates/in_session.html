@@ -10,7 +10,7 @@
 
 {% block user_infos %}
 <p><a class="user" href="{% url l_profile %}">{{ visiteur }}</a></p>
-<p><a class="logout" href="{% url logout %}">Déconnexion</a></p>
+<p><a class="logout" href="{% url logout %}">{% trans "Logout" %}</a></p>
 {% endblock %}
 
 {% block nav %}
@@ -19,8 +19,10 @@
 
 		{% if staff %}<li><a href="{% url c_admin %}"{% ifequal here 'admin' %} class="selected"{% endifequal %}>{% trans "Administration" %}</a></li>{% endif %}
 
-		<li><a href="{% url l_dashboard %}"{% ifequal here 'dashboard' %} class="selected"{% endifequal %}>{% trans "Tableau des cours" %}</a></li>
-		<li><a href="{% url l_profile %}"{% ifequal here 'profile' %} class="selected"{% endifequal %}>{% trans "Profil" %}</a></li>
+		<li><a href="{% url l_dashboard %}"{% ifequal here 'dashboard' %}
+			class="selected"{% endifequal %}>{% trans "Dashboard" %}</a></li>
+		<li><a href="{% url l_profile %}"{% ifequal here 'profile' %}
+			class="selected"{% endifequal %}>{% trans "Profile" %}</a></li>
 	</ul>
 </div>{% endblock %}
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-27 15:25+0200\n"
+"POT-Creation-Date: 2010-07-28 10:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Anh J. anhj@gcu.info\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -250,7 +250,7 @@ msgstr ""
 msgid "Completed late"
 msgstr ""
 
-#: coaching/views.py:758 learning/views.py:38
+#: coaching/views.py:758 learning/views.py:39
 #, python-format
 msgid "%s changed successfully."
 msgstr ""
@@ -331,7 +331,7 @@ msgstr ""
 msgid "File name"
 msgstr ""
 
-#: learning/views.py:360 learning/views.py:432 testing/views.py:88
+#: learning/views.py:361 learning/views.py:433 testing/views.py:88
 msgid "We are sorry, this content is not available in your preferred language."
 msgstr ""
 
@@ -344,7 +344,7 @@ msgstr ""
 msgid "Remember me on this computer"
 msgstr ""
 
-#: session/views.py:235 session/views.py:296
+#: session/views.py:235 session/views.py:302
 msgid "Bad login. Please try again."
 msgstr ""
 
@@ -354,21 +354,21 @@ msgid ""
 "form</a>."
 msgstr ""
 
-#: session/views.py:335
+#: session/views.py:344
 msgid "Sorry, expired account."
 msgstr ""
 
-#: session/views.py:337
+#: session/views.py:346
 msgid "Password error. Please try again."
 msgstr ""
 
-#: session/views.py:341
+#: session/views.py:353
 msgid ""
 "Your browser does not seem to accept cookies. Please change your settings "
 "and try again."
 msgstr ""
 
-#: session/views.py:371
+#: session/views.py:395
 msgid ""
 "You have been logged out. Thanks for visiting us today. <br /><a href=\"/"
 "login/\">New login</a>"
@@ -407,26 +407,19 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: templates/base.html:52 templates/product/home.html:32
-#: templates/product/news.html:4 templates/product/news.html.py:6
+#: templates/base.html:52
 msgid "News"
 msgstr ""
 
-#: templates/base.html:53 templates/product/demo.html:4
-#: templates/product/demo.html.py:6 templates/product/demo.html:12
-#: templates/product/home.html:21 templates/product/news.html:14
+#: templates/base.html:53
 msgid "Demonstration"
 msgstr ""
 
-#: templates/base.html:54 templates/product/home.html:28
-#: templates/product/overview.html:4 templates/product/overview.html.py:6
-#: templates/product/overview.html:12
+#: templates/base.html:54
 msgid "Overview"
 msgstr ""
 
-#: templates/base.html:55 templates/product/contributors.html:4
-#: templates/product/contributors.html:6
-#: templates/product/contributors.html:12 templates/product/home.html:36
+#: templates/base.html:55
 msgid "Contributors"
 msgstr ""
 
@@ -442,17 +435,21 @@ msgstr ""
 msgid "Legal notices"
 msgstr ""
 
+#: templates/in_session.html:13
+msgid "Logout"
+msgstr ""
+
 #: templates/in_session.html:20 templates/coaching/liste_clients.html:9
 #: templates/coaching/menu.html:4
 msgid "Administration"
 msgstr ""
 
-#: templates/in_session.html:22
-msgid "Tableau des cours"
+#: templates/in_session.html:23
+msgid "Dashboard"
 msgstr ""
 
-#: templates/in_session.html:23
-msgid "Profil"
+#: templates/in_session.html:25 templates/learning/profile.html:4
+msgid "Profile"
 msgstr ""
 
 #: templates/coaching/add_echeance.html:5 templates/coaching/add_work.html:5
@@ -950,10 +947,6 @@ msgstr ""
 msgid "module"
 msgstr ""
 
-#: templates/learning/profile.html:4
-msgid "Profile"
-msgstr ""
-
 #: templates/learning/support.html:13
 msgid "handout"
 msgstr ""
@@ -1012,171 +1005,8 @@ msgstr ""
 msgid "Glossary"
 msgstr ""
 
-#: templates/pages/page.html:4 templates/product/home.html:4
+#: templates/pages/page.html:4
 msgid "Home &gt; Welcome"
-msgstr ""
-
-#: templates/product/contributors.html:13 templates/product/legal.html:13
-#: templates/product/overview.html:13
-msgid ""
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mollis erat "
-"sed massa posuere nec facilisis leo blandit. Curabitur metus libero, mollis "
-"in fermentum id, blandit sed turpis. Nam ultricies eleifend risus."
-msgstr ""
-
-#: templates/product/contributors.html:19 templates/product/demo.html:19
-#: templates/product/home.html:18 templates/product/legal.html:18
-#: templates/product/overview.html:20 templates/product/overview.html.py:43
-msgid "The advantages of distance learning and eLearning"
-msgstr ""
-
-#: templates/product/contributors.html:20
-#: templates/product/contributors.html:29 templates/product/home.html:19
-#: templates/product/legal.html:19 templates/product/overview.html:21
-#: templates/product/overview.html.py:31 templates/product/overview.html:44
-#: templates/product/overview.html.py:54
-msgid ""
-"Our training programs are designed to reduce as much as possible the "
-"difficulties often faced by companies and educational establishments using "
-"traditional learning methods:"
-msgstr ""
-
-#: templates/product/contributors.html:22
-#: templates/product/contributors.html:31
-msgid ""
-"a highly experienced team of authors and coaches, university professors and "
-"tutors from specialized higher education institutions and corporate "
-"consultants;"
-msgstr ""
-
-#: templates/product/contributors.html:23
-#: templates/product/contributors.html:32
-msgid "a wide range of training modules;"
-msgstr ""
-
-#: templates/product/contributors.html:24
-#: templates/product/contributors.html:33
-msgid "a broad experience of initial and professional education;"
-msgstr ""
-
-#: templates/product/contributors.html:25
-#: templates/product/contributors.html:34
-msgid "a rich catalogue of specific support material, written by our tutors."
-msgstr ""
-
-#: templates/product/demo.html:13
-msgid ""
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mollis erat "
-"sed massa posuere nec facilisis leo blandit. Curabitur metus libero, mollis "
-"in fermentum id, blandit sed turpis. Nam ultricies eleifend risus, non "
-"ullamcorper nunc sollicitudin vel. Pellentesque tincidunt rutrum mi a "
-"pulvinar."
-msgstr ""
-
-#: templates/product/demo.html:20 templates/product/demo.html.py:21
-msgid ""
-"Our training programs are designed to reduce as much as possible the "
-"difficulties often faced by companies and educational establishments using "
-"traditional learning methods."
-msgstr ""
-
-#: templates/product/demo.html:26
-msgid "Démonstration"
-msgstr ""
-
-#: templates/product/home.html:10
-msgid "Learngest, specialists in business and financial eLearning"
-msgstr ""
-
-#: templates/product/home.html:11
-msgid ""
-"Learngest is an organization of distance learning specialists in the field "
-"of finance."
-msgstr ""
-
-#: templates/product/home.html:12
-msgid "Contact:"
-msgstr ""
-
-#: templates/product/home.html:22 templates/product/home.html.py:29
-#: templates/product/home.html:33 templates/product/home.html.py:37
-msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-msgstr ""
-
-#: templates/product/home.html:26 templates/product/news.html:21
-#: templates/product/overview.html:30 templates/product/overview.html.py:53
-msgid "Learngest: real benefits for your training programs"
-msgstr ""
-
-#: templates/product/legal.html:4 templates/product/legal.html.py:6
-#: templates/product/legal.html:12
-msgid "Legal"
-msgstr ""
-
-#: templates/product/news.html:15
-msgid "Lorem ipsum dolor."
-msgstr ""
-
-#: templates/product/news.html:22
-msgid "Published <strong>14 May 2010</strong> by <strong>Lorem Ipsum</strong>"
-msgstr ""
-
-#: templates/product/news.html:23
-msgid ""
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mollis erat "
-"sed massa posuere nec facilisis leo blandit. Curabitur metus libero, mollis "
-"in fermentum id, blandit sed turpis. Nam ultricies eleifend risus, non "
-"ullamcorper nunc sollicitudin vel. Pellentesque tincidunt rutrum mi a "
-"pulvinar. Mauris pretium tellus in leo aliquam at vulputate massa rhoncus. "
-"Vivamus rutrum neque sit amet est sodales vel accumsan ipsum lobortis. Nam "
-"adipiscing vestibulum est, at gravida quam sodales eu."
-msgstr ""
-
-#: templates/product/news.html:24
-msgid ""
-"Aliquam in elit posuere massa dignissim fermentum. Nam consequat nisl vel "
-"felis cursus placerat. Praesent dictum ullamcorper ante, at placerat nisl "
-"eleifend et. Quisque bibendum, orci sit amet ultrices dapibus, urna est "
-"viverra metus, sollicitudin ultricies purus enim nec lacus. Maecenas in "
-"justo et augue imperdiet mattis nec at odio. Curabitur tellus metus, viverra "
-"ut vestibulum eget, pretium a est."
-msgstr ""
-
-#: templates/product/news.html:25
-msgid ""
-"Pellentesque venenatis, felis at ullamcorper mattis, lectus mauris porta "
-"leo, sed hendrerit magna tortor sit amet massa. In hac habitasse platea "
-"dictumst. Donec auctor volutpat mattis. Morbi sapien ligula, convallis id "
-"volutpat ac, viverra pulvinar nibh. Nulla facilisi. Morbi pretium mauris id "
-"lectus consectetur pellentesque. Praesent id dignissim tellus."
-msgstr ""
-
-#: templates/product/overview.html:18
-msgid "Part 1: Lorem ipsum"
-msgstr ""
-
-#: templates/product/overview.html:23 templates/product/overview.html.py:33
-#: templates/product/overview.html:46 templates/product/overview.html.py:56
-msgid "Unordered list test"
-msgstr ""
-
-#: templates/product/overview.html:24 templates/product/overview.html.py:34
-#: templates/product/overview.html:47 templates/product/overview.html.py:57
-msgid ""
-"Another list element. Lorem ipsum dolor sit amet, consectetur adipisicing "
-"elit."
-msgstr ""
-
-#: templates/product/overview.html:25 templates/product/overview.html.py:35
-#: templates/product/overview.html:48 templates/product/overview.html.py:58
-msgid "Yet another element in the list"
-msgstr ""
-
-#: templates/product/overview.html:26 templates/product/overview.html.py:36
-#: templates/product/overview.html:49 templates/product/overview.html.py:59
-msgid ""
-"Some long text. Lorem ipsum dolor sit amet, consectetur adipisicing elit. "
-"Lorem ipsum dolor sit amet, consectetur adipisicing elit."
 msgstr ""
 
 #: templates/session/login.html:8
