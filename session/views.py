@@ -278,12 +278,20 @@ def login(request):
     from base64 import b64encode, b64decode
     import datetime
     import unicodedata
+
+    langues = [list(i)+[0] for i in LISTE_LANGUES]
+
     lang = request.GET.get('lang',None)
     if lang:
         request.session['django_language'] = lang
         activate(lang)
     else:
         lang = get_language()
+    
+    for l in langues:
+        if lang==l[0]:
+            l[2]=1
+
     if request.method == 'POST':
         if request.session.test_cookie_worked():
             request.session.delete_test_cookie()
@@ -303,7 +311,7 @@ def login(request):
                     request.session.set_test_cookie()
                     return render_to_response('session/login.html',
                             {'form': f,
-                             'fr_selected': lang=='fr',
+                             'langues': langues,
                              'msg': msg})
                 # tester mot de passe valide et utilisateur non périmé 
                 #if u.is_pwd_correct(f.cleaned_data['password']):
@@ -347,13 +355,13 @@ def login(request):
             request.session.set_test_cookie()
             return render_to_response('session/login.html',
                     {'form': f, 
-                     'fr_selected': lang=='fr',
+                     'langues': langues,
                      'msg': msg})
         else:
             msg = _('Your browser does not seem to accept cookies. Please change your settings and try again.')
             return render_to_response('msg.html',
                     {'msg': msg,
-                     'fr_selected': lang=='fr',
+                     'langues': langues,
                     })
     else:
         try:
@@ -375,17 +383,24 @@ def login(request):
         request.session.set_test_cookie()
         return render_to_response('session/login.html',
                 {'form': f,
-                 'fr_selected': lang=='fr',
+                 'langues': langues,
                 })
 
 def logout(request):
     """View: deletes visitor from session, displays farewell message."""
+
+    langues = [list(i)+[0] for i in LISTE_LANGUES]
+
     lang = request.GET.get('lang',None)
     if lang:
         request.session['django_language'] = lang
         activate(lang)
     else:
         lang = get_language()
+    
+    for l in langues:
+        if lang==l[0]:
+            l[2]=1
 
     try:
         del request.session['v']
@@ -395,7 +410,7 @@ def logout(request):
     msg = _('You have been logged out. Thanks for visiting us today. <br /><a href="/login/">New login</a>')
     return render_to_response('msg.html',
             {'msg': msg,
-             'fr_selected': lang=='fr',
+             'langues': langues,
             })
 
 def home(request):

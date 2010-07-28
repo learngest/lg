@@ -35,8 +35,9 @@
 		{% block lang %}<form action="#" method="get">
 			<label for="lang">{% trans "Language" %}</label>
 			<select name="lang" id="lang">
-                <option value="fr" {% if fr_selected %}selected{% endif %}>{% trans "French" %}</option>
-                <option value="en" {% if not fr_selected %}selected{% endif %}>{% trans "English" %}</option>
+                {% for lang in langues %}
+                <option value="{{ lang.0 }}" {% if lang.2 %}selected{% endif %}>{{ lang.1 }}</option>
+                {% endfor %}
 			</select>
 			<input class="btn" type="submit" value="Ok" />
 		</form>{% endblock lang %}
