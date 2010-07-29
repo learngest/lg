@@ -5,7 +5,7 @@ import datetime
 from django import forms
 from django.utils.translation import ugettext as _
 
-import listes
+from listes import *
 
 class WorkForm4(forms.Form):
     fichier = forms.FileField(required=False,label=_('File name'))
@@ -41,7 +41,7 @@ class UtilisateurForm(forms.Form):
             widget=forms.PasswordInput,
             label=_('New password (again)'),
             )
-    langue = forms.ChoiceField(choices=listes.LISTE_LANGUES)
+    langue = forms.ChoiceField(choices=LISTE_LANGUES)
 
     def clean_newpassword2(self):
         if self.cleaned_data['newpassword'] != self.cleaned_data['newpassword2']:

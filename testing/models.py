@@ -2,8 +2,9 @@
 
 from django.db import models
 
-import listes
 from learning.models import Module
+
+from listes import *
 
 class Granule(models.Model):
     """Une granule de test.
@@ -33,7 +34,7 @@ class Granule(models.Model):
 class GranuleTitre(models.Model):
     """Titre d'une granule dans la langue choisie"""
     granule = models.ForeignKey(Granule)
-    langue = models.CharField(max_length=5, choices=listes.LISTE_LANGUES)
+    langue = models.CharField(max_length=5, choices=LISTE_LANGUES)
     titre = models.CharField(max_length=100)
 
     class Meta:
@@ -61,8 +62,8 @@ class Question(models.Model):
     """
     enonce = models.ForeignKey(Enonce)
     granule = models.ForeignKey(Granule)
-    langue = models.CharField(max_length=5, choices=listes.LISTE_LANGUES)
-    typq = models.CharField(max_length=3, choices=listes.LISTE_TYPQ, default='exa')
+    langue = models.CharField(max_length=5, choices=LISTE_LANGUES)
+    typq = models.CharField(max_length=3, choices=LISTE_TYPQ, default='exa')
     libel = models.TextField() 
 
     def __unicode__(self):

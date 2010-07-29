@@ -12,6 +12,7 @@ from django.conf import settings
 
 from learning.models import Cours, Module
 from testing.models import Granule
+
 from listes import *
 
 class Client(models.Model):

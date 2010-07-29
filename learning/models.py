@@ -2,7 +2,7 @@
 
 from django.db import models
 
-import listes
+from listes import *
 
 class Module(models.Model):
     """
@@ -42,7 +42,7 @@ class Module(models.Model):
 class ModuleTitre(models.Model):
     """Titre d'un module dans la langue choisie"""
     module = models.ForeignKey(Module)
-    langue = models.CharField(max_length=5, choices=listes.LISTE_LANGUES)
+    langue = models.CharField(max_length=5, choices=LISTE_LANGUES)
     titre = models.CharField(max_length=100)
 
     class Meta:
@@ -80,7 +80,7 @@ class Cours(models.Model):
 class CoursTitre(models.Model):
     """Titre d'un cours dans la langue choisie"""
     cours = models.ForeignKey(Cours)
-    langue = models.CharField(max_length=5, choices=listes.LISTE_LANGUES)
+    langue = models.CharField(max_length=5, choices=LISTE_LANGUES)
     titre = models.CharField(max_length=100)
 
     class Meta:
@@ -118,8 +118,8 @@ class Contenu(models.Model):
     Les modules sont formés de Contenus dans différentes langues.
     """
     ressource = models.CharField(max_length=50)
-    langue = models.CharField(max_length=5, choices=listes.LISTE_LANGUES)
-    type = models.CharField(max_length=3, choices=listes.LISTE_TYPES, default='htm')
+    langue = models.CharField(max_length=5, choices=LISTE_LANGUES)
+    type = models.CharField(max_length=3, choices=LISTE_TYPES, default='htm')
     titre = models.CharField(max_length=100)
     module = models.ForeignKey(Module)
 

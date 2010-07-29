@@ -12,13 +12,12 @@ from django.template.defaulttags import include_is_allowed
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 
-import listes
 from learning.models import Cours, Module, Contenu, ModuleTitre
 from learning.forms import WorkForm4, UtilisateurForm
 from coaching.models import Utilisateur, Echeance, Work, WorkDone, Log
 from session.views import visitor_may_see_module, visitor_may_see_work, has_visitor, new_visitor_may_see_module
 
-(ETUDIANT, COACH, ADMINISTRATEUR, STAFF) = range(4)
+from listes import *
 
 def profile(request):
     # récup visiteur
@@ -180,7 +179,7 @@ def module(request, slug=None):
         if m.valide:
             m.datev = u.valide_set.get(module=m).date
     m.docs = []
-    for typ in [l[0] for l in listes.LISTE_TYPES]:
+    for typ in [l[0] for l in LISTE_TYPES]:
         try:
             d = m.contenu_set.get(type=typ,langue=u.langue)
         except Contenu.DoesNotExist:
@@ -245,7 +244,7 @@ def tdb(request):
                     #m.progress = "%d / %d" % (len(m.gv),m.gsc)
                     m.progress = len(m.gv)
                 m.docs = []
-#                for typ in [l[0] for l in listes.LISTE_TYPES]:
+#                for typ in [l[0] for l in LISTE_TYPES]:
 #                    try:
 #                        d = m.contenu_set.get(type=typ,langue=u.langue)
 #                    except Contenu.DoesNotExist and u.langue!='fr':

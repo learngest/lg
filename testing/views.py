@@ -15,7 +15,7 @@ from testing.models import Module, Granule, GranuleTitre, Enonce, Question, Repo
 from coaching.models import Utilisateur, Resultat, Valide
 from session.views import new_visitor_may_see_granule, has_visitor
 
-(ETUDIANT, COACH, ADMINISTRATEUR, STAFF) = range(4)
+from listes import *
 
 def output_rnd(question):
     import random

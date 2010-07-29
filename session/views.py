@@ -12,11 +12,12 @@ from django.utils.translation import activate, get_language, ugettext_lazy as _
 from django.utils.encoding import iri_to_uri
 from django.core.urlresolvers import reverse
 
-from listes import *
 from session.forms import LoginForm, LoginOnlyForm
 from coaching.models import Utilisateur, Groupe, Work, Log
 from learning.models import Cours, Module
 from testing.models import Granule
+
+from listes import *
 
 def new_visitor_may_see_granule(view_func):
     """Decorator: tests that view's visitor exists and may take this granule's test.

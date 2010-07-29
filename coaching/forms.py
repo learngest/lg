@@ -5,13 +5,13 @@ import datetime
 from django import forms
 from django.utils.translation import ugettext as _
 
-import listes
+from listes import *
 #from coaching.models import Groupe
 
 class LoginsForm(forms.Form):
     source = forms.FileField(label=_('Source file'))
     groupe = forms.ChoiceField(label=_('Group'))
-    langue = forms.ChoiceField(choices=listes.LISTE_LANGUES,label=_('Preferred language'))
+    langue = forms.ChoiceField(choices=LISTE_LANGUES,label=_('Preferred language'))
     fermeture = forms.DateTimeField(required=False, label=_('Valid till'))
     envoi_mail = forms.ChoiceField(choices=((0,_('No')),(1,_('Yes'))), label=_('Send credentials by mail'))
 
@@ -32,7 +32,7 @@ class UtilisateurForm(forms.Form):
     
     fermeture = forms.DateTimeField(required=False, label=_('Valid till'))
     
-    langue = forms.ChoiceField(choices=listes.LISTE_LANGUES,label=_('Preferred language'))
+    langue = forms.ChoiceField(choices=LISTE_LANGUES,label=_('Preferred language'))
     
     groupe_id = forms.ChoiceField(label=_('Group'))
 
