@@ -1,7 +1,5 @@
 from django.conf.urls.defaults import *
 
-from listes import *
-
 urlpatterns = patterns('learning.views',
     url(r'^tdb/$', 'tdb', name='l_dashboard'),
     url(r'^profile/$', 'profile', name='l_profile'),

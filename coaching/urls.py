@@ -1,8 +1,5 @@
 from django.conf.urls.defaults import *
 
-from listes import *
-from coaching.models import Log
-
 urlpatterns = patterns('coaching.views',
     url(r'^$', 'menu', name='c_admin'),
     url(r'^lista/$', 'liste_utilisateurs', name='c_lista'),

@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-from listes import *
+#from listes import *
 
 urlpatterns = patterns('testing.views',
     url(r'^$', 'test', name='t_test'),
