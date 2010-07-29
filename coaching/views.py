@@ -597,7 +597,7 @@ def detail_module(request):
         if m.valide:
             m.datev = u.valide_set.get(module=m).date
     m.docs = []
-    for typ in [l[0] for l in listes.LISTE_TYPES]:
+    for typ in [l[0] for l in LISTE_TYPES]:
         try:
             d = m.contenu_set.get(type=typ,langue=u.langue)
         except Contenu.DoesNotExist:
