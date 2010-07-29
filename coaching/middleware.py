@@ -35,29 +35,6 @@ class LogMiddleware(object):
             u = request.session['v']
             try:
                 dernierlog = Log.objects.filter(utilisateur=u).latest('date')
-#                if request.path in ('/','/login/'):
-#                    # maj le temps passé si nécessaire
-#                    if dernierlog.path != '/logout/':
-#                        if dernierlog.path == '/testing/noter/':
-#                            ajout = 20
-#                        else:
-#                            ajout = 10*60
-#                        if u.tempspasse:
-#                            u.tempspasse += ajout
-#                        else:
-#                            u.tempspasse = ajout
-#                        request.session['v'] = u
-#                        u.save()
-#                    return
-#                else:
-#                    temps = datetime.datetime.now() - dernierlog.date
-#                    if u.tempspasse:
-#                        u.tempspasse += temps.days*86400 + temps.seconds
-#                    else:
-#                        u.tempspasse = temps.days*86400 + temps.seconds
-#                    request.session['v'] = u
-#                    u.save()
-
                 secondes = 0
                 if '/learning/' in dernierlog.path:
                     testing = False
@@ -86,16 +63,12 @@ class LogMiddleware(object):
                 if curmod:
                     if testing:
                         if '/noter/' in request.path:
-#                            secondes = min(14400, sanitize_temps(curtime, 
-#                                    datetime.datetime.now()))
                             secondes = sanitize_temps(curtime, 
                                     datetime.datetime.now())
                     else:
                         if request.path in ('/','/login/'):
                             secondes = 600
                         else:
-#                            secondes = min(14400, sanitize_temps(curtime, 
-#                                    datetime.datetime.now()))
                             secondes = sanitize_temps(curtime, 
                                     datetime.datetime.now())
                     try:

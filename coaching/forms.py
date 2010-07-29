@@ -6,7 +6,6 @@ from django import forms
 from django.utils.translation import ugettext as _
 
 from listes import *
-#from coaching.models import Groupe
 
 class LoginsForm(forms.Form):
     source = forms.FileField(label=_('Source file'))
