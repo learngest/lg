@@ -1,13 +1,6 @@
 {% extends "in_session.html" %}
 {% load i18n %}
 
-{% block breadcrumb %}
-<a href="{% url c_admin %}">{% trans "administration" %}</a>
-&gt; <a href="{% url c_lista %}?l">{% trans "students" %}</a>
-&gt; <a href="{% url c_detail %}?id={{ u.id }}">{% trans "detail" %}</a>
-&gt; {% trans "profile" %}
-{% endblock breadcrumb %}
-
 {% block content %}
 <div class="content">
 

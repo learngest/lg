@@ -758,12 +758,14 @@ def profile_utilisateur_admin(request, utilisateur=None):
             return render_to_response('coaching/fiche.html',
                 {'visiteur': v.prenom_nom(), 
                 'client': v.groupe.client,
+                'staff': v.status==STAFF,
                 'u': u, 
                 'form': f, 'msg': msg})
         else:
             return render_to_response('coaching/fiche.html',
                 {'visiteur': v.prenom_nom(), 
                  'client': v.groupe.client,
+                 'staff': v.status==STAFF,
                  'u': u, 'form': f})
     else:
         f = UtilisateurForm(u.__dict__)
@@ -771,6 +773,7 @@ def profile_utilisateur_admin(request, utilisateur=None):
         return render_to_response('coaching/fiche.html',
                 {'visiteur': v.prenom_nom(), 
                  'client': v.groupe.client,
+                 'staff': v.status==STAFF,
                  'u': u, 'form': f})
 profile_utilisateur_admin = visitor_is(ADMINISTRATEUR)(profile_utilisateur_admin)
 
