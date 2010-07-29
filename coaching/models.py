@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-# vim:encoding=utf-8:
+
 """Définit les classes Client, Groupe, Utilisateur, Coached et Log.
 """
 import datetime

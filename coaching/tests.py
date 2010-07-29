@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-# vim:encoding=utf-8:
+
 """
 Tests du module coaching.
 

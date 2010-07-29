@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-# vim:encoding=utf-8:
 
 from django.contrib import admin
 from coaching.models import Client, Groupe, Utilisateur, Coached, Work, Echeance
