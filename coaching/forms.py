@@ -6,8 +6,8 @@ import datetime
 from django import forms
 from django.utils.translation import ugettext as _
 
-from lg import listes
-#from lg.coaching.models import Groupe
+import listes
+#from coaching.models import Groupe
 
 class LoginsForm(forms.Form):
     source = forms.FileField(label=_('Source file'))

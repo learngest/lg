@@ -10,7 +10,7 @@ from django.shortcuts import render_to_response
 from django.http import Http404, HttpResponseRedirect
 from django.utils import translation
 
-from lg.listes import *
+from listes import *
 
 def page(request, page='home'):
     langues = [list(i)+[0] for i in LISTE_LANGUES]

@@ -11,10 +11,10 @@ admin.autodiscover()
 
 # Base
 urlpatterns = patterns('',
-    url(r'^login/', 'lg.session.views.login', name='login'),
-    url(r'^democreate/', 'lg.session.views.democreate', name='democreate'),
-    url(r'^lostpw/', 'lg.session.views.lost_password', name='lostpw'),
-    url(r'^logout/', 'lg.session.views.logout', name='logout'),
+    url(r'^login/', 'session.views.login', name='login'),
+    url(r'^democreate/', 'session.views.democreate', name='democreate'),
+    url(r'^lostpw/', 'session.views.lost_password', name='lostpw'),
+    url(r'^logout/', 'session.views.logout', name='logout'),
     )
 
 # Developpement
@@ -40,12 +40,12 @@ if settings.SITE_ID==1:
 
 # Applications
 urlpatterns += patterns('',
-    url(r'^start/', 'lg.session.views.home', name='v_home'),
+    url(r'^start/', 'session.views.home', name='v_home'),
     url(r'^blah/(.*)', admin.site.root, name='admin'),
-    (r'^coaching/', include ('lg.coaching.urls')),
-    (r'^learning/', include ('lg.learning.urls')),
-    (r'^testing/', include ('lg.testing.urls')),
-    # (r'^$', 'lg.session.views.login'),
+    (r'^coaching/', include ('coaching.urls')),
+    (r'^learning/', include ('learning.urls')),
+    (r'^testing/', include ('testing.urls')),
+    # (r'^$', 'session.views.login'),
     )
 
 # Old media
@@ -61,6 +61,6 @@ urlpatterns += patterns('',
 
 # Public pages - keep last or <section> would catch other urls
 urlpatterns += patterns('',
-    (r'^(?P<page>[a-z0-9-]*)', 'lg.pages.views.page'),
+    (r'^(?P<page>[a-z0-9-]*)', 'pages.views.page'),
     )
 

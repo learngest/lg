@@ -3,8 +3,8 @@
 
 from django.db import models
 
-from lg import listes
-from lg.learning.models import Module
+import listes
+from learning.models import Module
 
 class Granule(models.Model):
     """Une granule de test.

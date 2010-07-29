@@ -3,7 +3,7 @@ from django.core.management import setup_environ
 import settings
 setup_environ(settings)
 
-from lg.testing.models import Enonce
+from testing.models import Enonce
 
 for e in Enonce.objects.all():
     print e

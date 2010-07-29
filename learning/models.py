@@ -3,7 +3,7 @@
 
 from django.db import models
 
-from lg import listes
+import listes
 
 class Module(models.Model):
     """

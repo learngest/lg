@@ -76,12 +76,12 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'lg.coaching.middleware.LastMiddleware',
-    'lg.coaching.middleware.LogMiddleware',
+    'coaching.middleware.LastMiddleware',
+    'coaching.middleware.LogMiddleware',
     'django.middleware.doc.XViewMiddleware',
 )
 
-ROOT_URLCONF = 'lg.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -91,10 +91,10 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'lg.pages',
-    'lg.learning',
-    'lg.coaching',
-    'lg.testing',
+    'pages',
+    'learning',
+    'coaching',
+    'testing',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

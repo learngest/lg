@@ -13,7 +13,7 @@ from django.utils.translation import activate, get_language, ugettext_lazy as _
 from django.utils.encoding import iri_to_uri
 from django.core.urlresolvers import reverse
 
-from lg.listes import *
+from listes import *
 from session.forms import LoginForm, LoginOnlyForm
 from coaching.models import Utilisateur, Groupe, Work, Log
 from learning.models import Cours, Module
@@ -226,7 +226,7 @@ def lost_password(request):
     import sha
     import random
     #from mailer.sender import send_mail
-    from lg.utils import send_mail
+    from utils import send_mail
     if request.method == 'POST':
         f = LoginOnlyForm(request.POST)
         if f.is_valid():
