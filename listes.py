@@ -33,3 +33,4 @@ LISTE_TYPQ = (
         ('num', 'Réponse numérique, 5 chiffres significatifs'),
 )
 
+LISTE_PAGES = ('home', 'news', 'demo', 'overview', 'contributors', 'legal',)

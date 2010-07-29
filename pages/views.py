@@ -25,7 +25,7 @@ def page(request, page='home'):
         if lang==l[0]:
             l[2]=1
 
-    if not page in settings.PAGES:
+    if not page in LISTE_PAGES:
         page = 'home'
     path = os.path.join(os.path.dirname(settings.PROJECT_PATH),
                         'contents/pages',lang,'%s.html' % page)
