@@ -46,8 +46,8 @@
 
 {% block header %}<div id="header-container">
 	<div id="header">
-		<h1>eLearning</h1>
-		<p>{% if client.nom %}{{ client.nom }}{% else %}{% trans "Innovative e-learning Master" %}{% endif %}</p>
+		<h1>eLearning - <em>beta</em></h1>
+		<p>{% if client.nom %}{{ client.nom }}{% else %}{% trans "Innovative e-learning Framework" %}{% endif %}</p>
 		{% block product_nav %}<ul id="product-nav">
             <li><a href="/home/"{% ifequal here 'home' %} class="selected"{% endifequal %}>{% trans "Home" %}</a></li>
 			<li><a href="/news/"{% ifequal here 'news' %} class="selected"{% endifequal %}>{% trans "News" %}</a></li>
