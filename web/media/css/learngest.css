@@ -187,7 +187,18 @@ table tr.even {
 table tr:hover {background: #e2e6ef;}
 table th {
 	background: #f6f6f6;
+    cursor: pointer;
 }
+th.headerSortDown, th.headerSortUp {
+    background: #eee;
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 20px;
+}
+
+th.headerSortDown { background-image: url(../img/arrow_down.gif);}
+th.headerSortUp { background-image: url(../img/arrow_up.gif);}
+
 table td a:link,
 table td a:visited {
 	color: #1a1a12;
