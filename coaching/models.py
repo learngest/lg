@@ -59,7 +59,7 @@ class Groupe(models.Model):
     cours = models.ManyToManyField(Cours, blank=True, null=True)
 
     class Meta:
-        pass
+        ordering = ['client', 'nom']
 
     def __unicode__(self):
         return self.nom
