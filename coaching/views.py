@@ -794,19 +794,32 @@ def liste_utilisateurs(request, **kwargs):
     # préparation des paramètres
     # les clés de ce dictionnaire *doivent* être des chaînes
     params = dict(request.GET.items())
+    params_qd = request.GET.copy()
     for key, value in params.items():
         if not isinstance(key, str):
             del params[key]
             params[smart_str(key)] = value
     # recup de la liste des utilisateurs gérés par cet admin
     lu = Utilisateur.objects.filter(groupe__in=v.groupes_list())
+    # construction des listes des clients et des groupes
+    liste_clients = frozenset([g.client for g in v.groupes_list()])
+    if 'groupe__client' in params:
+        liste_groupes = [g for g in v.groupes_list()
+                if g.client_id==int(params['groupe__client'])]
+        if 'groupe' in params:
+            if int(params['groupe']) not in [g.id for g in liste_groupes]:
+                del params['groupe']
+                del params_qd['groupe']
+    else:
+        liste_groupes = v.groupes_list()
     # recup de la liste des objets correspondant aux paramètres passés
     lu = lu.filter(**params)
     # construction des filtres
-    lg = {'nom': 'groupe', 'title': _('group'), 'valeurs': [{'id': g.id, 'libel':g.nom} for g in v.groupes_list()]}
+    lg = {'nom': 'groupe', 'title': _('group'), 'valeurs': [{'id': g.id, 'libel':g.nom} for g in liste_groupes]}
+    lc = {'nom': 'groupe__client', 'title': _('client'), 'valeurs': [{'id': c.id, 'libel':c.nom} for c in liste_clients]}
     ll = {'nom': 'langue', 'title': _('language'), 'valeurs': [{'id': l[0], 'libel':l[1]} for l in LISTE_LANGUES]}
-    lf = [filtre for filtre in [lg,ll] if len(filtre['valeurs'])>1]
-    lf = makefilters(request.GET, lf)
+    lf = [filtre for filtre in [lc,lg,ll] if len(filtre['valeurs'])>1]
+    lf = makefilters(params_qd, lf)
     v.lastw = datetime.datetime.now()
     request.session['v'] = v
     v.save()
