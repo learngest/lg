@@ -31,7 +31,14 @@
 			<input class="btn" type="submit" value="{% trans "Log in" %}" />
 		</form>{% endblock login_inline %}
 		-->
-		{% block user_infos %}{% endblock %}
+        {% block user_infos %}
+        {% if visiteur %}
+        <p><a class="user" href="{% url l_profile %}">{{ visiteur }}</a></p>
+        <p><a class="logout" href="{% url logout %}">{% trans "Logout" %}</a></p>
+        {% else %}
+        <p>{% trans "Logged out" %}</p>
+        {% endif %}
+        {% endblock %}
 		{% block lang %}<form action="#" method="get">
 			<label for="lang">{% trans "Language" %}</label>
 			<select name="lang" id="lang">

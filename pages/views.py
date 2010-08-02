@@ -12,6 +12,11 @@ from django.utils import translation
 from listes import *
 
 def page(request, page='home'):
+    if 'v' in request.session:
+        v = request.session['v']
+        visiteur = v.prenom_nom()
+    else:
+        visiteur = None
     langues = [list(i)+[0] for i in LISTE_LANGUES]
 
     lang = request.GET.get('lang',None)
@@ -42,6 +47,7 @@ def page(request, page='home'):
     
     return render_to_response('pages/page.html',
             {'here': page,
+             'visiteur': visiteur,
              'contenu': contenu,
              'langues': langues,
             }) 
