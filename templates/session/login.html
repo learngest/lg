@@ -15,11 +15,11 @@
 
 		<form action="" method="post" id="login-form">
 			<h1>{% trans "Login Form" %}</h1>
-			<div class="form-row{% if form.login.errors %} error{% endif %}">
+			<div class="form-row{% if form.errors.login %} error{% endif %}">
 				<label for="id_{{ form.login.name }}">{{ form.login.label }}</label>
 				{{ form.login }} {{ form.errors.login }}
 			</div>
-			<div class="form-row{% if form.password.errors %} error{% endif %}">
+			<div class="form-row{% if form.errors.password %} error{% endif %}">
 				<label for="id_{{ form.password.name }}">{{ form.password.label }}</label>
 				{{ form.password }} {{ form.errors.password }}
 			</div>
