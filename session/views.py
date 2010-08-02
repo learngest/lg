@@ -356,6 +356,7 @@ def login(request):
                     return render_to_response('session/login.html',
                             {'form': f,
                              'langues': langues,
+                             'here':'login',
                              'msg': msg})
                 # tester mot de passe valide et utilisateur non périmé 
                 #if u.is_pwd_correct(f.cleaned_data['password']):
@@ -400,12 +401,14 @@ def login(request):
             return render_to_response('session/login.html',
                     {'form': f, 
                      'langues': langues,
+                     'here':'login',
                      'msg': msg})
         else:
             msg = _('Your browser does not seem to accept cookies. Please change your settings and try again.')
             return render_to_response('msg.html',
                     {'msg': msg,
                      'langues': langues,
+                     'here':'login',
                     })
     else:
         try:
@@ -428,6 +431,7 @@ def login(request):
         return render_to_response('session/login.html',
                 {'form': f,
                  'langues': langues,
+                 'here':'login',
                 })
 
 def logout(request):
