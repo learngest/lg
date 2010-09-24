@@ -44,9 +44,9 @@
 		    $(document).ready(function() {
 		        $("#lista").tablesorter({ widgets: ['zebra']});
 				{% if gid %}
-				var c = [[0,0]];
+				var c = [[7,1]];
 				{% else %}
-				var c = [[0,0],[1,0]];
+				var c = [[0,0],[7,1]];
 				{% endif %}
 		        $("#lista").trigger("sorton",[c]);
 		        return false;
