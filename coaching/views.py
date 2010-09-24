@@ -78,7 +78,7 @@ def liste_works(request, **kwargs):
     lf = makefilters(request.GET, lf)
     return render_to_response('coaching/liste_work.html',
                             {'visiteur': u.prenom_nom(),
-                             'staff': u.status==STAFF,
+                             'administrateur': u.status>COACH,
                              'client': u.groupe.client,
                              'liste_works': le, 
                              'liste_filtres': lf,})
@@ -123,7 +123,7 @@ def add_work(request):
                     return render_to_response('coaching/add_work.html',
                         {'visiteur': v.prenom_nom(),
                          'client': v.groupe.client,
-                         'staff': v.status==STAFF,
+                         'administrateur': v.status>COACH,
                          'msg' : msg,
                          'groupe': g, 'cours': c, 'deadline': e,
                          'titre': f3.cleaned_data['titre'],
@@ -136,7 +136,7 @@ def add_work(request):
                 return render_to_response('coaching/add_work.html',
                     {'visiteur': v.prenom_nom(), 
                      'client': v.groupe.client,
-                     'staff': v.status==STAFF,
+                     'administrateur': v.status>COACH,
                      'form': f3, 'groupe': g, 'cours': c, 'deadline': e  })
         else:
             if 'g' in request.POST:
@@ -155,7 +155,7 @@ def add_work(request):
                     return render_to_response('coaching/add_work.html',
                         {'visiteur': v.prenom_nom(), 
                          'client': v.groupe.client,
-                         'staff': v.status==STAFF,
+                         'administrateur': v.status>COACH,
                          'form': f3, 'groupe': g, 'cours': c, 'deadline': e  })
             else:
                 # deuxième étape, cours
@@ -168,7 +168,7 @@ def add_work(request):
                     return render_to_response('coaching/add_work.html',
                         {'visiteur': v.prenom_nom(), 
                          'client': v.groupe.client,
-                         'staff': v.status==STAFF,
+                         'administrateur': v.status>COACH,
                             'form': f2, 'groupe': g })
     # première étape, groupe
     f = WorkForm1()
@@ -176,7 +176,7 @@ def add_work(request):
     return render_to_response('coaching/add_work.html',
         {'visiteur': v.prenom_nom(), 
          'client': v.groupe.client,
-         'staff': v.status==STAFF,
+         'administrateur': v.status>COACH,
         'form': f })
 add_work = visitor_is(ADMINISTRATEUR)(add_work) 
 
@@ -199,7 +199,7 @@ def maj_work(request):
             return render_to_response('coaching/maj_work.html',
                                     {'visiteur': v.prenom_nom(),
                                     'client': v.groupe.client,
-                                    'staff': v.status==STAFF,
+                                    'administrateur': v.status>COACH,
                                     'msg' : msg,
                                     'deleted': True,
                                     'groupe': w.groupe,
@@ -236,7 +236,7 @@ def maj_work(request):
             return render_to_response('coaching/maj_work.html',
                                     {'visiteur': v.prenom_nom(),
                                     'client': v.groupe.client,
-                                    'staff': v.status==STAFF,
+                                    'administrateur': v.status>COACH,
                                     'msg' : msg,
                                     'form': f,
                                     'groupe': w.groupe,
@@ -268,7 +268,7 @@ def maj_work(request):
     return render_to_response('coaching/maj_work.html',
                             {'visiteur': v.prenom_nom(),
                             'client': v.groupe.client,
-                            'staff': v.status==STAFF,
+                            'administrateur': v.status>COACH,
                             'msg' : msg,
                             'form': f,
                             'groupe': e.groupe,
@@ -303,7 +303,7 @@ def liste_echeances(request, **kwargs):
     lf = makefilters(request.GET, lf)
     return render_to_response('coaching/liste_echeance.html',
             {'visiteur': u.prenom_nom(),
-             'staff': u.status==STAFF,
+             'administrateur': u.status>COACH,
              'client': u.groupe.client,
              'liste_echeances': le, 'liste_filtres': lf,})
 liste_echeances = visitor_is(ADMINISTRATEUR)(liste_echeances)
@@ -352,7 +352,7 @@ def add_echeance(request):
                     return render_to_response('coaching/add_echeance.html',
                             {'visiteur': v.prenom_nom(),
                             'client': v.groupe.client,
-                            'staff': v.status==STAFF,
+                            'administrateur': v.status>COACH,
                             'msg' : msg,
                             'groupe': g, 'utilisateur': uf, 'cours': c, 'module': mf, 
                             'deadline': f3.cleaned_data['deadline']  })
@@ -362,7 +362,7 @@ def add_echeance(request):
             else:
                 return render_to_response('coaching/add_echeance.html',
                         {'visiteur': v.prenom_nom(),
-                         'staff': v.status==STAFF,
+                         'administrateur': v.status>COACH,
                          'client': v.groupe.client,
                          'form': f3, 'groupe': g, 'utilisateur': uf, 'cours': c })
         else:
@@ -390,7 +390,7 @@ def add_echeance(request):
                     return render_to_response('coaching/add_echeance.html',
                             {'visiteur': v.prenom_nom(), 
                              'client': v.groupe.client,
-                            'staff': v.status==STAFF,
+                            'administrateur': v.status>COACH,
                             'form': f3, 'groupe': g, 'utilisateur': u, 'cours': c  })
             else:
                 # deuxième étape, utilisateur et cours
@@ -406,7 +406,7 @@ def add_echeance(request):
                     return render_to_response('coaching/add_echeance.html',
                             {'visiteur': v.prenom_nom(), 
                              'client': v.groupe.client,
-                            'staff': v.status==STAFF,
+                            'administrateur': v.status>COACH,
                             'form': f2, 'groupe': g })
     # première étape, groupe
     f = EcheanceForm1()
@@ -414,7 +414,7 @@ def add_echeance(request):
     return render_to_response('coaching/add_echeance.html',
             {'visiteur': v.prenom_nom(), 
              'client': v.groupe.client,
-             'staff': v.status==STAFF,
+             'administrateur': v.status>COACH,
              'form': f })
 add_echeance = visitor_is(ADMINISTRATEUR)(add_echeance) 
 
@@ -443,7 +443,7 @@ def maj_echeance(request):
             return render_to_response('coaching/maj_echeance.html',
                                     {'visiteur': v.prenom_nom(),
                                     'client': v.groupe.client,
-                                    'staff': v.status==STAFF,
+                                    'administrateur': v.status>COACH,
                                     'msg' : msg,
                                     'groupe': e.groupe, 'utilisateur': u,
                                     'cours': e.cours, 'module': m,
@@ -473,7 +473,7 @@ def maj_echeance(request):
             return render_to_response('coaching/maj_echeance.html',
                                     {'visiteur': v.prenom_nom(),
                                     'client': v.groupe.client,
-                                    'staff': v.status==STAFF,
+                                    'administrateur': v.status>COACH,
                                     'msg' : msg,
                                     'form': f,
                                     'groupe': e.groupe, 'utilisateur': u,
@@ -508,7 +508,7 @@ def maj_echeance(request):
     return render_to_response('coaching/maj_echeance.html',
                             {'visiteur': v.prenom_nom(),
                             'client': v.groupe.client,
-                            'staff': v.status==STAFF,
+                            'administrateur': v.status>COACH,
                             'msg' : msg,
                             'form': f,
                             'groupe': e.groupe, 'utilisateur': u,
@@ -534,7 +534,7 @@ def log_utilisateur(request):
     return render_to_response('coaching/log.html',
             {'visiteur': v.prenom_nom(),
              'client': v.groupe.client,
-             'staff': v.status==STAFF,
+             'administrateur': v.status>COACH,
              'u' : u,
              'logs': logs }) 
 log_utilisateur = visitor_is_at_least(COACH)(log_utilisateur)
@@ -556,7 +556,7 @@ def logs(request):
             allow_empty= True,
             extra_context = {
                 'visiteur': v.prenom_nom(),
-                'staff': v.status==STAFF,
+                'administrateur': v.status>COACH,
                 },
             )
 logs = visitor_is(ADMINISTRATEUR)(logs)
@@ -624,7 +624,7 @@ def detail_module(request):
     return render_to_response('coaching/detail_module.html',
             {'visiteur': v.prenom_nom(),
              'client': v.groupe.client,
-             'staff': v.status==STAFF,
+             'administrateur': v.status>COACH,
              'vgroupe': v.groupe,
              'u': u,
              'module': m }) 
@@ -709,7 +709,7 @@ def detail_utilisateur(request):
     return render_to_response('coaching/detail.html',
             {'visiteur': v.prenom_nom(),
              'client': v.groupe.client,
-             'staff': v.status==STAFF,
+             'administrateur': v.status>COACH,
              'admin': v.status>COACH,
              'u' : u,
              'les_cours': les_cours }) 
@@ -758,14 +758,14 @@ def profile_utilisateur_admin(request, utilisateur=None):
             return render_to_response('coaching/fiche.html',
                 {'visiteur': v.prenom_nom(), 
                 'client': v.groupe.client,
-                'staff': v.status==STAFF,
+                'administrateur': v.status>COACH,
                 'u': u, 
                 'form': f, 'msg': msg})
         else:
             return render_to_response('coaching/fiche.html',
                 {'visiteur': v.prenom_nom(), 
                  'client': v.groupe.client,
-                 'staff': v.status==STAFF,
+                 'administrateur': v.status>COACH,
                  'u': u, 'form': f})
     else:
         f = UtilisateurForm(u.__dict__)
@@ -773,7 +773,7 @@ def profile_utilisateur_admin(request, utilisateur=None):
         return render_to_response('coaching/fiche.html',
                 {'visiteur': v.prenom_nom(), 
                  'client': v.groupe.client,
-                 'staff': v.status==STAFF,
+                 'administrateur': v.status>COACH,
                  'u': u, 'form': f})
 profile_utilisateur_admin = visitor_is(ADMINISTRATEUR)(profile_utilisateur_admin)
 
@@ -830,7 +830,7 @@ def liste_utilisateurs(request, **kwargs):
     return render_to_response('coaching/liste_admin.html',
             {'visiteur': v.prenom_nom(),
              'client': v.groupe.client,
-             'staff': v.status==STAFF,
+             'administrateur': v.status>COACH,
              'gid': gid,
              'liste_utilisateurs': lu, 'liste_filtres': lf,})
 liste_utilisateurs = visitor_may_see_list(liste_utilisateurs)
@@ -882,7 +882,7 @@ def liste_clients(request):
             {'visiteur': v.prenom_nom(),
              'client': v.groupe.client,
              'liste_filtres': lf,
-             'staff': v.status==STAFF,
+             'administrateur': v.status>COACH,
              'liste_groupes': liste,
             })
 liste_clients = visitor_is(STAFF)(liste_clients)
@@ -990,7 +990,7 @@ def create_logins(request):
                                 {'visiteur': v.prenom_nom(),
                                  'client': v.groupe.client,
                                  'logins': logins,
-                                 'staff': v.status==STAFF,
+                                 'administrateur': v.status>COACH,
                                  'groupe': g,
                                  'langue': request.POST['langue'],
                                  'fermeture': request.POST['fermeture'],
@@ -1026,7 +1026,7 @@ def create_logins(request):
                             return render_to_response('coaching/logins.html',
                                                     {'visiteur': v.prenom_nom(),
                                                      'client': v.groupe.client,
-                                                     'staff': v.status==STAFF,
+                                                     'administrateur': v.status>COACH,
                                                      'errmsg': errmsg,
                                                      'form': f,
                                                     })
@@ -1042,7 +1042,7 @@ def create_logins(request):
                                     {'visiteur': v.prenom_nom(),
                                      'client': v.groupe.client,
                                      'logins': logins,
-                                     'staff': v.status==STAFF,
+                                     'administrateur': v.status>COACH,
                                      'groupe': g,
                                      'langue': f.cleaned_data['langue'],
                                      'fermeture': f.cleaned_data['fermeture'],
@@ -1052,7 +1052,7 @@ def create_logins(request):
             else:
                 return render_to_response('coaching/logins.html',
                                         {'visiteur': v.prenom_nom(),
-                                         'staff': v.status==STAFF,
+                                         'administrateur': v.status>COACH,
                                          'client': v.groupe.client,
                                          'form': f,
                                         })
@@ -1061,7 +1061,7 @@ def create_logins(request):
         f.fields['groupe'].choices = [(g.id, g.nom) for g in Groupe.objects.all()]
         return render_to_response('coaching/logins.html',
                                 {'visiteur': v.prenom_nom(),
-                                 'staff': v.status==STAFF,
+                                 'administrateur': v.status>COACH,
                                  'client': v.groupe.client,
                                  'form': f,
                                 })
@@ -1076,7 +1076,7 @@ def menu(request):
             {'visiteur': v.prenom_nom(), 
              'client': v.groupe.client,
              'here': 'admin',
-             'admin': v.status,
+             'administrateur': v.status>COACH,
              'staff': v.status==STAFF })
 menu = visitor_is(ADMINISTRATEUR)(menu)
 
@@ -1133,7 +1133,7 @@ def send_email(request):
             return render_to_response('coaching/sendmail.html',
                                         {'visiteur': v.prenom_nom(),
                                          'msg': msg,
-                                         'staff': v.status==STAFF,
+                                         'administrateur': v.status>COACH,
                                          'from': v.email,
                                          'gid': g,
                                          'uid': u,
@@ -1145,7 +1145,7 @@ def send_email(request):
             return render_to_response('coaching/sendmail.html',
                                         {'visiteur': v.prenom_nom(),
                                          'from': v.email,
-                                         'staff': v.status==STAFF,
+                                         'administrateur': v.status>COACH,
                                          'dest_list': dest_list,
                                          'form': f,
                                          'gid': g,
@@ -1156,7 +1156,7 @@ def send_email(request):
         return render_to_response('coaching/sendmail.html',
                                     {'visiteur': v.prenom_nom(),
                                      'from': v.email,
-                                     'staff': v.status==STAFF,
+                                     'administrateur': v.status>COACH,
                                      'dest_list': dest_list,
                                      'form': f,
                                      'gid': g,

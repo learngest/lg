@@ -17,7 +17,7 @@
 <div id="nav-container">
 	<ul id="nav">
 
-		{% if staff %}<li><a href="{% url c_admin %}"{% ifequal here 'admin' %} class="selected"{% endifequal %}>{% trans "Administration" %}</a></li>{% endif %}
+		{% if administrateur %}<li><a href="{% url c_admin %}"{% ifequal here 'admin' %} class="selected"{% endifequal %}>{% trans "Administration" %}</a></li>{% endif %}
 
 		<li><a href="{% url l_dashboard %}"{% ifequal here 'dashboard' %}
 			class="selected"{% endifequal %}>{% trans "Dashboard" %}</a></li>
