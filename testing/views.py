@@ -118,7 +118,7 @@ def test(request, slug=None, **kwargs):
     t = loader.get_template('testing/test.html')
     c = Context({'visiteur': v.prenom_nom(),
                     'client': v.groupe.client,
-                    'staff': v.status==STAFF,
+                    'administrateur': v.status>COACH,
                     'titre': gt,
                     'msg': msg,
                     'baselink': base,
@@ -286,7 +286,7 @@ def noter(request):
                                  'titre': g.titre(langue),
                                  'client': u.groupe.client,
                                  'vgroupe': u.groupe,
-                                 'staff': u.status==STAFF,
+                                 'administrateur': u.status>COACH,
                                  'total': total,
                                  'max': max,
                                  'valide': valide,
