@@ -19,7 +19,7 @@
 
 {% if msg %}<p class="infomsg">{{ msg|safe }}</p>{% endif %}
 
-<form action="/testing/noter/" method="post">
+<form action="{% url t_noter %}" method="post">
 	{% for enonce in enonces %}
 	<fieldset class="enonce">
 		<p>{{ enonce.libel|safe }}</p>
