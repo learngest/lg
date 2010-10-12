@@ -280,17 +280,14 @@ def democreate(request):
         wanted_login = slugify(request.POST['username'])
         wanted_pass = request.POST['password']
         if len(wanted_pass)<5:
-            print "pass trop court"
             return HttpResponseRedirect('/demo/')
         try:
             groupe = Groupe.objects.get(nom='Finance Demo')
         except Groupe.DoesNotExist:
-            print "groupe inexistant"
             return HttpResponseRedirect('/demo/')
         fermeture = datetime.datetime.now() + datetime.timedelta(7)
         try:
             u = Utilisateur.objects.get(login=wanted_login)
-            print "existe deja"
             return HttpResponseRedirect('/demo/')
         except Utilisateur.DoesNotExist:
             u = Utilisateur(
@@ -298,7 +295,7 @@ def democreate(request):
                     password=wanted_pass,
                     nom='Learngest',
                     prenom='Demo',
-                    email='email@provider.com',
+                    email='support@learngest.com',
                     fermeture=fermeture,
                     langue=get_language(),
                     groupe=groupe,
