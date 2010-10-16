@@ -925,9 +925,10 @@ def create_logins(request):
 #                if i > 5:
 #                    login = login[0:i]
 #                login = login.replace('-','')
-                login = email.split('@')[0][:20]
+                login = email.split('@')[0][:19]
                 login = unicodedata.normalize('NFKD',login).encode('ASCII','ignore').lower()
                 login = login.replace(' ','')
+                login = '%s2' % login
                 password = sha.new(str(random.random())).hexdigest()[:8]
                 try:
                     Utilisateur.objects.get(login=login)
