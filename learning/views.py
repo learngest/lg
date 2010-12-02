@@ -13,7 +13,7 @@ from django.core.urlresolvers import reverse
 
 from learning.models import Cours, Module, Contenu, ModuleTitre
 from learning.forms import WorkForm4, UtilisateurForm
-from coaching.models import Utilisateur, Echeance, Work, WorkDone, Log
+from coaching.models import Utilisateur, Echeance, Work, WorkDone, Log, AutresDocs
 from session.views import visitor_may_see_module, visitor_may_see_work, has_visitor, new_visitor_may_see_module
 
 from listes import *
@@ -212,6 +212,8 @@ def tdb(request):
     """View: returns user's dashboard."""
     # récup visiteur
     u = request.session['v']
+    # récup autres documents
+    autres_docs = AutresDocs.objects.filter(groupe=u.groupe,cours=None)
     # récup des cours du visiteur
     les_cours = u.cours_list()
     tout_ouvert = (u.groupe.is_open or u.status > 0)
@@ -309,6 +311,9 @@ def tdb(request):
                     w.retard = w.echeance < datetime.datetime.now()
             c.devoirs.append(w)
 
+        c.autres_docs = AutresDocs.objects.filter(
+                groupe=u.groupe, cours = c)
+
         # cours est considéré comme validé si
         # - cours précédent validé
         # ET
@@ -324,6 +329,7 @@ def tdb(request):
              'vgroupe': u.groupe,
              'admin': u.status,
              'test': not u.groupe.is_demo,
+             'autresdocs': autres_docs,
              'les_cours': les_cours }) 
 tdb = has_visitor(tdb)
 
