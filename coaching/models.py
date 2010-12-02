@@ -568,6 +568,39 @@ class TrashManager(models.Manager):
     def get_query_set(self):
         return super(TrashManager, self).get_query_set().filter(trashed_at__isnull=False)
 
+def upload_path(instance, filename):
+    import os.path
+    from django.template.defaultfilters import slugify
+    if instance.cours:
+        slug = instance.cours.slug
+    else:
+        slug = ''
+    return os.path.join('otherdocs',
+                slugify(instance.groupe.nom),
+                slug,
+                filename)
+
+class AutresDocs(models.Model):
+    """
+    Documents supplémentaires pour un groupes-cours
+    """
+
+    groupe = models.ForeignKey(Groupe)
+    cours = models.ForeignKey(Cours, blank=True, null=True)
+    titre = models.CharField(max_length=100)
+    fichier = models.FileField(upload_to=upload_path, max_length=255)
+
+    class Meta:
+        ordering = ['groupe','cours']
+        verbose_name = _("Additional document")
+        verbose_name_plural = _("Additional documents")
+
+    def __unicode__(self):
+        return u'%s - %s - %s' % (self.titre, self.groupe, self.cours)
+
+    def get_absolute_url(self):
+        return self.fichier.url
+
 class Work(models.Model):
     """Devoir à rendre pour un groupe et un cours.
     """

@@ -26,11 +26,25 @@
 			<li><a href="/learning/common/faq/">{% trans "Frequently Asked Questions" %}</a></li>
 			<li><a href="/learning/common/glossaire/">{% trans "Glossary" %}</a></li>
 		</ul>
+        {% if autresdocs %}
+        <h2>{% trans "Documents to download" %}</h2>
+        {% for doc in autresdocs %}
+        <p><a href="{{ doc.get_absolute_url }}"><strong>{{ doc.titre }}</strong></a><p>
+        {% endfor %}
+        {% endif %}
 	</div>
 
 	{% for cours in les_cours %}
 	<div class="admin-item">
 		<h2>{{ cours.title }}</h2>
+        {% if cours.autres_docs %}
+		<h3>{% trans "Documents to download" %}</h2>
+		<ul>
+        {% for doc in cours.autres_docs %}
+        <li><a href="{{ doc.get_absolute_url }}"><strong>{{ doc.titre }}</strong></a></li>
+        {% endfor %}
+		</ul>
+        {% endif %}
 		<table>
 			<thead>
 			<tr>

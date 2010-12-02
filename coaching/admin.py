@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from django.contrib import admin
-from coaching.models import Client, Groupe, Utilisateur, Coached, Work, Echeance
+from coaching.models import Client, Groupe, Utilisateur, Coached, Work, Echeance, AutresDocs
 
 class ClientAdmin(admin.ModelAdmin):
     search_fields = ('nom',)
@@ -53,4 +53,14 @@ admin.site.register(Work, WorkAdmin)
 class EcheanceAdmin(admin.ModelAdmin):
     pass
 admin.site.register(Echeance, EcheanceAdmin)
+
+class AutresDocsAdmin(admin.ModelAdmin):
+    fieldsets = (
+            (None, {'fields': ('groupe','cours',)}),
+            (None, {'fields': ('titre','fichier',)}),
+    )
+    list_display = ('groupe','cours','titre',)
+    list_display_links = ('titre',)
+    list_filter = ('groupe','cours',)
+admin.site.register(AutresDocs, AutresDocsAdmin)
 
