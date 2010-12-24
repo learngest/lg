@@ -64,10 +64,10 @@ class Groupe(models.Model):
     def __unicode__(self):
         return self.nom
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, *args, **kwargs):
         if self.is_demo:
             self.is_open=True
-        super(Groupe, self).save(force_insert, force_update)
+        super(Groupe, self).save(*args, **kwargs)
 
     def workdone(self):
         """ Renvoie la liste des fichiers de devoirs rendus
@@ -144,7 +144,7 @@ class Utilisateur(models.Model):
     def nom_prenom(self):
         return u'%s %s' % (self.nom, self.prenom)
 
-    def save(self, force_insert=False, force_update=False, change_password=False):
+    def save(self, change_password=False, *args, **kwargs):
         """Surcharge save() pour donner les valeurs de :
         - date de création
         - date de modification
@@ -183,7 +183,7 @@ class Utilisateur(models.Model):
             hsh = sha.new(salt+password).hexdigest()
             self.password = '%s$%s' % (salt, hsh)
         
-        super(Utilisateur, self).save(force_insert, force_update)
+        super(Utilisateur, self).save(*args, **kwargs)
 
     def is_pwd_correct(self, raw_password):
         import sha, unicodedata
@@ -676,7 +676,7 @@ class Echeance(models.Model):
             else:
                 return u'%s - %s - %s' % (self.groupe, self.cours, self.echeance)
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, *args, **kwargs):
         if not self.groupe:
             u = self.utilisateur
             self.groupe = u.groupe
@@ -694,18 +694,18 @@ class Echeance(models.Model):
                                         groupe=self.groupe,
                                         module=self.module, cours=self.cours)
                     e.echeance = self.echeance
-                    super (Echeance, e).save(force_insert, force_update)
+                    super(Echeance, e).save(*args, **kwargs)
                 except Echeance.DoesNotExist:
-                    super(Echeance, self).save(force_insert, force_update)
+                    super(Echeance, self).save(*args, **kwargs)
             else:
                 try:
                     e = Echeance.objects.get(utilisateur=self.utilisateur,
                                         groupe=self.groupe,
                                         module__isnull=True, cours=self.cours)
                     e.echeance = self.echeance
-                    super (Echeance, e).save(force_insert, force_update)
+                    super(Echeance, e).save(*args, **kwargs)
                 except Echeance.DoesNotExist:
-                    super(Echeance, self).save(force_insert, force_update)
+                    super(Echeance, self).save(*args, **kwargs)
         else:
             if self.module:
                 try:
@@ -713,18 +713,18 @@ class Echeance(models.Model):
                                         groupe=self.groupe,
                                         module=self.module, cours=self.cours)
                     e.echeance = self.echeance
-                    super (Echeance, e).save(force_insert, force_update)
+                    super(Echeance, e).save(*args, **kwargs)
                 except Echeance.DoesNotExist:
-                    super(Echeance, self).save(force_insert, force_update)
+                    super(Echeance, self).save(*args, **kwargs)
             else:
                 try:
                     e = Echeance.objects.get(utilisateur__isnull=True,
                                         groupe=self.groupe,
                                         module__isnull=True, cours=self.cours)
                     e.echeance = self.echeance
-                    super (Echeance, e).save(force_insert, force_update)
+                    super(Echeance, e).save(*args, **kwargs)
                 except Echeance.DoesNotExist:
-                    super(Echeance, self).save(force_insert, force_update)
+                    super(Echeance, self).save(*args, **kwargs)
 
     def delete(self, trash=True):
         if not self.trashed_at and trash:
@@ -763,11 +763,11 @@ class Resultat(models.Model):
     def __unicode__(self):
         return u"%s - %s - %s - %d" % (self.utilisateur, self.granule, self.date, self.score)
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, *args, **kwargs):
         if not self.id:
             if not self.date:
                 self.date = datetime.datetime.now()
-        super(Resultat, self).save(force_insert, force_update)
+        super(Resultat, self).save(*args, **kwargs)
 
 class Valide(models.Model):
     """Stocke les granules et modules validés pour un utilisateur.
@@ -784,11 +784,11 @@ class Valide(models.Model):
         else:
             return u"%s - M : %s - %s - %d" % (self.utilisateur, self.module, self.date, self.score)
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, *args, **kwargs):
         if not self.id:
             if not self.date:
                 self.date = datetime.datetime.now()
-        super(Valide, self).save(force_insert, force_update)
+        super(Valide, self).save(*args, **kwargs)
 
 class Tempsparmodule(models.Model):
     """
