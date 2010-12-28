@@ -729,7 +729,7 @@ class Echeance(models.Model):
     def delete(self, trash=True):
         if not self.trashed_at and trash:
             self.trashed_at = datetime.datetime.now()
-            self.save()
+            super(Echeance, self).save()
         else:
             super(Echeance, self).delete()
 
