@@ -189,6 +189,7 @@ def maj_work(request):
         if 'trash' in request.POST:
             # effacer l'échéance
             w = Work.objects.get(id=request.GET['id'])
+            w.cours.title = w.cours.titre(langue=v.langue)
             try:
                 w.echeance = Echeance.objects.filter(groupe=w.groupe, cours=w.cours).latest('echeance').echeance
             except Echeance.DoesNotExist:
@@ -212,6 +213,7 @@ def maj_work(request):
             # modifier le travail à faire
             # recup l'original, modifier et sauver
             w = Work.objects.get(id=request.GET['id'])
+            w.cours.title = w.cours.titre(langue=v.langue)
             f = WorkForm3(request.POST, request.FILES)
             try:
                 w.echeance = Echeance.objects.filter(groupe=w.groupe, cours=w.cours).latest('echeance').echeance
@@ -250,6 +252,7 @@ def maj_work(request):
     if 'undo' in request.GET:
         try:
             e = Work.trash.get(id=request.GET['id'])
+            e.cours.title = e.cours.titre(langue=v.langue)
         except Work.DoesNotExist:
             return HttpResponseRedirect('/coaching/work/')
         e.restore()
@@ -258,6 +261,7 @@ def maj_work(request):
         msg = None
     try:
         e = Work.objects.get(id=request.GET['id']) 
+        e.cours.title = e.cours.titre(langue=v.langue)
     except Work.DoesNotExist:
         return HttpResponseRedirect('/coaching/work/')
     try:
