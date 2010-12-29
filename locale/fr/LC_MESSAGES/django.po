@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-02 14:13+0100\n"
+"POT-Creation-Date: 2010-12-29 03:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Anh J. anhj@gcu.info\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,7 @@ msgstr "Fichier source"
 #: templates/coaching/liste_work.html:36 templates/coaching/logins.html:24
 #: templates/coaching/logins2.html:25 templates/coaching/logins2.html.py:26
 #: templates/coaching/logins3.html:23 templates/coaching/logins3.html.py:24
-#: templates/coaching/maj_echeance.html:20 templates/coaching/maj_work.html:19
+#: templates/coaching/maj_echeance.html:21 templates/coaching/maj_work.html:19
 #: templates/coaching/maj_work.html:20 templates/learning/profile.html:19
 #: templates/learning/profile.html.py:20
 msgid "Group"
@@ -107,7 +107,7 @@ msgstr "Erreur : les mots de passes sont différents."
 #: coaching/forms.py:47 templates/coaching/add_echeance.html:22
 #: templates/coaching/liste_echeance.html:37
 #: templates/coaching/log_list.html:17 templates/coaching/logs.html:18
-#: templates/coaching/maj_echeance.html:21
+#: templates/coaching/maj_echeance.html:22
 msgid "Student"
 msgstr "Etudiant"
 
@@ -116,14 +116,14 @@ msgstr "Etudiant"
 #: templates/coaching/add_work.html:23 templates/coaching/add_work.html:66
 #: templates/coaching/liste_echeance.html:38
 #: templates/coaching/liste_work.html:38
-#: templates/coaching/maj_echeance.html:25 templates/coaching/maj_work.html:23
+#: templates/coaching/maj_echeance.html:26 templates/coaching/maj_work.html:23
 #: templates/coaching/maj_work.html:24
 msgid "Course"
 msgstr "Cours"
 
 #: coaching/forms.py:51 templates/coaching/add_echeance.html:28
 #: templates/coaching/detail.html:24 templates/coaching/liste_echeance.html:39
-#: templates/coaching/maj_echeance.html:26 templates/learning/tdb.html:51
+#: templates/coaching/maj_echeance.html:27 templates/learning/tdb.html:51
 msgid "Module"
 msgstr ""
 
@@ -137,8 +137,8 @@ msgstr ""
 #: templates/coaching/detail_module.html:18
 #: templates/coaching/liste_echeance.html:40
 #: templates/coaching/liste_work.html:37
-#: templates/coaching/maj_echeance.html:29
-#: templates/coaching/maj_echeance.html:31 templates/coaching/maj_work.html:29
+#: templates/coaching/maj_echeance.html:30
+#: templates/coaching/maj_echeance.html:32 templates/coaching/maj_work.html:29
 #: templates/coaching/maj_work.html:31 templates/learning/module.html:19
 #: templates/learning/tdb.html:52 templates/learning/tdb.html.py:89
 msgid "Deadline"
@@ -496,19 +496,19 @@ msgid "Add a deadline"
 msgstr "Ajouter une échéance"
 
 #: templates/coaching/add_echeance.html:19
-#: templates/coaching/maj_echeance.html:19
+#: templates/coaching/maj_echeance.html:20
 msgid "Group or Student"
 msgstr "Groupe ou étudiant"
 
 #: templates/coaching/add_echeance.html:25
 #: templates/coaching/add_echeance.html:55
-#: templates/coaching/maj_echeance.html:24
+#: templates/coaching/maj_echeance.html:25
 msgid "Course or Module"
 msgstr "Cours ou module"
 
 #: templates/coaching/add_echeance.html:45 templates/coaching/add_work.html:57
 #: templates/coaching/fiche.html:37 templates/coaching/logins.html:36
-#: templates/coaching/maj_echeance.html:37 templates/coaching/maj_work.html:52
+#: templates/coaching/maj_echeance.html:38 templates/coaching/maj_work.html:52
 #: templates/learning/devoir.html:30 templates/learning/profile.html:37
 msgid "Save"
 msgstr "Sauver"
@@ -850,7 +850,11 @@ msgstr "modifier"
 msgid "Change or delete a deadline"
 msgstr "Modifier ou supprimer une échéance"
 
-#: templates/coaching/maj_echeance.html:38
+#: templates/coaching/maj_echeance.html:14 templates/coaching/maj_work.html:14
+msgid "Back to list"
+msgstr "Retour à la liste"
+
+#: templates/coaching/maj_echeance.html:39
 msgid "Delete this deadline"
 msgstr "Supprimer cette échéance"
 
