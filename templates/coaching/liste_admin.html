@@ -81,7 +81,7 @@
 		                <td class="center">{{ utilisateur.nb_retards }}</td>
 						<td class="center">{{ utilisateur.nb_actuel }}</td>
 						<td class="center">{{ utilisateur.time_elapsed }}</td>
-		                <td class="center">{% if utilisateur.lastw %}{{ utilisateur.lastw }}{% endif %}</td>
+		                <td class="center">{% if utilisateur.lastw %}{{ utilisateur.lastw|date:"Y/m/d H:i" }}{% endif %}</td>
 					</tr>
 					{% endfor %}
 				</tbody>
