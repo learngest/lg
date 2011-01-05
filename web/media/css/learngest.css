@@ -263,7 +263,8 @@ hr {
 /* HEADER-TOOLBAR
 -------------------------------------------------------- */
 #header-toolbar {
-	width: 840px;
+	width: 90%;
+	max-width: 840px;
 	margin: 0 auto;
 	padding: 8px 10px;
 	font-size: 11px;
@@ -314,7 +315,8 @@ hr {
 /* HEADER
 -------------------------------------------------------- */
 #header {
-	width: 840px;
+	width: 90%;
+	max-width: 840px;
 	margin: 0 auto;
 	padding: 18px 0;
 	position: relative;
@@ -372,7 +374,8 @@ hr {
 /* NAV
 -------------------------------------------------------- */
 #nav {
-	width: 840px;
+	width:90%;
+	max-width: 840px;
 	margin: 0 auto;
 	padding: 8px 0;
 	list-style: none;
@@ -470,7 +473,8 @@ hr {
 /* CONTENT
 -------------------------------------------------------- */
 .content {
-	width: 840px;
+	width: 90%;
+	max-width: 840px;
 	margin: 0 auto;
 	padding: 20px 10px 30px 10px;
 }
@@ -783,7 +787,8 @@ div.exemple {
 /* FOOTER
 -------------------------------------------------------- */
 #footer {
-	width: 840px;
+	width:90%;
+	max-width: 840px;
 	margin: 0 auto;
 	padding: 10px 10px 40px 10px;
 	font-size: 11px;
