@@ -29,7 +29,7 @@
 		<fieldset>
 			<h2>{% trans "Settings" %}</h2>
 			<p><label for="langue">{% trans "Preferred language" %}</label> {{ langue }}</p>
-			<p><label for="fermeture">{% trans "Valid till" %}</label> {{ fermeture }}</p>
+			<p><label for="fermeture">{% trans "Valid till" %}</label> {{ fermeture|date:"Y-m-d H:i:s" }}</p>
 			<p><label for="envoi_mail">{% trans "Send credentials by mail" %}</label>{% if envoi_mail %}{% trans "Yes" %}{% else %}{% trans "No" %}{% endif %}</p>
 		</fieldset>
 
