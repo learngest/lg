@@ -14,12 +14,12 @@ class WorkForm4(forms.Form):
         if self.cleaned_data['fichier']:
             fichier_ok = False
             # le test devrait se faire sur le content-type
-            for suffix in ('.doc','.pdf','.xls','.zip'):
+            for suffix in LISTE_ACCEPTED_UPLOAD:
                 if self.cleaned_data['fichier'].name.endswith(suffix):
                     fichier_ok = True
                     break
             if not fichier_ok:
-                raise forms.ValidationError(_('Filetype should be .doc, .xls, .pdf or .zip'))
+                raise forms.ValidationError(_('This filetype is not allowed.'))
                 #raise forms.ValidationError('Filetype should be .doc, .xls, .pdf or .zip')
             #filelen = float(len(self.cleaned_data['fichier'].content)) / 1024
             filelen = float(self.cleaned_data['fichier'].size) / 1024

@@ -34,3 +34,8 @@ LISTE_TYPQ = (
 )
 
 LISTE_PAGES = ('home', 'news', 'demo', 'overview', 'contributors', 'legal',)
+
+LISTE_ACCEPTED_UPLOAD = ('.doc','.docx','.odt','.sxw',
+                         '.pdf',
+                         '.xls','.xlsx','.ods','.sxc',
+                         '.zip')
