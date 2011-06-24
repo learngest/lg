@@ -373,7 +373,7 @@ def login(request):
 #                            cookie_data = encodestring(
 #                                    '%s:%s' % (f.cleaned_data['login'], 
 #                                        f.cleaned_data['password']))
-                            cookie_data = b64encode( '%s:%s' % (flogin, fpassword))
+                            cookie_data = b64encode( '%s:%s' % (flogin, fpassword.encode('utf8')))
                             max_age = 30*24*60*60
                             expires = datetime.datetime.strftime(datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age), "%a, %d-%b-%Y %H:%M:%S GMT")
                             response.set_cookie('eMaster', cookie_data, max_age=max_age, expires=expires)

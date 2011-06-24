@@ -666,7 +666,9 @@ def detail_utilisateur(request):
                 m.essais += u.nb_essais(t)
             if u.echeance(c,m):
                 m.echeance = u.echeance(c,m).echeance
-                m.retard = m.echeance < datetime.datetime.now() and not u.module_is_valide(m)
+                m.retard = (m.echeance < datetime.datetime.now()
+                        and m.granule_set.count()>0
+                        and not u.module_is_valide(m))
                 if m.retard:
                     m.problem = _('Late')
             else:
