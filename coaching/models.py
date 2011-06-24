@@ -506,7 +506,7 @@ class Utilisateur(models.Model):
                             if e.echeance < self.date_validation_module(m):
                                 troptard += 1
                 else:
-                    if e:
+                    if e and m.granule_set.count()>0:
                         if e.echeance < datetime.datetime.now():
                             retards += 1
         return (valides,total,retards,troptard)
