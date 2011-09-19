@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-29 03:29+0100\n"
+"POT-Creation-Date: 2011-09-19 10:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Anh J. anhj@gcu.info\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,8 +86,8 @@ msgstr "Nom"
 msgid "First name"
 msgstr "Prénom"
 
-#: coaching/forms.py:20 coaching/views.py:1184 coaching/views.py:1238
-#: coaching/views.py:1326 learning/forms.py:33
+#: coaching/forms.py:20 coaching/views.py:1190 coaching/views.py:1244
+#: coaching/views.py:1332 learning/forms.py:33
 #: templates/coaching/logins2.html:42 templates/coaching/logins3.html:40
 msgid "Email"
 msgstr ""
@@ -159,7 +159,7 @@ msgstr ""
 msgid "Additional document"
 msgstr "Fichier joint"
 
-#: coaching/forms.py:77 learning/forms.py:22
+#: coaching/forms.py:77
 msgid "Filetype should be .doc, .xls, .pdf or .zip"
 msgstr "Le fichier doit être de type .doc, .xls, .pdf ou .zip"
 
@@ -184,12 +184,12 @@ msgstr "Autres documents"
 msgid "All"
 msgstr "Tout"
 
-#: coaching/views.py:75 coaching/views.py:300 coaching/views.py:818
+#: coaching/views.py:75 coaching/views.py:304 coaching/views.py:824
 #: templates/learning/tdb.html:12
 msgid "group"
 msgstr "groupe"
 
-#: coaching/views.py:76 coaching/views.py:301
+#: coaching/views.py:76 coaching/views.py:305
 msgid "course"
 msgstr "cours"
 
@@ -201,7 +201,7 @@ msgstr ""
 "Travail ajouté avec succès.  <a href=\"/coaching/work/add/\" style=\"color: "
 "red;\">Ajouter un autre travail à rendre</a>"
 
-#: coaching/views.py:197
+#: coaching/views.py:198
 #, python-format
 msgid ""
 "This assignment has been deleted.             <a href=\"/coaching/work/"
@@ -210,26 +210,26 @@ msgstr ""
 "Ce travail a été supprimé.  <a href=\"/coaching/work/manage/?id=%s&undo\" "
 "style=\"color: red;\">Annuler</a>"
 
-#: coaching/views.py:233
+#: coaching/views.py:235
 msgid "Assignment successfully saved."
 msgstr "Travail modifié avec succès."
 
-#: coaching/views.py:256
+#: coaching/views.py:259
 msgid "Assignment successfully restored."
 msgstr "Travail restauré avec succès."
 
-#: coaching/views.py:323 coaching/views.py:373 coaching/views.py:380
-#: coaching/views.py:402 coaching/views.py:437 coaching/views.py:461
-#: coaching/views.py:502
+#: coaching/views.py:327 coaching/views.py:377 coaching/views.py:384
+#: coaching/views.py:406 coaching/views.py:441 coaching/views.py:465
+#: coaching/views.py:506
 msgid "== All Students =="
 msgstr "== Tous les étudiants =="
 
-#: coaching/views.py:330 coaching/views.py:340 coaching/views.py:387
-#: coaching/views.py:442 coaching/views.py:466 coaching/views.py:507
+#: coaching/views.py:334 coaching/views.py:344 coaching/views.py:391
+#: coaching/views.py:446 coaching/views.py:470 coaching/views.py:511
 msgid "== All Modules =="
 msgstr "== Tous les modules =="
 
-#: coaching/views.py:350
+#: coaching/views.py:354
 msgid ""
 "Deadline successfully created.                             <a href=\"/"
 "coaching/echeance/add/\" style=\"font-weight: bold;\">Add a new one</a>"
@@ -237,7 +237,7 @@ msgstr ""
 "Echéance ajoutée avec succès.  <a href=\"/coaching/echeance/addstyle="
 "\"color: red;\">Ajouter une autre échéance</a>"
 
-#: coaching/views.py:431
+#: coaching/views.py:435
 #, python-format
 msgid ""
 "This deadline has been deleted.             <a href=\"/coaching/echeance/"
@@ -246,66 +246,66 @@ msgstr ""
 "Cette échéance a été supprimée.  <a href=\"/coaching/echeance/manage/?id="
 "%s&undo\" style=\"color: red;\">Annuler</a>"
 
-#: coaching/views.py:470
+#: coaching/views.py:474
 msgid "Deadline successfully saved."
 msgstr "Echéance modifiée avec succès."
 
-#: coaching/views.py:490
+#: coaching/views.py:494
 msgid "Deadline successfully restored."
 msgstr "Echéance restaurée avec succès."
 
-#: coaching/views.py:667
+#: coaching/views.py:673
 msgid "Late"
 msgstr "Retard"
 
-#: coaching/views.py:673
+#: coaching/views.py:679
 msgid "Completed late"
 msgstr "Validé en retard"
 
-#: coaching/views.py:757 learning/views.py:37
+#: coaching/views.py:763 learning/views.py:37
 #, python-format
 msgid "%s changed successfully."
 msgstr "%s modifié avec succès."
 
-#: coaching/views.py:819 coaching/views.py:862
+#: coaching/views.py:825 coaching/views.py:868
 msgid "client"
 msgstr "client"
 
-#: coaching/views.py:820
+#: coaching/views.py:826
 msgid "language"
 msgstr "langue"
 
-#: coaching/views.py:935
+#: coaching/views.py:941
 msgid "Exists already."
 msgstr "Existe déjà."
 
-#: coaching/views.py:943
+#: coaching/views.py:949
 msgid "Saved."
 msgstr "Sauvé."
 
-#: coaching/views.py:967
+#: coaching/views.py:973
 msgid "Mail sent."
 msgstr "Mail envoyé."
 
-#: coaching/views.py:969
+#: coaching/views.py:975
 msgid "Mail error."
 msgstr "Erreur mail."
 
-#: coaching/views.py:1132
+#: coaching/views.py:1138
 msgid "The message has been sent."
 msgstr "Le message a été envoyé."
 
-#: coaching/views.py:1181 coaching/views.py:1235 coaching/views.py:1323
+#: coaching/views.py:1187 coaching/views.py:1241 coaching/views.py:1329
 #: templates/learning/profile.html:24
 msgid "Last Name"
 msgstr "Nom"
 
-#: coaching/views.py:1182 coaching/views.py:1236 coaching/views.py:1324
+#: coaching/views.py:1188 coaching/views.py:1242 coaching/views.py:1330
 #: templates/learning/profile.html:25
 msgid "First Name"
 msgstr "Prénom"
 
-#: coaching/views.py:1183 coaching/views.py:1237 coaching/views.py:1325
+#: coaching/views.py:1189 coaching/views.py:1243 coaching/views.py:1331
 #: session/forms.py:9 session/forms.py:21 templates/base.html:26
 #: templates/coaching/fiche.html:14 templates/coaching/liste_admin.html:62
 #: templates/coaching/liste_coach.html:62 templates/coaching/logins3.html:41
@@ -313,35 +313,39 @@ msgstr "Prénom"
 msgid "Login"
 msgstr "Login"
 
-#: coaching/views.py:1185 templates/coaching/liste_admin.html:68
+#: coaching/views.py:1191 templates/coaching/liste_admin.html:68
 #: templates/coaching/liste_coach.html:66
 msgid "Last Work"
 msgstr "Dernier travail"
 
-#: coaching/views.py:1186 templates/coaching/liste_admin.html:67
+#: coaching/views.py:1192 templates/coaching/liste_admin.html:67
 #: templates/coaching/liste_coach.html:65
 msgid "Time Spent"
 msgstr "Temps passé"
 
-#: coaching/views.py:1187 templates/coaching/liste_admin.html:63
+#: coaching/views.py:1193 templates/coaching/liste_admin.html:63
 msgid "Modules"
 msgstr ""
 
-#: coaching/views.py:1188
+#: coaching/views.py:1194
 msgid "Validated"
 msgstr "Validés"
 
-#: coaching/views.py:1189
+#: coaching/views.py:1195
 msgid "Validated Late"
 msgstr "Validés en retard"
 
-#: coaching/views.py:1190
+#: coaching/views.py:1196
 msgid "Currently Late"
 msgstr "Actuellement en retard"
 
 #: learning/forms.py:11
 msgid "File name"
 msgstr "Nom du fichier"
+
+#: learning/forms.py:22
+msgid "This filetype is not allowed."
+msgstr ""
 
 #: learning/views.py:365 learning/views.py:437 testing/views.py:87
 msgid "We are sorry, this content is not available in your preferred language."
@@ -436,7 +440,7 @@ msgstr "Accueil"
 
 #: templates/base.html:59
 msgid "News"
-msgstr ""
+msgstr "Modules de cours"
 
 #: templates/base.html:60
 msgid "Demonstration"
