@@ -78,15 +78,16 @@ class LogMiddleware(object):
                     if module:
                         try:
                             temps = Tempsparmodule.objects.get(
-                                    utilisateur=request.session['v'],
+                                    utilisateur=u,
                                     module = module)
                             temps.tempspasse += secondes
+                            temps.save(force_update=True)
                         except Tempsparmodule.DoesNotExist:
                             temps = Tempsparmodule(
-                                    utilisateur=request.session['v'],
+                                    utilisateur=u,
                                     module = module,
                                     tempspasse = secondes)
-                        temps.save()
+                            temps.save()
                         if u.tempspasse:
                             u.tempspasse += secondes
                         else:
