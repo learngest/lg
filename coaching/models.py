@@ -800,3 +800,6 @@ class Tempsparmodule(models.Model):
 
     def __unicode__(self):
         return u"%s - %s - %d" % (self.utilisateur, self.module, self.tempspasse)
+
+    class Meta:
+        unique_together = (("utilisateur","module"),)
