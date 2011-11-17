@@ -934,7 +934,7 @@ def create_logins(request):
                 login = email.split('@')[0][:19]
                 login = unicodedata.normalize('NFKD',login).encode('ASCII','ignore').lower()
                 login = login.replace(' ','')
-                login = '%s2' % login
+                login = '%s3' % login
                 password = sha.new(str(random.random())).hexdigest()[:8]
                 try:
                     Utilisateur.objects.get(login=login)
