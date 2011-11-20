@@ -7,7 +7,11 @@ from django.conf import settings
 from django.views.generic.simple import direct_to_template
 
 from django.contrib import admin
-admin.autodiscover()
+#admin.autodiscover()
+
+import coaching.admin
+import learning.admin
+import testing.admin
 
 # Base
 urlpatterns = patterns('session.views',
@@ -40,7 +44,8 @@ if settings.SITE_ID==1:
 
 # Applications
 urlpatterns += patterns('',
-    url(r'^blah/(.*)', admin.site.root, name='admin'),
+    #url(r'^blah/(.*)', admin.site.root, name='admin'),
+    url(r'^blah/', include(admin.site.urls), name='admin'),
     (r'^coaching/', include ('coaching.urls')),
     (r'^learning/', include ('learning.urls')),
     (r'^testing/', include ('testing.urls')),
