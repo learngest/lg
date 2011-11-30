@@ -42,10 +42,7 @@ class QuestionAdmin(admin.ModelAdmin):
 admin.site.register(Question, QuestionAdmin)
 
 class ReponseForm(forms.ModelForm):
-    enonce = forms.CharField()
-
-    def __init__(self, *args, **kwargs):
-        super(ReponseForm, self).__init__(*args, **kwargs)
+    enonce = forms.CharField(required=False)
 
     class Meta:
         model = Reponse
