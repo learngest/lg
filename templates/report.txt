@@ -1,5 +1,5 @@
 {% if liste_groupes %}
-Statistiques clients du {{ hier|date:"j b Y" }}
+Connexions du {{ hier|date:"j b Y" }}
 =============================================================================
 Client              Groupe              Cours   Modules   Logins  Connexions
 =============================================================================
