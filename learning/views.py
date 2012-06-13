@@ -378,9 +378,18 @@ def help_support(request, slug=None):
     v.lastw = datetime.datetime.now()
     request.session['v'] = v
     v.save()
-    support_path = os.path.join(os.path.dirname(settings.PROJECT_PATH), \
-                                'contents',c.module.slug,c.langue,c.ressource)
-    base = os.path.join(base,'contents',c.module.slug,c.langue,c.ressource)
+    contents_url = getattr(settings, 'LG_CONTENTS_URL', 'contents')
+    support_path = os.path.normpath(os.path.join(
+                            settings.LG_CONTENTS_ROOT,
+                            c.module.slug,
+                            c.langue,
+                            c.ressource))
+    base = os.path.join(
+            base,
+            contents_url,
+            c.module.slug,
+            c.langue,
+            c.ressource)
     if not include_is_allowed(support_path):
         HttpResponseRedirect('/tdb/')
     try:
@@ -450,15 +459,13 @@ def support(request, slug=None, **kwargs):
     site_id = getattr(settings, 'SITE_ID', 1)
     site = Site.objects.get(id=site_id)
     base = ''.join(('http://', site.domain))
-    contents_prefix = getattr(settings, 'CONTENTS_PREFIX', 'contents')
-    contents_url = getattr(settings, 'CONTENTS_URL', 'contents')
+    contents_url = getattr(settings, 'LG_CONTENTS_URL', 'contents')
     v.lastw = datetime.datetime.now()
     request.session['v'] = v
     v.save()
     if ltyp == 'htm':
         support_path = os.path.normpath(os.path.join(
-                                settings.PROJECT_PATH,
-                                contents_prefix,
+                                settings.LG_CONTENTS_ROOT,
                                 c.module.slug,
                                 c.langue,
                                 c.ressource))

@@ -32,14 +32,14 @@ def page(request, page='home'):
 
     if not page in LISTE_PAGES:
         page = 'home'
-    path = os.path.join(os.path.dirname(settings.PROJECT_PATH),
-                        'contents/pages',lang,'%s.html' % page)
+    path = os.path.join(settings.LG_CONTENTS_ROOT,
+                        'pages',lang,'%s.html' % page)
     try:
         contenu = codecs.open(path,'r','utf-8').read()
     except IOError:
         lang = 'en'
-        path = os.path.join(os.path.dirname(settings.PROJECT_PATH),
-                            'contents/pages',lang,'%s.html' % page)
+        path = os.path.join(settings.LG_CONTENTS_ROOT,
+                            'pages',lang,'%s.html' % page)
         try:
             contenu = codecs.open(path,'r','utf-8').read()
         except IOError:

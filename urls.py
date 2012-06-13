@@ -24,10 +24,8 @@ urlpatterns = patterns('session.views',
 
 # Developpement
 if settings.SITE_ID==1:
-    contents_root = os.path.join(settings.PROJECT_PATH, settings.CONTENTS_PREFIX)
-    contents_root = os.path.normpath(contents_root)
-    uploads_root = os.path.join(settings.PROJECT_PATH, settings.MEDIA_ROOT)
-    uploads_root = os.path.normpath(uploads_root)
+    contents_root = os.path.normpath(settings.LG_CONTENTS_ROOT)
+    uploads_root = os.path.normpath(settings.MEDIA_ROOT)
     urlpatterns += patterns('',
     (r'^contents/(?P<path>.*)$', 'django.views.static.serve',
     {'document_root': contents_root }),
@@ -36,7 +34,7 @@ if settings.SITE_ID==1:
     # **************
     # TMP MEDIA PATH
     # **************
-    {'document_root': os.path.join(settings.PROJECT_PATH, 'web/media') }),
+    {'document_root': os.path.join(settings.LG_PROJECT_PATH, 'web/media') }),
 
     (r'^upload/(?P<path>.*)$', 'django.views.static.serve',
     {'document_root': uploads_root }),

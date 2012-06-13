@@ -110,7 +110,7 @@ def test(request, slug=None, **kwargs):
     site_id = getattr(settings, 'SITE_ID', 1)
     site = Site.objects.get(id=site_id)
     base = ''.join(('http://', site.domain))
-    contents_prefix = getattr(settings, 'CONTENTS_URL', 'contents')
+    contents_prefix = getattr(settings, 'LG_CONTENTS_URL', 'contents')
     suffixe = os.path.join( contents_prefix,
                             gr.module.slug,
                             'imgtests/')
@@ -274,7 +274,7 @@ def noter(request):
     site_id = getattr(settings, 'SITE_ID', 1)
     site = Site.objects.get(id=site_id)
     base = ''.join(('http://', site.domain))
-    contents_prefix = getattr(settings, 'CONTENTS_URL', 'contents')
+    contents_prefix = getattr(settings, 'LG_CONTENTS_URL', 'contents')
     suffixe = os.path.join( contents_prefix,
                             g.module.slug,
                             'imgtests/')

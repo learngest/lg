@@ -18,13 +18,12 @@ try:
 except ImportError:
     pass
 
+LG_PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+# test wether we're installed or working on dev version
 try:
-    if LOCAL_APPS_PATH:
-        sys.path.append(LOCAL_APPS_PATH)
-except NameError:
-    pass
-
-PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+    import listes
+except ImportError:
+    sys.path.append(LG_PROJECT_PATH)
 
 # Local time zone for this installation. Choices can be found here:
 # http://www.postgresql.org/docs/8.1/static/datetime-keywords.html#DATETIME-TIMEZONE-SET-TABLE
@@ -51,18 +50,11 @@ SESSION_COOKIE_AGE = 21600 # 6h in seconds
 # Example: "http://media.lawrence.com"
 #MEDIA_URL = 'http://localhost.localdomain:8000/upload/'
 MEDIA_URL = '/upload/'
-MEDIA_ROOT = os.path.normpath(os.path.join(PROJECT_PATH, '../upload'))
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = '/media/admin/'
-# never put a beginning / on contents prefix
-CONTENTS_PREFIX = '../contents'
-CONTENTS_URL = 'contents'
-ALLOWED_INCLUDE_ROOTS = (
-        os.path.normpath(os.path.join(PROJECT_PATH, CONTENTS_PREFIX)),)
-
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -88,7 +80,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(PROJECT_PATH, 'templates'),
+    os.path.join(LG_PROJECT_PATH, 'templates'),
 )
 
 INSTALLED_APPS = (
