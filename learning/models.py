@@ -2,7 +2,7 @@
 
 from django.db import models
 
-from listes import *
+from lg.listes import *
 
 class Module(models.Model):
     """

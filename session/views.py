@@ -12,12 +12,12 @@ from django.utils.translation import activate, get_language, ugettext_lazy as _
 from django.utils.encoding import iri_to_uri
 from django.core.urlresolvers import reverse
 
-from session.forms import LoginForm, LoginOnlyForm
-from coaching.models import Utilisateur, Groupe, Work, Log
-from learning.models import Cours, Module
-from testing.models import Granule
+from lg.session.forms import LoginForm, LoginOnlyForm
+from lg.coaching.models import Utilisateur, Groupe, Work, Log
+from lg.learning.models import Cours, Module
+from lg.testing.models import Granule
 
-from listes import *
+from lg.listes import *
 
 def new_visitor_may_see_granule(view_func):
     """Decorator: tests that view's visitor exists and may take this granule's test.
@@ -226,7 +226,7 @@ def lost_password(request):
     import sha
     import random
     #from mailer.sender import send_mail
-    from utils import send_mail
+    from lg.utils import send_mail
     if request.method == 'POST':
         f = LoginOnlyForm(request.POST)
         if f.is_valid():

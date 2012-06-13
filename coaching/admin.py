@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from django.contrib import admin
-from coaching.models import Client, Groupe, Utilisateur, Coached, Work, Echeance, AutresDocs
+from lg.coaching.models import Client, Groupe, Utilisateur, Coached, Work, Echeance, AutresDocs
 
 class ClientAdmin(admin.ModelAdmin):
     search_fields = ('nom',)

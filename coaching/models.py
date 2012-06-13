@@ -9,10 +9,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import smart_str
 from django.conf import settings
 
-from learning.models import Cours, Module
-from testing.models import Granule
+from lg.learning.models import Cours, Module
+from lg.testing.models import Granule
 
-from listes import *
+from lg.listes import *
 
 class Client(models.Model):
     """

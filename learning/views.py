@@ -11,12 +11,12 @@ from django.template.defaulttags import include_is_allowed
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 
-from learning.models import Cours, Module, Contenu, ModuleTitre
-from learning.forms import WorkForm4, UtilisateurForm
-from coaching.models import Utilisateur, Echeance, Work, WorkDone, Log, AutresDocs
-from session.views import visitor_may_see_module, visitor_may_see_work, has_visitor, new_visitor_may_see_module
+from lg.learning.models import Cours, Module, Contenu, ModuleTitre
+from lg.learning.forms import WorkForm4, UtilisateurForm
+from lg.coaching.models import Utilisateur, Echeance, Work, WorkDone, Log, AutresDocs
+from lg.session.views import visitor_may_see_module, visitor_may_see_work, has_visitor, new_visitor_may_see_module
 
-from listes import *
+from lg.listes import *
 
 def profile(request):
     # récup visiteur

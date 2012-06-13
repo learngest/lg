@@ -11,11 +11,11 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 
-from testing.models import Module, Granule, GranuleTitre, Enonce, Question, Reponse
-from coaching.models import Utilisateur, Resultat, Valide
-from session.views import new_visitor_may_see_granule, has_visitor
+from lg.testing.models import Module, Granule, GranuleTitre, Enonce, Question, Reponse
+from lg.coaching.models import Utilisateur, Resultat, Valide
+from lg.session.views import new_visitor_may_see_granule, has_visitor
 
-from listes import *
+from lg.listes import *
 
 def output_rnd(question):
     import random

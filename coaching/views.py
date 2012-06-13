@@ -15,12 +15,12 @@ from django.core.mail import EmailMessage
 from django.views.generic import list_detail
 from django.core.urlresolvers import reverse
 
-from session.views import visitor_is, visitor_is_at_least, visitor_may_see_list
-from coaching.forms import *
-from coaching.models import Client, Utilisateur, Groupe, Echeance, Work, WorkDone, Log, Tempsparmodule
-from learning.models import Cours, Module, Contenu, ModuleCours
-from testing.models import Granule
-from listes import *
+from lg.session.views import visitor_is, visitor_is_at_least, visitor_may_see_list
+from lg.coaching.forms import *
+from lg.coaching.models import Client, Utilisateur, Groupe, Echeance, Work, WorkDone, Log, Tempsparmodule
+from lg.learning.models import Cours, Module, Contenu, ModuleCours
+from lg.testing.models import Granule
+from lg.listes import *
 
 def makefilters(params, filtres):
     """Makes dictionnary of filters for list views.
@@ -903,7 +903,7 @@ def create_logins(request):
     import random
     import sha
     #from mailer.sender import send_mail
-    from utils import send_mail
+    from lg.utils import send_mail
     v = request.session['v']
     if request.method == 'POST':
         if 'fsource' in request.POST:
@@ -1090,7 +1090,7 @@ def send_email(request):
     """View: sends an email to user or group.
     """
     #from mailer.sender import send_mail
-    #from utils import send_mail
+    #from lg.utils import send_mail
     v = request.session['v']
     if 'id' in request.GET:
         # verif v est coach du groupe des id

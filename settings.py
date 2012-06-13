@@ -69,8 +69,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'coaching.middleware.LastMiddleware',
-    'coaching.middleware.LogMiddleware',
+    'lg.coaching.middleware.LastMiddleware',
+    'lg.coaching.middleware.LogMiddleware',
     'django.middleware.doc.XViewMiddleware',
 )
 
@@ -84,10 +84,10 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'pages',
-    'learning',
-    'coaching',
-    'testing',
+    'lg.pages',
+    'lg.learning',
+    'lg.coaching',
+    'lg.testing',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

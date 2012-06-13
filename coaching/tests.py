@@ -4,9 +4,9 @@
 Tests du module coaching.
 
 import de tous les modèles
->>> from coaching.models import *
->>> from learning.models import *
->>> from testing.models import Granule
+>>> from lg.coaching.models import *
+>>> from lg.learning.models import *
+>>> from lg.testing.models import Granule
 
 création d'un Client
 les champs style et contact sont facultatifs

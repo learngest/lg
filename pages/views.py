@@ -9,7 +9,7 @@ from django.shortcuts import render_to_response
 from django.http import Http404, HttpResponseRedirect
 from django.utils import translation
 
-from listes import *
+from lg.listes import *
 
 def page(request, page='home'):
     if 'v' in request.session:

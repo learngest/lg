@@ -5,7 +5,7 @@ import datetime
 from django import forms
 from django.utils.translation import ugettext as _
 
-from listes import *
+from lg.listes import *
 
 class WorkForm4(forms.Form):
     fichier = forms.FileField(required=False,label=_('File name'))

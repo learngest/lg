@@ -4,10 +4,10 @@ import datetime
 
 from django.http import HttpResponseRedirect
 
-from coaching.models import Log, Tempsparmodule
-from coaching.views import sanitize_temps
-from learning.models import Module
-from testing.models import Granule
+from lg.coaching.models import Log, Tempsparmodule
+from lg.coaching.views import sanitize_temps
+from lg.learning.models import Module
+from lg.testing.models import Granule
 
 class LastMiddleware(object):
     """Renvoie les derniers paramètres GET si ?last=1"""

@@ -9,9 +9,9 @@ from django.views.generic.simple import direct_to_template
 from django.contrib import admin
 #admin.autodiscover()
 
-import coaching.admin
-import learning.admin
-import testing.admin
+import lg.coaching.admin
+import lg.learning.admin
+import lg.testing.admin
 
 # Base
 urlpatterns = patterns('session.views',
