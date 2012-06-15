@@ -14,7 +14,7 @@ import lg.learning.admin
 import lg.testing.admin
 
 # Base
-urlpatterns = patterns('session.views',
+urlpatterns = patterns('lg.session.views',
     url(r'^login/', 'login', name='login'),
     url(r'^democreate/', 'democreate', name='democreate'),
     url(r'^lostpw/', 'lost_password', name='lostpw'),
@@ -44,13 +44,13 @@ if settings.SITE_ID==1:
 urlpatterns += patterns('',
     #url(r'^blah/(.*)', admin.site.root, name='admin'),
     url(r'^blah/', include(admin.site.urls), name='admin'),
-    (r'^coaching/', include ('coaching.urls')),
-    (r'^learning/', include ('learning.urls')),
-    (r'^testing/', include ('testing.urls')),
+    (r'^coaching/', include ('lg.coaching.urls')),
+    (r'^learning/', include ('lg.learning.urls')),
+    (r'^testing/', include ('lg.testing.urls')),
     )
 
 # Public pages - keep last or <section> would catch other urls
 urlpatterns += patterns('',
-    (r'^(?P<page>[a-z0-9-]*)', 'pages.views.page'),
+    (r'^(?P<page>[a-z0-9-]*)', 'lg.pages.views.page'),
     )
 

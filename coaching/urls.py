@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('coaching.views',
+urlpatterns = patterns('lg.coaching.views',
     url(r'^$', 'menu', name='c_admin'),
     url(r'^lista/$', 'liste_utilisateurs', name='c_lista'),
     url(r'^csv/$', 'liste_csv', name='c_csv'),

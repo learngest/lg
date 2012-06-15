@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('learning.views',
+urlpatterns = patterns('lg.learning.views',
     url(r'^tdb/$', 'tdb', name='l_dashboard'),
     url(r'^profile/$', 'profile', name='l_profile'),
     (r'^module/(?P<slug>[a-z0-9-]+)/$', 'module'),
