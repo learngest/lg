@@ -341,7 +341,7 @@ def login(request):
                 login2 = '%s_' % login2
                 u2 = Utilisateur.objects.get(login=login2)
                 try:
-                    login3 = flogin[:18]
+                    login3 = u.login[:18]
                     login3 = '%s__' % login3
                     u3 = Utilisateur.objects.get(login=login3)
                 except Utilisateur.DoesNotExist:
@@ -356,7 +356,7 @@ def login(request):
                     utilisateurs[u3.id] = u3
             f = LoginForm2(request.POST)
             f.fields['groupe'].choices = [(g.id, g.nom) for g in utilisateurs.keys()]
-            if f.is_valide():
+            if f.is_valid():
                 g = Groupe.objects.get(id=f.cleaned_data['groupe'])
                 u = utilisateurs[g]
                 if u.is_valid():

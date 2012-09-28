@@ -915,7 +915,7 @@ def create_logins(request):
             nom_erreurs = settings.MEDIA_ROOT + fich_erreurs
             flogin = open(nom_logins,'w')
             ferreur = open(nom_erreurs,'w')
-            newline = ';'.join(('nom','prénom','email','login','password','\n'))
+            newline = ';'.join(('nom',u'prénom','email','login','password','\n'))
             newline = newline.encode('iso-8859-1')
             flogin.write(newline)
             for line in open(request.POST['fsource']):
@@ -947,6 +947,7 @@ def create_logins(request):
                                             langue=request.POST['langue'], groupe=g)
                             u.save(change_password=True)
                             status = ugettext('Existed, added to group.')
+                            password = ugettext('Unchanged')
                     except Utilisateur.DoesNotExist:
                         u = Utilisateur(login=login, nom=nom, prenom=prenom, 
                                         password = user1.password,
@@ -954,6 +955,7 @@ def create_logins(request):
                                         langue=request.POST['langue'], groupe=g)
                         u.save(change_password=True)
                         status = ugettext('Existed, added to group.')
+                        password = ugettext('Unchanged')
                 except Utilisateur.DoesNotExist:
                     u = Utilisateur(login=login, nom=nom, prenom=prenom, 
                                     password = password,

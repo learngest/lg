@@ -17,13 +17,13 @@
 			<h1>{% trans "Login Form" %}</h1>
             {% if utilisateur %}
 			<div class="form-row">
-		        <label for="login">{% trans "User" %}</label> {{ utilisateur.fullname }}
+                <p>{{ utilisateur.prenom_nom }}, {% trans 'choose the group you want to work with' %}</p>
 			</div>
 			<div class="form-row{% if form.errors.groupe %} error{% endif %}">
 		        <label for="id_{{ form.groupe.name }}">{{ form.groupe.label }}</label> {{ form.groupe }}
 			</div>
 			<div class="submit-row">
-			<input type="hidden" name="u" value="{{ u.id }}" />
+			<input type="hidden" name="u" value="{{ utilisateur.id }}" />
 			<input type="submit" value="{% trans "Continue" %}" />
 			</div>
             {% else %}
