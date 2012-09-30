@@ -909,55 +909,76 @@ def create_logins(request):
         if 'fsource' in request.POST:
             g = Groupe.objects.get(id=request.POST['groupe'])
             logins = []
-            fich_logins = '/logins/logins-g%s-%s.csv'% (g.id, time.strftime('%Y%m%d%H%M%S',time.localtime()))
-            fich_erreurs = '/logins/erreurs-g%s-%s.csv'% (g.id, time.strftime('%Y%m%d%H%M%S',time.localtime()))
+            fich_logins = '/logins/logins-g%s-%s.txt'% (g.id, time.strftime('%Y%m%d%H%M%S',time.localtime()))
+            fich_erreurs = '/logins/erreurs-g%s-%s.txt'% (g.id, time.strftime('%Y%m%d%H%M%S',time.localtime()))
             nom_logins = settings.MEDIA_ROOT + fich_logins
             nom_erreurs = settings.MEDIA_ROOT + fich_erreurs
             flogin = open(nom_logins,'w')
             ferreur = open(nom_erreurs,'w')
+            newline = ';'.join(('nom',u'prénom','email','login','password','\n'))
+            newline = newline.encode('iso-8859-1')
+            flogin.write(newline)
             for line in open(request.POST['fsource']):
                 line = line.strip()
                 line = line.decode('iso-8859-1')
                 nom, prenom, email = line.split('\t')
                 nom = nom.title()
                 prenom = prenom.title()
-#                login = prenom[:2] + nom
-#                login = unicodedata.normalize('NFKD',login).encode('ASCII','ignore').lower()
-#                i = login.rfind(' ')
-#                if i > 5:
-#                    login = login[0:i]
-#                login = login.replace(' ','')
-#                i = login.rfind('-')
-#                if i > 5:
-#                    login = login[0:i]
-#                login = login.replace('-','')
                 login = email.split('@')[0][:20]
                 login = unicodedata.normalize('NFKD',login).encode('ASCII','ignore').lower()
                 login = login.replace(' ','')
                 password = sha.new(str(random.random())).hexdigest()[:8]
+                created = False
                 try:
-                    Utilisateur.objects.get(login=login)
-                    saved = False
-                    status = ugettext('Exists already.')
+                    user1 = Utilisateur.objects.get(login=login)
+                    login = login[:17]
+                    login = '%s_' % login
+                    try:
+                        Utilisateur.objects.get(login=login)
+                        login = login[:18]
+                        login = '%s_' % login
+                        try:
+                            Utilisateur.objects.get(login=login)
+                            login = login[:19]
+                            login = '%s_' % login
+                            try:
+                                Utilisateur.objects.get(login=login)
+                                status = ugettext('Exists already in 4 groups')
+                                password = 'N/A'
+                            except Utilisateur.DoesNotExist:
+                                u = Utilisateur(login=login, nom=nom, prenom=prenom, 
+                                                password = user1.password,
+                                                email=email, fermeture=request.POST['fermeture'], 
+                                                langue=request.POST['langue'], groupe=g)
+                                u.save(change_password=True)
+                                status = ugettext('Existed, added to group.')
+                                password = ugettext('Unchanged')
+                        except Utilisateur.DoesNotExist:
+                            u = Utilisateur(login=login, nom=nom, prenom=prenom, 
+                                            password = user1.password,
+                                            email=email, fermeture=request.POST['fermeture'], 
+                                            langue=request.POST['langue'], groupe=g)
+                            u.save(change_password=True)
+                            status = ugettext('Existed, added to group.')
+                            password = ugettext('Unchanged')
+                    except Utilisateur.DoesNotExist:
+                        u = Utilisateur(login=login, nom=nom, prenom=prenom, 
+                                        password = user1.password,
+                                        email=email, fermeture=request.POST['fermeture'], 
+                                        langue=request.POST['langue'], groupe=g)
+                        u.save(change_password=True)
+                        status = ugettext('Existed, added to group.')
+                        password = ugettext('Unchanged')
                 except Utilisateur.DoesNotExist:
                     u = Utilisateur(login=login, nom=nom, prenom=prenom, 
                                     password = password,
                                     email=email, fermeture=request.POST['fermeture'], 
                                     langue=request.POST['langue'], groupe=g)
                     u.save(change_password=True)
-                    saved= True
-                    status = ugettext('Saved.')
-                if request.POST['envoi_mail']=='1' and saved:
+                    created= True
+                    status = ugettext('created.')
+                if request.POST['envoi_mail']=='1' and created:
                     try:
-#                        fmail = open(settings.MEDIA_ROOT + 'logins/mail_login.txt')
-#                        mailmsg = fmail.read()
-#                        mailmsg = mailmsg.decode('iso-8859-1')
-#                        mailmsg = mailmsg % {'login': u.login, 
-#                                             'password': password,
-#                                             'groupe': g.nom,
-#                                             'coach': g.administrateur.prenom_nom(),
-#                                             'coach_mail': g.administrateur.email,
-#                                             }
                         mailmsg = render_to_string('mail_login.txt', 
                                 {'login': u.login, 
                                   'password': password,
@@ -974,8 +995,7 @@ def create_logins(request):
                     except IOError:
                         status = ' '.join((status,ugettext('Mail error.')))
                     #fmail.close()
-                if saved:
-                    #newline = '\t'.join((nom,prenom,email,login,password,'\n'))
+                if created:
                     newline = ';'.join((nom,prenom,email,login,password,'\n'))
                     newline = newline.encode('iso-8859-1')
                     flogin.write(newline)

@@ -12,7 +12,7 @@ from django.utils.translation import activate, get_language, ugettext_lazy as _
 from django.utils.encoding import iri_to_uri
 from django.core.urlresolvers import reverse
 
-from lg.session.forms import LoginForm, LoginOnlyForm
+from lg.session.forms import LoginForm, LoginForm2, LoginOnlyForm
 from lg.coaching.models import Utilisateur, Groupe, Work, Log
 from lg.learning.models import Cours, Module
 from lg.testing.models import Granule
@@ -334,79 +334,175 @@ def login(request):
             l[2]=1
 
     if request.method == 'POST':
-        if request.session.test_cookie_worked():
-            request.session.delete_test_cookie()
-            f = LoginForm(request.POST)
-            msg=''
-            if f.is_valid():
-                flogin = f.cleaned_data['login']
-                flogin = unicodedata.normalize('NFKD', 
-                        flogin).encode('ascii', 'ignore')
-                fpassword = f.cleaned_data['password']
+        if 'u' in request.POST:
+            u = Utilisateur.objects.get(id=request.POST['u'])
+            try:
+                login2 = u.login[:17]
+                login2 = '%s_' % login2
+                u2 = Utilisateur.objects.get(login=login2)
                 try:
-                    #u = Utilisateur.objects.get(login=f.cleaned_data['login'])
-                    u = Utilisateur.objects.get(login=flogin)
+                    login3 = login2[:18]
+                    login3 = '%s_' % login3
+                    u3 = Utilisateur.objects.get(login=login3)
+                    try:
+                        login4 = login3[:19]
+                        login4 = '%s_' % login4
+                        u4 = Utilisateur.objects.get(login=login4)
+                    except Utilisateur.DoesNotExist:
+                        u4 = None
                 except Utilisateur.DoesNotExist:
-                    f = LoginForm()
-                    msg = _('Bad login. Please try again.')
-                    request.session.set_test_cookie()
-                    return render_to_response('session/login.html',
-                            {'form': f,
-                             'langues': langues,
-                             'here':'login',
-                             'msg': msg})
-                # tester mot de passe valide et utilisateur non périmé 
-                #if u.is_pwd_correct(f.cleaned_data['password']):
-                if u.is_pwd_correct(fpassword):
-                    if u.is_valid():
-                        # enregistrer l'heure de login
-                        Log.objects.create(utilisateur=u,
-                               date = datetime.datetime.now(),
-                               path = '/login/',
-                               qstring = '')
-                        response = HttpResponse()
-                        # renseigner les variables de session
-                        request.session['v'] = u
-                        request.session['django_language'] = u.langue
-                        # traiter cookie "remember me"
-                        if f.cleaned_data['remember']:
-#                            cookie_data = encodestring(
-#                                    '%s:%s' % (f.cleaned_data['login'], 
-#                                        f.cleaned_data['password']))
-                            cookie_data = b64encode( '%s:%s' % (flogin, fpassword.encode('utf8')))
-                            max_age = 30*24*60*60
-                            expires = datetime.datetime.strftime(datetime.datetime.utcnow() + datetime.timedelta(seconds=max_age), "%a, %d-%b-%Y %H:%M:%S GMT")
-                            response.set_cookie('eMaster', cookie_data, max_age=max_age, expires=expires)
-                        else:
-                            # effacer le cookie s'il existe
-                            response.delete_cookie('eMaster')
-                        # retourner à la vue appelante
-                        next = request.REQUEST.get('next','')
-                        if next:
-                            response.status_code = 302
-                            response['Location'] = iri_to_uri(next)
-                            return response
-                        else:
-                            response.status_code = 302
-                            response['Location'] = reverse('v_home')
-                            return response
+                    u3 = None
+            except Utilisateur.DoesNotExist:
+                u2 = None
+            utilisateurs = {}
+            utilisateurs[u.groupe] = u
+            if u2:
+                utilisateurs[u2.groupe] = u2
+                if u3:
+                    utilisateurs[u3.groupe] = u3
+                    if u4:
+                        utilisateurs[u4.groupe] = u4
+            f = LoginForm2(request.POST)
+            f.fields['groupe'].choices = [(g.id, g.nom) for g in utilisateurs.keys()]
+            if f.is_valid():
+                g = Groupe.objects.get(id=f.cleaned_data['groupe'])
+                u = utilisateurs[g]
+                if u.is_valid():
+                    # enregistrer l'heure de login
+                    Log.objects.create(utilisateur=u,
+                           date = datetime.datetime.now(),
+                           path = '/login/',
+                           qstring = '')
+                    response = HttpResponse()
+                    # renseigner les variables de session
+                    request.session['v'] = u
+                    request.session['django_language'] = u.langue
+                    # retourner à la vue appelante
+                    next = request.REQUEST.get('next','')
+                    if next:
+                        response.status_code = 302
+                        response['Location'] = iri_to_uri(next)
+                        return response
                     else:
-                        msg = _('Sorry, expired account.')
+                        response.status_code = 302
+                        response['Location'] = reverse('v_home')
+                        return response
                 else:
-                    msg = _('Password error. Please try again.')
-            request.session.set_test_cookie()
-            return render_to_response('session/login.html',
-                    {'form': f, 
-                     'langues': langues,
-                     'here':'login',
-                     'msg': msg})
+                    msg = _('Sorry, expired account.')
+            else:
+                return render_to_response('session/login.html',
+                        {'form': f, 
+                         'langues': langues,
+                         'here':'login',
+                         'utilisateur': u,
+                         'msg': msg})
         else:
-            msg = _('Your browser does not seem to accept cookies. Please change your settings and try again.')
-            return render_to_response('msg.html',
-                    {'msg': msg,
-                     'langues': langues,
-                     'here':'login',
-                    })
+            if request.session.test_cookie_worked():
+                request.session.delete_test_cookie()
+                f = LoginForm(request.POST)
+                msg=''
+                if f.is_valid():
+                    flogin = f.cleaned_data['login']
+                    flogin = unicodedata.normalize('NFKD', 
+                            flogin).encode('ascii', 'ignore')
+                    fpassword = f.cleaned_data['password']
+                    try:
+                        u = Utilisateur.objects.get(login=flogin)
+                        try:
+                            login2 = flogin[:17]
+                            login2 = '%s_' % login2
+                            u2 = Utilisateur.objects.get(login=login2)
+                            try:
+                                login3 = login2[:18]
+                                login3 = '%s_' % login3
+                                u3 = Utilisateur.objects.get(login=login3)
+                                try:
+                                    login4 = login3[:19]
+                                    login4 = '%s_' % login4
+                                    u4 = Utilisateur.objects.get(login=login4)
+                                except Utilisateur.DoesNotExist:
+                                    u4 = None
+                            except Utilisateur.DoesNotExist:
+                                u3 = None
+                        except Utilisateur.DoesNotExist:
+                            u2 = None
+                    except Utilisateur.DoesNotExist:
+                        f = LoginForm()
+                        msg = _('Bad login. Please try again.')
+                        request.session.set_test_cookie()
+                        return render_to_response('session/login.html',
+                                {'form': f,
+                                 'langues': langues,
+                                 'here':'login',
+                                 'msg': msg})
+                    # tester mot de passe valide et utilisateur non périmé 
+                    if u.is_pwd_correct(fpassword):
+                        # proposer les groupes si plusieurs
+                        if u2:
+                            groupes = []
+                            groupes.append(u.groupe)
+                            groupes.append(u2.groupe)
+                            if u3:
+                                groupes.append(u3.groupe)
+                                if u4:
+                                    groupes.append(u4.groupe)
+                            f = LoginForm2()
+                            f.fields['groupe'].choices = [(g.id, g.nom) for g in groupes]
+                            return render_to_response('session/login.html',
+                                    {'form': f, 
+                                     'langues': langues,
+                                     'here':'login',
+                                     'utilisateur': u,
+                                     'msg': msg})
+                        else:
+                            if u.is_valid():
+                                # enregistrer l'heure de login
+                                Log.objects.create(utilisateur=u,
+                                       date = datetime.datetime.now(),
+                                       path = '/login/',
+                                       qstring = '')
+                                response = HttpResponse()
+                                # renseigner les variables de session
+                                request.session['v'] = u
+                                request.session['django_language'] = u.langue
+                                # traiter cookie "remember me"
+                                if f.cleaned_data['remember']:
+                                    cookie_data = b64encode( '%s:%s' % (flogin, fpassword.encode('utf8')))
+                                    max_age = 30*24*60*60
+                                    expires = datetime.datetime.strftime(datetime.datetime.utcnow()
+                                                    + datetime.timedelta(seconds=max_age), 
+                                                    "%a, %d-%b-%Y %H:%M:%S GMT")
+                                    response.set_cookie('eMaster', cookie_data, max_age=max_age, expires=expires)
+                                else:
+                                    # effacer le cookie s'il existe
+                                    response.delete_cookie('eMaster')
+                                # retourner à la vue appelante
+                                next = request.REQUEST.get('next','')
+                                if next:
+                                    response.status_code = 302
+                                    response['Location'] = iri_to_uri(next)
+                                    return response
+                                else:
+                                    response.status_code = 302
+                                    response['Location'] = reverse('v_home')
+                                    return response
+                            else:
+                                msg = _('Sorry, expired account.')
+                    else:
+                        msg = _('Password error. Please try again.')
+                request.session.set_test_cookie()
+                return render_to_response('session/login.html',
+                        {'form': f, 
+                         'langues': langues,
+                         'here':'login',
+                         'msg': msg})
+            else:
+                msg = _('Your browser does not seem to accept cookies. Please change your settings and try again.')
+                return render_to_response('msg.html',
+                        {'msg': msg,
+                         'langues': langues,
+                         'here':'login',
+                        })
     else:
         try:
             del request.session['v']

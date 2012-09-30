@@ -15,6 +15,18 @@
 
 		<form action="" method="post" id="login-form">
 			<h1>{% trans "Login Form" %}</h1>
+            {% if utilisateur %}
+			<div class="form-row">
+                <p>{{ utilisateur.prenom_nom }}, {% trans 'choose the group you want to work with' %}</p>
+			</div>
+			<div class="form-row{% if form.errors.groupe %} error{% endif %}">
+		        <label for="id_{{ form.groupe.name }}">{{ form.groupe.label }}</label> {{ form.groupe }}
+			</div>
+			<div class="submit-row">
+			<input type="hidden" name="u" value="{{ utilisateur.id }}" />
+			<input type="submit" value="{% trans "Continue" %}" />
+			</div>
+            {% else %}
 			<div class="form-row{% if form.errors.login %} error{% endif %}">
 				<label for="id_{{ form.login.name }}">{{ form.login.label }}</label>
 				{{ form.login }} {{ form.errors.login }}
@@ -31,6 +43,7 @@
 				<input class="btn" type="submit" value="{% trans "Log in" %}" />
 				<a href="{% url lostpw %}" class="forgot">{% trans "Help, I lost my password" %}</a>
 			</div>
+            {% endif %}
 		</form>
 	</div><!-- END .content -->
 
