@@ -65,7 +65,7 @@ class Cours(models.Model):
 
     class Meta:
         verbose_name_plural = "cours"
-        ordering = ['rang']
+        ordering = ['slug',]
 
     def __unicode__(self):
         return self.slug
