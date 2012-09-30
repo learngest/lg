@@ -337,13 +337,19 @@ def login(request):
         if 'u' in request.POST:
             u = Utilisateur.objects.get(id=request.POST['u'])
             try:
-                login2 = u.login[:19]
+                login2 = u.login[:17]
                 login2 = '%s_' % login2
                 u2 = Utilisateur.objects.get(login=login2)
                 try:
-                    login3 = u.login[:18]
-                    login3 = '%s__' % login3
+                    login3 = login2[:18]
+                    login3 = '%s_' % login3
                     u3 = Utilisateur.objects.get(login=login3)
+                    try:
+                        login4 = login3[:19]
+                        login4 = '%s_' % login4
+                        u4 = Utilisateur.objects.get(login=login4)
+                    except Utilisateur.DoesNotExist:
+                        u4 = None
                 except Utilisateur.DoesNotExist:
                     u3 = None
             except Utilisateur.DoesNotExist:
@@ -353,7 +359,9 @@ def login(request):
             if u2:
                 utilisateurs[u2.groupe] = u2
                 if u3:
-                    utilisateurs[u3.id] = u3
+                    utilisateurs[u3.groupe] = u3
+                    if u4:
+                        utilisateurs[u4.groupe] = u4
             f = LoginForm2(request.POST)
             f.fields['groupe'].choices = [(g.id, g.nom) for g in utilisateurs.keys()]
             if f.is_valid():
@@ -401,13 +409,19 @@ def login(request):
                     try:
                         u = Utilisateur.objects.get(login=flogin)
                         try:
-                            login2 = flogin[:19]
+                            login2 = flogin[:17]
                             login2 = '%s_' % login2
                             u2 = Utilisateur.objects.get(login=login2)
                             try:
-                                login3 = flogin[:18]
-                                login3 = '%s__' % login3
+                                login3 = login2[:18]
+                                login3 = '%s_' % login3
                                 u3 = Utilisateur.objects.get(login=login3)
+                                try:
+                                    login4 = login3[:19]
+                                    login4 = '%s_' % login4
+                                    u4 = Utilisateur.objects.get(login=login4)
+                                except Utilisateur.DoesNotExist:
+                                    u4 = None
                             except Utilisateur.DoesNotExist:
                                 u3 = None
                         except Utilisateur.DoesNotExist:
@@ -430,6 +444,8 @@ def login(request):
                             groupes.append(u2.groupe)
                             if u3:
                                 groupes.append(u3.groupe)
+                                if u4:
+                                    groupes.append(u4.groupe)
                             f = LoginForm2()
                             f.fields['groupe'].choices = [(g.id, g.nom) for g in groupes]
                             return render_to_response('session/login.html',

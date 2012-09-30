@@ -931,15 +931,28 @@ def create_logins(request):
                 created = False
                 try:
                     user1 = Utilisateur.objects.get(login=login)
-                    login = login[:19]
+                    login = login[:17]
                     login = '%s_' % login
                     try:
                         Utilisateur.objects.get(login=login)
                         login = login[:18]
-                        login = '%s__' % login
+                        login = '%s_' % login
                         try:
                             Utilisateur.objects.get(login=login)
-                            status = ugettext('Exists already in 3 groups')
+                            login = login[:19]
+                            login = '%s_' % login
+                            try:
+                                Utilisateur.objects.get(login=login)
+                                status = ugettext('Exists already in 4 groups')
+                                password = 'N/A'
+                            except Utilisateur.DoesNotExist:
+                                u = Utilisateur(login=login, nom=nom, prenom=prenom, 
+                                                password = user1.password,
+                                                email=email, fermeture=request.POST['fermeture'], 
+                                                langue=request.POST['langue'], groupe=g)
+                                u.save(change_password=True)
+                                status = ugettext('Existed, added to group.')
+                                password = ugettext('Unchanged')
                         except Utilisateur.DoesNotExist:
                             u = Utilisateur(login=login, nom=nom, prenom=prenom, 
                                             password = user1.password,
