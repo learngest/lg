@@ -78,7 +78,7 @@ def test(request, slug=None, **kwargs):
     try:
         gr = Granule.objects.get(slug=slug)
     except Granule.DoesNotExist:
-        HttpResponseRedirect(reverse('v_home'))
+        return HttpResponseRedirect(reverse('v_home'))
     gt = gr.titre(langue)
     questions = Question.objects.filter(granule=gr).filter(langue=langue).order_by('?')[:gr.nbq]
     msg = None
@@ -138,7 +138,7 @@ def noter(request):
         return astring
 
     if not request.method == 'POST':
-        HttpResponseRedirect(reverse('v_home'))
+        return HttpResponseRedirect(reverse('v_home'))
     max,total = (0,0)
     enonces = {}
     #for quest,rep in request.POST.items():

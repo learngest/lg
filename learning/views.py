@@ -68,7 +68,7 @@ def devoir(request):
     try:
         w = Work.objects.get(id=request.GET['id'])
     except Work.DoesNotExist:
-        HttpResponseRedirect(reverse('v_home'))
+        return HttpResponseRedirect(reverse('v_home'))
     w.url = w.fichier.url
     if w.fichier.path:
         w.fname = os.path.basename(w.fichier.path)
@@ -162,7 +162,7 @@ def module(request, slug=None):
     try:
         c = Cours.objects.get(id=id_cours)
     except Cours.DoesNotExist:
-        HttpResponseRedirect('/tdb/')
+        return HttpResponseRedirect(reverse('l_dashboard'))
     m.title = m.titre(langue=u.langue)
     m.valide = u.module_is_valide(m)
     if u.echeance(c,m):
@@ -345,17 +345,17 @@ def help_support(request, slug=None):
     # sinon, recherche d'un contenu dans la langue demandée
     # s'il n'existe pas, recherche d'un contenu en français
     if not slug:
-        HttpResponseRedirect('/tdb/')
+        return HttpResponseRedirect(reverse('l_dashboard'))
     v = request.session['v']
     langue = request.GET.get('l',request.session['django_language'])
     #try:
     #    m = Module.objects.get(slug=slug)
     #except Module.DoesNotExist:
-    #    HttpResponseRedirect('/tdb/')
+    #    return HttpResponseRedirect(reverse('l_dashboard'))
     m = get_object_or_404(Module, slug=slug)
     lc = Contenu.objects.filter(module=m,type='htm')
     if not lc:
-        HttpResponseRedirect('/tdb/')
+        return HttpResponseRedirect(reverse('l_dashboard'))
     try:
         c = lc.get(langue=langue)
         msg = None
@@ -364,7 +364,7 @@ def help_support(request, slug=None):
             c = lc.get(langue='fr')
             msg = _('We are sorry, this content is not available in your preferred language.') 
         except Contenu.DoesNotExist:
-            HttpResponseRedirect('/tdb/')
+            return HttpResponseRedirect(reverse('l_dashboard'))
     except AssertionError:
         c = lc[0]
     base = ''
@@ -374,7 +374,7 @@ def help_support(request, slug=None):
         if 'HTTP_REFERER' in request.META:
             base = '/'.join(request.META['HTTP_REFERER'].split('/')[:3])
         else:
-            HttpResponseRedirect(reverse('v_home'))
+            return HttpResponseRedirect(reverse('v_home'))
     v.lastw = datetime.datetime.now()
     request.session['v'] = v
     v.save()
@@ -391,7 +391,7 @@ def help_support(request, slug=None):
             c.langue,
             c.ressource)
     if not include_is_allowed(support_path):
-        HttpResponseRedirect('/tdb/')
+        return HttpResponseRedirect(reverse('l_dashboard'))
     try:
         support = open(support_path).read()
     except IOError:
@@ -425,18 +425,18 @@ def support(request, slug=None, **kwargs):
     # sinon, recherche d'un contenu dans la langue demandée
     # s'il n'existe pas, recherche d'un contenu en français
     if not slug:
-        HttpResponseRedirect('/tdb/')
+        return HttpResponseRedirect(reverse('l_dashboard'))
     v = request.session['v']
     ltyp = kwargs['ltyp']
     langue = request.GET.get('l',request.session['django_language'])
     #try:
     #    m = Module.objects.get(slug=slug)
     #except Module.DoesNotExist:
-    #    HttpResponseRedirect('/tdb/')
+    #    return HttpResponseRedirect(reverse('l_dashboard'))
     m = get_object_or_404(Module, slug=slug)
     lc = Contenu.objects.filter(module=m,type=ltyp)
     if not lc:
-        HttpResponseRedirect('/tdb/')
+        return HttpResponseRedirect(reverse('l_dashboard'))
     try:
         c = lc.get(langue=langue)
         msg = None
@@ -445,7 +445,7 @@ def support(request, slug=None, **kwargs):
             c = lc.get(langue='fr')
             msg = _('We are sorry, this content is not available in your preferred language.') 
         except Contenu.DoesNotExist:
-            HttpResponseRedirect('/tdb/')
+            return HttpResponseRedirect(reverse('l_dashboard'))
     except AssertionError:
         c = lc[0]
 #    base = ''
@@ -455,7 +455,7 @@ def support(request, slug=None, **kwargs):
 #        if 'HTTP_REFERER' in request.META:
 #            base = '/'.join(request.META['HTTP_REFERER'].split('/')[:3])
 #        else:
-#            HttpResponseRedirect(reverse('v_home'))
+#            return HttpResponseRedirect(reverse('v_home'))
     site_id = getattr(settings, 'SITE_ID', 1)
     site = Site.objects.get(id=site_id)
     base = ''.join(('http://', site.domain))
@@ -476,7 +476,7 @@ def support(request, slug=None, **kwargs):
                 c.langue,
                 c.ressource)
         if not include_is_allowed(support_path):
-            HttpResponseRedirect('/tdb/')
+            return HttpResponseRedirect(reverse('l_dashboard'))
         try:
             support = open(support_path).read()
         except IOError:

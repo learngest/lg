@@ -573,19 +573,19 @@ def detail_module(request):
     try:
         u = Utilisateur.objects.get(id=uid)
     except Utilisateur.DoesNotExist:
-        HttpResponseRedirect(reverse('v_home'))
+        return HttpResponseRedirect(reverse('v_home'))
     # module demandé
     id_mod = request.GET['mid']
     try:
         m = Module.objects.get(id=id_mod)
     except Module.DoesNotExist:
-        HttpResponseRedirect(reverse('v_home'))
+        return HttpResponseRedirect(reverse('v_home'))
     # recup cours auquel le module appartient
     id_cours = request.GET['cid']
     try:
         c = Cours.objects.get(id=id_cours)
     except Cours.DoesNotExist:
-        HttpResponseRedirect(reverse('v_home'))
+        return HttpResponseRedirect(reverse('v_home'))
     m.title = m.titre(langue=u.langue)
     m.valide = u.module_is_valide(m)
     if u.echeance(c,m):
