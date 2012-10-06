@@ -152,13 +152,12 @@ def module(request, slug=None):
     # récup visiteur
     u = request.session['v']
     # module demandé
-    #try:
-    #    m = Module.objects.get(slug=slug)
-    #except Module.DoesNotExist:
-    #    HttpResponseRedirect('/tdb/')
     m = get_object_or_404(Module, slug=slug)
     # recup cours auquel le module appartient
-    id_cours = request.GET['cid']
+    if 'cid' in request.GET:
+        id_cours = request.GET['cid']
+    else:
+        return HttpResponseRedirect(reverse('l_dashboard'))
     try:
         c = Cours.objects.get(id=id_cours)
     except Cours.DoesNotExist:
