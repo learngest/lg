@@ -820,6 +820,7 @@ def liste_utilisateurs(request, **kwargs):
         liste_groupes = v.groupes_list()
     # recup de la liste des objets correspondant aux paramètres passés
     lu = lu.filter(**params)
+    effectif = lu.count()
     # construction des filtres
     lg = {'nom': 'groupe', 'title': _('group'), 'valeurs': [{'id': g.id, 'libel':g.nom} for g in liste_groupes]}
     lc = {'nom': 'groupe__client', 'title': _('client'), 'valeurs': [{'id': c.id, 'libel':c.nom} for c in liste_clients]}
@@ -841,6 +842,7 @@ def liste_utilisateurs(request, **kwargs):
              'client': v.groupe.client,
              'administrateur': v.status>COACH,
              'gid': gid,
+             'effectif': effectif,
              'liste_utilisateurs': lu, 'liste_filtres': lf,})
 liste_utilisateurs = visitor_may_see_list(liste_utilisateurs)
 
