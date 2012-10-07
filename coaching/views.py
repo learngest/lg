@@ -830,7 +830,10 @@ def liste_utilisateurs(request, **kwargs):
     request.session['v'] = v
     v.save()
     if 'groupe' in params and not 'langue' in params:
-        gid = Groupe.objects.get(id=params['groupe'])
+        try:
+            gid = Groupe.objects.get(id=params['groupe'])
+        except Groupe.DoesNotExist:
+            gid = None
     else:
         gid = None
     return render_to_response('coaching/liste_admin.html',
