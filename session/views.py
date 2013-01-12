@@ -389,6 +389,12 @@ def login(request):
                         return response
                 else:
                     msg = _('Sorry, expired account.')
+                    return render_to_response('session/login.html',
+                            {'form': f, 
+                             'langues': langues,
+                             'here':'login',
+                             'utilisateur': u,
+                             'msg': msg})
             else:
                 return render_to_response('session/login.html',
                         {'form': f, 
@@ -488,8 +494,18 @@ def login(request):
                                     return response
                             else:
                                 msg = _('Sorry, expired account.')
+                                return render_to_response('session/login.html',
+                                        {'form': f, 
+                                     'langues': langues,
+                                     'here':'login',
+                                     'msg': msg})
                     else:
                         msg = _('Password error. Please try again.')
+                        return render_to_response('session/login.html',
+                                {'form': f, 
+                             'langues': langues,
+                             'here':'login',
+                             'msg': msg})
                 request.session.set_test_cookie()
                 return render_to_response('session/login.html',
                         {'form': f, 
