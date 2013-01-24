@@ -400,8 +400,7 @@ def login(request):
                         {'form': f, 
                          'langues': langues,
                          'here':'login',
-                         'utilisateur': u,
-                         'msg': msg})
+                         'utilisateur': u})
         else:
             if request.session.test_cookie_worked():
                 request.session.delete_test_cookie()
