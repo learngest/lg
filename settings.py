@@ -88,6 +88,7 @@ INSTALLED_APPS = (
     'lg.learning',
     'lg.coaching',
     'lg.testing',
+    'lg.functests',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
