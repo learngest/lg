@@ -201,18 +201,20 @@ def noter(request):
             qd['libel'] = eval(phrase) % dico
             for k,v in dico.items():
                 locals()[k] = v
-            #r.valeur = '%.2f' % round(eval(r.valeur),2)
-            r.valeur = '%f' % eval(r.valeur)
-            if rep:
-                rep = clean(rep).replace(',','.').rstrip('0')
-                r.valeur = clean(r.valeur).replace(',','.').rstrip('0')
-                # on teste sur 5 chiffres significatifs max + le point décimal
-                if rep[:6] == r.valeur[:6]:
-                    qd['points'] = r.points
-                    total += r.points
+            try:
+                r.valeur = '%f' % eval(r.valeur)
+                if rep:
+                    rep = clean(rep).replace(',','.').rstrip('0')
+                    r.valeur = clean(r.valeur).replace(',','.').rstrip('0')
+                    # on teste sur 5 chiffres significatifs max + le point décimal
+                    if rep[:6] == r.valeur[:6]:
+                        qd['points'] = r.points
+                        total += r.points
+                    else:
+                        qd['points'] = '0'
                 else:
                     qd['points'] = '0'
-            else:
+            except ZeroDivisionError:
                 qd['points'] = '0'
         if q.typq == 'exa':
             r = q.reponse_set.all()[0]
