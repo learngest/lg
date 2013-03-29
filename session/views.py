@@ -364,6 +364,7 @@ def login(request):
                         utilisateurs[u4.groupe] = u4
             f = LoginForm2(request.POST)
             f.fields['groupe'].choices = [(g.id, g.nom) for g in utilisateurs.keys()]
+            msg = ''
             if f.is_valid():
                 g = Groupe.objects.get(id=f.cleaned_data['groupe'])
                 u = utilisateurs[g]
